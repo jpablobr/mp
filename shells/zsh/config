@@ -1,0 +1,113 @@
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/bin/dotfiles/zsh
+
+# Set to the name theme to load.
+# Look in ~/bin/dotfiles/zsh/themes/
+export ZSH_THEME="jpablobr"
+
+# run!
+# $ sudo chown -R jpablobr:jpablobr .gem
+export GEM_HOME="$HOME/.gem"
+# Set to this to use case-sensitive completion
+# export CASE_SENSITIVE="true"
+
+# Comment this out to disable weekly auto-update checks
+# export DISABLE_AUTO_UPDATE="true"
+
+# Uncomment following line if you want to disable colors in ls
+# export DISABLE_LS_COLORS="true"
+
+# source $ZSH/../zshrc
+
+# add a function path
+fpath=($ZSH/functions $fpath)
+
+# Load all of the config files in ~/bin/dotfiles/zsh that end in .zsh
+# TIP: Add files you don't want in git to .gitignore
+for config_file ($ZSH/lib/*.zsh) source $config_file
+
+# Load all of your custom configurations from custom/
+#for config_file ($ZSH/custom/*.zsh) source $config_file
+
+# Set RPROMPT to have info show up on the right, too.
+
+#############################
+# Other Options
+
+# setopt PRINT_EXIT_VALUE
+setopt CORRECT
+setopt CORRECTALL
+
+setopt hist_ignore_dups     # ignore duplication command history list
+setopt share_history        # share command history data
+setopt HIST_IGNORE_SPACE
+setopt APPEND_HISTORY # write history only when closing
+setopt EXTENDED_HISTORY # add more info
+
+# Other tabbing options
+# setopt NO_AUTO_MENU
+# setopt BASH_AUTO_LIST
+
+#############################
+
+export EDITOR='emacs-client -w'
+export PATH="$HOME/.gem/ruby/1.8/bin:$HOME/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+
+## RVM
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then source "$HOME/.rvm/scripts/rvm" ; fi
+
+# Variables
+
+# Quote pasted URLs
+autoload url-quote-magic
+zle -N self-insert url-quote-magic
+
+LISTMAX=0 # ask to complete if top of list would scroll off screen
+
+#see zsh/completion
+# Load completions for Ruby, Git, etc.
+autoload compinit
+compinit
+
+# Make CTRL-W delete after other chars, not just spaces
+WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
+
+bindkey -e
+
+fpath=(~/bin/dotfiles/zsh/functions $fpath)
+
+autoload -U ~/bin/dotfiles/zsh/functions/*(:t)
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+REPORTTIME=10 # print elapsed time when more than 10 seconds
+
+setopt NO_BG_NICE # don't nice background tasks
+setopt NO_HUP
+setopt NO_LIST_BEEP
+setopt LOCAL_OPTIONS # allow functions to have local options
+setopt LOCAL_TRAPS # allow functions to have local traps
+setopt HIST_VERIFY
+setopt SHARE_HISTORY # share history between sessions ???
+setopt EXTENDED_HISTORY # add timestamps to history
+setopt PROMPT_SUBST
+setopt CORRECT
+setopt COMPLETE_IN_WORD
+setopt IGNORE_EOF
+
+setopt APPEND_HISTORY # adds history
+setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
+setopt HIST_IGNORE_ALL_DUPS # don't record dupes in history
+setopt HIST_REDUCE_BLANKS
+
+zle -N newtab
+
+bindkey '^[^[[D' backward-word
+bindkey '^[^[[C' forward-word
+bindkey '^[[5D' beginning-of-line
+bindkey '^[[5C' end-of-line
+bindkey '^[[3~' delete-char
+bindkey '^[^N' newtab
+bindkey '^?' backward-delete-char

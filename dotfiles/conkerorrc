@@ -1,0 +1,172 @@
+/* Jose Pablo Barrantes
+ *
+ * git repository at http://github.com/jpablobr/conkerorrc
+ */
+
+//require("new-tabs.js");
+//require("tab-bar.js");
+require("clicks-in-new-buffer.js");
+require("page-modes/google-search-results.js");
+require("page-modes/wikipedia.js");
+require("index-webjump.js");
+require("extensions/adblockplus.js");
+require("extensions/noscript.js");
+require("session.js");
+require("block-content-focus-change.js");
+
+// Some settings
+session_auto_save_auto_load = "prompt";
+url_remoting_fn = load_url_in_new_buffer;
+view_source_use_external_editor = false;
+xkcd_add_title = true;
+
+//browser_prevent_automatic_form_focus_mode(true);
+google_search_bind_number_shortcuts();
+
+// Webjump oneliners
+define_webjump("jpablobr", "http://jpablobr.com/");
+define_webjump("codesearch", "http://www.google.com/codesearch?q=%s");
+define_webjump("ohloh", "https://www.ohloh.net/p?query=%s");
+//define_webjump("scroogle", "https://ssl.scroogle.org/cgi-bin/nbbwssl.cgi?Gw=%s");
+define_webjump("ixquick", "http://ixquick.com/do/metasearch.pl?query=%s");
+define_webjump("symlink", "http://www.symlink.ch/search.pl?query=%s");
+define_webjump("trans", "http://translate.google.com/translate_t#auto|en|%s");
+define_webjump("twitter", "http://twitter.com/%s");
+define_webjump("github", "http://github.com/%s");
+define_webjump("git-jpablobr", "http://github.com/jpablobr");
+define_webjump("urban", "http://www.urbandictionary.com/define.php?term=%s");
+define_webjump("youtube", "http://www.youtube.com/results?search_query=%s&search=Search")
+define_webjump("gmail", "http://gmail.com");
+define_webjump("grooveshark", "http://www.grooveshark.com");
+define_webjump("vimeo", "http://www.vimeo.com");
+
+
+// New Debian Webjumps
+define_webjump("buildd", "https://buildd.debian.org/%s");
+define_webjump("buildd-experimental", "http://experimental.ftbfs.de/%s");
+define_webjump("buildd-ports", "http://buildd.debian-ports.org/build.php?pkg=%s");
+define_webjump("debqa", "http://qa.debian.org/developer.php?login=%s");
+
+// JS Webjumps
+define_webjump("longurl", "javascript:void(function(){if(typeof%20jQuery%20==%20'undefined'){var%20s=document.createElement('script');s.src='http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js';document.getElementsByTagName('head')[0].appendChild(s);}var%20l=document.createElement('script');l.src='http://www.longurlplease.com/js/longurlplease.js';document.getElementsByTagName('head')[0].appendChild(l);function%20runIfReady(){try{if($.longurlplease){%20clearInterval(interval);%20$.longurlplease();}}catch(e){}};%20var%20interval%20=%20window.setInterval(runIfReady,100);}())");
+
+wikipedia_enable_didyoumean = true;
+define_wikipedia_webjumps("en", "de");
+
+// Personalized Webjumps
+add_delicious_webjumps("jpablobr");
+add_lastfm_webjumps("jpablobr");
+
+// Longer Webjumps
+define_webjump("down?",
+  function (url) {
+    if (url) {
+      return "http://downforeveryoneorjustme.com/" + url;
+    } else {
+      return "javascript:window.location.href='http://downforeveryoneorjustme.com/'+window.location.href;";
+    }
+  },
+  $argument = "optional",
+  $completer = history_completer($use_history = false, $use_bookmarks = true));
+
+define_webjump("wayback",
+  function (url) {
+    if (url) {
+      return "http://web.archive.org/web/*/" + url;
+    } else {
+      return "javascript:window.location.href='http://web.archive.org/web/*/'+window.location.href;";
+    }
+  },
+  $argument = "optional",
+  $completer = history_completer($use_history = false, $use_bookmarks = true));
+
+// Additional key bindings
+
+//define_key(content_buffer_normal_keymap, "C-t", "find-url-new-buffer");
+//define_key(content_buffer_normal_keymap, "C-t", "make-window");
+//define_key(content_buffer_normal_keymap, "C-w", "kill-current-buffer");
+define_key(content_buffer_normal_keymap, "M-left", "back");
+define_key(content_buffer_normal_keymap, "M-right", "forward");
+
+// See also http://kb.mozillazine.org/Network.proxy.type
+require("minibuffer-completion.js");
+function get_proxy_description(x) {
+  switch (x) {
+    case 'direct':             return 'Direct connection, no proxy';
+    case 'manual':             return 'Manually configured proxy';
+    case 'auto-configuration': return 'Proxy auto-configuration (PAC)';
+    case 'auto-detection':     return 'Auto-detect proxy settings';
+    case 'system-settings':    return 'Use system proxy';
+  }
+  return '';
+}
+
+function get_proxy_value(x) {
+  switch (x) {
+    case 'direct':             return 0;
+    case 'manual':             return 1;
+    case 'auto-configuration': return 2;
+    case 'auto-detection':     return 4;
+    case 'system-settings':    return 5;
+  }
+  return '';
+}
+
+function proxy_type_completer (input, cursor_position, conservative) {
+  var completions = ['direct',
+		     'manual',
+		     'auto-configuration',
+		     'auto-detection',
+		     'system-settings'];
+  yield co_return(
+    prefix_completer($completions = completions,
+		     $get_description = get_proxy_description,
+		     $get_value = get_proxy_value)
+    (input, cursor_position, conservative));
+}
+
+interactive("set-proxy-type", "Change the proxy type or turn proxies off",
+  function(I) {
+    var proxytype = yield I.minibuffer.read(
+      $prompt = "Proxy type to use?",
+      $history = "proxytype",
+      $completer = proxy_type_completer,
+      $match_required = true);
+    user_pref("network.proxy.type", proxytype);
+  }
+);
+
+// From http://jjfoerch.com/git/conkerorrc/commands.js
+interactive("delete", null,
+    function (I) {
+        var elem = yield read_browser_object(I);
+        elem.parentNode.removeChild(elem);
+    },
+    $browser_object = browser_object_dom_node);
+
+define_key(content_buffer_normal_keymap, "d", "delete");
+
+add_hook("window_before_close_hook",
+         function () {
+             var w = get_recent_conkeror_window();
+             var result = (w == null) ||
+                 "y" == (yield w.minibuffer.read_single_character_option(
+                     $prompt = "Quit Conkeror? (y/n)",
+                     $options = ["y", "n"]));
+             yield co_return(result);
+         });
+
+// Firebug
+define_variable("firebug_url",
+    "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js");
+
+function firebug (I) {
+    var doc = I.buffer.document;
+    var script = doc.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', firebug_url);
+    script.setAttribute('onload', 'firebug.init();');
+    doc.body.appendChild(script);
+}
+interactive("firebug", "open firebug lite", firebug)
+
