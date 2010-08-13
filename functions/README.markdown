@@ -1,4 +1,4 @@
-#BIN files#
+# FUNCTIONS #
 
 ### Resources
 
