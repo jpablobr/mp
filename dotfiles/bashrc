@@ -1,1 +1,4 @@
-. ~/.my-precious/shells/bashrc
+. ~/.my-precious/shells/bash/env
+. ~/.my-precious/shells/bash/config
+. ~/.my-precious/shells/bash/aliases
+. ~/.my-precious/shells/bash/completions

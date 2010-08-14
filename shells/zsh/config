@@ -1,8 +1,8 @@
 # Path to your oh-my-zsh configuration.
-export ZSH=$HOME/bin/dotfiles/zsh
+export ZSH=$HOME/.my-precious/shells/zsh
 
 # Set to the name theme to load.
-# Look in ~/bin/dotfiles/zsh/themes/
+# Look in ~/.my-precious/shells/zsh/themes/
 export ZSH_THEME="jpablobr"
 
 # run!
