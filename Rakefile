@@ -52,6 +52,10 @@ namespace :mp do
     end
   end#functions
 
+  desc "custome .emacs.d config"
+  task :emacs do    
+  end
+
 end#mp
 
 def replace_file(file)
