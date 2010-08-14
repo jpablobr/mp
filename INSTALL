@@ -1,0 +1,7 @@
+Installation
+
+$ git clone git://github.com/jpablobr/my-precious ~/.my-precious
+
+$ cd ~/.my-precious
+
+$ rake install
