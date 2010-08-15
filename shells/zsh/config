@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+g# Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.my-precious/shells/zsh
 
 # Set to the name theme to load.
@@ -22,7 +22,7 @@ export GEM_HOME="$HOME/.gem"
 # add a function path
 fpath=($ZSH/functions $fpath)
 
-# Load all of the config files in ~/bin/dotfiles/zsh that end in .zsh
+# Load all of the config files in ~/.my-precious/shells/zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
 for config_file ($ZSH/lib/*.zsh) source $config_file
 
@@ -75,9 +75,9 @@ WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
 
 bindkey -e
 
-fpath=(~/bin/dotfiles/zsh/functions $fpath)
+fpath=(~/.my-precious/shells/zsh/functions $fpath)
 
-autoload -U ~/bin/dotfiles/zsh/functions/*(:t)
+autoload -U ~/.my-precious/shells/zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
