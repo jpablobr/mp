@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+if [[ -f /etc/rvmrc ]] ; then source /etc/rvmrc ; fi
+
+if [[ -f "$HOME/.rvmrc" ]] ; then source "$HOME/.rvmrc" ; fi
+
+rvm_path="${rvm_path:-$HOME/.rvm}"
+
+mkdir -p $rvm_path/src/
+
+builtin cd $rvm_path/src
+
+rm -rf ./rvm/ 
+
+git clone http://github.com/wayneeseguin/rvm.git
+
+builtin cd rvm
+
+dos2unix scripts/* >/dev/null 2>&1
+
+bash ./scripts/install
