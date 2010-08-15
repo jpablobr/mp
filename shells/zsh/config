@@ -1,4 +1,4 @@
-g# Path to your oh-my-zsh configuration.
+# Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.my-precious/shells/zsh
 
 # Set to the name theme to load.
@@ -16,8 +16,6 @@ export GEM_HOME="$HOME/.gem"
 
 # Uncomment following line if you want to disable colors in ls
 # export DISABLE_LS_COLORS="true"
-
-# source $ZSH/../zshrc
 
 # add a function path
 fpath=($ZSH/functions $fpath)
@@ -74,11 +72,6 @@ compinit
 WORDCHARS=${WORDCHARS//[&=\/;\!#%\{]}
 
 bindkey -e
-
-fpath=(~/.my-precious/shells/zsh/functions $fpath)
-
-autoload -U ~/.my-precious/shells/zsh/functions/*(:t)
-
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
