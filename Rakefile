@@ -2,7 +2,10 @@ require 'rake'
 require 'erb'
 
 namespace :mp do
-
+  
+  desc "Sets the whole environment"
+  task :install => [:dotfiles, :functions, :emacs]
+  
   desc "Link dotfiles to $HOME directory"
   task :dotfiles do
     replace_all = false
