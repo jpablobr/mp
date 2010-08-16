@@ -53,8 +53,21 @@ namespace :mp do
   end#functions
 
   desc "custome .emacs.d config"
-  task :emacs do    
-  end
+  task :emacs do
+    unless Dir[ENV['HOME'] + "/.emacs.d"].count == 0
+      print "~/.emacs.d directory already exist, overwrite it? [ynq] "
+      case $stdin.gets.chomp
+      when 'y'
+        replace_home_emacs
+      when 'q'
+        exit
+      else
+        puts "keeping current ~/.emacs.d directory"
+      end
+    else
+      link_emacs_to_home_emacs
+    end
+  end#emacs
 
 end#mp
 
@@ -88,4 +101,16 @@ end
 
 def f_gsub(f)
   f.to_s.gsub(%r((dotfiles\/)|(.erb)), '')
+end
+
+def link_emacs_to_home_emacs
+  system %Q{ git clone git@github.com:jpablobr/emacs.d.git }
+  system %Q{ cd emacs.d && ruby install.rb }
+  system %Q{ ln -s "$PWD/#{ Dir['emacs.d'] }" "$HOME/.emacs.d"}
+end
+
+def replace_home_emacs
+  puts "Removing current ~/.emacs.d directory"
+  system %Q{rm -rf "$HOME/.emacs.d"}
+  link_emacs_to_home_emacs
 end
