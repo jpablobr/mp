@@ -7,11 +7,11 @@ $ cd ~/.my-precious
 Install everything:
 $ rake mp:install
 
-Only dotfiles
-$ rake mp:dotfiels
+Only dotfiles:
+$ rake mp:dotfiles
 
-Only functions
+Only functions:
 $ rake mp:functions
 
-Only emacs.d
+Only emacs.d:
 $ rake mp:emacs
