@@ -13,13 +13,13 @@ namespace :mp do
     Dir['*'].each do |file|
       dot_file = f_gsub(file)
       next if %w[ README.markdown ].include? dot_file
-      if File.exist?(File.join(ENV['HOME'], ".#{dot_file}"))
-        if File.identical? File.join(ENV['HOME'], ".#{dot_file}"), ".#{dot_file}"
-          puts "identical ~/.#{dot_file}"
+      if File.exist?(File.join(ENV['HOME'], ".#{ dot_file }"))
+        if File.identical? File.join(ENV['HOME'], ".#{ dot_file }"), ".#{ dot_file }"
+          puts "identical ~/.#{ dot_file }"
         elsif replace_all
           replace_file(dot_file)
         else
-          print "overwrite ~/.#{dot_file}? [yanq] "
+          print "overwrite ~/.#{ dot_file }? [yanq] "
           case $stdin.gets.chomp
           when 'a'
             replace_all = true
@@ -29,7 +29,7 @@ namespace :mp do
           when 'q'
             exit
           else
-            puts "skipping ~/.#{dot_file}"
+            puts "skipping ~/.#{ dot_file }"
           end
         end
       else
@@ -57,6 +57,7 @@ namespace :mp do
 
   desc "custome .emacs.d config"
   task :emacs do
+    Dir.chdir('..') if Dir.pwd =~ /dotfiles/
     unless Dir[ENV['HOME'] + "/.emacs.d"].count == 0
       print "~/.emacs.d directory already exist, overwrite it? [ynq] "
       case $stdin.gets.chomp
@@ -75,7 +76,7 @@ namespace :mp do
 end#mp
 
 def replace_file(file)
-  system %Q{rm -rf "$HOME/.#{file}"}
+  system %Q{rm -rf "$HOME/.#{ file }"}
   link_file(file)
 end
 
