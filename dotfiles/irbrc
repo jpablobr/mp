@@ -8,10 +8,8 @@ IRB.conf[:PROMPT_MODE] = :SIMPLE
 IRB.conf[:AUTO_INDENT] = true
 
 # http://github.com/oggy/looksee i.e lp []
-# gem install irb_rocket --source http://merbi.st
-# irb_rocket is an irb plugin that makes irb #=> rocket 
 
-%w[rubygems pp looksee looksee/shortcuts wirble irb_rocket].each do |gem|
+%w[rubygems pp looksee looksee/shortcuts wirble ].each do |gem|
   begin
     require gem
   rescue LoadError

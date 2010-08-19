@@ -1,0 +1,18 @@
+#root:
+main:
+  clone-from: http://github.com/jinzhu/mycheat.git
+# push-to:
+private:
+  clone-from: http://github.com/jinzhu/mycheat.git
+  push-to: http://github.com/jinzhu/mycheat.git
+
+
+editor:  emacs-client
+
+show_pdf:  evince
+show_image:  eog
+show_office:  soffice
+
+edit_pdf:  soffice
+edit_image:  gimp
+edit_office:  soffice
