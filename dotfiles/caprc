@@ -1,0 +1,3 @@
+# In config/deploy.rb add require 'capistrano_colors'
+# $ gem install capistrano_colors
+require 'capistrano_colors'
