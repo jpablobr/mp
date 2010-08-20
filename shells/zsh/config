@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+# Path to my-precious configuration.
 export ZSH=$HOME/.my-precious/shells/zsh
 
 # Set to the name theme to load.

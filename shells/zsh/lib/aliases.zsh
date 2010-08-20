@@ -57,7 +57,7 @@ function railsapp {
 alias reload='. ~/.bash_profile'
 
 #Emacs
-alias ec='open /Applications/Emacs.app/'
+alias ec='emacs-client -w'
 
 # Utility
 alias reload='source ~/bin/dotfiles/bash/aliases'
@@ -125,12 +125,10 @@ function new-hg() {
     hg clone ssh://hg@example.com/$1
 }
 
-
-
 # Text editing
 # Emacs
-alias em="open /Applications/Emacs.app/"
-alias emm="open /Applications/Emacs.app/ ."
+alias em="emacs-client -w"
+alias emm="emacs-client -w"
 # Regenerate TAGS file from file arguments
 function ct() {
   rm -f TAGS

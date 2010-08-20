@@ -28,7 +28,7 @@ alias eg='open /Applications/Emacs.app/ .git/config'
 
 # Git clone from GitHub
 function gch() {
-  git clone git://github.com/$USER/$1.git
+  git clone git://github.com/$1/$2.git
 }
 
 # Setup a tracking branch from [remote] [branch_name]
