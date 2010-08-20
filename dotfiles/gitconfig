@@ -1,0 +1,20 @@
+[user]
+	name = jpablobr
+	email = xjpablobrx@gmail.com
+[alias]
+	co = checkout
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = /home/jpablobr/.gitignore
+	editor = /usr/bin/emacsclient
+	autocrlf = input
+[apply]
+	whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+[github]
+	user = jpablobr
+	token = d77331f3a63fd2823eee273862fe666b
