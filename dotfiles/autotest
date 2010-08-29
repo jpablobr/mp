@@ -1,12 +1,11 @@
-#!/usr/bin/env ruby
-
 require 'redgreen'
 require 'redgreen/autotest'
 require 'autotest/restart'
 require 'autotest/timestamp'
+
 # http://jetpackweb.com/blog/2009/09/01/autotest-notifications-on-ubuntu-using-lib-notify/
-#require 'rnotify'
-require 'gtk2'
+# require 'rnotify'
+# require 'gtk2'
 
 module Autotest::GnomeNotify
  
