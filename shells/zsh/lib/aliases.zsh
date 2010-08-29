@@ -23,8 +23,6 @@ alias -- -='cd -'
 alias _='sudo'
 alias ss='sudo su -'
 
-#alias g='grep -in'
-
 # Show history
 alias history='fc -l 1'
 
