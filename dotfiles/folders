@@ -1,0 +1,7 @@
+# WL folders (put the '#' always at the beginning of the line)
+.inbox     "Inbox"
+.bulk      "Mailinglists"
+.drafts    "Drafts"
+.sent      "Sent Mail"
+.trash     "Junk"
+%/
