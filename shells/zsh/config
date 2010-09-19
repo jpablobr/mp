@@ -1,5 +1,7 @@
 # Path to my-precious configuration.
 export ZSH=$HOME/.my-precious/shells/zsh
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export CLASSPATH=.:/usr/lib/jvm/java-6-sun/lib
 
 # Set to the name theme to load.
 # Look in ~/.my-precious/shells/zsh/themes/
