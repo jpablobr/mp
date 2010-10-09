@@ -95,9 +95,7 @@ function take() {
 
 alias e='exit'
 alias k9="killall -9"
-function killnamed () {
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
-}
+
 function zipr() {
   zip -r $1.zip $1
 }
