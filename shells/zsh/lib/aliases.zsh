@@ -5,14 +5,6 @@ alias pu='pushd'
 alias po='popd'
 
 alias ss='thin --stats "/thin/stats" start'
-alias sg='ruby script/generate'
-alias sd='ruby script/destroy'
-alias sp='ruby script/plugin'
-alias ssp='ruby script/spec'
-alias rdbm='rake db:migrate'
-alias sc='ruby script/console'
-alias sd='ruby script/server --debugger'
-alias devlog='tail -f log/development.log'
 
 # Basic directory operations
 alias .='pwd'
@@ -32,24 +24,10 @@ alias l='ls -la'
 alias ll='ls -alr'
 alias sl=ls # often screw this up
 
-alias sgem='sudo gem'
-
-# Find ruby file
-alias rfind='find . -name *.rb | xargs grep -n'
-alias afind='ack-grep -il'
-
 # Command Enhancements
 
 # changing directory to code project
 function c { cd ~/code/$1; }
-
-# alternative to "rails" command to use templates
-function railsapp {
-  template=$1
-  appname=$2
-  shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
-}
 
 # misc
 alias reload='. ~/.bash_profile'
@@ -61,12 +39,6 @@ alias ec=/usr/bin/emacsclient
 alias reload='source ~/bin/dotfiles/bash/aliases'
 alias ea='ec -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="ec ~/bin/dotfiles/bash/env"
-
-# Quicker cd
-alias cg='cd /Library/Ruby/Gems/1.8/gems/'
-function cr() {
- cd ~/repos/$*
-}
 
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
@@ -114,12 +86,6 @@ function pless() {
 alias tu='top -o cpu' # cpu
 alias tm='top -o vsize' # memory
 
-# Mercurial hg
-function new-hg() {
-    ssh hg@example.com "hg init $1"
-    hg clone ssh://hg@example.com/$1
-}
-
 # Text editing
 # Emacs
 alias em=/usr/bin/emacsclient
@@ -129,35 +95,6 @@ function ct() {
   rm -f TAGS
   etags --append --output=TAGS $*
 }
-
-# TextMate
-alias et="mate"
-alias ett="mate ."
-alias etr="mate app config lib db schema public spec test vendor/gems vendor/plugins Rakefile Capfile Vladfile Todofile README stories merb slices tasks features &"
-
-# Ruby
-alias r="rake"
-
-function markdown() {
-/Applications/TextMate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
-}
-
-# Rails
-alias mr='mongrel_rails start'
-alias ms='mongrel_rails stop'
-alias rp='touch tmp/restart.txt'
-alias sc='./script/console'
-alias sg='./script/generate'
-alias sp='./script/plugin'
-alias ss='./script/server'
-alias tl='tail -f log/*.log'
-alias ts='thin start'
-
-# TDD / BDD
-
-alias aa='autotest'
-alias aaf='autotest -f' # Don't run all at start
-alias aas="./script/autospec"
 
 # Setup a tunnel
 function haproxyssh() {
@@ -202,7 +139,6 @@ function new-tp() {
     touch $1.taskpaper
     open $1.taskpaper
 }
-
 
 # From http://github.com/suztomo/dotfiles
 function rmf(){
