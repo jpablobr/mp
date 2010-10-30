@@ -77,19 +77,15 @@ alias ff='firefox'
 
 # General code
 
-# From Chris Wanstrath
-function pless() {
-    pygmentize $1 | less -r
-}
-
 # Processes
-alias tu='top -o cpu' # cpu
-alias tm='top -o vsize' # memory
+alias tu='top -p cpu' # cpu
+alias tm='top -p vsize' # memory
 
 # Text editing
 # Emacs
 alias em=/usr/bin/emacsclient
 alias emm=/usr/bin/emacsclient
+
 # Regenerate TAGS file from file arguments
 function ct() {
   rm -f TAGS
@@ -112,19 +108,6 @@ function aiff2mp3() {
 function wav2mp3() {
   lame -h -V 0 $1.wav $1.mp3
 }
-
-
-# XCode
-# Analyze release build
-alias sx="xcodebuild clean && ~/src/checker-0.146/scan-build -k -V xcodebuild"
-# Analyze test build
-alias sxt="xcodebuild -target Test clean && ~/src/checker-0.146/scan-build -k -V xcodebuild -target Test"
-# Call with -target Foo
-function sxx() {
-  xcodebuild $* clean && ~/src/checker-0.146/scan-build -k -V xcodebuild $*
-}
-
-alias ox="open *.xcodeproj"
 
 # Nginx
 function nginx_stop() {

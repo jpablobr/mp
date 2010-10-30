@@ -1,14 +1,15 @@
 #!/bin/zsh
 
 alias sgem='sudo gem'
+alias sgemi='sudo gem install'
+alias gemi='gem install'
+alias bi='bundle install'
 
 # Find ruby file
 alias rfind='find . -name *.rb | xargs grep -n'
 alias afind='ack-grep -il'
 
-# Rails 3
-
-# Rails 2
+# Rails
 alias mr='mongrel_rails start'
 alias ms='mongrel_rails stop'
 alias rp='touch tmp/restart.txt'
