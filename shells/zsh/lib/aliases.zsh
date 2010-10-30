@@ -3,8 +3,7 @@
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'
-
-alias ss='thin --stats "/thin/stats" start'
+alias tss='thin --stats "/thin/stats" start'
 
 # Basic directory operations
 alias .='pwd'
@@ -22,15 +21,11 @@ alias history='fc -l 1'
 alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -alr'
-alias sl=ls # often screw this up
 
 # Command Enhancements
 
 # changing directory to code project
 function c { cd ~/code/$1; }
-
-# misc
-alias reload='. ~/.bash_profile'
 
 #Emacs
 alias ec=/usr/bin/emacsclient
