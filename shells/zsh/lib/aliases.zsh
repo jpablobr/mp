@@ -101,8 +101,7 @@ function zipr() {
 }
 
 # Finder
-alias o='open . &'
-alias ff='open -a Firefox'
+alias ff='firefox'
 
 # General code
 
