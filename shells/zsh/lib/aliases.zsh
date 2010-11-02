@@ -24,6 +24,9 @@ alias ll='ls -alr'
 
 # Command Enhancements
 
+alias start="gnome-open"
+alias open="gnome-open"
+
 # changing directory to code project
 function c { cd ~/code/$1; }
 

@@ -10,9 +10,9 @@ alias gcount='git shortlog -sn'
 alias gcp='git cherry-pick'
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias gba='git branch -a'
-alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gck='git checkout'
+alias gc='git clone'
 
 # Commit pending changes and quote all args as message
 function gg() {
@@ -24,7 +24,6 @@ alias gl='git pull'
 alias gnp="git-notpushed"
 alias gst='git status'
 alias gt='git status'
-alias eg='open /Applications/Emacs.app/ .git/config'
 
 # Git clone from GitHub
 function gch() {
