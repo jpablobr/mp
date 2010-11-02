@@ -37,6 +37,8 @@ alias ec=/usr/bin/emacsclient
 alias reload='source ~/bin/dotfiles/bash/aliases'
 alias ea='ec -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
 alias ee="ec ~/bin/dotfiles/bash/env"
+alias sagi='sudo apt-get install'
+alias agi='apt-get install'
 
 # Common -- Some are from Damian Conway
 alias a='ls -A' # -A all except literal . ..
