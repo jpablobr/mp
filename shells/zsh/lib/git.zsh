@@ -32,7 +32,7 @@ alias gpru='gp && rake && gu'
 alias gri='git rebase -i origin/master^'
 alias grc='git rebase --continue'
 
-complete -o default -o nospace -F _git_branch gb
+# complete -o default -o nospace -F _git_branch gb
 
 alias gitx='gitx --all'
 
