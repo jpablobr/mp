@@ -38,3 +38,8 @@ alias md='mkdir -p'
 alias rd=rmdir
 
 alias d='dirs -v'
+
+# gotos
+alias gt-e='cd ~/.emacs.d && la'
+alias gt-m='cd ~/.my-precious && la'
+alias gt-d='cd ~/Dropbox && la'
