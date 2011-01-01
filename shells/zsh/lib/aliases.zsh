@@ -31,7 +31,7 @@ alias open="gnome-open"
 function c { cd ~/code/$1; }
 
 #Emacs
-alias ec=/usr/bin/emacsclient
+alias ec='emacsclient -nw'
 
 # Utility
 alias reload='source ~/bin/dotfiles/bash/aliases'

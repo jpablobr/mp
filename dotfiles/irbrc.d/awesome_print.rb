@@ -1,3 +1,5 @@
+# Installing as Ruby gem
+# $ gem install awesome_print
 require 'ap'
 
 IRB::Irb.class_eval do
