@@ -60,6 +60,8 @@ alias lt='ls -lt' # sort with recently modified first
 alias md='mkdir -p'
 alias s='cd ..'   # up one dir
 
+alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
+
 function take() {
     mkdir -p "$1"
     cd "$1"

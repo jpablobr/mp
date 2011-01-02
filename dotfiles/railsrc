@@ -1,3 +1,4 @@
+#!/usr/bin/ruby
 def detect_rails_root
   dir = Dir.pwd
   while (dir != '/') do
