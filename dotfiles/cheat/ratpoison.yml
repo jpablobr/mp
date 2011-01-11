@@ -1,0 +1,41 @@
+--- 
+ratpoison: |-
+  C-t c
+  	open xterm
+  
+  C-t !
+  	run shell command
+  
+  C-t w
+  	windows being managed
+  	
+  C-t n, C-t space, C-t enter
+  	next window
+  C-t p
+  	previous window
+  C-t d
+  	delete window
+  	
+  C-t s
+  	split window horizontally
+  C-t S
+  	split window vertically
+  C-t tab
+  	cycle through frames
+  C-t R
+  	remove frame
+  	
+  C-t r
+  	resize frame
+  C-p
+  	grow frame vertically
+  C-n
+  	shrink frame vertically
+  C-f
+  	grow frame horizontally
+  C-b
+  	shrink frame horizontally
+  return
+  	accept new frame size
+  C-g
+  	abort and restore frame to is original size

@@ -8,7 +8,7 @@ export CLASSPATH=/usr/lib/jvm/java-6-sun/lib
 # Set to the name theme to load.
 # Look in ~/.my-precious/shells/zsh/themes/
 export ZSH_THEME="jpablobr"
-
+export VISUAL='emacsclient.emacs23'
 # run!
 # $ sudo chown -R jpablobr:jpablobr .gem
 # export GEM_HOME="$HOME/.gem"

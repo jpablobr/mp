@@ -1,0 +1,28 @@
+--- 
+assert_raise: |
+  # 'cheat assertions' for the rest
+  
+  assert_raise(*args) {|| ...}
+  
+  Passes if the block raises one of the given exceptions.
+  
+  Returns the thrown exception.
+  
+  Examples:
+  
+    assert_raise RuntimeError, LoadError do
+      raise 'Boom!!!'
+    end
+  
+  
+    assert_raise(ActionController::RoutingError) {
+      assert_routing 'invalid/url', { }
+    }
+  
+    # to check the message/class of the exception
+    exception = assert_raise RuntimeError, LoadError do
+       ...
+    end
+    puts exception.message
+    puts exception.class
+

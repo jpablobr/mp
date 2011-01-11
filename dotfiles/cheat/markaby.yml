@@ -1,0 +1,49 @@
+--- 
+markaby: |-
+  # gem install markaby
+  
+  require 'rubygems'
+  require 'markaby'
+  
+  # Indent with two spaces, this is optional
+  Markaby::Builder.set(:indent, 2)
+  
+  markaby = Markaby::Builder.new
+  
+  markaby.html do
+    head do
+      title "Markaby Cheat Sheet"
+      meta :name => "keywords", :content => "markaby, cheat, sheet, ruby"
+      style :type => "text/css" do
+        %[
+          body { font: 11px/120% Verdana, sans-serif }
+        ]
+      end
+    end
+  
+    body do
+      div.content do 
+        p "Paragraph in a div with a class of content"
+        p.hasclass "Paragraph with a class of hasclass in a div with a class of content"
+        p.third! "Paragraph with an ID of third in a div with a class of content"
+      end
+      ul {
+        li "Markaby is just Ruby"
+        li "So Curly Brace code blocks work too"
+      }
+      div :style => "font-size:32px", "This is huge due to the style parameter!"
+      img :src=> '/static/img/image.png'
+  
+      iframe :src=>'http://mislav.uniqpath.com/poignant-guide/images/the.foxes-4b.png',
+             :scrolling=>'no',:frameborder=>'no',
+             :style=>'width:400px;height:240px;'
+  
+      select.status! do
+        option 'Unavailable', :value=> 0
+        option 'Busy', :value=> 1, :selected=> true
+        option 'Available', :value=> 2
+      end
+    end
+  end
+  
+  markaby.to_s
