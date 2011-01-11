@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# Creates the skeleton for a basic ruby app.
-
 old_IFS="$IFS"
 IFS=:
-  echo "----------------RUBY-APP-STARTER--------------"
+  echo "-------------------------------------------------------------------------"
+  echo "RUBY APP STARTER"
+  echo "----------------"
+  echo "Creates the skeleton for a basic ruby app."
   echo "---"
   echo "Please enter the name for your app:"
   read app_name

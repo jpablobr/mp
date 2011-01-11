@@ -1,0 +1,20 @@
+#!/bin/sh
+
+old_IFS="$IFS"
+IFS=:
+  echo "-------------------------------------------------------------------------"
+  echo "MV WITH AWK GSUB"
+  echo "----------------"
+  echo "This script rename all current directory files based on an string input. "
+  echo "---"
+  echo "Please enter the string you want to replace:"
+  read string
+IFS=$old_IFS
+
+for f in * ; do
+
+    var=`echo $f | awk '{ gsub(/^'$string'/, "")}1'`
+
+    mv $f $var
+
+done
