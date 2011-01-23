@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# TODO: MAKE IT WORK MULTILINE!
+
+old_IFS="$IFS"
+IFS=:
+  echo "-------------------------------------------------------------------------"
+  echo "GREP FIND AND REPLACE ON DIRECTORIES RECURSIVELY"
+  echo "--------------------------------------------------------------------------"
+  echo "This script rename all current directory files based on an string input. "
+  echo "---"
+  echo "String you want to replace:"
+  read str
+  echo "New string (replace with value)"
+  read newStr
+  IFS=$old_IFS
+
+  egrep -lRZ $str . | xargs -0 -l sed -i -e 's|'$str'|'$newStr'|'
+
+  # Show results
+  find . -type f -print0 | xargs -0 -e grep -nH -e $newStr

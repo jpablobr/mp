@@ -2,16 +2,12 @@
 export ZSH=$HOME/.my-precious/shells/zsh
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 export CLASSPATH=/usr/lib/jvm/java-6-sun/lib
-# export CATALINA_HOME=/usr/share/tomcat6
-# export CATALINA_BASE=/var/lib/tomcat6
 
 # Set to the name theme to load.
 # Look in ~/.my-precious/shells/zsh/themes/
 export ZSH_THEME="jpablobr"
 export VISUAL='emacsclient.emacs23'
-# run!
-# $ sudo chown -R jpablobr:jpablobr .gem
-# export GEM_HOME="$HOME/.gem"
+
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
 
@@ -32,10 +28,7 @@ for config_file ($ZSH/lib/*.zsh) source $config_file
 #for config_file ($ZSH/custom/*.zsh) source $config_file
 
 # Set RPROMPT to have info show up on the right, too.
-
 #############################
-# Other Options
-
 # setopt PRINT_EXIT_VALUE
 setopt CORRECT
 setopt CORRECTALL
@@ -51,14 +44,13 @@ setopt EXTENDED_HISTORY # add more info
 # setopt BASH_AUTO_LIST
 
 #############################
-
 export EDITOR=/usr/bin/emacsclient
-export PATH=".:$JAVA_HOME:$JAVA_HOME/bin:$HOME/google_appengine/:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 ## RVM
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then source "$HOME/.rvm/scripts/rvm" ; fi
-
+# if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then source "$HOME/.rvm/scripts/rvm" ; fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # Variables
 
 # Quote pasted URLs
@@ -108,13 +100,3 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
-
-# if [[ "$TERM" == "dumb" ]]
-# then
-#   unsetopt zle
-#   unsetopt prompt_cr
-#   unsetopt prompt_subst
-#   unfunction precmd
-#   unfunction preexec
-#   PS1='$ '
-# fi
