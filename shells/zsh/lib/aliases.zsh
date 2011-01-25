@@ -32,6 +32,7 @@ function c { cd ~/code/$1; }
 
 #Emacs
 alias ec='emacsclient -nw'
+alias sec='emacsclient -nw'
 
 # Utility
 alias reload='source ~/bin/dotfiles/bash/aliases'
