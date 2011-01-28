@@ -63,6 +63,8 @@ alias s='cd ..'   # up one dir
 
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 
+# chmod
+alias chx='chmod +x'
 function take() {
     mkdir -p "$1"
     cd "$1"
