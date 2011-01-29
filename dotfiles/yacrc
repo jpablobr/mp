@@ -1,4 +1,5 @@
-#root:
+root:
+  ".yac"
 main:
   clone-from: http://github.com/jinzhu/mycheat.git
 # push-to:
@@ -7,7 +8,7 @@ private:
   push-to: http://github.com/jinzhu/mycheat.git
 
 
-editor:  emacs-client
+editor:  emacsclient.emacs23
 
 show_pdf:  evince
 show_image:  eog
