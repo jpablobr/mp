@@ -1,5 +1,7 @@
 # Command Enhancements
 
+alias ls="ls --color"
+
 # changing directory to code project
 function c { cd ~/code/$1; }
 
@@ -128,44 +130,99 @@ function new-git() {
   git config push.default current
 }
 
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+alias tss='thin --stats "/thin/stats" start'
+
+# Basic directory operations
+alias .='pwd'
+alias ...='cd ../..'
+alias -- -='cd -'
+
+# Super user
+alias _='sudo'
+alias ss='sudo su -'
+
+# Show history
+alias history='fc -l 1'
+
+# List direcory contents
+alias lsa='ls -lah'
+alias l='ls -la'
+alias ll='ls -alr'
+
+# Command Enhancements
+
+alias start="gnome-open"
+alias open="gnome-open"
+
+# changing directory to code project
+function c { cd ~/code/$1; }
+
+#Emacs
+alias ec='emacsclient -nw'
+alias sec='emacsclient -nw'
+
+# Utility
+alias sagi='sudo apt-get install'
+alias agi='apt-get install'
+
+# Common -- Some are from Damian Conway
+alias a='ls -A' # -A all except literal . ..
+alias la="ls -A -l -G"
+# alias c='clear'
+alias cdd='cd -'  # goto last dir cd'ed from
+alias cl='clear; l'
+function cdc() {
+    cd $1; ls
+}
+alias cls='clear; ls'
+alias h='history'
+alias l.='ls -d .[^.]*'
+alias l='ls -lhGt'  # -l long listing, most recent first
+                    # -G color
+alias lh="ls -lh"
+alias ll='ls -lhG'  # -l long listing, human readable, no group info
+alias lt='ls -lt' # sort with recently modified first
+alias md='mkdir -p'
+alias s='cd ..'   # up one dir
+
+alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
+
+# chmod
+alias chx='chmod +x'
+function take() {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+alias e='exit'
+alias k9="killall -9"
+
+function zipr() {
+  zip -r $1.zip $1
+}
+
+# Finder
+alias ff='firefox'
+
+# General code
+
+# Processes
+alias tu='top -p cpu' # cpu
+alias tm='top -p vsize' # memory
+
 # Text editing
 # Emacs
-alias em="open /Applications/Emacs.app/"
-alias emm="open /Applications/Emacs.app/ ."
+alias em=/usr/bin/emacsclient
+alias emm=/usr/bin/emacsclient
+
 # Regenerate TAGS file from file arguments
 function ct() {
   rm -f TAGS
   etags --append --output=TAGS $*
 }
-
-# TextMate
-alias et="mate"
-alias ett="mate ."
-alias etr="mate app config lib db schema public spec test vendor/gems vendor/plugins Rakefile Capfile Vladfile Todofile README stories merb slices tasks features &"
-
-# Ruby
-alias r="rake"
-
-function markdown() {
-/Applications/TextMate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
-}
-
-# Rails
-alias mr='mongrel_rails start'
-alias ms='mongrel_rails stop'
-alias rp='touch tmp/restart.txt'
-alias sc='./script/console'
-alias sg='./script/generate'
-alias sp='./script/plugin'
-alias ss='./script/server'
-alias tl='tail -f log/*.log'
-alias ts='thin start'
-
-# TDD / BDD
-
-alias aa='autotest'
-alias aaf='autotest -f' # Don't run all at start
-alias aas="./script/autospec"
 
 # Setup a tunnel
 function haproxyssh() {
@@ -184,19 +241,6 @@ function wav2mp3() {
   lame -h -V 0 $1.wav $1.mp3
 }
 
-
-# XCode
-# Analyze release build
-alias sx="xcodebuild clean && ~/src/checker-0.146/scan-build -k -V xcodebuild"
-# Analyze test build
-alias sxt="xcodebuild -target Test clean && ~/src/checker-0.146/scan-build -k -V xcodebuild -target Test"
-# Call with -target Foo
-function sxx() {
-  xcodebuild $* clean && ~/src/checker-0.146/scan-build -k -V xcodebuild $*
-}
-
-alias ox="open *.xcodeproj"
-
 # Nginx
 function nginx_stop() {
     ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
@@ -210,7 +254,6 @@ function new-tp() {
     touch $1.taskpaper
     open $1.taskpaper
 }
-
 
 # From http://github.com/suztomo/dotfiles
 function rmf(){
@@ -248,4 +291,3 @@ function __rm_single_file(){
         echo "No such file or directory: $file"
     fi
 }
-
