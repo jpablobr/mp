@@ -1,9 +1,0 @@
-export MY_BASH=$HOME/.my-precious/shells/bash
-export JAVA_HOME=/usr/lib/jvm/java-6-sun
-export CLASSPATH=/usr/lib/jvm/java-6-sun/lib
-export VISUAL='emacsclient.emacs23'
-export EDITOR=/usr/bin/emacsclient
-export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

@@ -1,3 +1,13 @@
+export MY_BASH=$HOME/.my-precious/shells/bash
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export CLASSPATH=/usr/lib/jvm/java-6-sun/lib
+export VISUAL='emacsclient.emacs23'
+export EDITOR=/usr/bin/emacsclient
+export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
 # misc
 NO_COLOR='\e[0m' #disable any colors
@@ -39,4 +49,4 @@ BCYAN='\e[46m'
 BWHITE='\e[47m'
 
 #PS1='\u@\h:\w $(vcprompt)\$'
-PS1='\[\e[0;32m\]\u\[\e[m\] ( \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\[\e[m\])\[\e[1;37m\] $(vcprompt) \$ '
+PS1='\[\e[0;32m\]\u\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])\[\e[1;37m\] $(vcprompt) \$ '

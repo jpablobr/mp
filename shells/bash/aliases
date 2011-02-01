@@ -6,42 +6,18 @@ alias d="cd ~/Dropbox"
 # changing directory to code project
 function c { cd ~/code/$1; }
 
-# alternative to "rails" command to use templates
-function railsapp {
-  template=$1
-  appname=$2
-  shift 2
-  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
-}
-
 # misc
 alias reload='. ~/.bash_profile'
 
-#Emacs
-alias ec='open /Applications/Emacs.app/'
+# Super user
+alias _='sudo'
+alias ss='sudo su -'
 
-# Utility
-alias reload='source ~/bin/dotfiles/bash/aliases'
-alias ea='ec -w ~/bin/dotfiles/bash/aliases && reload' # Edit aliases
-alias ee="ec ~/bin/dotfiles/bash/env"
-
-# Quicker cd
-alias cg='cd /Library/Ruby/Gems/1.8/gems/'
-function cr() {
- cd ~/repos/$*
-}
-
-# Common -- Some are from Damian Conway
-alias a='ls -A' # -A all except literal . ..
-alias la="ls -A -l -G"
-# alias c='clear'
-alias cdd='cd -'  # goto last dir cd'ed from
-alias cl='clear; l'
-function cdc() {
-    cd $1; ls
-}
-alias cls='clear; ls'
+# Show history
+alias history='fc -l 1'
 alias h='history'
+
+# List direcory contents
 alias l.='ls -d .[^.]*'
 alias l='ls -lhGt'  # -l long listing, most recent first
                     # -G color
@@ -50,17 +26,59 @@ alias ll='ls -lhG'  # -l long listing, human readable, no group info
 alias lt='ls -lt' # sort with recently modified first
 alias md='mkdir -p'
 alias s='cd ..'   # up one dir
+alias lsa='ls -lah'
+alias l='ls -la'
+alias ll='ls -alr'
 
-function take() {
-    mkdir -p "$1"
-    cd "$1"
+# Basic directory operations
+alias .='pwd'
+alias ...='cd ../..'
+alias -- -='cd -'
+
+# Common -- Some are from Damian Conway
+alias a='ls -A' # -A all except literal . ..
+alias la="ls -A -l -G"
+alias cdd='cd -'  # goto last dir cd'ed from
+alias cl='clear; l'
+function cdc() {
+    cd $1; ls
 }
+
+alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
+
+alias start="gnome-open"
+alias open="gnome-open"
+
+#Emacs
+alias ec='emacsclient -nw'
+alias sec='sudo emacsclient -nw'
+alias em=emacsclient.emacs23
+
+# Common -- Some are from Damian Conway
+alias a='ls -A' # -A all except literal . ..
+alias la="ls -A -l -G"
+alias cdd='cd -'  # goto last dir cd'ed from
+alias cl='clear; l'
+function cdc() {
+    cd $1; ls
+}
+
+# Push and pop directories on directory stack
+alias pu='pushd'
+alias po='popd'
+alias tss='thin --stats "/thin/stats" start'
+
+# Utility
+alias sagi='sudo apt-get install'
+alias agi='apt-get install'
 
 alias e='exit'
 alias k9="killall -9"
-function killnamed () {
-    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
-}
+
+# Processes
+alias tu='top -p cpu' # cpu
+alias tm='top -p vsize' # memory
+
 function zipr() {
   zip -r $1.zip $1
 }
@@ -70,15 +88,7 @@ alias o='open . &'
 alias ff='open -a Firefox'
 
 # General code
-
 # From Chris Wanstrath
-function pless() {
-    pygmentize $1 | less -r
-}
-
-# Processes
-alias tu='top -o cpu' # cpu
-alias tm='top -o vsize' # memory
 
 # Mercurial hg
 function new-hg() {
@@ -130,93 +140,6 @@ function new-git() {
   git config branch.master.merge refs/heads/master
   git config push.default current
 }
-
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
-alias tss='thin --stats "/thin/stats" start'
-
-# Basic directory operations
-alias .='pwd'
-alias ...='cd ../..'
-alias -- -='cd -'
-
-# Super user
-alias _='sudo'
-alias ss='sudo su -'
-
-# Show history
-alias history='fc -l 1'
-
-# List direcory contents
-alias lsa='ls -lah'
-alias l='ls -la'
-alias ll='ls -alr'
-
-# Command Enhancements
-
-alias start="gnome-open"
-alias open="gnome-open"
-
-# changing directory to code project
-function c { cd ~/code/$1; }
-
-#Emacs
-alias ec='emacsclient -nw'
-alias sec='emacsclient -nw'
-
-# Utility
-alias sagi='sudo apt-get install'
-alias agi='apt-get install'
-
-# Common -- Some are from Damian Conway
-alias a='ls -A' # -A all except literal . ..
-alias la="ls -A -l -G"
-# alias c='clear'
-alias cdd='cd -'  # goto last dir cd'ed from
-alias cl='clear; l'
-function cdc() {
-    cd $1; ls
-}
-alias cls='clear; ls'
-alias h='history'
-alias l.='ls -d .[^.]*'
-alias l='ls -lhGt'  # -l long listing, most recent first
-                    # -G color
-alias lh="ls -lh"
-alias ll='ls -lhG'  # -l long listing, human readable, no group info
-alias lt='ls -lt' # sort with recently modified first
-alias md='mkdir -p'
-alias s='cd ..'   # up one dir
-
-alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
-
-# chmod
-alias chx='chmod +x'
-function take() {
-    mkdir -p "$1"
-    cd "$1"
-}
-
-alias e='exit'
-alias k9="killall -9"
-
-function zipr() {
-  zip -r $1.zip $1
-}
-
-# Finder
-alias ff='firefox'
-
-# General code
-
-# Processes
-alias tu='top -p cpu' # cpu
-alias tm='top -p vsize' # memory
-
-# Text editing
-# Emacs
-alias em=emacsclient.emacs23
 
 # Regenerate TAGS file from file arguments
 function ct() {
