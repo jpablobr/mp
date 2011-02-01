@@ -1,0 +1,179 @@
+find
+
+find [pathnames] [conditions]
+
+An extremely useful command for finding particular groups of files (numerous examples follow this description). find descends the directory tree beginning at each pathname and locates files that meet the specified conditions. The default pathname is the current directory. The most useful conditions include -name and -type (for general use), -exec and -size (for advanced use), and -mtime and -user (for administrators).
+
+Conditions may be grouped by enclosing them in \( \) (escaped parentheses), negated with !, given as alternatives by separating them with -o, or repeated (adding restrictions to the match; usually only for -name, -type, or -perm). Note that "modification" refers to editing of a file's contents, whereas "change" means a modification, or permission or ownership changes. In other words, -ctime is more inclusive than -atime or -mtime.
+
+Conditions and actions
+
+-amin +n| -n| n
+Find files last accessed more than n (+n), less than n (-n), or exactly n minutes ago.
+
+-anewer file
+Find files that were accessed after file was last modified. Affected by -follow when after -follow on the command line.
+
+-atime +n| -n| n
+Find files that were last accessed more than n (+n), less than n (-n), or exactly n days ago. Note that find changes the access time of directories supplied as pathnames.
+
+-cmin +n| -n| n
+Find files last changed more than n (+n), less than n (-n), or exactly n minutes ago.
+
+-cnewer file
+Find files that were changed after they were last modified. Affected by -follow when after -follow on the command line.
+
+-ctime +n| -n| n
+Find files that were changed more than n (+n), less than n (-n), or exactly n days ago. A change is anything that changes the directory entry for the file, such as a chmod.
+
+-daystart
+Calculate times from the start of the day today, not 24 hours ago.
+
+-depth
+Descend the directory tree, skipping directories and working on actual files first, and then the parent directories. Useful when files reside in unwritable directories (e.g., when using find with cpio).
+
+-empty
+Continue if file is empty. Applies to regular files and directories.
+
+-exec command{ } \ ;
+Run the Linux command, from the starting directory on each file matched by find (provided command executes successfully on that file—i.e., returns a 0 exit status). When command runs, the argument { } substitutes the current file. Follow the entire sequence with an escaped semicolon (\;). In some shells, the braces may need to be escaped as well.
+
+-false
+Return false value for each file encountered.
+
+-follow
+Follow symbolic links and track the directories visited (don't use with -type l).
+
+-fstype type
+Match files only on type filesystems. Acceptable types include minix, ext, ext2, xia, msdos, umsdos, vfat, proc, nfs, iso9660, hpfs, sysv, smb, and ncpfs.
+
+-gid num
+Find files with numeric group ID of num.
+
+-group gname
+Find files belonging to group gname. gname can be a group name or a group ID number.
+
+-ilname pattern
+A case-insensitive version of -lname.
+
+-iname pattern
+A case-insensitive version of -name.
+
+-inum n
+Find files whose inode number is n.
+
+-ipath pattern
+A case-insensitive version of -path.
+
+-iregex pattern
+A case-insensitive version of -regex.
+
+-links n
+Find files having n links.
+
+-lname pattern
+Search for files that are symbolic links, pointing to files named pattern. pattern can include shell metacharacters and does not treat / or . specially. The match is case-insensitive.
+
+-maxdepth num
+Do not descend more than num levels of directories.
+
+-mindepth num
+Begin applying tests and actions only at levels deeper than num levels.
+
+-mmin +n| -n| n
+Find files last modified more than n (+n), less than n (-n), or exactly n minutes ago.
+
+-mount, -xdev
+Search only for files that reside on the same filesystem as pathname.
+
+-mtime +n| -n| n
+Find files that were last modified more than n (+n), less than n (-n), or exactly n days ago. A modification is a change to a file's data.
+
+-name pattern
+Find files whose names match pattern. Filename metacharacters may be used but should be escaped or quoted.
+
+-newer file
+Find files that were modified more recently than file; similar to -mtime. Affected by -follow only if it occurs after -follow on the command line.
+
+-nogroup
+The file's group ID does not correspond to any group.
+
+-noleaf
+Normally, find assumes that each directory has at least two hard links that should be ignored (a hard link for its name and one for "."--i.e., two fewer "real" directories than its hard link count indicates). -noleaf turns off this assumption, a useful practice when find runs on non-Unix-style filesystems. This forces find to examine all entries, assuming that some might prove to be directories into which it must descend (a time-waster on Unix).
+
+-nouser
+The file's user ID does not correspond to any user.
+
+-ok command { }\;
+Same as -exec, but prompts user to respond with y before command is executed.
+
+-path pattern
+Find files whose names match pattern. Expect full pathnames relative to the starting pathname (i.e., do not treat / or . specially).
+
+-perm nnn
+Find files whose permission flags (e.g., rwx) match octal number nnn exactly (e.g., 664 matches -rw-rw-r--). Use a minus sign before nnn to make a "wildcard" match of any unspecified octal digit (e.g., -perm -600 matches -rw-******, where * can be any mode).
+
+-print
+Print the matching files and directories, using their full pathnames. Return true. This is the default behavior.
+
+-regex pattern
+Like -path, but uses grep-style regular expressions instead of the shell-like globbing used in -name and -path.
+
+-size n[c]
+Find files containing n blocks, or if c is specified, n characters long.
+
+-type c
+Find files whose type is c. c can be b (block special file), c (character special file), d (directory), p (fifo or named pipe), l (symbolic link), s (socket), or f (plain file).
+
+-user user
+Find files belonging to user (name or ID).
+
+Examples
+
+List all files (and subdirectories) in your home directory:
+
+find $HOME -print
+
+List all files named chapter1 in the /work directory:
+
+find /work -name chapter1
+
+List all files beginning with memo owned by ann:
+
+find /work -name 'memo*' -user ann -print
+
+Search the filesystem (begin at root) for manpage directories:
+
+find / -type d -name 'man*' -print
+
+Search the current directory, look for filenames that don't begin with a capital letter, and send them to the printer:
+
+find . \! -name '[A-Z] *' -exec lpr { }\;
+
+Find and compress files whose names don't end with .gz:
+
+gzip `find . \! -name '*.gz' -print`
+
+Remove all empty files on the system (prompting first):
+
+find / -size 0 -ok rm { } \;
+
+Search the system for files that were modified within the last two days (good candidates for backing up):
+
+find / -mtime -2 -print
+
+Recursively grep for a pattern down a directory tree:
+
+find /book -print | xargs grep '[Nn] utshell'
+
+If the files kt1 and kt2 exist in the current directory, their names can be printed with the command:
+
+$ find . -name 'kt[0-9] ' ./kt1 ./kt2
+
+Since the command prints these names with an initial ./ path, you need to specify the ./ when using the -path option:
+
+$ find . -path './kt[0-9] ' ./kt1 ./kt2
+
+The -regex option uses a complete pathname, like -path, but treats the following argument as a regular expression rather than a glob pattern (although in this case the result is the same):
+
+$ find . -regex './kt[0-9] ' ./kt1 ./kt2
