@@ -1,6 +1,7 @@
 # Command Enhancements
 
 alias ls="ls --color"
+alias d="cd ~/Dropbox"
 
 # changing directory to code project
 function c { cd ~/code/$1; }
@@ -215,8 +216,7 @@ alias tm='top -p vsize' # memory
 
 # Text editing
 # Emacs
-alias em=/usr/bin/emacsclient
-alias emm=/usr/bin/emacsclient
+alias em=emacsclient.emacs23
 
 # Regenerate TAGS file from file arguments
 function ct() {
