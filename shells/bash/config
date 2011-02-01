@@ -38,7 +38,5 @@ BMAGENTA='\e[45m'
 BCYAN='\e[46m'
 BWHITE='\e[47m'
 
-# Update the command prompt to be <user>:<current_directory>(git_branch) >
-# Note that the git branch is given a special color
-PS1="\n\u:\w \[$EGREEN\]\$(vcprompt)\[$NO_COLOR\] \nツ"
-
+#PS1='\u@\h:\w $(vcprompt)\$'
+PS1='\[\e[0;32m\]\u\[\e[m\] ( \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\[\e[m\])\[\e[1;37m\] $(vcprompt) \$ '
