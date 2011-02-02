@@ -1,6 +1,12 @@
 # Command Enhancements
 
-alias ls="ls --color"
+# Color aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# Common aliases
+alias more='less'
+alias srm='sudo rm'
 alias d="cd ~/Dropbox"
 
 # changing directory to code project
