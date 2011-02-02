@@ -56,11 +56,10 @@ emacs*color14: #46a4ff
 emacs*color7:  #cccccc
 emacs*color15: #ffffff
 
-emacs*geometry:           120x50
-
 ! xterm ----------------------------------------------------------------------
 
-xterm*geometry:           100x25
+xterm.startMaximized:     1
+!xterm*geometry:           100x25
 xterm*faceName:           inconsolata:pixelsize=15
 !xterm*font:             -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
 xterm*dynamicColors:      true
