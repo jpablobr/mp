@@ -1,5 +1,28 @@
-# Check for an interactive session
-[ -z "$PS1" ] && return
+USER=$(whoami)
+if [ $LOGNAME = $USER ] ; then
+  COLOUR=44  # blue
+else
+  COLOUR=45  # magenta
+fi
+
+if [ $USER = 'root' ] ; then
+  COLOUR=41  # red
+fi
+
+ESC="\033"
+PROMPT='\h'    # hostname
+STYLE='m'      # plain
+# PROMPT='\u'  # username
+# STYLE=';1m'  # bold
+# PS1="\[$ESC[$COLOUR;37$STYLE\]$PROMPT:\[$ESC[37;40$STYLE\]\w\\$ "
+# PS2="> "
+
+PS1=' ツ \[\e[0;32m\]\u\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
+\[\e[1;37m\] $(vcprompt) \$ '
+
+# Ulimits: no core dumps, max file size 200 Mb.
+ulimit -c 0 -f 200000
+source /etc/bash_completion
 
 export MY_BASH=$HOME/.my-precious/shells/bash
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
@@ -10,11 +33,42 @@ export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/s
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export BROWSER='chromium'
 
-source /etc/bash_completion
+# a few variables
+USER=$(id -un)
+LOGNAME=$USER
+MAIL="/var/spool/mail/$USER"  # sendmail, postfix, smail
+# MAIL="$HOME/Mailbox"        # qmail
+VISUAL=emacs
+HOSTNAME=$(/bin/hostname)
+HISTSIZE=1000
+HISTFileSIZE=1000
+# DIR_COLORS='~/.dircolors'
+export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
+export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
+
+# enable colour ls
+eval $(dircolors $HOME/.dircolors -b)
+export LS_OPTIONS='-s -F -T 0 --color=yes'
+
+# customize less
+LESS='-M-Q'
+LESSEDIT="%E ?lt+%lt. %f"
+LESSOPEN="| lesspipe.sh %s"
+LESSCHARDEF=8bcccbcc13b.4b95.33b. # show colours in ls -l | less
+# LESSCHARSET=latin1
+PAGER=less
+export LESS LESSEDIT LESSOPEN VISUAL LESSCHARDEF PAGER
+
+# set xterm title: full path
+# case $TERM in
+#   xterm*|rxvt)
+#     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+#     ;;
+# esac
+
+# call fortune, if available
+if [ -x /usr/games/fortune ] ; then
+echo ; /usr/games/fortune ; echo
+fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Colors from http://wiki.archlinux.org/index.php/Color_Bash_Prompt
-
-PS1=' ツ \[\e[0;32m\]\u\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
-\[\e[1;37m\] $(vcprompt) \$ '

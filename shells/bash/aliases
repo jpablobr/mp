@@ -1,182 +1,99 @@
 # -*- mode: sh -*-
 
+##############################################################################->
+# Common aliases
+#
+alias d="cd ~/Dropbox"
+alias o='open . &'
+alias ff='open -a Firefox'
+alias more='less'
+alias chx='chmod +x'
+alias reload='. ~/.bash_profile'
+alias start="gnome-open"
+alias open="gnome-open"
+alias cl='clear; l'
 # Color aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-
-# Common aliases
-alias more='less'
-alias srm='sudo rm'
-alias d="cd ~/Dropbox"
-
-# changing directory to code project
-function c { cd ~/code/$1; }
-alias 1='cd -'
-alias 2='cd +2'
-alias 3='cd +3'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
-
-alias ..='cd ..'
-cd () {
-  if   [[ "x$*" == "x..." ]]; then
-    cd ../..
-  elif [[ "x$*" == "x...." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x....." ]]; then
-    cd ../../..
-  elif [[ "x$*" == "x......" ]]; then
-    cd ../../../..
-  else
-    builtin cd "$@"
-  fi
-}
-
-alias md='mkdir -p'
-alias rd=rmdir
-
-# gotos
-alias gt-e='cd ~/.emacs.d && la'
-alias gt-m='cd ~/.my-precious && la'
-alias gt-d='cd ~/Dropbox && la'
-
-# misc
-alias reload='. ~/.bash_profile'
-
 # Super user
 alias _='sudo'
 alias ss='sudo su -'
-
 # Show history
 alias history='fc -l 1'
 alias h='history'
+# Emacs
+alias ec='emacsclient -nw'
+alias sec='sudo emacsclient -nw'
+alias em=emacsclient.emacs23
+# apt-get
+alias sagi='sudo apt-get install'
+alias agi='apt-get install'
+alias e='exit'
+alias k9="killall -9"
+# Processes
+alias tu='top -p cpu' # cpu
+alias tm='top -p vsize' # memory
+# List Pids using IPs
+alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
+#heroku helpers
+alias hp="git push heroku master"
+alias hl="heroku logs"
+#
+##############################################################################<-
 
-# List direcory contents
-alias l.='ls -d .[^.]*'
-alias l='ls -lhGt'  # -l long listing, most recent first
-                    # -G color
-alias lh="ls -lh"
-alias ll='ls -lhG'  # -l long listing, human readable, no group info
-alias lt='ls -lt' # sort with recently modified first
+##############################################################################->
+# File - Directory Operations
+#
+alias srm='sudo rm'
+alias la="ls -A -l -G"
 alias md='mkdir -p'
-alias s='cd ..'   # up one dir
+alias rd=rmdir
+alias l.='ls -d .[^.]*'
+# -G color -l long listing, most recent first
+alias l='ls -lhGt'
+alias lh="ls -lh"
+# -l long listing, human readable, no group info
+alias ll='ls -lhG'
+# sort with recently modified first
+alias lt='ls -lt'
+alias md='mkdir -p'
 alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -alr'
 
-# Basic directory operations
-alias .='pwd'
-alias ...='cd ../..'
-alias -- -='cd -'
-
-# Common -- Some are from Damian Conway
-alias a='ls -A' # -A all except literal . ..
-alias la="ls -A -l -G"
-alias cdd='cd -'  # goto last dir cd'ed from
-alias cl='clear; l'
-function cdc() {
-    cd $1; ls
+# Install a .tar.gz archive in current directory
+tardir() {
+  if [ $# != 0 ]; then tar zxvf $1; fi
 }
 
-alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
-
-alias start="gnome-open"
-alias open="gnome-open"
-
-#Emacs
-alias ec='emacsclient -nw'
-alias sec='sudo emacsclient -nw'
-alias em=emacsclient.emacs23
-
-# Common -- Some are from Damian Conway
-alias a='ls -A' # -A all except literal . ..
-alias la="ls -A -l -G"
-alias cdd='cd -'  # goto last dir cd'ed from
-alias cl='clear; l'
-function cdc() {
-    cd $1; ls
+# List the contents of a .zip archive
+cz() {
+  if [ $# != 0 ]; then unzip -l $*; fi
 }
 
-# Push and pop directories on directory stack
-alias pu='pushd'
-alias po='popd'
-alias tss='thin --stats "/thin/stats" start'
-
-# Utility
-alias sagi='sudo apt-get install'
-alias agi='apt-get install'
-
-alias e='exit'
-alias k9="killall -9"
-
-# Processes
-alias tu='top -p cpu' # cpu
-alias tm='top -p vsize' # memory
-
-function zipr() {
-  zip -r $1.zip $1
+# List the contents of a .tar.gz archive
+ctgz() {
+  for file in $* ; do
+    tar ztf ${file}
+  done
 }
 
-# Finder
-alias o='open . &'
-alias ff='open -a Firefox'
-
-# General code
-# From Chris Wanstrath
-
-# Mercurial hg
-function new-hg() {
-    ssh hg@example.com "hg init $1"
-    hg clone ssh://hg@example.com/$1
+# Create a .tgz archive a la zip.
+tgz() {
+  if [ $# != 0 ]; then
+    name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
+  fi
 }
 
-# Regenerate TAGS file from file arguments
-function ct() {
-  rm -f TAGS
-  etags --append --output=TAGS $*
-}
-
-# Setup a tunnel
-function haproxyssh() {
-  ssh -L7997:127.0.0.1:7997 deploy@$1.com
-}
-
-# Syntax check Javascript
-function jsc() {
-  jsl -conf /etc/jsl/jsl.conf -process $1
-}
-
-function aiff2mp3() {
-  lame -h -V 0 $1.aif $1.mp3
-}
-function wav2mp3() {
-  lame -h -V 0 $1.wav $1.mp3
-}
-
-# Nginx
-function nginx_stop() {
-    ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
-}
-function nginx_start() {
-    sudo /opt/nginx/sbin/nginx
-}
-
-# TaskPaper
-function new-tp() {
-    touch $1.taskpaper
-    open $1.taskpaper
-}
-
-# From http://github.com/suztomo/dotfiles
 function rmf(){
     for file in $*
     do
         __rm_single_file $file
     done
+}
+
+function zipr() {
+  zip -r $1.zip $1
 }
 
 function __rm_single_file(){
@@ -207,6 +124,56 @@ function __rm_single_file(){
         echo "No such file or directory: $file"
     fi
 }
+#
+##############################################################################<-
+
+##############################################################################->
+# changing directory to code project
+#
+alias gt-e='cd ~/.emacs.d && la'
+alias gt-m='cd ~/.my-precious && la'
+alias gt-d='cd ~/Dropbox && la'
+alias 1='cd -'
+alias 2='cd +2'
+alias 3='cd +3'
+alias 4='cd +4'
+alias 5='cd +5'
+alias 6='cd +6'
+alias 7='cd +7'
+alias 8='cd +8'
+alias 9='cd +9'
+alias ..='cd ..'
+
+function c { cd ~/code/$1; }
+
+cd () {
+  if   [[ "x$*" == "x..." ]]; then
+    cd ../..
+  elif [[ "x$*" == "x...." ]]; then
+    cd ../../..
+  elif [[ "x$*" == "x....." ]]; then
+    cd ../../..
+  elif [[ "x$*" == "x......" ]]; then
+    cd ../../../..
+  else
+    builtin cd "$@"
+  fi
+}
+#
+##############################################################################<-
+
+##############################################################################->
+# Servers - Misc
+#
+# Nginx
+function nginx_stop() {
+    ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
+}
+function nginx_start() {
+    sudo /opt/nginx/sbin/nginx
+}
+#
+##############################################################################<-
 
 ##############->
 # Git Aliases
@@ -281,7 +248,7 @@ function gch() {
 ggc() {
   set -- `du -ks`
   before=$1
-  git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc 
+  git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc
   set -- `du -ks`
   after=$1
   echo "Cleaned up $((before-after)) kb."
@@ -357,5 +324,25 @@ function git_prompt_info() {
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 #
-# Git Aliases
-##############<-
+##############################################################################<-
+
+##############################################################################->
+# General helpers
+#
+# Regenerate TAGS file from file arguments
+function ct() {
+  rm -f TAGS
+  etags --append --output=TAGS $*
+}
+
+# Setup a tunnel
+function haproxyssh() {
+  ssh -L7997:127.0.0.1:7997 deploy@$1.com
+}
+
+# Syntax check Javascript
+function jsc() {
+  jsl -conf /etc/jsl/jsl.conf -process $1
+}
+#
+##############################################################################<-
