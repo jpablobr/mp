@@ -17,32 +17,14 @@ STYLE='m'      # plain
 # PS1="\[$ESC[$COLOUR;37$STYLE\]$PROMPT:\[$ESC[37;40$STYLE\]\w\\$ "
 # PS2="> "
 
-PS1=' ツ \[\e[0;32m\]\u\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
-\[\e[1;37m\] $(vcprompt) \$ '
+PS1=' ツ \[\e[0;32m\]${HOSTNAME}\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
+${USER}\[\e[1;37m\] $(vcprompt) \$ '
 
-# Ulimits: no core dumps, max file size 200 Mb.
-ulimit -c 0 -f 200000
-source /etc/bash_completion
-
-export MY_BASH=$HOME/.my-precious/shells/bash
-export JAVA_HOME=/usr/lib/jvm/java-6-sun
-export CLASSPATH=/usr/lib/jvm/java-6-sun/lib
-export VISUAL='emacsclient.emacs23'
-export EDITOR=/usr/bin/emacsclient
-export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
-export BROWSER='chromium'
-
-# a few variables
-USER=$(id -un)
-LOGNAME=$USER
-MAIL="/var/spool/mail/$USER"  # sendmail, postfix, smail
-# MAIL="$HOME/Mailbox"        # qmail
-VISUAL=emacs
+# MAIL="$HOME/Mailbox"
+VISUAL='emacsclient.emacs23'
 HOSTNAME=$(/bin/hostname)
 HISTSIZE=1000
 HISTFileSIZE=1000
-# DIR_COLORS='~/.dircolors'
 export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
 export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
 
