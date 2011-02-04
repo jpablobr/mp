@@ -3,3 +3,17 @@
 "\e[B": history-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
+
+# key bindings
+"\e[1~": beginning-of-line
+"\e[3~": delete-char
+"\e[4~": end-of-line
+# (F1 .. F5) are "\e[[A" ... "\e[[E"
+"\e[[A": "info \C-m"
+
+set bell-style visible          # please don't beep
+set meta-flag On                # allow 8-bit input (i.e, accented letters)
+set convert-meta Off            # don't strip 8-bit characters
+set output-meta On              # display 8-bit characters correctly
+set horizontal-scroll-mode On   # scroll long command lines
+set show-all-if-ambiguous On    # after TAB is pressed

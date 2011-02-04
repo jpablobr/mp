@@ -1,0 +1,2 @@
+usermodmap=$HOME/.Xmodmap
+xmodmap $usermodmap
