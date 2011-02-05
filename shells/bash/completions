@@ -1,5 +1,5 @@
 # -*- mode: sh -*-
-# source $MY_BASH/completion_scripts/git_completion
-# complete -C $MY_BASH/completion_scripts/rake_completion -o default rake
-# complete -C $MY_BASH/completion_scripts/project_completion -o default c
-# complete -C $MY_BASH/completion_scripts/capistrano_completion -o default cap
+source /home/jpablobr/.my-precious/shells/bash/completion_scripts/git_completion
+complete -C $MY_BASH/completion_scripts/rake_completion -o default rake
+complete -C $MY_BASH/completion_scripts/project_completion -o default c
+complete -C $MY_BASH/completion_scripts/capistrano_completion -o default cap

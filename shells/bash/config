@@ -28,6 +28,7 @@ VISUAL='emacsclient.emacs23'
 HOSTNAME=$(/bin/hostname)
 HISTSIZE=1000
 HISTFileSIZE=1000
+MY_BASH='~/.my-precious/shells/bash'
 export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
 export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
 
