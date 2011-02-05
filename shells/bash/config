@@ -20,6 +20,9 @@ STYLE='m'      # plain
 PS1=' ツ \[\e[0;32m\]${HOSTNAME}\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
 ${USER}\[\e[1;37m\] $(vcprompt) \$ '
 
+export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$HOME/local/node/bin:$PATH"
+export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+
 # MAIL="$HOME/Mailbox"
 VISUAL='emacsclient.emacs23'
 HOSTNAME=$(/bin/hostname)
