@@ -1,4 +1,0 @@
-for f in *.zsh; do
-    base=`basename $f .zsh`
-    mv $f $base.sh
-    done
