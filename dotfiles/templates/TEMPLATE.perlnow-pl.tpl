@@ -13,13 +13,10 @@ use Env qw(HOME);
 
 use Getopt::Std;
 my %opts;
-getopts('d', \%opts); 
+getopts('d', \%opts);
 my $DEBUG = $opts{d} || 1;
 
-
 (>>>POINT<<<)
-
-
 
 __END__
 

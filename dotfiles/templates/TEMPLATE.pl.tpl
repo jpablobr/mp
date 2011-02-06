@@ -24,7 +24,7 @@ __END__
 
 =head1 DESCRIPTION
 
-Stub documentation for (>>>FILE<<<), 
+Stub documentation for (>>>FILE<<<),
 
 =head1 AUTHOR
 
