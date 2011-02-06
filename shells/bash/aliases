@@ -5,7 +5,7 @@
 #
 alias d="cd ~/Dropbox"
 alias o='open . &'
-alias ff='open -a Firefox'
+alias ogc='google-chrome '
 alias more='less'
 alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
@@ -22,8 +22,7 @@ alias ss='sudo su -'
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-alias ec='emacsclient -nw'
-alias sec='sudo emacsclient -nw'
+alias et='emacsclient.emacs23 -nw'
 alias em=emacsclient.emacs23
 # apt-get
 alias sagi='sudo apt-get install'
@@ -175,7 +174,7 @@ function nginx_start() {
 #
 ##############################################################################<-
 
-##############->
+##############################################################################->
 # Git Aliases
 #
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
@@ -198,7 +197,7 @@ alias gds='git diff --cached'
 alias gdv='git diff -w "$@" | vim -R -'
 alias gl='git pull'
 alias glp='gl -p'
-alias gi='git init && printf ".DS_Store\nThumbs.db\n" >> .gitignore && git add .gitignore'
+alias gi='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
 alias gitx='gitx --all'
 alias gnp="git-notpushed"
 alias gp='git push'

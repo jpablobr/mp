@@ -12,11 +12,6 @@ fi
 ESC="\033"
 PROMPT='\h'    # hostname
 STYLE='m'      # plain
-# PROMPT='\u'  # username
-# STYLE=';1m'  # bold
-# PS1="\[$ESC[$COLOUR;37$STYLE\]$PROMPT:\[$ESC[37;40$STYLE\]\w\\$ "
-# PS2="> "
-
 PS1=' ツ \[\e[0;32m\]${HOSTNAME}\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
 ${USER}\[\e[1;37m\] $(vcprompt) \$ '
 
@@ -31,6 +26,10 @@ HISTFileSIZE=1000
 MY_BASH='~/.my-precious/shells/bash'
 export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
 export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
+
+# DATA_ORA=`date +"%Y-%m-%d-%H:%M:%S"`
+# SESSION=/tmp/$LOGNAME"_"$DATA_ORA
+# script -a $SESSION
 
 # enable colour ls
 eval $(dircolors $HOME/.dircolors -b)
