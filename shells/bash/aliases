@@ -45,6 +45,7 @@ alias hl="heroku logs"
 #
 alias srm='sudo rm'
 alias la="ls -A -l -G"
+alias lg='la | grep'
 alias md='mkdir -p'
 alias rd=rmdir
 alias l.='ls -d .[^.]*'
