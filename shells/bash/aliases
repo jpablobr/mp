@@ -15,6 +15,7 @@ alias cl='clear; l'
 # Color aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
 # Super user
 alias _='sudo'
 alias ss='sudo su -'
@@ -343,6 +344,10 @@ function haproxyssh() {
 # Syntax check Javascript
 function jsc() {
   jsl -conf /etc/jsl/jsl.conf -process $1
+}
+
+function legrep {
+  egrep --color=yes "$@" | less -R
 }
 #
 ##############################################################################<-
