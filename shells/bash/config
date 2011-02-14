@@ -24,6 +24,8 @@ HOSTNAME=$(/bin/hostname)
 HISTSIZE=1000
 HISTFileSIZE=1000
 MY_BASH='~/.my-precious/shells/bash'
+BIBINPUTS=.:/usr/share/texmf-texlive/bibtex
+TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
 export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
 
