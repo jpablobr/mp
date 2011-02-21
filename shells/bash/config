@@ -15,11 +15,12 @@ STYLE='m'      # plain
 PS1=' ツ \[\e[0;32m\]${HOSTNAME}\[\e[m\] (\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\])
 ${USER}\[\e[1;37m\] $(vcprompt) \$ '
 
-export PATH="$JAVA_HOME/bin:$HOME/bin:$HOME/bin/grep:$HOME/bin/emacs:$HOME/bin/strings:$HOME/bin/git:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$HOME/local/node/bin:$PATH"
+export PATH="$JAVA_HOME/bin:$HOME/bin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$HOME/local/node/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 # MAIL="$HOME/Mailbox"
 VISUAL='emacsclient.emacs23'
+EDITOR='emacsclient.emacs23'
 HOSTNAME=$(/bin/hostname)
 HISTSIZE=1000
 HISTFileSIZE=1000
@@ -46,16 +47,25 @@ LESSCHARDEF=8bcccbcc13b.4b95.33b. # show colours in ls -l | less
 PAGER=less
 export LESS LESSEDIT LESSOPEN VISUAL LESSCHARDEF PAGER
 
-# set xterm title: full path
-# case $TERM in
-#   xterm*|rxvt)
-#     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-#     ;;
-# esac
-
-# call fortune, if available
-if [ -x /usr/games/fortune ] ; then
-echo ; /usr/games/fortune ; echo
-fi
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# ssh-agent PID... Debian should do it, but just in case!
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+     echo "Initialising new SSH agent..."
+     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+     echo succeeded
+     chmod 600 "${SSH_ENV}"
+     . "${SSH_ENV}" > /dev/null
+     /usr/bin/ssh-add;
+}
+
+if [ -f "${SSH_ENV}" ]; then
+     . "${SSH_ENV}" > /dev/null
+     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+         start_agent;
+     }
+else
+     start_agent;
+fi

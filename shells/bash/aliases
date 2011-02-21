@@ -46,9 +46,10 @@ alias hl="heroku logs"
 #
 alias srm='sudo rm'
 alias la="ls -A -l -G"
+alias lag='la | grep'
 alias lg='la | grep'
 alias md='mkdir -p'
-alias rd=rmdir
+alias rd='rm -rf'
 alias l.='ls -d .[^.]*'
 # -G color -l long listing, most recent first
 alias l='ls -lhGt'
@@ -182,6 +183,7 @@ function nginx_start() {
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias g='git'
 alias ga='git add'
+alias ga.='git add .'
 alias gap='git add -p'
 alias gb='git branch'
 alias gba='git branch -a'
