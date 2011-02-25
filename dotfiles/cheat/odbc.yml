@@ -1,8 +1,0 @@
---- 
-odbc: |-
-  Examine:
-    $ tsql -C
-    $ odbcinst -j
-  
-  List DSNs:
-    $ odbcinst -q -s

@@ -1,0 +1,2 @@
+#!/bin/sh
+`dmenu_path | dmenu -nb '#a5b474' -sb '#444444' -nf '#eeeeee' -sf '#a5b474' -fn '-*-*-*-*-*-*-20-*-*-*-*-*-*-*'` && eval "exec $exe"

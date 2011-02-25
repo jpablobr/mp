@@ -1,6 +1,0 @@
---- 
-du: |-
-  du -ah /path/to/dir
-  
-  -a : all files
-  -h : human-readable form

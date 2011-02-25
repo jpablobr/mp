@@ -1,4 +1,0 @@
---- 
-kde_session: |-
-  To save current session
-  dbus-send --dest=org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession

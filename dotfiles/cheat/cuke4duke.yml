@@ -1,4 +1,0 @@
---- 
-cuke4duke: |-
-  Run a single feature:
-  $ mvn cuke4duke:features -Dcucumber.features=features/foo.feature
