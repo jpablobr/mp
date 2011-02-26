@@ -41,7 +41,7 @@ fi
 touch $SDIRS
 
 # save current directory to bookmarks
-function b-s {
+function g-s {
 	check_help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
@@ -51,22 +51,22 @@ function b-s {
     fi
 }
 
-# jump to bookmark
-function b-g {
+# I think of them as gotos
+function g-t {
 	check_help $1
     source $SDIRS
     cd "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # print bookmark
-function b-p {
+function g-p {
 	check_help $1
     source $SDIRS
     echo "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # delete bookmark
-function b-d {
+function g-d {
 	check_help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
@@ -80,17 +80,17 @@ function b-d {
 function check_help {
 	if [ "$1" = "-h" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] ; then
 		echo ''
-	    echo 'b-s <bookmark_name> - Saves the current directory as "bookmark_name"'
-	    echo 'b-g <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
-	    echo 'b-p <bookmark_name> - Prints the directory associated with "bookmark_name"'
-	    echo 'b-d <bookmark_name> - Deletes the bookmark'
-	    echo 'b-l                 - Lists all available bookmarks'
+	    echo 'g-s <bookmark_name> - Saves the current directory as "bookmark_name"'
+	    echo 'g-t <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
+	    echo 'g-p <bookmark_name> - Prints the directory associated with "bookmark_name"'
+	    echo 'g-d <bookmark_name> - Deletes the bookmark'
+	    echo 'g-l                 - Lists all available bookmarks'
 		kill -SIGINT $$
 	fi
 }
 
 # list bookmarks with dirnam
-function b-l {
+function g-l {
 	check_help $1
 	source $SDIRS
 	env | grep "^DIR_" | cut -c5- | grep "^.*="
@@ -124,8 +124,8 @@ function _comp {
 }
 
 # bind completion command
-# for: b-g,b-p,b-d to _comp
+# for: g-t,g-p,g-d to _comp
 shopt -s progcomp
-complete -F _comp b-g
-complete -F _comp b-p
-complete -F _comp b-d
+complete -F _comp g-t
+complete -F _comp g-p
+complete -F _comp g-d
