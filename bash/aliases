@@ -35,12 +35,19 @@ alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 #heroku helpers
 alias hp="git push heroku master"
 alias hl="heroku logs"
+alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
 function e { cd ~/.emacs.d/$1; }
 function m { cd ~/.my-precious/$1; }
 function d { cd ~/Dropbox/$1; }
 function t { cd ~/todo/$1; }
 function c { cd ~/code/$1; }
+function tmp { cd ~/tmp/$1; }
+function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1; }
 alias ..='cd ..'
+# Browse
+function br-g { ogc "https://github.com/$1"; }
+function br-t { ogc "https://twitter.com/$1"; }
+function br-g { ogc "http://www.google.com/search?q=$1"; }
 #
 ##############################################################################<-
 
@@ -66,7 +73,7 @@ alias md='mkdir -p'
 alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -alr'
-alias space2us='find . -type f | while read i;do [ "$i" != "${i// /_}" ] && mv "$i" "${i// /_}" ;done'
+alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
 # Install a .tar.gz archive in current directory
 tardir() {
   if [ $# != 0 ]; then tar zxvf $1; fi
