@@ -50,6 +50,7 @@ alias lag='la | grep'
 alias lg='la | grep'
 alias md='mkdir -p'
 alias rd='rm -rf'
+alias rd*='rm -fr *'
 alias l.='ls -d .[^.]*'
 # -G color -l long listing, most recent first
 alias l='ls -lhGt'
@@ -62,7 +63,7 @@ alias md='mkdir -p'
 alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -alr'
-
+alias space2us='find . -type f | while read i;do [ "$i" != "${i// /_}" ] && mv "$i" "${i// /_}" ;done'
 # Install a .tar.gz archive in current directory
 tardir() {
   if [ $# != 0 ]; then tar zxvf $1; fi
