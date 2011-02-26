@@ -1,14 +1,4 @@
 USER=$(whoami)
-if [ $LOGNAME = $USER ] ; then
-  COLOUR=44  # blue
-else
-  COLOUR=45  # magenta
-fi
-
-if [ $USER = 'root' ] ; then
-  COLOUR=41  # red
-fi
-
 ESC="\033"
 PROMPT='\h'    # hostname
 STYLE='m'      # plain
@@ -30,10 +20,6 @@ TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 export PATH PS1 PS2 USER LOGNAME MAIL NNTPSERVER
 export VISUAL EDITOR HOSTNAME HISTSIZE HISTFileSIZE
 
-# DATA_ORA=`date +"%Y-%m-%d-%H:%M:%S"`
-# SESSION=/tmp/$LOGNAME"_"$DATA_ORA
-# script -a $SESSION
-
 # enable colour ls
 eval $(dircolors $HOME/.dircolors -b)
 export LS_OPTIONS='-s -F -T 0 --color=yes'
@@ -51,6 +37,8 @@ export LESS LESSEDIT LESSOPEN VISUAL LESSCHARDEF PAGER
 
 # ssh-agent PID... Debian should do it, but just in case!
 SSH_ENV="$HOME/.ssh/environment"
+
+source ~/bin/bashmarks.sh
 
 function start_agent {
      echo "Initialising new SSH agent..."

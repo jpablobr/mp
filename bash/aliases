@@ -3,13 +3,11 @@
 ##############################################################################->
 # Common aliases
 #
-alias d="cd ~/Dropbox"
 alias o='open . &'
 alias ogc='google-chrome '
 alias more='less'
 alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
-alias start="gnome-open"
 alias open="gnome-open"
 alias cl='clear; l'
 # Color aliases
@@ -28,7 +26,6 @@ alias em=emacsclient.emacs23
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
-alias e='exit'
 alias k9="killall -9"
 # Processes
 alias tu='top -p cpu' # cpu
@@ -38,6 +35,12 @@ alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 #heroku helpers
 alias hp="git push heroku master"
 alias hl="heroku logs"
+function e { cd ~/.emacs.d/$1; }
+function m { cd ~/.my-precious/$1; }
+function d { cd ~/Dropbox/$1; }
+function t { cd ~/todo/$1; }
+function c { cd ~/code/$1; }
+alias ..='cd ..'
 #
 ##############################################################################<-
 
@@ -127,27 +130,6 @@ function __rm_single_file(){
         echo "No such file or directory: $file"
     fi
 }
-#
-##############################################################################<-
-
-##############################################################################->
-# changing directory to code project
-#
-alias gt-e='cd ~/.emacs.d && la'
-alias gt-m='cd ~/.my-precious && la'
-alias gt-d='cd ~/Dropbox && la'
-alias 1='cd -'
-alias 2='cd +2'
-alias 3='cd +3'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
-alias ..='cd ..'
-
-function c { cd ~/code/$1; }
 #
 ##############################################################################<-
 
