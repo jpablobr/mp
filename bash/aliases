@@ -45,9 +45,10 @@ function tmp { cd ~/tmp/$1; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1; }
 alias ..='cd ..'
 # Browse
-function br-g { ogc "https://github.com/$1"; }
+function br-gh { ogc "https://github.com/$1"; }
 function br-t { ogc "https://twitter.com/$1"; }
 function br-g { ogc "http://www.google.com/search?q=$1"; }
+function br-gt { ogc "https://www.googleapis.com/language/translate/v2?$1"; }
 #
 ##############################################################################<-
 
