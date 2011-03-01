@@ -36,13 +36,17 @@ alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 alias hp="git push heroku master"
 alias hl="heroku logs"
 alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
-function e { cd ~/.emacs.d/$1; }
-function m { cd ~/.my-precious/$1; }
-function d { cd ~/Dropbox/$1; }
-function t { cd ~/todo/$1; }
-function c { cd ~/code/$1; }
-function tmp { cd ~/tmp/$1; }
-function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1; }
+# disk usage with human sizes and minimal depth
+alias du1='du -h --max-depth=1'
+alias fn='find . -name'
+alias hi='history | tail -20'
+function e { cd ~/.emacs.d/$1 && ls --format=long; }
+function m { cd ~/.my-precious/$1 && ls --format=long; }
+function d { cd ~/Dropbox/$1 && ls --format=long; }
+function t { cd ~/todo/$1 && ls --format=long; }
+function c { cd ~/code/$1 && ls --format=long; }
+function tmp { cd ~/tmp/$1 && ls --format=long; }
+function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
 alias ..='cd ..'
 # Browse
 function br-gh { ogc "https://github.com/$1"; }
@@ -57,7 +61,6 @@ function br-gt { ogc "https://www.googleapis.com/language/translate/v2?$1"; }
 # File - Directory Operations
 #
 alias srm='sudo rm'
-alias la="ls -A -l -G"
 alias lag='la | grep'
 alias lg='la | grep'
 alias md='mkdir -p'
@@ -65,6 +68,8 @@ alias rd='rm -rf'
 alias rd*='rm -fr *'
 alias l.='ls -d .[^.]*'
 # -G color -l long listing, most recent first
+alias dir='ls --format=vertical'
+alias la='ls --format=long'
 alias l='ls -lhGt'
 alias lh="ls -lh"
 # -l long listing, human readable, no group info
@@ -76,6 +81,15 @@ alias lsa='ls -lah'
 alias l='ls -la'
 alias ll='ls -alr'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
+
+# setup the main ls alias if we've established common args
+test -n "$LS_COMMON" &&
+alias ls="command ls $LS_COMMON"
+
+# these use the ls aliases above
+alias ll="ls -l"
+alias l.="ls -d .*"
+
 # Install a .tar.gz archive in current directory
 tardir() {
   if [ $# != 0 ]; then tar zxvf $1; fi

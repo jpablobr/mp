@@ -2,10 +2,10 @@ require 'rake'
 require 'erb'
 
 namespace :mp do
-  
+
   desc "Sets the whole environment"
   task :install => [:dotfiles, :functions, :emacs]
-  
+
   desc "Link dotfiles to $HOME directory"
   task :dotfiles do
     replace_all = false
@@ -37,10 +37,10 @@ namespace :mp do
       end
     end
   end#dotfiles
-  
+
   desc "Links functions to ~/bin directory"
   task :functions do
-    unless Dir[ENV['HOME'] + "/bin"].count == 0 
+    unless Dir[ENV['HOME'] + "/bin"].count == 0
       print "~/bin directory already exist, overwrite it? [ynq] "
       case $stdin.gets.chomp
       when 'y'
@@ -51,7 +51,7 @@ namespace :mp do
         puts "keeping current ~/bin directory"
       end
     else
-      link_functions_to_bin      
+      link_functions_to_bin
     end
   end#functions
 
