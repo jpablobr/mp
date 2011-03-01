@@ -123,7 +123,7 @@ ACK_PAGER_COLOR="$PAGER"
 # ----------------------------------------------------------------------
 # PROMPT
 # ----------------------------------------------------------------------
-
+GREEN="\[\033[0;32m\]"
 RED="\[\033[0;31m\]"
 BROWN="\[\033[0;33m\]"
 GREY="\[\033[0;97m\]"
@@ -159,7 +159,8 @@ prompt_compact() {
 }
 
 prompt_color() {
-    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]
+\`if [ \$? = 0 ]; then echo \[\e[33m\]ツ\[\e[0m\]; else echo \[\e[31m\]\:\(\[\e[0m\]; fi\` $(vcprompt) ${COLOR2}$P${PS_CLEAR} "
     PS2="\[[33;1m\]continue \[[0m[1m\]> "
 }
 # ----------------------------------------------------------------------
