@@ -43,7 +43,8 @@ umask 0022
 # ----------------------------------------------------------------------
 # PATH
 # ----------------------------------------------------------------------
-# JAVA_HOME
+# TODO: JAVA_HOME
+
 NODE_JS="$HOME/local/node/bin"
 
 # we want the various sbins on the path along with /usr/local/bin
