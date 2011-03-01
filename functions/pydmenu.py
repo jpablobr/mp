@@ -7,9 +7,7 @@ from operator import itemgetter
 __author__ = "Mathias Teugels <cpf@codercpf.be>"
 
 SAVEFILE=os.path.expanduser('~/.pydmenu_save')
-# DMENU=['dmenu', '-fn', '-*-Inconsolata-*-r-normal-*-*-120-*-*-*-*-iso8859-*', '-nb', '#000000', '-nf', '#FFFFFF', '-sb', '#0066ff']
-DMENU=['~/dmenu_scripts/', '`ls ~/dmenu_scripts | dmenu -nb '#a5b474' -sb '#444444' -nf '#eeeeee' -sf '#a5b474' -fn '-*-*-*-*-*-*-20-*-*-*-*-*-*-*'`']
-
+DMENU=['dmenu', '-fn', '-*-Inconsolata-*-r-normal-*-*-120-*-*-*-*-iso8859-*', '-nb', '#000000', '-nf', '#FFFFFF', '-sb', '#0066ff']
 DMENU_PATH=['dmenu_path']
 
 def restore_saved():
@@ -39,7 +37,7 @@ if __name__ == '__main__':
             _total_list[prog] = 0
 
     _print = mySort(_total_list)
-
+ 
     proc = Popen(DMENU, stdin=PIPE, stdout=PIPE)
     used = proc.communicate('\n'.join([a for a,b in _print]))[0]
 

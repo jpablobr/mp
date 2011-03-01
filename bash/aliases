@@ -161,6 +161,7 @@ alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias g='git'
 alias ga='git add'
 alias ga.='git add .'
+alias gbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
 alias gap='git add -p'
 alias gb='git branch'
 alias gba='git branch -a'
