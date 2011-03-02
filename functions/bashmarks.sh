@@ -25,14 +25,14 @@
 
 
 # USAGE:
-#    b-s bookmarkname - saves the curr dir as bookmarkname
-#	 b-g bookmarkname - jumps to the that bookmark
-#	 b-g b[TAB] - tab completion is available
-#	 b-p bookmarkname - prints the bookmark
-#	 b-p b[TAB] - tab completion is available
-#	 b-d bookmarkname - deletes the bookmark
-#	 b-d [TAB] - tab completion is available
-#	 b-l - list all bookmarks
+#    gt-s bookmarkname - saves the curr dir as bookmarkname
+#	 gt bookmarkname - jumps to the that bookmark
+#	 gt-g b[TAB] - tab completion is available
+#	 gt-p bookmarkname - prints the bookmark
+#	 gt-p b[TAB] - tab completion is available
+#	 gt-d bookmarkname - deletes the bookmark
+#	 gt-d [TAB] - tab completion is available
+#	 gt-l - list all bookmarks
 
 # File to store bookmarks
 if [ ! -n "$SDIRS" ]; then
@@ -41,7 +41,7 @@ fi
 touch $SDIRS
 
 # save current directory to bookmarks
-function g-s {
+function gt-s {
 	check_help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
@@ -52,21 +52,21 @@ function g-s {
 }
 
 # I think of them as gotos
-function g-t {
+function gt {
 	check_help $1
     source $SDIRS
     cd "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # print bookmark
-function g-p {
+function gt-p {
 	check_help $1
     source $SDIRS
     echo "$(eval $(echo echo $(echo \$DIR_$1)))"
 }
 
 # delete bookmark
-function g-d {
+function gt-d {
 	check_help $1
     _bookmark_name_valid "$@"
     if [ -z "$exit_message" ]; then
@@ -80,17 +80,17 @@ function g-d {
 function check_help {
 	if [ "$1" = "-h" ] || [ "$1" = "-help" ] || [ "$1" = "--help" ] ; then
 		echo ''
-	    echo 'g-s <bookmark_name> - Saves the current directory as "bookmark_name"'
-	    echo 'g-t <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
-	    echo 'g-p <bookmark_name> - Prints the directory associated with "bookmark_name"'
-	    echo 'g-d <bookmark_name> - Deletes the bookmark'
-	    echo 'g-l                 - Lists all available bookmarks'
+	    echo 'gt-s <bookmark_name> - Saves the current directory as "bookmark_name"'
+	    echo 'gt <bookmark_name> - Goes (cd) to the directory associated with "bookmark_name"'
+	    echo 'gt-p <bookmark_name> - Prints the directory associated with "bookmark_name"'
+	    echo 'gt-d <bookmark_name> - Deletes the bookmark'
+	    echo 'gt-l                 - Lists all available bookmarks'
 		kill -SIGINT $$
 	fi
 }
 
 # list bookmarks with dirnam
-function g-l {
+function gt-l {
 	check_help $1
 	source $SDIRS
 	env | grep "^DIR_" | cut -c5- | grep "^.*="
@@ -124,8 +124,8 @@ function _comp {
 }
 
 # bind completion command
-# for: g-t,g-p,g-d to _comp
+# for: gt,gt-p,gt-d to _comp
 shopt -s progcomp
-complete -F _comp g-t
-complete -F _comp g-p
-complete -F _comp g-d
+complete -F _comp gt
+complete -F _comp gt-p
+complete -F _comp gt-d
