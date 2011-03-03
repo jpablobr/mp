@@ -1,4 +1,6 @@
 #!/bin/bash
+# Much taken from https://github.com/rtomayko/dotfiles awesomeness!
+# Many thanks!
 
 # the basics
 : ${HOME=~}
@@ -155,7 +157,7 @@ _git_headname() {
 	[ -n "$br" ] &&
 		br=${br#refs/heads/} ||
 		br=`git rev-parse --short HEAD 2>/dev/null`
-	_git_apply_color "$br" "color.sh.branch" "yellow reverse"
+	_git_apply_color "$br" "color.sh.branch" " yellow reverse"
 }
 
 # detect working directory relative to working tree root
@@ -217,8 +219,8 @@ prompt_compact() {
 }
 
 prompt_color() {
-    PS1="${COLOR1}!\`_git_headname\`\`_git_dirty\`\
- \`_git_workdir\`:${COLOR2}\h${COLOR1} $P${COLOR1}${PS_CLEAR} "
+    PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
+${COLOR1}!\`_git_headname\`$P${COLOR1}${PS_CLEAR} "
     PS2="\[[33;1m\]continue \[[0m[1m\]> "
 }
 
