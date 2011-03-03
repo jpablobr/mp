@@ -203,7 +203,7 @@ else
 fi
 
 prompt_dumb() {
-    PS1="[\w]\n$ "
+    PS1='$ '
 }
 
 prompt_simple() {
@@ -342,7 +342,7 @@ MANPATH=$(puniq $MANPATH)
 
 # Use the color prompt by default when interactive
 if [ "$TERM" = "dumb" ] ; then
-    PS1='$ '
+    prompt_dumb
 else
     test -n "$PS1" &&
     prompt_color

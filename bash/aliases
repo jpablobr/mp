@@ -2,18 +2,15 @@
 
 ##############################################################################->
 # Common aliases
-#
 alias o='open . &'
-alias ogc='google-chrome '
+alias chrome='google-chrome '
 alias more='less'
 alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
 alias open="gnome-open"
-alias cl='clear; l'
+alias cl='clear'
 # Color aliases
 alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
 # Super user
 alias _='sudo'
 alias ss='sudo su -'
@@ -21,8 +18,10 @@ alias ss='sudo su -'
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-alias et='emacsclient.emacs23 -nw'
-alias em=emacsclient.emacs23
+alias et='emacs -Q -nw'
+alias em_aliases='emacs -Q -nw ~/.my-precious/bash/aliases'
+alias em_config='emacs -Q -nw ~/.my-precious/bash/config'
+alias em_init='emacs -Q -nw ~/.emacs.d/init.el'
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
@@ -53,16 +52,19 @@ function t { cd ~/todo/$1 && ls --format=long; }
 function c { cd ~/code/$1 && ls --format=long; }
 function tmp { cd ~/tmp/$1 && ls --format=long; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
-#
 ##############################################################################<-
 
 ##############################################################################->
 # Grep
-alias lg='l | grep'
-alias lag='la | grep'
-function findgp { find . -type f -print0 | xargs -0 -e grep -nH -e $1; }
-function gpln { grep -nH -e "$@";}
-function lessgp { egrep --color=yes "$@" | less -R; }
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias gp_l='l | grep'
+alias gp_la='la | grep'
+function g_. { grep -nH -e "$@";}
+function gp_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+function gp_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
+function less_gp { egrep --color=yes "$@" | less -R; }
+function find_gp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 ##############################################################################<-
 
 ##############################################################################->
@@ -84,6 +86,13 @@ alias lsa='ls -lah'
 alias l='ls -la'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
 alias l.="ls -d .*"
+
+# Open all files by given pattern.
+function for_open {
+    for f in "$1"; do
+        open $f;
+    done
+}
 
 # Install a .tar.gz archive in current directory
 tardir() {
@@ -148,25 +157,20 @@ function __rm_single_file(){
         echo "No such file or directory: $file"
     fi
 }
-#
 ##############################################################################<-
 
 ##############################################################################->
 # Servers - Misc
-#
-# Nginx
 function nginx_stop() {
     ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
 }
 function nginx_start() {
     sudo /opt/nginx/sbin/nginx
 }
-#
 ##############################################################################<-
 
 ##############################################################################->
 # Git Aliases
-#
 alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias g='git'
 alias ga='git add'
@@ -196,7 +200,6 @@ alias gpr='git pull --rebase || (notify "pull failed" "Git" && false)'
 alias gpru='gp && rake && gu'
 alias gri='git rebase -i origin/master^'
 alias grc='git rebase --continue'
-alias gst='git status'
 alias gup='git fetch && git rebase'
 alias gu='git push origin HEAD || (notify "push failed" "Git" && false)'
 
@@ -306,7 +309,6 @@ parse_git_dirty () {
 #
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
-#
 function current_branch() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
@@ -317,12 +319,10 @@ function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
-#
 ##############################################################################<-
 
 ##############################################################################->
 # General helpers
-#
 # Regenerate TAGS file from file arguments
 function ct() {
   rm -f TAGS
@@ -349,5 +349,4 @@ _ssh_hosts() {
   cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
 }
 complete -W "$(_ssh_hosts)" ssh
-#
 ##############################################################################<-
