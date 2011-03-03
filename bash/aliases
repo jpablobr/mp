@@ -77,22 +77,12 @@ alias dir='ls --format=vertical'
 alias la='ls --format=long'
 alias l='ls -lhGt'
 alias lh="ls -lh"
-# -l long listing, human readable, no group info
-alias ll='ls -lhG'
 # sort with recently modified first
 alias lt='ls -lt'
 alias md='mkdir -p'
 alias lsa='ls -lah'
 alias l='ls -la'
-alias ll='ls -alr'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
-
-# setup the main ls alias if we've established common args
-test -n "$LS_COMMON" &&
-alias ls="command ls $LS_COMMON"
-
-# these use the ls aliases above
-alias ll="ls -l"
 alias l.="ls -d .*"
 
 # Install a .tar.gz archive in current directory
