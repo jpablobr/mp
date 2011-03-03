@@ -14,10 +14,12 @@
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
 # ----------------------------------------------------------------------
+# Emacs mode
+set -o emacs
 
 # bring in system bashrc
 test -r /etc/bashrc &&
-      . /etc/bashrc
+. /etc/bashrc
 
 # notify of bg job completion immediately
 set -o notify
@@ -45,19 +47,23 @@ umask 0022
 # ----------------------------------------------------------------------
 # TODO: JAVA_HOME
 
-NODE_JS="$HOME/local/node/bin"
+#bin
+PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
 
-# we want the various sbins on the path along with /usr/local/bin
-PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="/usr/local/bin:$PATH"
+#sbin
+PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 
-# put ~/bin on PATH if you have it
+# if ~/bin.
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
-# put node.js bin on PATH if you have it
+# if node.js.
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
+
+# if RVM.
+test -s  "$HOME/.rvm/scripts/rvm" &&
+source "$HOME/.rvm/scripts/rvm"
 
 # ----------------------------------------------------------------------
 # ENVIRONMENT CONFIGURATION
@@ -105,8 +111,8 @@ HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
 test -n "$HAVE_EMACS" &&
-VISUAL='emacsclient.emacs' &&
-EDITOR='emacsclient.emacs'
+VISUAL='emacs -nw' &&
+EDITOR='emacs -nw'
 
 # PAGER
 if test -n "$(command -v less)" ; then
@@ -122,7 +128,7 @@ ACK_PAGER="$PAGER"
 ACK_PAGER_COLOR="$PAGER"
 
 # ----------------------------------------------------------------------
-# PROMPT
+# PROMP
 # ----------------------------------------------------------------------
 GREEN="\[\033[0;32m\]"
 RED="\[\033[0;31m\]"
@@ -142,6 +148,10 @@ else
     P="\$"
 fi
 
+prompt_dumb() {
+    PS1="[\w]\n$ "
+}
+
 prompt_simple() {
     unset PROMPT_COMMAND
     PS1="[\u@\h:\w]\$ "
@@ -155,10 +165,13 @@ prompt_compact() {
 }
 
 prompt_color() {
-    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]
-\`if [ \$? = 0 ]; then echo \[\e[33m\]\>\[\e[0m\]; else echo \[\e[31m\]\òÓ\[\e[0m\]; fi\` $(vcprompt) ${COLOR2}$P${PS_CLEAR} "
+    GIT_PS1_SHOWDIRTYSTATE="enabled"
+    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]\
+    \n\`if [ \$? = 0 ]; then echo \[\e[33m\]\>\[\e[0m\]; else \
+    echo \[\e[31m\]\òÓ\[\e[0m\]; fi\`\`__git_ps1\` ${COLOR2}$P${PS_CLEAR} "
     PS2="\[[33;1m\]continue \[[0m[1m\]> "
 }
+
 # ----------------------------------------------------------------------
 # BASH COMPLETION
 # ----------------------------------------------------------------------
@@ -168,9 +181,9 @@ test -z "$BASH_COMPLETION" && {
     test -n "$PS1" && test $bmajor -gt 1 && {
         # search for a bash_completion file to source
         for f in /usr/local/etc/bash_completion \
-                 /usr/pkg/etc/bash_completion \
-                 /opt/local/etc/bash_completion \
-                 /etc/bash_completion
+            /usr/pkg/etc/bash_completion \
+            /opt/local/etc/bash_completion \
+            /etc/bash_completion
         do
             test -f $f && {
                 . $f
@@ -199,6 +212,7 @@ test -n "$dircolors" && {
     test ! -e "$COLORS"               && COLORS=
     eval `dircolors --sh $COLORS`
 }
+
 unset dircolors
 export LS_OPTIONS='-s -F -T 0 --color=yes'
 
@@ -226,7 +240,7 @@ ppop () {
     [ "$1" = "-n" ] && { n=$2; shift 2; }
     while [ $i -lt $n ]
     do eval "${1:-PATH}='\${${1:-PATH}%:*}'"
-       i=$(( i + 1 ))
+        i=$(( i + 1 ))
     done
 }
 
@@ -275,8 +289,12 @@ PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
 # Use the color prompt by default when interactive
-test -n "$PS1" &&
-prompt_color
+if [ "$TERM" = "dumb" ] ; then
+    PS1='$ '
+else
+    test -n "$PS1" &&
+    prompt_color
+fi
 
 # -------------------------------------------------------------------
 # MOTD / FORTUNE
@@ -287,31 +305,31 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
     uptime
 }
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Bashmarks
-if [ -f $HOME/bin/bashmarks.sh ]; then
-    source $HOME/bin/bashmarks.sh;
-fi
+test -f $HOME/bin/bashmarks.sh &&
+source $HOME/bin/bashmarks.sh
 
 # SSH
+test -f "$HOME/.ssh/environment" &&
 SSH_ENV="$HOME/.ssh/environment"
 
+# SSH agent settings
 function start_agent {
-     echo "Initialising new SSH agent..."
-     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-     echo succeeded
-     chmod 600 "${SSH_ENV}"
-     . "${SSH_ENV}" > /dev/null
-     /usr/bin/ssh-add;
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
 }
+
 if [ -f "${SSH_ENV}" ]; then
-     . "${SSH_ENV}" > /dev/null
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-         start_agent;
-     }
+    . "${SSH_ENV}" > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
 else
-     start_agent;
+    start_agent;
 fi
 
 # push SSH public key to another box

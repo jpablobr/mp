@@ -40,6 +40,12 @@ alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
 alias hi='history | tail -20'
+alias boxfs='sudo sysctl fs.inotify.max_user_watches=100000'
+alias ..='cd ..'
+# Browse
+function br-gh { ogc "https://github.com/$1"; }
+function br-t { ogc "https://twitter.com/$1"; }
+function br-g { ogc "http://www.google.com/search?q=$1"; }
 function e { cd ~/.emacs.d/$1 && ls --format=long; }
 function m { cd ~/.my-precious/$1 && ls --format=long; }
 function d { cd ~/Dropbox/$1 && ls --format=long; }
@@ -47,22 +53,21 @@ function t { cd ~/todo/$1 && ls --format=long; }
 function c { cd ~/code/$1 && ls --format=long; }
 function tmp { cd ~/tmp/$1 && ls --format=long; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
-alias ..='cd ..'
-# Browse
-function br-gh { ogc "https://github.com/$1"; }
-function br-t { ogc "https://twitter.com/$1"; }
-function br-g { ogc "http://www.google.com/search?q=$1"; }
-function br-gt { ogc "https://www.googleapis.com/language/translate/v2?$1"; }
-# Git
 #
 ##############################################################################<-
 
 ##############################################################################->
-# File - Directory Operations
-#
-alias srm='sudo rm'
+# Grep
+alias lg='l | grep'
 alias lag='la | grep'
-alias lg='la | grep'
+function findgp { find . -type f -print0 | xargs -0 -e grep -nH -e $1; }
+function gpln { grep -nH -e "$@";}
+function lessgp { egrep --color=yes "$@" | less -R; }
+##############################################################################<-
+
+##############################################################################->
+# File - Directory Operations
+alias srm='sudo rm'
 alias md='mkdir -p'
 alias rd='rm -rf'
 alias rd*='rm -fr *'
@@ -342,10 +347,6 @@ function haproxyssh() {
 # Syntax check Javascript
 function jsc() {
   jsl -conf /etc/jsl/jsl.conf -process $1
-}
-
-function legrep {
-  egrep --color=yes "$@" | less -R
 }
 
 myip() {
