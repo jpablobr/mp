@@ -18,10 +18,10 @@ alias ss='sudo su -'
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-alias et='emacs -Q -nw'
 alias em_aliases='emacs -Q -nw ~/.my-precious/bash/aliases'
 alias em_config='emacs -Q -nw ~/.my-precious/bash/config'
 alias em_init='emacs -Q -nw ~/.emacs.d/init.el'
+function em { emacs -Q -nw "$1"; }
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
@@ -75,22 +75,20 @@ alias rd='rm -rf'
 alias rd*='rm -fr *'
 alias l.='ls -d .[^.]*'
 # -G color -l long listing, most recent first
-alias dir='ls --format=vertical'
-alias la='ls --format=long'
 alias l='ls -lhGt'
 alias lh="ls -lh"
+alias lsa='ls -lah'
+alias la='ls --format=long'
 # sort with recently modified first
 alias lt='ls -lt'
 alias md='mkdir -p'
-alias lsa='ls -lah'
-alias l='ls -la'
+alias dir='ls --format=vertical'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
-alias l.="ls -d .*"
 
 # Open all files by given pattern.
 function for_open {
-    for f in "$1"; do
-        open $f;
+    for file in "$1"; do
+        open $file;
     done
 }
 

@@ -1,6 +1,7 @@
 #!/bin/bash
-# Much taken from https://github.com/rtomayko/dotfiles awesomeness!
-# Many thanks!
+# Much taken from:
+# https://github.com/rtomayko/dotfiles
+# awesomeness! Many thanks!
 
 # the basics
 : ${HOME=~}
@@ -14,8 +15,7 @@
 : ${INPUTRC=~/.inputrc}
 
 # ----------------------------------------------------------------------
-#  SHELL OPTIONS
-# ----------------------------------------------------------------------
+# SHELL OPTIONS:
 # Emacs mode
 set -o emacs
 
@@ -45,10 +45,7 @@ ulimit -S -c 0
 umask 0022
 
 # ----------------------------------------------------------------------
-# PATH
-# ----------------------------------------------------------------------
-# TODO: JAVA_HOME
-
+# PATH:
 #bin
 PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
 
@@ -67,10 +64,16 @@ PATH="$HOME/local/node/bin:$PATH"
 test -s  "$HOME/.rvm/scripts/rvm" &&
 source "$HOME/.rvm/scripts/rvm"
 
-# ----------------------------------------------------------------------
-# ENVIRONMENT CONFIGURATION
-# ----------------------------------------------------------------------
+# if bashmarks
+test -f "$HOME/bin/bashmarks.sh" &&
+source "$HOME/bin/bashmarks.sh"
 
+# if SSH
+test -f "$HOME/.ssh/environment" &&
+SSH_ENV="$HOME/.ssh/environment"
+
+# ----------------------------------------------------------------------
+# ENVIRONMENT CONFIGURATION:
 # detect interactive shell
 case "$-" in
     *i*) INTERACTIVE=yes ;;
@@ -105,9 +108,7 @@ BIBINPUTS=.:/usr/share/texmf-texlive/bibtex
 TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 
 # ----------------------------------------------------------------------
-# PAGER / EDITOR
-# ----------------------------------------------------------------------
-
+# PAGER / EDITOR:
 # See what we have to work with.
 HAVE_EMACS=$(command -v emacs)
 
@@ -130,8 +131,7 @@ ACK_PAGER="$PAGER"
 ACK_PAGER_COLOR="$PAGER"
 
 # ----------------------------------------------------------------------
-# PROMP
-# ----------------------------------------------------------------------
+# PROMP:
 GREEN="\[\033[0;32m\]"
 RED="\[\033[0;31m\]"
 BROWN="\[\033[0;33m\]"
@@ -220,14 +220,12 @@ prompt_compact() {
 
 prompt_color() {
     PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
-${COLOR1}!\`_git_headname\`$P${COLOR1}${PS_CLEAR} "
+${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
     PS2="\[[33;1m\]continue \[[0m[1m\]> "
 }
 
 # ----------------------------------------------------------------------
-# BASH COMPLETION
-# ----------------------------------------------------------------------
-
+# BASH COMPLETION:
 test -z "$BASH_COMPLETION" && {
     bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
     test -n "$PS1" && test $bmajor -gt 1 && {
@@ -252,9 +250,7 @@ _expand() {
 }
 
 # ----------------------------------------------------------------------
-# LS AND DIRCOLORS
-# ----------------------------------------------------------------------
-
+# LS AND DIRCOLORS:
 # if the dircolors utility is available, set that up to
 # dircolors="$(type -P gdircolors dircolors | head -1)"
 test -n "$dircolors" && {
@@ -269,9 +265,7 @@ unset dircolors
 export LS_OPTIONS='-s -F -T 0 --color=yes'
 
 # --------------------------------------------------------------------
-# PATH MANIPULATION FUNCTIONS
-# --------------------------------------------------------------------
-
+# PATH MANIPULATION FUNCTIONS:
 # Usage: pls [<var>]
 # List path entries of PATH or environment variable <var>.
 pls () { eval echo \$${1:-PATH} |tr : '\n'; }
@@ -326,9 +320,7 @@ man () {
 }
 
 # -------------------------------------------------------------------
-# USER SHELL ENVIRONMENT
-# -------------------------------------------------------------------
-
+# USER SHELL ENVIRONMENT:
 # bring in rbdev functions
 . rbdev 2>/dev/null || true
 
@@ -341,30 +333,23 @@ PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
 # Use the color prompt by default when interactive
-if [ "$TERM" = "dumb" ] ; then
+HAVE_GIT=$(command -v git)
+if [ "$TERM" = "dumb" ]; then
     prompt_dumb
+elif [ $HAVE_GIT ]; then
+    test -n "$PS1" && prompt_color
 else
-    test -n "$PS1" &&
-    prompt_color
+    test -n "$PS1" && prompt_compact
 fi
 
 # -------------------------------------------------------------------
-# MOTD / FORTUNE
-# -------------------------------------------------------------------
-
+# MOTD / FORTUNE:
 test -n "$INTERACTIVE" -a -n "$LOGIN" && {
     uname -npsr
     uptime
 }
 
-# Bashmarks
-test -f $HOME/bin/bashmarks.sh &&
-source $HOME/bin/bashmarks.sh
-
-# SSH
-test -f "$HOME/.ssh/environment" &&
-SSH_ENV="$HOME/.ssh/environment"
-
+# -------------------------------------------------------------------
 # SSH agent settings
 function start_agent {
     echo "Initialising new SSH agent..."
