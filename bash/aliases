@@ -17,11 +17,11 @@ alias ss='sudo su -'
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-function em { emacs -Q -nw "$1"; }
-function sem { sudo emacs -Q -nw "$1"; }
+alias em='emacs -q -nw -l ~/.emacs.d/nw-init.el'
 alias em_aliases='em ~/.my-precious/bash/aliases'
 alias em_config='em ~/.my-precious/bash/config'
 alias em_init='em ~/.emacs.d/init.el'
+alias sem='sudo em'
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
@@ -36,7 +36,6 @@ alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
 alias hi='history | tail -20'
-alias boxfs='sudo sysctl fs.inotify.max_user_watches=100000'
 # Browse
 function br-gh { ogc "https://github.com/$1"; }
 function br-t { ogc "https://twitter.com/$1"; }
@@ -50,6 +49,13 @@ function t { cd ~/todo/$1 && ls --format=long; }
 function c { cd ~/code/$1 && ls --format=long; }
 function tmp { cd ~/tmp/$1 && ls --format=long; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
+# Dropbox
+alias gbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
+function dbox_bitch { 
+    dropbox stop &&
+    sudo sysctl fs.inotify.max_user_watches=100000 &&
+    dropbox start; 
+}
 
 ##############################################################################->
 # Grep
@@ -166,7 +172,6 @@ alias ungit="find . -name '.git' -exec rm -rf {} \;"
 alias g='git'
 alias ga='git add'
 alias ga.='git add .'
-alias gbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
 alias gap='git add -p'
 alias gb='git branch'
 alias gba='git branch -a'
