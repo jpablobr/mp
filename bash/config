@@ -141,57 +141,62 @@ BLUE="\[\033[0;34m\]"
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
-ANSI_RESET="\001$(git config --get-color "" "reset")\002"
+HAVE_GIT=$(command -v git)
 
-# detect whether the tree is in a dirty state. returns
-_git_dirty() {
-	if git status 2>/dev/null | fgrep -q '(working directory clean)'; then
-		return 0
-	fi
-	local dirty_marker="`git config gitsh.dirty || echo ' *'`"
-	_git_apply_color "$dirty_marker" "color.sh.dirty" "red"
-}
+if [ $HAVE_GIT ]; then
 
-# detect the current branch; use 7-sha when not on branch
-_git_headname() {
-	local br=`git symbolic-ref -q HEAD 2>/dev/null`
-	[ -n "$br" ] &&
-		br=${br#refs/heads/} ||
-		br=`git rev-parse --short HEAD 2>/dev/null`
-	_git_apply_color "$br" "color.sh.branch" " yellow reverse"
-}
+    ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
-# detect working directory relative to working tree root
-_git_workdir() {
-	subdir=`git rev-parse --show-prefix 2>/dev/null`
-	subdir="${subdir%/}"
-	workdir="${PWD%/$subdir}"
-	_git_apply_color "${workdir/*\/}${subdir:+/$subdir}" "color.sh.workdir" "blue bold"
-}
+    # detect whether the tree is in a dirty state. returns
+    _git_dirty() {
+	      if git status 2>/dev/null | fgrep -q '(working directory clean)'; then
+		        return 0
+	      fi
+	      local dirty_marker="`git config gitsh.dirty || echo ' *'`"
+	      _git_apply_color "$dirty_marker" "color.sh.dirty" "red"
+    }
 
-# determine whether color should be enabled. this checks git's color.ui
-# option and then color.sh.
-_git_color_enabled() {
-	[ `git config --get-colorbool color.sh true` = "true" ]
-}
+    # detect the current branch; use 7-sha when not on branch
+    _git_headname() {
+	      local br=`git symbolic-ref -q HEAD 2>/dev/null`
+	      [ -n "$br" ] &&
+		    br=${br#refs/heads/} ||
+		    br=`git rev-parse --short HEAD 2>/dev/null`
+	      _git_apply_color "$br" "color.sh.branch" " yellow reverse"
+    }
 
-# apply a color to the first argument
-_git_apply_color() {
-	local output="$1" color="$2" default="$3"
-	if _git_color_enabled ; then
-		color=`_git_color "$color" "$default"`
-		echo -ne "${color}${output}${ANSI_RESET}"
-	else
-		echo -ne "$output"
-	fi
-}
+    # detect working directory relative to working tree root
+    _git_workdir() {
+	      subdir=`git rev-parse --show-prefix 2>/dev/null`
+	      subdir="${subdir%/}"
+	      workdir="${PWD%/$subdir}"
+	      _git_apply_color "${workdir/*\/}${subdir:+/$subdir}" "color.sh.workdir" "blue bold"
+    }
 
-# retrieve an ANSI color escape sequence from git config
-_git_color() {
-	local color
-	color=`git config --get-color "$1" "$2" 2>/dev/null`
-	[ -n "$color" ] && echo -ne "\001$color\002"
-}
+    # determine whether color should be enabled. this checks git's color.ui
+    # option and then color.sh.
+    _git_color_enabled() {
+	      [ `git config --get-colorbool color.sh true` = "true" ]
+    }
+
+    # apply a color to the first argument
+    _git_apply_color() {
+	      local output="$1" color="$2" default="$3"
+	      if _git_color_enabled ; then
+		        color=`_git_color "$color" "$default"`
+		        echo -ne "${color}${output}${ANSI_RESET}"
+	      else
+		        echo -ne "$output"
+	      fi
+    }
+
+    # retrieve an ANSI color escape sequence from git config
+    _git_color() {
+	      local color
+	      color=`git config --get-color "$1" "$2" 2>/dev/null`
+	      [ -n "$color" ] && echo -ne "\001$color\002"
+    }
+fi
 
 if [ "$LOGNAME" = "root" ]; then
     COLOR1="${RED}"
@@ -215,15 +220,22 @@ prompt_simple() {
 
 prompt_compact() {
     unset PROMPT_COMMAND
-    PS1="${COLOR1}${P}${PS_CLEAR} "
-    PS2="> "
-}
-
-prompt_color() {
-    PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
-${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
+    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
     PS2="${BROWN}continue ${BROWN}> "
 }
+
+if [ $HAVE_GIT ]; then
+    prompt_color() {
+        PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
+${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+else
+    prompt_color() {
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+fi
 
 # ----------------------------------------------------------------------
 # BASH COMPLETION:
@@ -334,7 +346,6 @@ PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
 # Use the color prompt by default when interactive
-HAVE_GIT=$(command -v git)
 if [ "$TERM" = "dumb" ]; then
     prompt_dumb
 elif [ $HAVE_GIT ]; then
