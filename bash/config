@@ -2,6 +2,7 @@
 # Much taken from:
 # https://github.com/rtomayko/dotfiles
 # awesomeness! Many thanks!
+# TODO: complete -o default -o nospace -F _git_branch gb
 
 # the basics
 : ${HOME=~}

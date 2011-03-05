@@ -1,5 +1,4 @@
 # -*- mode: sh -*-
-
 ##############################################################################->
 # Common aliases
 alias o='open . &'
@@ -18,20 +17,18 @@ alias ss='sudo su -'
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-alias em_aliases='emacs -Q -nw ~/.my-precious/bash/aliases'
-alias em_config='emacs -Q -nw ~/.my-precious/bash/config'
-alias em_init='emacs -Q -nw ~/.emacs.d/init.el'
 function em { emacs -Q -nw "$1"; }
+function sem { sudo emacs -Q -nw "$1"; }
+alias em_aliases='em ~/.my-precious/bash/aliases'
+alias em_config='em ~/.my-precious/bash/config'
+alias em_init='em ~/.emacs.d/init.el'
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
 alias k9="killall -9"
-# Processes
-alias tu='top -p cpu' # cpu
-alias tm='top -p vsize' # memory
-# List Pids using IPs
+# Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
-#heroku helpers
+# heroku
 alias hp="git push heroku master"
 alias hl="heroku logs"
 alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
@@ -40,11 +37,12 @@ alias du1='du -h --max-depth=1'
 alias fn='find . -name'
 alias hi='history | tail -20'
 alias boxfs='sudo sysctl fs.inotify.max_user_watches=100000'
-alias ..='cd ..'
 # Browse
 function br-gh { ogc "https://github.com/$1"; }
 function br-t { ogc "https://twitter.com/$1"; }
 function br-g { ogc "http://www.google.com/search?q=$1"; }
+# cding...
+alias ..='cd ..'
 function e { cd ~/.emacs.d/$1 && ls --format=long; }
 function m { cd ~/.my-precious/$1 && ls --format=long; }
 function d { cd ~/Dropbox/$1 && ls --format=long; }
@@ -52,7 +50,6 @@ function t { cd ~/todo/$1 && ls --format=long; }
 function c { cd ~/code/$1 && ls --format=long; }
 function tmp { cd ~/tmp/$1 && ls --format=long; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
-##############################################################################<-
 
 ##############################################################################->
 # Grep
@@ -65,7 +62,6 @@ function gp_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
 function gp_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
 function less_gp { egrep --color=yes "$@" | less -R; }
 function find_gp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-##############################################################################<-
 
 ##############################################################################->
 # File - Directory Operations
@@ -155,7 +151,6 @@ function __rm_single_file(){
         echo "No such file or directory: $file"
     fi
 }
-##############################################################################<-
 
 ##############################################################################->
 # Servers - Misc
@@ -165,7 +160,6 @@ function nginx_stop() {
 function nginx_start() {
     sudo /opt/nginx/sbin/nginx
 }
-##############################################################################<-
 
 ##############################################################################->
 # Git Aliases
@@ -203,8 +197,6 @@ alias gu='git push origin HEAD || (notify "push failed" "Git" && false)'
 
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
 alias gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
-
-# complete -o default -o nospace -F _git_branch gb
 
 # Commit pending changes and quote all args as message
 function gg() {
@@ -304,7 +296,6 @@ parse_git_dirty () {
   fi
 }
 
-#
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 function current_branch() {
@@ -317,7 +308,6 @@ function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
-##############################################################################<-
 
 ##############################################################################->
 # General helpers
@@ -347,4 +337,3 @@ _ssh_hosts() {
   cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
 }
 complete -W "$(_ssh_hosts)" ssh
-##############################################################################<-
