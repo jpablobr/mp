@@ -222,7 +222,7 @@ prompt_compact() {
 prompt_color() {
     PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
 ${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
-    PS2="\[[33;1m\]continue \[[0m[1m\]> "
+    PS2="${BROWN}continue ${BROWN}> "
 }
 
 # ----------------------------------------------------------------------
