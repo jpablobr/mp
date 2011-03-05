@@ -8,16 +8,12 @@ alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
 alias open="gnome-open"
 alias cl='clear'
-# Color aliases
-alias ls='ls --color=auto'
-# Super user
 alias _='sudo'
-alias ss='sudo su -'
 # Show history
 alias history='fc -l 1'
 alias h='history'
 # Emacs
-alias em='emacs -q -nw -l ~/.emacs.d/nw-init.el'
+alias em='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 alias em_aliases='em ~/.my-precious/bash/aliases'
 alias em_config='em ~/.my-precious/bash/config'
 alias em_init='em ~/.emacs.d/init.el'
@@ -52,10 +48,10 @@ function tmp { cd ~/tmp/$1 && ls --format=long; }
 function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
 # Dropbox
 alias gbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
-function dbox_bitch { 
+function dbox_bitch {
     dropbox stop &&
     sudo sysctl fs.inotify.max_user_watches=100000 &&
-    dropbox start; 
+    dropbox start;
 }
 
 ##############################################################################->
@@ -72,6 +68,7 @@ function find_gp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 
 ##############################################################################->
 # File - Directory Operations
+alias ls='ls --color=auto'
 # -G color -l long listing, most recent first
 alias l='ls -lhGt'
 alias l.='ls -d .[^.]*'
