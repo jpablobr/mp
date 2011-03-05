@@ -65,21 +65,20 @@ function find_gp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 
 ##############################################################################->
 # File - Directory Operations
-alias srm='sudo rm'
-alias md='mkdir -p'
-alias rd='rm -rf'
-alias rd*='rm -fr *'
-alias l.='ls -d .[^.]*'
 # -G color -l long listing, most recent first
 alias l='ls -lhGt'
+alias l.='ls -d .[^.]*'
 alias lh="ls -lh"
 alias lsa='ls -lah'
-alias la='ls --format=long'
-# sort with recently modified first
 alias lt='ls -lt'
-alias md='mkdir -p'
+alias la='ls --format=long'
 alias dir='ls --format=vertical'
+# sort with recently modified first
+alias md='mkdir -p'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
+alias srm='sudo rm'
+alias rd='rm -rf'
+alias rd*='rm -fr *'
 
 # Open all files by given pattern.
 function for_open {
