@@ -2,7 +2,7 @@
 
 #	-------------------------------------------------------------------
 #
-#	Shell program to rename files with spaces and replace them with underscores.
+#	Shell program to rename files with spaces or dashes with underscores.
 #
 #	Copyright 2011, jpablobr <xjpablobr@gmail.com>
 #
@@ -18,7 +18,7 @@
 #
 #	Description:
 #
-#   This will rename all files in the directory so that the spaces in filenames
+#	  Shell program to rename files with spaces or dashes with underscores.
 #   are changed to underscores
 #
 #	Usage:
@@ -129,7 +129,7 @@ function helptext {
 	cat <<- -EOF-
 
 	${PROGNAME} ver. ${VERSION}
-	This is a program to rename files with spaces and replace them with underscores.
+  This will rename all files in the directory so that the spaces in filenames
 
 	$(usage)
 
@@ -149,7 +149,7 @@ function rename_files {
     dir=`dirname "$1"`
     file=`basename "$1"`
 
-    new_file_name=`echo  $file|sed "s/ /_/g" | tr '[:upper:]' '[:lower:]'`
+    new_file_name=`echo  $file|sed "s/[ |-]/_/g" | tr '[:upper:]' '[:lower:]'`
     new_name=$dir"/"$new_file_name
 
     if [ "$org_name" != "$new_name" ]; then
