@@ -1,3 +1,0 @@
-# search Gmail THIS WAY, not by going to the Inbox
-
-google-chrome "http://mail.google.com/mail/#search/$*"

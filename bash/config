@@ -57,6 +57,10 @@ PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
+# if Haskell
+test -f "$HOME/.cabal/bin" &&
+PATH="$HOME/.cabal/bin:$PATH"
+
 # if node.js.
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
