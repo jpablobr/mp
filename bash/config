@@ -2,8 +2,6 @@
 # Much taken from:
 # https://github.com/rtomayko/dotfiles
 # awesomeness! Many thanks!
-# TODO: complete -o default -o nospace -F _git_branch gb
-# complete -W "$(_ssh_hosts)" ssh
 
 # the basics
 : ${HOME=~}
@@ -262,10 +260,31 @@ test -z "$BASH_COMPLETION" && {
     unset bash bmajor bminor
 }
 
+: ${USER_BASH_COMPLETION_DIR:=$HOME/bin/completions}
+
+test -n "$USER_BASH_COMPLETION_DIR" && {
+  # source completion directory definitions
+  if [ -d $USER_BASH_COMPLETION_DIR -a -r $USER_BASH_COMPLETION_DIR -a \
+       -x $USER_BASH_COMPLETION_DIR ]; then
+    for i in $USER_BASH_COMPLETION_DIR/*; do
+      [[ ${i##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ]] &&
+      [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+    done
+  fi
+  unset i
+}
+
 # override and disable tilde expansion
 _expand() {
     return 0
 }
+
+_ssh_hosts() {
+  grep "Host " ~/.ssh/config 2> /dev/null | sed -e "s/Host //g"
+  # http://news.ycombinator.com/item?id=751220
+  cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
+}
+complete -W "$(_ssh_hosts)" ssh
 
 # ----------------------------------------------------------------------
 # LS AND DIRCOLORS:
