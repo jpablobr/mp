@@ -87,7 +87,7 @@ alias rd='rm -rf'
 alias rd*='rm -fr *'
 alias recent='ls -lAt | head'
 alias old='ls -lAt | tail'
-
+alias fl_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
 # Open all files by given pattern.
 function for_open {
     for file in "$1"; do
