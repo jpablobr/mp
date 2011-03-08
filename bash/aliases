@@ -53,6 +53,9 @@ function dbox_bitch {
     sudo sysctl fs.inotify.max_user_watches=100000 &&
     dropbox start;
 }
+ # ANSI color chart
+alias ansi_chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
+alias hgrep='history | grep $1'
 
 ##############################################################################->
 # Grep
@@ -82,6 +85,8 @@ alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
 alias srm='sudo rm'
 alias rd='rm -rf'
 alias rd*='rm -fr *'
+alias recent='ls -lAt | head'
+alias old='ls -lAt | tail'
 
 # Open all files by given pattern.
 function for_open {
@@ -152,6 +157,15 @@ function __rm_single_file(){
     else
         echo "No such file or directory: $file"
     fi
+}
+
+touch() {
+  dir=`expr "$1" : '\(.*\/\)'`
+  if [ $dir ]
+    then
+    mkdir -p $dir
+  fi
+  /usr/bin/touch $1
 }
 
 ##############################################################################->
