@@ -2,16 +2,19 @@
 ##############################################################################->
 # Common aliases
 alias o='open . &'
-alias chrome='google-chrome '
 alias more='less'
 alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
 alias open="gnome-open"
 alias cl='clear'
 alias _='sudo'
+alias k9="killall -9"
+alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 # Show history
 alias history='fc -l 1'
 alias h='history'
+alias hi='history | tail -20'
+alias r='fc -s' # Awesome!
 # Emacs
 alias em='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 alias em_aliases='em ~/.my-precious/bash/aliases'
@@ -22,21 +25,21 @@ alias sem='sudo em'
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
-alias k9="killall -9"
 # Pids IPs
+alias pid_s='ps aux | grep '
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # heroku
 alias hp="git push heroku master"
 alias hl="heroku logs"
-alias tmp_test='cd ~/tmp && mkdir whatever && cd whatever'
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
-alias hi='history | tail -20'
 # Browse
-function br-gh { ogc "https://github.com/$1"; }
-function br-t { ogc "https://twitter.com/$1"; }
-function br-g { ogc "http://www.google.com/search?q=$1"; }
+alias br_f='firefox'
+alias br_c='google-chrome '
+function br_gh { br_c "https://github.com/$1"; }
+function br_t { br_c "https://twitter.com/$1"; }
+function br_g { br_c "http://www.googlecom/search?q=$1"; }
 # cding...
 alias ..='cd ..'
 function e { cd ~/.emacs.d/$1 && ls --format=long; }
