@@ -61,7 +61,7 @@ test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
 # if Haskell
-test -f "$HOME/.cabal/bin" &&
+test -d "$HOME/.cabal/bin" &&
 PATH="$HOME/.cabal/bin:$PATH"
 
 # if node.js.
@@ -118,6 +118,18 @@ TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 # ----------------------------------------------------------------------
 # PAGER / EDITOR:
 # See what we have to work with.
+
+# Get color support for 'less'
+export LESS="--RAW-CONTROL-CHARS"
+export LESSOPEN="|lesspipe.sh %s"
+export LESS_TERMCAP_mb='[01;31m'
+export LESS_TERMCAP_md='[01;34m'
+export LESS_TERMCAP_me='[0m'
+export LESS_TERMCAP_se='[0m'
+export LESS_TERMCAP_so='[01;44;37m'
+export LESS_TERMCAP_ue='[0m'
+export LESS_TERMCAP_us='[01;37m'
+
 HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
@@ -302,6 +314,9 @@ test -n "$dircolors" && {
     eval `dircolors --sh $COLORS`
 }
 
+export TERM=xterm-color
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
 unset dircolors
 export LS_OPTIONS='-s -F -T 0 --color=yes'
 

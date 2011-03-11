@@ -10,6 +10,7 @@ alias cl='clear'
 alias _='sudo'
 alias k9="killall -9"
 alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
+alias ct='cheat_fu'
 # Show history
 alias history='fc -l 1'
 alias h='history'
@@ -21,7 +22,7 @@ alias em_aliases='em ~/.my-precious/bash/aliases'
 alias em_config='em ~/.my-precious/bash/config'
 alias em_init='em ~/.emacs.d/init.el'
 alias emq='emacs -Q -nw'
-alias sem='sudo em'
+alias sem='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 # apt-get
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
@@ -62,10 +63,7 @@ alias hgrep='history | grep $1'
 
 ##############################################################################->
 # Grep
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias gp_l='l | grep'
-alias gp_la='la | grep'
+alias gp_l='la | grep'
 function g_. { grep -nH -e "$@";}
 function gp_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
 function gp_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
@@ -205,7 +203,7 @@ alias gri='git rebase -i origin/master^'
 alias grc='git rebase --continue'
 alias gst='git status'
 alias gup='git fetch && git rebase'
-alias gp='git push || (notify "push failed" "Git" && false)'
+alias gp='git push || (echo "push failed" "Git" && false)'
 
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
 alias gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
