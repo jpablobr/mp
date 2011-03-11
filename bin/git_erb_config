@@ -3,10 +3,6 @@ require 'erb'
 
 g_conf = ".gitconfig"
 erb_f  = "gitconfig.erb"
-home   = File.join(ENV['HOME'], g_conf )
+home   = File.join(ENV['HOME'], g_conf)
 
 File.open(home,'w') { |f|  f.write ERB.new(File.read(erb_f)).result(binding) }
-
-    # File.open(File.join(ENV['HOME'], ".#{ f_gsub(file) }"), 'w') do |new_file|
-    #   new_file.write ERB.new(File.read(file)).result(binding)
-    # end
