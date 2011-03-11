@@ -4,14 +4,8 @@ $ git clone git://github.com/jpablobr/my-precious ~/.my-precious
 
 $ cd ~/.my-precious
 
-Install everything:
-$ rake mp:install
+Install:
+$ make install
 
-Only dotfiles:
-$ rake mp:dotfiles
-
-Only functions:
-$ rake mp:functions
-
-Only emacs.d:
-$ rake mp:emacs
+Uninstall:
+$ make uninstall
