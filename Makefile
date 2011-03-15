@@ -1,5 +1,5 @@
 # Paths
-user_home            = /home/$(LOGNAME)
+user_home            = ~
 bin                  = $(user_home)/bin
 mp_path              = $(user_home)/.my-precious
 mp_dotfiles_path     = $(mp_path)/dotfiles
@@ -32,13 +32,12 @@ mp_dotfiles = .ackrc														\
 							.templates												\
 							.tmux.conf
 
-bin_msg               = "~/bin already exist!"
 link_bin_dir          = ln -s $(mp_bin_path) $(bin)
 mp_dotfiles_full_path = $(mp_dotfiles:%=$(mp_dotfiles_path)/%)
 mp_installed_dotfiles = $(mp_dotfiles:%=$(user_home)/%)
 
 install:
-		if [ ! -d $(bin) ]; then $(link_bin_dir); else $(bin_msg); fi ;
+		test ! -d $(bin) && $(link_bin_dir)
 
 		cd $(user_home); \
 		ln -s $(mp_dotfiles_full_path) .;

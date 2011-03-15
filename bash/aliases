@@ -17,11 +17,11 @@ alias h='history'
 alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
 # Emacs
-alias em='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias em='emacs -Q -nw'
+alias emc='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 alias em_aliases='em ~/.my-precious/bash/aliases'
 alias em_config='em ~/.my-precious/bash/config'
 alias em_init='em ~/.emacs.d/init.el'
-alias emq='emacs -Q -nw'
 alias sem='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 # apt-get
 alias sagi='sudo apt-get install'
@@ -207,7 +207,7 @@ alias grc='git rebase --continue'
 alias gst='git status'
 alias gup='git fetch && git rebase'
 alias gp='git push || (echo "push failed" "Git" && false)'
-
+alias g_cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
 alias gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 
