@@ -8,7 +8,7 @@ alias reload='. ~/.bash_profile'
 alias open="gnome-open"
 alias cl='clear'
 alias _='sudo'
-alias k9="killall -9"
+alias k9="kill -9"
 alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 alias ct='cheat_fu'
 # Show history
@@ -27,7 +27,6 @@ alias sem='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 alias sagi='sudo apt-get install'
 alias agi='apt-get install'
 # Pids IPs
-alias pid_s='ps aux | grep '
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # heroku
 alias hp="git push heroku master"
@@ -63,12 +62,13 @@ alias hgrep='history | grep $1'
 
 ##############################################################################->
 # Grep
-alias gp_l='la | grep'
+alias g_l='la | grep'
+alias g_p='ps aux | grep '
 function g_. { grep -nH -e "$@";}
-function gp_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function gp_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
-function less_gp { egrep --color=yes "$@" | less -R; }
-function find_gp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
+function g_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+function g_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
+function g_less { egrep --color=yes "$@" | less -R; }
+function g_f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 
 ##############################################################################->
 # File - Directory Operations
