@@ -245,7 +245,7 @@ prompt_compact() {
 
 if [ $HAVE_GIT ]; then
     prompt_color() {
-        PS1="\`_git_workdir\`:${COLOR2}\h${COLOR1}\`_git_dirty\`
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}
 ${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
         PS2="${BROWN}continue ${BROWN}> "
     }

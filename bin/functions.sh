@@ -1,3 +1,4 @@
+#!/bin/bash
 # NAME
 #    functions.sh - Utility functions for shell scripts
 #
@@ -53,13 +54,11 @@ warning()
     test -t 1 && tput sgr0 # Reset terminal
 }
 
-error()
-{
+error() {
     # Output error messages with optional exit code
     # @param $1...: Messages
     # @param $N: Exit code (optional)
-
-    messages=( "$@" )
+    messages="$@"
 
     # If the last parameter is a number, it's not part of the messages
     eval last_parameter="\$$#"
@@ -68,9 +67,7 @@ error()
         exit_code=$last_parameter
         unset messages[$((${#messages[@]} - 1))]
     fi
-
     warning "${messages[@]}"
-
     exit ${exit_code:-$EX_UNKNOWN}
 }
 

@@ -11,6 +11,7 @@ alias _='sudo'
 alias k9="kill -9"
 alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 alias ct='cheat_fu'
+alias ct_r='cd ~/.cheats_fu && ronn -r *.1.ronn && cd -'
 # Show history
 alias history='fc -l 1'
 alias h='history'
@@ -65,10 +66,10 @@ alias hgrep='history | grep $1'
 alias g_l='la | grep'
 alias g_p='ps aux | grep '
 function g_. { grep -nH -e "$@";}
+function g_f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 function g_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
 function g_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
 function g_less { egrep --color=yes "$@" | less -R; }
-function g_f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 
 ##############################################################################->
 # File - Directory Operations
@@ -85,7 +86,7 @@ alias md='mkdir -p'
 alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
 alias srm='sudo rm'
 alias rd='rm -rf'
-alias rd*='rm -fr *'
+alias r*='rm -fr *'
 alias recent='ls -lAt | head'
 alias old='ls -lAt | tail'
 alias list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'

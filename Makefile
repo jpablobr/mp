@@ -42,6 +42,10 @@ install:
 		cd $(user_home); \
 		ln -s $(mp_dotfiles_full_path) .;
 
+link: ~/my-precious/dotfiles/.?*
+		ln -s $< ~
+		touch
+
 uninstall:
 		rm $(mp_installed_dotfiles); \
 		rm -fr $(bin) && echo uninstalled
