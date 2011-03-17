@@ -11,7 +11,14 @@ alias _='sudo'
 alias k9="kill -9"
 alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 alias ct='cheat_fu'
-alias ct_r='cd ~/.cheats_fu && ronn -r *.1.ronn && cd -'
+alias ctr='cd ~/.cheats_fu && ronn -r *.1.ronn && cd -'
+alias gp='git push || (echo "push failed" "Git" && false)'
+alias srm='sudo rm'
+alias rd='rm -rf'
+alias r*='rm -fr *'
+alias md='mkdir -p'
+alias ..='cd ..'
+alias gst='git status'
 # Show history
 alias history='fc -l 1'
 alias h='history'
@@ -38,272 +45,63 @@ alias fn='find . -name'
 # Browse
 alias br_f='firefox'
 alias br_c='google-chrome '
-function br_gh { br_c "https://github.com/$1"; }
-function br_t { br_c "https://twitter.com/$1"; }
-function br_g { br_c "http://www.googlecom/search?q=$1"; }
-# cding...
-alias ..='cd ..'
-function e { cd ~/.emacs.d/$1 && ls --format=long; }
-function m { cd ~/.my-precious/$1 && ls --format=long; }
-function d { cd ~/Dropbox/$1 && ls --format=long; }
-function t { cd ~/todo/$1 && ls --format=long; }
-function c { cd ~/code/$1 && ls --format=long; }
-function tmp { cd ~/tmp/$1 && ls --format=long; }
-function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
 # Dropbox
 alias gbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
-function dbox_bitch {
-    dropbox stop &&
-    sudo sysctl fs.inotify.max_user_watches=100000 &&
-    dropbox start;
-}
  # ANSI color chart
 alias ansi_chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'
-
-##############################################################################->
 # Grep
 alias g_l='la | grep'
 alias g_p='ps aux | grep '
-function g_. { grep -nH -e "$@";}
-function g_f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-function g_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function g_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
-function g_less { egrep --color=yes "$@" | less -R; }
 
 ##############################################################################->
-# File - Directory Operations
+# - List
 alias ls='ls --color=auto'
-# -G color -l long listing, most recent first
 alias l='ls -lhGt'
 alias l.='ls -d .[^.]*'
 alias lh="ls -lh"
 alias lt='ls -lt'
 alias la='ls -lah --format=long'
-alias dir='ls --format=vertical'
-# sort with recently modified first
-alias md='mkdir -p'
-alias space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
-alias srm='sudo rm'
-alias rd='rm -rf'
-alias r*='rm -fr *'
-alias recent='ls -lAt | head'
-alias old='ls -lAt | tail'
-alias list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
-alias broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
-alias symlinks='find . -type l'
-alias remove_symlinks='for f in $(find . -type l); do rm $f; done'
-# Open all files by given pattern.
-function for_open {
-    for file in "$1"; do
-        open $file;
-    done
-}
-
-# Install a .tar.gz archive in current directory
-tardir() {
-  if [ $# != 0 ]; then tar zxvf $1; fi
-}
-
-# List the contents of a .zip archive
-cz() {
-  if [ $# != 0 ]; then unzip -l $*; fi
-}
-
-# List the contents of a .tar.gz archive
-ctgz() {
-  for file in $* ; do
-    tar ztf ${file}
-  done
-}
-
-# Create a .tgz archive a la zip.
-tgz() {
-  if [ $# != 0 ]; then
-    name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
-  fi
-}
-
-function rmf(){
-    for file in $*
-    do
-        __rm_single_file $file
-    done
-}
-
-function zipr() {
-  zip -r $1.zip $1
-}
-
-function __rm_single_file(){
-    if ! [ -d ~/.Trash/ ]
-    then
-        command /bin/mkdir ~/.Trash
-    fi
-
-    if ! [ $# -eq 1 ]
-    then
-        echo "__rm_single_file: 1 argument required but $# passed."
-        exit
-    fi
-
-    if [ -e $1 ]
-    then
-        BASENAME=`basename $1`
-        NAME=$BASENAME
-        COUNT=0
-        while [ -e ~/.Trash/$NAME ]
-        do
-            COUNT=$(($COUNT+1))
-            NAME="$BASENAME.$COUNT"
-        done
-
-        command /bin/mv $1 ~/.Trash/$NAME
-    else
-        echo "No such file or directory: $file"
-    fi
-}
-
-touch() {
-  dir=`expr "$1" : '\(.*\/\)'`
-  if [ $dir ]
-    then
-    mkdir -p $dir
-  fi
-  /usr/bin/touch $1
-}
+alias l_dir='ls --format=vertical'
+alias l_recent='ls -lAt | head'
+alias l_old='ls -lAt | tail'
 
 ##############################################################################->
-# Servers - Misc
-function nginx_stop() {
-    ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
-}
-function nginx_start() {
-    sudo /opt/nginx/sbin/nginx
-}
+# File - Directory Operations
+alias f_space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
+alias f_list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
+alias f_broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
+alias f_symlinks='find . -type l'
+alias f_remove_symlinks='for f in $(find . -type l); do rm $f; done'
 
 ##############################################################################->
 # Git Aliases
-alias ungit="find . -name '.git' -exec rm -rf {} \;"
-alias g='git'
-alias ga='git add'
-alias ga.='git add .'
-alias gap='git add -p'
-alias gb='git branch'
-alias gca='git commit -v -a'
-alias gco="git checkout"
-alias gcount='git shortlog -sn'
-alias gd='git diff'
-alias gdh='git diff HEAD'
-alias gdm='git diff master'
-alias gds='git diff --cached'
-alias gdv='git diff -w "$@" | emq -R -'
-alias gi='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
-alias gitx='gitx --all'
-alias gp='git push || (notify "push failed" "Git" && false)'
-alias gpr='git pull --rebase || (notify "pull failed" "Git" && false)'
-alias gpru='gp && rake && gu'
-alias gri='git rebase -i origin/master^'
-alias grc='git rebase --continue'
-alias gst='git status'
-alias gup='git fetch && git rebase'
-alias gp='git push || (echo "push failed" "Git" && false)'
-alias g_cache='git rm -r --cached .'
+alias gi_ungit="find . -name '.git' -exec rm -rf {} \;"
+alias gi='git'
+alias gi_a='git add'
+alias gi_a.='git add .'
+alias gi_ap='git add -p'
+alias gi_b='git branch'
+alias gi_ca='git commit -v -a'
+alias gi_co="git checkout"
+alias gi_count='git shortlog -sn'
+alias gi_d='git diff'
+alias gi_dh='git diff HEAD'
+alias gi_dm='git diff master'
+alias gi_ds='git diff --cached'
+alias gi_dv='git diff -w "$@" | emq -R -'
+alias gi_i='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
+alias gi_itx='gitx --all'
+alias gi_p='git push || (notify "push failed" "Git" && false)'
+alias gi_pr='git pull --rebase || (notify "pull failed" "Git" && false)'
+alias gi_pru='gp && rake && gu'
+alias gi_ri='git rebase -i origin/master^'
+alias gi_rc='git rebase --continue'
+alias gi_up='git fetch && git rebase'
+alias gi_cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
-
-# Commit pending changes and quote all args as message
-function gg() {
-    git commit -v -a -m "$*"
-}
-
-function gcn() {
-    git clone "$1" "$2"
-}
-
-function gc() {
-    git add . && git commit -v -a -m "$*" && git status
-}
-
-# Setup a tracking branch from [remote] [branch_name]
-function gbt() {
-  git branch --track $2 $1/$2 && git checkout $2
-}
-# Quickly clobber a file and checkout
-function grf() {
-  rm $1
-  git checkout $1
-}
-
-ggc() {
-  set -- `du -ks`
-  before=$1
-  git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc
-  set -- `du -ks`
-  after=$1
-  echo "Cleaned up $((before-after)) kb."
-}
-
-grb() {
-  git push origin HEAD:refs/heads/$1
-  git fetch origin &&
-  git checkout -b $1 --track origin/$1
-}
-
-current_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-git_commits_ahead() {
-  git status 2> /dev/null | grep ahead | sed -e 's/.*by \([0-9]\{1,\}\) commits\{0,1\}\./\1/'
-}
-
-# Will return the current branch name
-# Usage example: git pull origin $(current_branch)
-function current_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ${ref#refs/heads/}
-}
+alias gi_tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 
 ##############################################################################->
-# General helpers
-# Regenerate TAGS file from file arguments
-function ct() {
-  rm -f TAGS
-  etags --append --output=TAGS $*
-}
-
-# Setup a tunnel
-function haproxyssh() {
-  ssh -L7997:127.0.0.1:7997 deploy@$1.com
-}
-
-# Syntax check Javascript
-function jsc() {
-  jsl -conf /etc/jsl/jsl.conf -process $1
-}
-
-myip() {
-  curl --silent 'www.whatismyip.com/automation/n09230945.asp' && echo
-}
-
-# push SSH public key to another box
-push_ssh_cert() {
-    local _host
-    test -f ~/.ssh/id_dsa.pub || ssh-keygen -t dsa
-    for _host in "$@";
-    do
-        echo $_host
-        ssh $_host 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_dsa.pub
-    done
-}
-
-# SSH agent settings
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
+# - Ruby
+alias r_bu='bundle update'

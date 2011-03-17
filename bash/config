@@ -1,7 +1,4 @@
 #!/bin/bash
-# Much taken from:
-# https://github.com/rtomayko/dotfiles
-# awesomeness! Many thanks!
 
 # the basics
 : ${HOME=~}
@@ -15,7 +12,8 @@
 : ${INPUTRC=~/.inputrc}
 
 # ----------------------------------------------------------------------
-# SHELL OPTIONS:
+# - SHELL OPTIONS:
+
 # Emacs mode
 set -o emacs
 
@@ -49,11 +47,12 @@ ulimit -S -c 0
 umask 0022
 
 # ----------------------------------------------------------------------
-# PATH:
-#bin
+# - PATH:
+
+# bin
 PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
 
-#sbin
+# sbin
 PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 
 # if ~/bin.
@@ -81,7 +80,8 @@ test -f "$HOME/.ssh/environment" &&
 SSH_ENV="$HOME/.ssh/environment"
 
 # ----------------------------------------------------------------------
-# ENVIRONMENT CONFIGURATION:
+# - ENVIRONMENT CONFIGURATION:
+
 # detect interactive shell
 case "$-" in
     *i*) INTERACTIVE=yes ;;
@@ -116,8 +116,7 @@ BIBINPUTS=.:/usr/share/texmf-texlive/bibtex
 TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 
 # ----------------------------------------------------------------------
-# PAGER / EDITOR:
-# See what we have to work with.
+# - PAGER / EDITOR:
 
 # Get color support for 'less'
 export LESS="--RAW-CONTROL-CHARS"
@@ -151,113 +150,24 @@ ACK_PAGER="$PAGER"
 ACK_PAGER_COLOR="$PAGER"
 
 # ----------------------------------------------------------------------
-# PROMP:
-GREEN="\[\033[0;32m\]"
-RED="\[\033[0;31m\]"
-BROWN="\[\033[0;33m\]"
-GREY="\[\033[0;97m\]"
-BLUE="\[\033[0;34m\]"
-PS_CLEAR="\[\033[0m\]"
-SCREEN_ESC="\[\033k\033\134\]"
+# - Source functions Dir:
 
-HAVE_GIT=$(command -v git)
+: ${MY_PRECIOUS_FUNCTIONS_DIR:=$HOME/.my-precious/bash/functions}
 
-if [ $HAVE_GIT ]; then
-
-    ANSI_RESET="\001$(git config --get-color "" "reset")\002"
-
-    # detect whether the tree is in a dirty state. returns
-    _git_dirty() {
-	      if git status 2>/dev/null | fgrep -q '(working directory clean)'; then
-		        return 0
-	      fi
-	      local dirty_marker="`git config gitsh.dirty || echo ' *'`"
-	      _git_apply_color "$dirty_marker" "color.sh.dirty" "red"
-    }
-
-    # detect the current branch; use 7-sha when not on branch
-    _git_headname() {
-	      local br=`git symbolic-ref -q HEAD 2>/dev/null`
-	      [ -n "$br" ] &&
-		    br=${br#refs/heads/} ||
-		    br=`git rev-parse --short HEAD 2>/dev/null`
-	      _git_apply_color "$br" "color.sh.branch" " yellow reverse"
-    }
-
-    # detect working directory relative to working tree root
-    _git_workdir() {
-	      subdir=`git rev-parse --show-prefix 2>/dev/null`
-	      subdir="${subdir%/}"
-	      workdir="${PWD%/$subdir}"
-	      _git_apply_color "${workdir/*\/}${subdir:+/$subdir}" "color.sh.workdir" "blue bold"
-    }
-
-    # determine whether color should be enabled. this checks git's color.ui
-    # option and then color.sh.
-    _git_color_enabled() {
-	      [ `git config --get-colorbool color.sh true` = "true" ]
-    }
-
-    # apply a color to the first argument
-    _git_apply_color() {
-	      local output="$1" color="$2" default="$3"
-	      if _git_color_enabled ; then
-		        color=`_git_color "$color" "$default"`
-		        echo -ne "${color}${output}${ANSI_RESET}"
-	      else
-		        echo -ne "$output"
-	      fi
-    }
-
-    # retrieve an ANSI color escape sequence from git config
-    _git_color() {
-	      local color
-	      color=`git config --get-color "$1" "$2" 2>/dev/null`
-	      [ -n "$color" ] && echo -ne "\001$color\002"
-    }
-fi
-
-if [ "$LOGNAME" = "root" ]; then
-    COLOR1="${RED}"
-    COLOR2="${BROWN}"
-    P="#"
-else
-    COLOR1="${BLUE}"
-    COLOR2="${BROWN}"
-    P="\$"
-fi
-
-prompt_dumb() {
-    PS1='$ '
+test -n "$MY_PRECIOUS_FUNCTIONS_DIR" && {
+  if [ -d $MY_PRECIOUS_FUNCTIONS_DIR -a -r $MY_PRECIOUS_FUNCTIONS_DIR -a \
+       -x $MY_PRECIOUS_FUNCTIONS_DIR ]; then
+    for i in $MY_PRECIOUS_FUNCTIONS_DIR/*; do
+      [[ ${i##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ]] &&
+      [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+    done
+  fi
+  unset i
 }
-
-prompt_simple() {
-    unset PROMPT_COMMAND
-    PS1="[\u@\h:\w]\$ "
-    PS2="> "
-}
-
-prompt_compact() {
-    unset PROMPT_COMMAND
-    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
-    PS2="${BROWN}continue ${BROWN}> "
-}
-
-if [ $HAVE_GIT ]; then
-    prompt_color() {
-        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}
-${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
-        PS2="${BROWN}continue ${BROWN}> "
-    }
-else
-    prompt_color() {
-        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
-        PS2="${BROWN}continue ${BROWN}> "
-    }
-fi
 
 # ----------------------------------------------------------------------
-# BASH COMPLETION:
+# - BASH COMPLETION:
+
 test -z "$BASH_COMPLETION" && {
     bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
     test -n "$PS1" && test $bmajor -gt 1 && {
@@ -300,10 +210,12 @@ _ssh_hosts() {
   # http://news.ycombinator.com/item?id=751220
   cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
 }
+
 complete -W "$(_ssh_hosts)" ssh
 
 # ----------------------------------------------------------------------
-# LS AND DIRCOLORS:
+# - LS AND DIRCOLORS:
+
 # if the dircolors utility is available, set that up to
 # dircolors="$(type -P gdircolors dircolors | head -1)"
 test -n "$dircolors" && {
@@ -320,55 +232,6 @@ export CLICOLOR=1
 unset dircolors
 export LS_OPTIONS='-s -F -T 0 --color=yes'
 
-# --------------------------------------------------------------------
-# PATH MANIPULATION FUNCTIONS:
-# Usage: pls [<var>]
-# List path entries of PATH or environment variable <var>.
-pls () { eval echo \$${1:-PATH} |tr : '\n'; }
-
-# Usage: pshift [-n <num>] [<var>]
-# Shift <num> entries off the front of PATH or environment var <var>.
-# with the <var> option. Useful: pshift $(pwd)
-pshift () {
-    local n=1
-    [ "$1" = "-n" ] && { n=$(( $2 + 1 )); shift 2; }
-    eval "${1:-PATH}='$(pls |tail -n +$n |tr '\n' :)'"
-}
-
-# Usage: ppop [-n <num>] [<var>]
-# Pop <num> entries off the end of PATH or environment variable <var>.
-ppop () {
-    local n=1 i=0
-    [ "$1" = "-n" ] && { n=$2; shift 2; }
-    while [ $i -lt $n ]
-    do eval "${1:-PATH}='\${${1:-PATH}%:*}'"
-        i=$(( i + 1 ))
-    done
-}
-
-# Usage: prm <path> [<var>]
-# Remove <path> from PATH or environment variable <var>.
-prm () { eval "${2:-PATH}='$(pls $2 |grep -v "^$1\$" |tr '\n' :)'"; }
-
-# Usage: punshift <path> [<var>]
-# Shift <path> onto the beginning of PATH or environment variable <var>.
-punshift () { eval "${2:-PATH}='$1:$(eval echo \$${2:-PATH})'"; }
-
-# Usage: ppush <path> [<var>]
-ppush () { eval "${2:-PATH}='$(eval echo \$${2:-PATH})':$1"; }
-
-# Usage: puniq [<path>]
-# Remove duplicate entries from a PATH style value while retaining
-# the original order. Use PATH if no <path> is given.
-#
-# Example:
-#   $ puniq /usr/bin:/usr/local/bin:/usr/bin
-#   /usr/bin:/usr/local/bin
-puniq () {
-    echo "$1" |tr : '\n' |nl |sort -u -k 2,2 |sort -n |
-    cut -f 2- |tr '\n' : |sed -e 's/:$//' -e 's/^://'
-}
-
 # use gem-man(1) if available:
 man () {
     gem man -s "$@" 2>/dev/null ||
@@ -376,7 +239,8 @@ man () {
 }
 
 # -------------------------------------------------------------------
-# USER SHELL ENVIRONMENT:
+# - USER SHELL ENVIRONMENT:
+
 # bring in rbdev functions
 . rbdev 2>/dev/null || true
 
@@ -388,6 +252,64 @@ test -r ~/.shenv &&
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
+# -------------------------------------------------------------------
+# - MOTD / FORTUNE:
+test -n "$INTERACTIVE" -a -n "$LOGIN" && {
+    uname -npsr
+    uptime
+}
+
+# ----------------------------------------------------------------------
+# - PROMP:
+
+GREEN="\[\033[0;32m\]"
+RED="\[\033[0;31m\]"
+BROWN="\[\033[0;33m\]"
+GREY="\[\033[0;97m\]"
+BLUE="\[\033[0;34m\]"
+PS_CLEAR="\[\033[0m\]"
+SCREEN_ESC="\[\033k\033\134\]"
+
+if [ "$LOGNAME" = "root" ]; then
+    COLOR1="${RED}"
+    COLOR2="${BROWN}"
+    P="#"
+else
+    COLOR1="${BLUE}"
+    COLOR2="${BROWN}"
+    P="\$"
+fi
+
+prompt_dumb() {
+    PS1='$ '
+}
+
+prompt_simple() {
+    unset PROMPT_COMMAND
+    PS1="[\u@\h:\w]\$ "
+    PS2="> "
+}
+
+prompt_compact() {
+    unset PROMPT_COMMAND
+    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}$P${PS_CLEAR} "
+    PS2="${BROWN}continue ${BROWN}> "
+}
+
+HAVE_GIT=$(command -v git)
+if [ $HAVE_GIT ]; then
+    prompt_color() {
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}
+${COLOR1}!\`_git_headname\`${COLOR1}$P${COLOR1}${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+else
+    prompt_color() {
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+fi
+
 # Use the color prompt by default when interactive
 if [ "$TERM" = "dumb" ]; then
     prompt_dumb
@@ -396,10 +318,3 @@ elif [ $HAVE_GIT ]; then
 else
     test -n "$PS1" && prompt_compact
 fi
-
-# -------------------------------------------------------------------
-# MOTD / FORTUNE:
-test -n "$INTERACTIVE" -a -n "$LOGIN" && {
-    uname -npsr
-    uptime
-}
