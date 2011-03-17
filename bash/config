@@ -75,6 +75,10 @@ source "$HOME/.rvm/scripts/rvm"
 test -f "$HOME/bin/bashmarks.sh" &&
 source "$HOME/bin/bashmarks.sh"
 
+# if Aliases
+test -f "$HOME/.my-precious/bash/aliases" &&
+source "$HOME/.my-precious/bash/aliases"
+
 # if SSH
 test -f "$HOME/.ssh/environment" &&
 SSH_ENV="$HOME/.ssh/environment"
