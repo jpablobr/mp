@@ -8,4 +8,4 @@ Install:
 $ make install
 
 Uninstall:
-$ make uninstall
+$ make clean_home

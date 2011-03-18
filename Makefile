@@ -4,7 +4,7 @@ mp_path              = $(user_home)/.my-precious
 mp_bin_path          = $(mp_path)/bin
 mp_dotfiles_path     = $(mp_path)/dotfiles
 
-all: link_bin link_dotfiles
+install: link_bin link_dotfiles
 
 link_bin:
 		ln -s $(mp_bin_path) $(bin)
@@ -15,7 +15,7 @@ link_dotfiles:
 		touch link_dotfiles
 
 clean_home:
-		for f in dotfiles/.?*; do test -f || -d ~/`basename $$f` && test $$f != 'dotfiles/..' && rm -fr ~/`basename $$f`; done;
+		for f in dotfiles/.?*; do test -f || -d ~/`basename $$f` && test $$f != 'dotfiles/..' && rm -fr ~/`basename $$f`; done
 		rm -fr $(bin)
 		touch clean_home
 
