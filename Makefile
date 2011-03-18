@@ -17,7 +17,7 @@ link_dotfiles:
 clean_home:
 		for f in dotfiles/.?*; do test -f || -d ~/`basename $$f` && test $$f != 'dotfiles/..' && rm -fr ~/`basename $$f`; done;
 		rm -fr $(bin)
-		touch rm_home_dotfiles
+		touch clean_home
 
 clean:
-		rm link_bin link_dotfiles rm_home_dotfiles
+		rm link_bin link_dotfiles clean_home
