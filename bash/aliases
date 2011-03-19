@@ -25,20 +25,21 @@ alias h='history'
 alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
 # Emacs
-alias em='emacs -Q -nw'
-alias emc='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
-alias em_aliases='em ~/.my-precious/bash/aliases'
-alias em_config='em ~/.my-precious/bash/config'
-alias em_init='em ~/.emacs.d/init.el'
-alias sem='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias e_='emacs -Q -nw'
+alias e_mc='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias e_m_aliases='em ~/.my-precious/bash/aliases'
+alias e_m_config='em ~/.my-precious/bash/config'
+alias e_m_init='em ~/.emacs.d/init.el'
+alias e_s='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias e_batch_comp='emacs -batch -f batch-byte-compile *.el'
 # apt-get
 alias sagi='sudo apt-get install'
-alias agi='apt-get install'
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # heroku
-alias hp="git push heroku master"
-alias hl="heroku logs"
+alias h_p="git push heroku master"
+alias h_l="heroku logs"
+alias h_dbp='heroku db:pull'
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
