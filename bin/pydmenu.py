@@ -37,7 +37,7 @@ if __name__ == '__main__':
             _total_list[prog] = 0
 
     _print = mySort(_total_list)
- 
+
     proc = Popen(DMENU, stdin=PIPE, stdout=PIPE)
     used = proc.communicate('\n'.join([a for a,b in _print]))[0]
 
