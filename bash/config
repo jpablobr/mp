@@ -221,7 +221,7 @@ complete -W "$(_ssh_hosts)" ssh
 # - LS AND DIRCOLORS:
 
 # if the dircolors utility is available, set that up to
-# dircolors="$(type -P gdircolors dircolors | head -1)"
+dircolors="$(type -P gdircolors dircolors | head -1)"
 test -n "$dircolors" && {
     COLORS=/etc/DIR_COLORS
     test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
