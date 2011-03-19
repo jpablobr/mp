@@ -4,28 +4,61 @@
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
 # Created: 18 Mar 2011
 # Version: 0.1.0
+ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
 # Commit pending changes and quote all args as message
-function gi_gg() {
+gi_gg() {
     git commit -v -a -m "$*"
 }
 
-function gi_cn() {
+gi_cn() {
     git clone "$1" "$2"
 }
 
-function gc() {
+gc() {
     git add . && git commit -v -a -m "$*" && git status
 }
 
 # Setup a tracking branch from [remote] [branch_name]
-function gi_bt() {
+gi_bt() {
     git branch --track $2 $1/$2 && git checkout $2
 }
+
 # Quickly clobber a file and checkout
-function gi_rf() {
+gi_rf() {
     rm $1
     git checkout $1
+}
+
+gi_parse_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+}
+
+gi_notpushed() {
+    curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
+    origin=$(git config --get "branch.$curr_branch.remote")
+    origin=${origin:-origin}
+    git log $@ $curr_branch ^remotes/$origin/$curr_branch
+}
+
+# Completely removes a given file from a git repo
+gi_rm() {
+    git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
+    git push origin master --force
+    rm -rf .git/refs/original/
+    git reflog expire --expire=now --all
+    git gc --prune=now
+    git gc --aggressive --prune=now
+}
+
+gi_thanks() {
+    git log "$1" |
+    grep Author: |
+    sed 's/Author: \(.*\) <.*/\1/' |
+    sort |
+    uniq -c |
+    sort -rn |
+    sed 's/ *\([0-9]\{1,\}\) \(.*\)/\2 (\1)/'
 }
 
 gi_gc() {
@@ -50,7 +83,6 @@ current_git_branch() {
 git_commits_ahead() {
     git status 2> /dev/null | grep ahead | sed -e 's/.*by \([0-9]\{1,\}\) commits\{0,1\}\./\1/'
 }
-ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
     # detect the current branch; use 7-sha when not on branch
 _git_headname() {

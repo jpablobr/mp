@@ -1,1 +1,0 @@
-for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do kill "$name"; done

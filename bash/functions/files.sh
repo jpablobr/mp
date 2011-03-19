@@ -18,14 +18,14 @@ function f_rename_ext {
     done
 }
 
-function rmf(){
+function rmf {
     for file in $*
     do
         __rm_single_file $file
     done
 }
 
-function __rm_single_file(){
+function __rm_single_file {
     if ! [ -d ~/.Trash/ ]
     then
         command /bin/mkdir ~/.Trash
@@ -54,11 +54,41 @@ function __rm_single_file(){
     fi
 }
 
-touch() {
+function touch {
   dir=`expr "$1" : '\(.*\/\)'`
   if [ $dir ]
     then
     mkdir -p $dir
   fi
   /usr/bin/touch $1
+}
+
+function f_prune_dirs {
+# Remove empty directories under and including <path>s.
+    find "$@" -type d -empty -depth | xargs rmdir
+}
+
+function remove_extension {
+# Remove file extension to all files in current directory.
+    for f in *; do
+        base=`basename $f .$1`
+        mv $f $base
+    done
+    ls -la .
+}
+
+function f_rename_ext {
+# Rename file extentions"
+    for f in *.$1; do
+        base=`basename $f .$1`
+        mv $f $base.$2
+    done
+    ls -la .
+}
+
+function switch {
+# Switches two files contents
+  mv $1 $1_orig &&
+  mv $2 $1 &&
+  mv $1_orig $2
 }

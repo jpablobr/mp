@@ -9,18 +9,32 @@
 # - General
 
 # Regenerate TAGS file from file arguments
-function ct() {
+tags_regenerate() {
     rm -f TAGS
     etags --append --output=TAGS $*
 }
 
 # Syntax check Javascript
-function jsc() {
+jsc() {
     jsl -conf /etc/jsl/jsl.conf -process $1
 }
 
 myip() {
     curl --silent 'www.whatismyip.com/automation/n09230945.asp' && echo
+}
+
+knpviewer() {
+    for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do
+        kill "$name"
+    done
+}
+
+last_modified(){
+    ls -t $* 2> /dev/null | head -n 1
+}
+
+rails_app() {
+    rails $2 -m http://github.com/ryanb/rails-templates/raw/master/$1.rb $*[3,-1]
 }
 
 ##############################################################################->
@@ -91,4 +105,18 @@ function nginx_stop() {
 }
 function nginx_start() {
     sudo /opt/nginx/sbin/nginx
+}
+
+##############################################################################->
+# - Databases
+function loaddb {
+    mysql -u root $1 < $1.sql
+}
+
+function dumpdb {
+    mysqldump -u root --add-drop-table --no-create-db $1 > $1.sql
+}
+
+function dumpschema {
+    mysqldump -u root --add-drop-table --no-create-db --no-data $1 > schema.s
 }
