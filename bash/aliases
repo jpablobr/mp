@@ -1,5 +1,4 @@
 # -*- mode: sh -*-
-##############################################################################->
 # Common aliases
 alias o='open . &'
 alias more='less'
@@ -18,6 +17,7 @@ alias rd='rm -rf'
 alias r*='rm -fr *'
 alias md='mkdir -p'
 alias ..='cd ..'
+alias g='git'
 alias gst='git status'
 # Show history
 alias history='fc -l 1'
