@@ -6,19 +6,19 @@
 # Version: 0.1.0
 
 # Open all files by given pattern.
-function f_for_open {
+f_for_open() {
     for file in "$1"; do
         open $file;
     done
 }
-function f_rename_ext {
+f_rename_ext() {
     for file in *"$1"; do
         base=`basename $file "$1"`
         mv "$file" $base"$2"
     done
 }
 
-function rmf {
+rmf() {
     for file in $*
     do
         __rm_single_file $file
@@ -54,7 +54,7 @@ function __rm_single_file {
     fi
 }
 
-function touch {
+touch() {
   dir=`expr "$1" : '\(.*\/\)'`
   if [ $dir ]
     then
@@ -63,12 +63,12 @@ function touch {
   /usr/bin/touch $1
 }
 
-function f_prune_dirs {
+f_prune_dirs() {
 # Remove empty directories under and including <path>s.
     find "$@" -type d -empty -depth | xargs rmdir
 }
 
-function remove_extension {
+remove_extension() {
 # Remove file extension to all files in current directory.
     for f in *; do
         base=`basename $f .$1`
@@ -77,7 +77,7 @@ function remove_extension {
     ls -la .
 }
 
-function f_rename_ext {
+f_rename_ext() {
 # Rename file extentions"
     for f in *.$1; do
         base=`basename $f .$1`
@@ -86,7 +86,7 @@ function f_rename_ext {
     ls -la .
 }
 
-function switch {
+switch() {
 # Switches two files contents
   mv $1 $1_orig &&
   mv $2 $1 &&
