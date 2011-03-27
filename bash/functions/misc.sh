@@ -137,9 +137,8 @@ function DELETE() {
   curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-# Zsh
 function command_not_found_handler() {
-  /usr/bin/env ruby $DOT_FILES/misc/method_missing.rb $*
+  /usr/bin/env ruby ~/bin/method_missing.rb $*
 }
 
 # Bash (call Zsh version)
