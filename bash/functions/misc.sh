@@ -120,3 +120,46 @@ function dumpdb {
 function dumpschema {
     mysqldump -u root --add-drop-table --no-create-db --no-data $1 > schema.s
 }
+function GET() {
+  curl -i -X GET -H "X-Requested-With: XMLHttpRequest" $*
+}
+
+function POST() {
+  curl -i -X POST -H "X-Requested-With: XMLHttpRequest" $*
+  #-d "key=val"
+}
+
+function PUT() {
+  curl -i -X PUT -H "X-Requested-With: XMLHttpRequest" $*
+}
+
+function DELETE() {
+  curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
+}
+
+# Zsh
+function command_not_found_handler() {
+  /usr/bin/env ruby $DOT_FILES/misc/method_missing.rb $*
+}
+
+# Bash (call Zsh version)
+function command_not_found_handle() {
+  command_not_found_handler $*
+  return $?
+}
+
+function json() {
+  tmpfile=`mktemp -t json`
+  curl -s $* | python -mjson.tool > $tmpfile
+  cat $tmpfile
+  cat $tmpfile | pbcopy
+  rm $tmpfile
+}
+
+function xml() {
+  tmpfile=`mktemp -t xml`
+  curl -s $* | xmllint —format - > $tmpfile
+  cat $tmpfile
+  cat $tmpfile | pbcopy
+  rm $tmpfile
+}

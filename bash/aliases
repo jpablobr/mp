@@ -44,6 +44,7 @@ alias h-l="heroku logs"
 alias h-da="heroku domains:add"
 alias h-dbp='heroku db:pull'
 alias h-add='heroku addons:add'
+alias h-cl='heroku config --long'
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
@@ -51,7 +52,7 @@ alias fn='find . -name'
 alias br-f='firefox'
 alias br-c='google-chrome '
 # Dropbox
-alias g_dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
+alias gi-dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'

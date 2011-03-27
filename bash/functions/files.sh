@@ -6,19 +6,19 @@
 # Version: 0.1.0
 
 # Open all files by given pattern.
-f_for_open() {
+f-for-open() {
     for file in "$1"; do
         open $file;
     done
 }
-f_rename_ext() {
+f-rename-ext() {
     for file in *"$1"; do
         base=`basename $file "$1"`
         mv "$file" $base"$2"
     done
 }
 
-rmf() {
+f-rmf() {
     for file in $*
     do
         __rm_single_file $file
@@ -63,12 +63,12 @@ touch() {
   /usr/bin/touch $1
 }
 
-f_prune_dirs() {
+f-prune-dirs() {
 # Remove empty directories under and including <path>s.
     find "$@" -type d -empty -depth | xargs rmdir
 }
 
-remove_extension() {
+f-remove-extension() {
 # Remove file extension to all files in current directory.
     for f in *; do
         base=`basename $f .$1`
@@ -77,7 +77,7 @@ remove_extension() {
     ls -la .
 }
 
-f_rename_ext() {
+f-rename-ext() {
 # Rename file extentions"
     for f in *.$1; do
         base=`basename $f .$1`
@@ -86,9 +86,47 @@ f_rename_ext() {
     ls -la .
 }
 
-switch() {
+f-switch() {
 # Switches two files contents
   mv $1 $1_orig &&
   mv $2 $1 &&
   mv $1_orig $2
+}
+function f() { find * -name $1; }
+
+f-m() {
+  file=.
+  cd_to=.
+
+  if [ -n "$*" ]; then
+    if [ -d "$1" ]; then
+      cd_to=$1
+      file=.
+    else
+      file=$*
+    fi
+  fi
+
+  eval "cd $cd_to && $VISUAL $file"
+}
+
+f-extract() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2) tar xvjf $1   ;;
+      *.tar.gz)  tar xvzf $1   ;;
+      *.bz2)     bunzip2 $1    ;;
+      *.rar)     unrar x $1    ;;
+      *.gz)      gunzip $1     ;;
+      *.tar)     tar xvf $1    ;;
+      *.tbz2)    tar xvjf $1   ;;
+      *.tgz)     tar xvzf $1   ;;
+      *.zip)     unzip $1      ;;
+      *.Z)       uncompress $1 ;;
+      *.7z)      7z x $1       ;;
+      *)         echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
