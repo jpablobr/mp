@@ -83,13 +83,23 @@ function br-g { br_c "http://www.googlecom/search?q=$1"; }
 ##############################################################################->
 # - Grep
 function g-. { grep -nH -e "$@";}
-function g-f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
+function g-f { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
+function g-fp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 function g-aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function g-linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
+function g-linux-yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
 function g-less { egrep --color=yes "$@" | less -R; }
 
 ##############################################################################->
-# - Grep
+# - Sed
+function sed-f { sed -i "s/"$1"/"$2"/g" "$3" ;}
+function sed-r { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
+function sed-rp { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
+# Instead of editing all files only files containg a certain string.
+function sed-g { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g";}
+function sed-gp { grep -rl "$1" "$2" | xargs sed -i "s/"$4"/"$5"/g";}
+
+##############################################################################->
+# - Common
 function e { cd ~/.emacs.d/$1 && ls --format=long; }
 function m { cd ~/.my-precious/$1 && ls --format=long; }
 function d { cd ~/Dropbox/$1 && ls --format=long; }
