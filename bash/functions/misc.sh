@@ -68,7 +68,7 @@ function zipr() {
     zip -r $1.zip $1
 }
 
-function dbox_bitch {
+function dbox-bitch {
     dropbox stop &&
     sudo sysctl fs.inotify.max_user_watches=100000 &&
     dropbox start;
@@ -76,17 +76,17 @@ function dbox_bitch {
 
 ##############################################################################->
 # - Browsing
-function br_gh { br_c "https://github.com/$1"; }
-function br_t { br_c "https://twitter.com/$1"; }
-function br_g { br_c "http://www.googlecom/search?q=$1"; }
+function br-gh { br_c "https://github.com/$1"; }
+function br-t { br_c "https://twitter.com/$1"; }
+function br-g { br_c "http://www.googlecom/search?q=$1"; }
 
 ##############################################################################->
 # - Grep
-function g_. { grep -nH -e "$@";}
-function g_f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-function g_aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function g_linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
-function g_less { egrep --color=yes "$@" | less -R; }
+function g-. { grep -nH -e "$@";}
+function g-f { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
+function g-aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+function g-linux_yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
+function g-less { egrep --color=yes "$@" | less -R; }
 
 ##############################################################################->
 # - Grep
@@ -100,10 +100,11 @@ function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --form
 
 ##############################################################################->
 # - Severs
-function nginx_stop() {
+function nginx-stop() {
     ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
 }
-function nginx_start() {
+
+function nginx-start() {
     sudo /opt/nginx/sbin/nginx
 }
 

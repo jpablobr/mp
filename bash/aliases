@@ -110,3 +110,6 @@ alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 ##############################################################################->
 # - Ruby
 alias r-bu='bundle update'
+alias r-rdm='rake db:migrate'
+alias r-c='rails c'
+alias r-s='rails s'
