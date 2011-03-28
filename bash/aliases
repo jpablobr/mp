@@ -2,6 +2,7 @@
 # Common aliases
 alias o='open . &'
 alias more='less'
+alias l='less'
 alias chx='chmod +x'
 alias reload='. ~/.bash_profile'
 alias open="gnome-open"
@@ -63,7 +64,7 @@ alias g-p='ps aux | grep '
 ##############################################################################->
 # - List
 alias ls='ls --color=auto'
-alias l='ls -lhGt'
+alias lsg='ls -lhGt'
 alias l.='ls -d .[^.]*'
 alias lh="ls -lh"
 alias lt='ls -lt'
@@ -74,7 +75,7 @@ alias l-old='ls -lAt | tail'
 
 ##############################################################################->
 # File - Directory Operations
-alias f-space2us='find . -depth -exec ~/bin/rename_files_with_spaces {} \;'
+alias f-space2us='find . -depth -exec ~/bin/rename_files_with_spaces.sh {} \;'
 alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
 alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
 alias f-symlinks='find . -type l'

@@ -110,6 +110,8 @@ f-m() {
   eval "cd $cd_to && $VISUAL $file"
 }
 
+##############################################################################->
+# - Compression
 f-extract() {
   if [ -f $1 ] ; then
     case $1 in
@@ -129,4 +131,32 @@ f-extract() {
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# Install a .tar.gz archive in current directory
+tardir() {
+    if [ $# != 0 ]; then tar zxvf $1; fi
+}
+
+# List the contents of a .zip archive
+cz() {
+    if [ $# != 0 ]; then unzip -l $*; fi
+}
+
+# List the contents of a .tar.gz archive
+ctgz() {
+    for file in $* ; do
+        tar ztf ${file}
+    done
+}
+
+# Create a .tgz archive a la zip.
+tgz() {
+    if [ $# != 0 ]; then
+        name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
+    fi
+}
+
+function zipr() {
+    zip -r $1.zip $1
 }

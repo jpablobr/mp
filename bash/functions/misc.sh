@@ -37,37 +37,6 @@ rails_app() {
     rails $2 -m http://github.com/ryanb/rails-templates/raw/master/$1.rb $*[3,-1]
 }
 
-##############################################################################->
-# - Compression
-
-# Install a .tar.gz archive in current directory
-tardir() {
-    if [ $# != 0 ]; then tar zxvf $1; fi
-}
-
-# List the contents of a .zip archive
-cz() {
-    if [ $# != 0 ]; then unzip -l $*; fi
-}
-
-# List the contents of a .tar.gz archive
-ctgz() {
-    for file in $* ; do
-        tar ztf ${file}
-    done
-}
-
-# Create a .tgz archive a la zip.
-tgz() {
-    if [ $# != 0 ]; then
-        name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
-    fi
-}
-
-function zipr() {
-    zip -r $1.zip $1
-}
-
 function dbox-bitch {
     dropbox stop &&
     sudo sysctl fs.inotify.max_user_watches=100000 &&
