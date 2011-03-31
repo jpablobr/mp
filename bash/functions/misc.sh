@@ -117,14 +117,10 @@ function DELETE() {
   curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-function command_not_found_handler() {
-  /usr/bin/env ruby ~/bin/method_missing.rb $*
-}
-
-# Bash (call Zsh version)
 function command_not_found_handle() {
-  command_not_found_handler $*
-  return $?
+    /usr/bin/env ruby ~/bin/method_missing.rb $*
+    return $?;
+    # echo ${PIPESTATUS[@]};
 }
 
 function json() {

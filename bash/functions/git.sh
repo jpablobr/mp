@@ -4,7 +4,37 @@
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
 # Created: 18 Mar 2011
 # Version: 0.1.0
+
 ANSI_RESET="\001$(git config --get-color "" "reset")\002"
+
+##############################################################################->
+# Git Aliases
+alias gi-ungit="find . -name '.git' -exec rm -rf {} \;"
+alias gi-a='git add'
+alias gi-a.='git add .'
+alias gi-ap='git add -p'
+alias gi-b='git branch'
+alias gi-ca='git commit -v -a'
+alias gi-co="git checkout"
+alias gi-count='git shortlog -sn'
+alias gi-d='git diff'
+alias gi-dh='git diff HEAD'
+alias gi-dm='git diff master'
+alias gi-ds='git diff --cached'
+alias gi-dv='git diff -w "$@" | emq -R -'
+alias gi-i='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
+alias gi-itx='gitx --all'
+alias gi-p='git push || (notify "push failed" "Git" && false)'
+alias gi-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
+alias gi-pru='gp && rake && gu'
+alias gi-ri='git rebase -i origin/master^'
+alias gi-rc='git rebase --continue'
+alias gi-up='git fetch && git rebase'
+alias gi-cache='git rm -r --cached .'
+# http://www.jukie.net/~bart/blog/pimping-out-git-log
+alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
+# Dropbox
+alias gi-dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
 
 # Commit pending changes and quote all args as message
 gi_gg() {

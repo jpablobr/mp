@@ -25,6 +25,7 @@ alias history='fc -l 1'
 alias h='history'
 alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
+alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias e-='emacs -Q -nw'
 alias e-mc='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
@@ -52,8 +53,6 @@ alias fn='find . -name'
 # Browse
 alias br-f='firefox'
 alias br-c='google-chrome '
-# Dropbox
-alias gi-dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'
@@ -80,33 +79,6 @@ alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
 alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
 alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
-
-##############################################################################->
-# Git Aliases
-alias gi-ungit="find . -name '.git' -exec rm -rf {} \;"
-alias gi-a='git add'
-alias gi-a.='git add .'
-alias gi-ap='git add -p'
-alias gi-b='git branch'
-alias gi-ca='git commit -v -a'
-alias gi-co="git checkout"
-alias gi-count='git shortlog -sn'
-alias gi-d='git diff'
-alias gi-dh='git diff HEAD'
-alias gi-dm='git diff master'
-alias gi-ds='git diff --cached'
-alias gi-dv='git diff -w "$@" | emq -R -'
-alias gi-i='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
-alias gi-itx='gitx --all'
-alias gi-p='git push || (notify "push failed" "Git" && false)'
-alias gi-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
-alias gi-pru='gp && rake && gu'
-alias gi-ri='git rebase -i origin/master^'
-alias gi-rc='git rebase --continue'
-alias gi-up='git fetch && git rebase'
-alias gi-cache='git rm -r --cached .'
-# http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 
 ##############################################################################->
 # - Ruby
