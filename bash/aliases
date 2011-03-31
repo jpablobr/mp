@@ -84,6 +84,13 @@ alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 # - Ruby
 alias r-bu='bundle update'
 alias r-rdm='rake db:migrate'
-alias r-c='rails c'
-alias r-s='rails s'
 alias r-flutie='sass -C --update public/flutie/stylesheets/sass:public/stylesheets'
+
+##############################################################################->
+# - Rails
+alias ra-c='rails c'
+alias ra-s='rails s'
+alias ra-g='rails generate'
+alias ra-gr='rails generate resource'
+alias ra-gm='rails generate model'
+alias ra-gc='rails generate controller'
