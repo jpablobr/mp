@@ -160,3 +160,7 @@ tgz() {
 function zipr() {
     zip -r $1.zip $1
 }
+
+function f-find-and-rm() {
+    find . -name "$1" -exec rm {} \;
+}

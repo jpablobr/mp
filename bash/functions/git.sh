@@ -36,6 +36,9 @@ alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 # Dropbox
 alias gi-dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
 
+function gi-prune {
+    git remote | xargs -n 1 git remote prune
+}
 # Commit pending changes and quote all args as message
 gi_gg() {
     git commit -v -a -m "$*"
