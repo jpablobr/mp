@@ -38,15 +38,6 @@ alias e-batch-comp='emacs -batch -f batch-byte-compile *.el'
 alias sagi='sudo apt-get install'
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
-# heroku
-alias h_='heroku'
-alias h-i='heroku info'
-alias h-p="git push heroku master"
-alias h-l="heroku logs"
-alias h-da="heroku domains:add"
-alias h-dbp='heroku db:pull'
-alias h-add='heroku addons:add'
-alias h-cl='heroku config --long'
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
@@ -85,8 +76,6 @@ alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 alias r-bu='bundle update'
 alias r-rdm='rake db:migrate'
 alias r-flutie='sass -C --update public/flutie/stylesheets/sass:public/stylesheets'
-
-##############################################################################->
 # - Rails
 alias ra-c='rails c'
 alias ra-s='rails s'
@@ -98,3 +87,12 @@ alias ra-d='rails destroy'
 alias ra-dr='rails destroy resource'
 alias ra-dc='rails destroy controller'
 alias ra-dm='rails destroy model'
+# heroku
+alias h_='heroku'
+alias h-i='heroku info'
+alias h-p="git push heroku master"
+alias h-l="heroku logs"
+alias h-da="heroku domains:add"
+alias h-dbp='heroku db:pull'
+alias h-add='heroku addons:add'
+alias h-cl='heroku config --long'
