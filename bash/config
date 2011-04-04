@@ -137,8 +137,8 @@ HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
 test -n "$HAVE_EMACS" &&
-VISUAL='emacs -nw' &&
-EDITOR='emacs -nw'
+VISUAL='emacs -Q -nw' &&
+EDITOR='emacs -Q -nw'
 
 # PAGER
 if test -n "$(command -v less)" ; then
