@@ -96,3 +96,4 @@ alias h-da="heroku domains:add"
 alias h-dbp='heroku db:pull'
 alias h-add='heroku addons:add'
 alias h-cl='heroku config --long'
+alias h-c='heroku console'

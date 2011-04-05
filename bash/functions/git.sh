@@ -34,17 +34,17 @@ alias gi-cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
 alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 # Dropbox
-alias gi-dbox='cd ~/Dropbox && git add . && gg updates and backup && gp && cd -'
+alias gi-dbox='cd ~/Dropbox && git add . && gi-gg updates and backup && gp && cd -'
 
 function gi-prune {
     git remote | xargs -n 1 git remote prune
 }
 # Commit pending changes and quote all args as message
-gi_gg() {
+gi-gg() {
     git commit -v -a -m "$*"
 }
 
-gi_cn() {
+gi-cn() {
     git clone "$1" "$2"
 }
 
@@ -53,21 +53,21 @@ gc() {
 }
 
 # Setup a tracking branch from [remote] [branch_name]
-gi_bt() {
+gi-bt() {
     git branch --track $2 $1/$2 && git checkout $2
 }
 
 # Quickly clobber a file and checkout
-gi_rf() {
+gi-rf() {
     rm $1
     git checkout $1
 }
 
-gi_parse_branch() {
+gi-parse_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 
-gi_notpushed() {
+gi-notpushed() {
     curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
     origin=$(git config --get "branch.$curr_branch.remote")
     origin=${origin:-origin}
@@ -75,7 +75,7 @@ gi_notpushed() {
 }
 
 # Completely removes a given file from a git repo
-gi_rm() {
+gi-rm() {
     git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
     git push origin master --force
     rm -rf .git/refs/original/
@@ -84,7 +84,7 @@ gi_rm() {
     git gc --aggressive --prune=now
 }
 
-gi_thanks() {
+gi-thanks() {
     git log "$1" |
     grep Author: |
     sed 's/Author: \(.*\) <.*/\1/' |
@@ -94,7 +94,7 @@ gi_thanks() {
     sed 's/ *\([0-9]\{1,\}\) \(.*\)/\2 (\1)/'
 }
 
-gi_gc() {
+gi-gc() {
     set -- `du -ks`
     before=$1
     git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc
@@ -103,7 +103,7 @@ gi_gc() {
     echo "Cleaned up $((before-after)) kb."
 }
 
-gi_rb() {
+gi-rb() {
     git push origin HEAD:refs/heads/$1
     git fetch origin &&
     git checkout -b $1 --track origin/$1
