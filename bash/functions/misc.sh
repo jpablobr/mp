@@ -117,11 +117,13 @@ function DELETE() {
   curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-function command_not_found_handle() {
-    /usr/bin/env ruby ~/bin/method_missing.rb $*
-    return $?;
+if test -n "$(command -v ruby)" ; then
+    function command_not_found_handle() {
+        /usr/bin/env ruby ~/bin/method_missing.rb $*
+        return $?;
     # echo ${PIPESTATUS[@]};
-}
+    }
+fi
 
 function json() {
   tmpfile=`mktemp -t json`
@@ -137,4 +139,8 @@ function xml() {
   cat $tmpfile
   cat $tmpfile | pbcopy
   rm $tmpfile
+}
+
+function ansi2html {
+    cat "$1" | ansi2html.sh "$1" > "$1".html
 }
