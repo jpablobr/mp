@@ -78,7 +78,7 @@ alias r-rdm='rake db:migrate'
 alias r-flutie='sass -C --update public/flutie/stylesheets/sass:public/stylesheets'
 # - Rails
 alias ra-c='rails c'
-alias ra-s='rails s'
+alias ra-sl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
 alias ra-g='rails generate'
 alias ra-gr='rails generate resource'
 alias ra-gm='rails generate model'
