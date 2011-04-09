@@ -59,6 +59,10 @@ PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
+# if ~/bin/ruby.
+test -d "$HOME/bin/ruby" &&
+PATH="$HOME/bin/ruby:$PATH"
+
 # if Haskell
 test -d "$HOME/.cabal/bin" &&
 PATH="$HOME/.cabal/bin:$PATH"
