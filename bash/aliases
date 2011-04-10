@@ -28,11 +28,12 @@ alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias e-='emacs -Q -nw'
+alias e-s='sudo emacs -Q -nw'
 alias e-mc='emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
-alias e-m_aliases='em ~/.my-precious/bash/aliases'
-alias e-m-config='em ~/.my-precious/bash/config'
-alias e-m-init='em ~/.emacs.d/init.el'
-alias e-s='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias e-m-aliases='e- ~/.my-precious/bash/aliases'
+alias e-m-config='e- ~/.my-precious/bash/config'
+alias e-m-init='e- ~/.emacs.d/init.el'
+alias e-si='sudo emacs -q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
 alias e-batch-comp='emacs -batch -f batch-byte-compile *.el'
 # apt-get
 alias sagi='sudo apt-get install'
@@ -62,14 +63,6 @@ alias la='ls -lah --format=long'
 alias l-dir='ls --format=vertical'
 alias l-recent='ls -lAt | head'
 alias l-old='ls -lAt | tail'
-
-##############################################################################->
-# File - Directory Operations
-alias f-space2us='find . -depth -exec ~/bin/rename_files_with_spaces.sh {} \;'
-alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
-alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
-alias f-symlinks='find . -type l'
-alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 
 ##############################################################################->
 # - Ruby
