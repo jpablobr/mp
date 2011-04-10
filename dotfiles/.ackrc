@@ -1,4 +1,10 @@
 # ack config
 
 --type-set
+haml=haml
+
+--type-set
+coffeescript=coffee
+
+--type-set
 ronn=.ronn,.ron

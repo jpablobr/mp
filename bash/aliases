@@ -80,6 +80,7 @@ alias ra-d='rails destroy'
 alias ra-dr='rails destroy resource'
 alias ra-dc='rails destroy controller'
 alias ra-dm='rails destroy model'
+alias ra-tpl='rails -m ~/.rails.d/template.rb'
 # heroku
 alias h_='heroku'
 alias h-i='heroku info'
