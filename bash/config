@@ -127,7 +127,8 @@ TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 # - PAGER / EDITOR:
 
 # Get color support for 'less'
-export LESS="--RAW-CONTROL-CHARS"
+# --max-forw-scroll=4 --max-back-scroll=4"
+export LESS="--RAW-CONTROL-CHARS --shift 4"
 export LESSOPEN="|lesspipe.sh %s"
 export LESS_TERMCAP_mb='[01;31m'
 export LESS_TERMCAP_md='[01;34m'

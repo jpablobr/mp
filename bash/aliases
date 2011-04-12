@@ -22,7 +22,6 @@ alias g='git'
 alias gst='git status'
 # Show history
 alias history='fc -l 1'
-alias h='history'
 alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
@@ -82,7 +81,7 @@ alias ra-dc='rails destroy controller'
 alias ra-dm='rails destroy model'
 alias ra-tpl='rails -m ~/.rails.d/template.rb'
 # heroku
-alias h_='heroku'
+alias h='heroku'
 alias h-i='heroku info'
 alias h-p="git push heroku master"
 alias h-l="heroku logs"
@@ -91,3 +90,4 @@ alias h-dbp='heroku db:pull'
 alias h-add='heroku addons:add'
 alias h-cl='heroku config --long'
 alias h-c='heroku console'
+alias h-t='heroku logs --tail'
