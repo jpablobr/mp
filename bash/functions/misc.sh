@@ -64,7 +64,7 @@ function sed-f { sed -i s/${1}/${2}/g "$3" ;}
 function sed-r { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
 function sed-rp { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
 # Instead of editing all files only files containg a certain string.
-function sed-g { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g";}
+function sed-g { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g"; }
 function sed-gp { grep -rl $1 $2 | xargs sed -i s/"$4"/"$5"/g ; }
 
 ##############################################################################->
