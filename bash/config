@@ -158,6 +158,8 @@ fi
 ACK_PAGER="$PAGER"
 ACK_PAGER_COLOR="$PAGER"
 
+export GEM_EDITOR=$EDITOR
+
 # ----------------------------------------------------------------------
 # - Source functions Dir:
 

@@ -39,7 +39,7 @@ rails_app() {
 
 function dbox-bitch {
     dropbox stop &&
-    sudo sysctl fs.inotify.max_user_watches=100000 &&
+    sudo sysctl fs.inotify.max_user_watches=1000000 &&
     dropbox start;
 }
 
