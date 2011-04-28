@@ -68,6 +68,7 @@ alias l-old='ls -lAt | tail'
 alias r-bu='bundle update'
 alias r-rdm='rake db:migrate'
 alias r-flutie='sass -C --update public/flutie/stylesheets/sass:public/stylesheets'
+alias r-go='gem open'
 # - Rails
 alias ra-c='rails c'
 alias ra-sl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
