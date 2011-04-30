@@ -13,9 +13,9 @@
     (>>>POINT<<<)
 
     <hr />
-    <footer>
+    <div id="footer">
       <a href="mailto:(>>>LOGIN_NAME<<<)@(>>>HOST_ADDR<<<)">(>>>USER_NAME<<<)</a>,
       (>>>DATE<<<)
-    </footer>
+    </div>
   </body>
 </html>

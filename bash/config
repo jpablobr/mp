@@ -138,9 +138,6 @@ export LESS_TERMCAP_so='[01;44;37m'
 export LESS_TERMCAP_ue='[0m'
 export LESS_TERMCAP_us='[01;37m'
 
-LESS=-MMeiad
-# LESS=-adefims
-
 HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
