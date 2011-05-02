@@ -123,6 +123,12 @@ HISTSIZE=1000
 BIBINPUTS=.:/usr/share/texmf-texlive/bibtex
 TEXINPUTS=.:/usr/share/texmf-texlive/tex/
 
+# rip config
+RIPDIR=/home/jpablobr/.rip
+RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
+PATH="$PATH:$RIPDIR/active/bin"
+export RIPDIR RUBYLIB PATH
+
 # ----------------------------------------------------------------------
 # - PAGER / EDITOR:
 
@@ -329,3 +335,7 @@ elif [ $HAVE_GIT ]; then
 else
     test -n "$PS1" && prompt_compact
 fi
+
+# ----------------------------------------------------------------------
+# - Lightning:
+source /home/jpablobr/.lightning/functions.sh
