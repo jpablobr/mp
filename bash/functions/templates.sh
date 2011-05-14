@@ -39,27 +39,77 @@ production:
 
 t-gitignore() {
   cat > .gitignore << -EOF-
-## MAC OS
+.bundle
+db/production.sqlite3
+db/development.sqlite3
+log
+logs
+tmp
+.idea/**# Rails
+.bundle
+db/*.sqlite3
+db/*.sqlite3-journal
+*.log
+
+# Documentation
+doc/api
+doc/app
+doc/*
+.yardoc
+.yardopts
+
+# Public Uploads
+public/system/*
+public/themes/*
+
+# Public Cache
+public/javascripts/cache
+public/stylesheets/cache
+
+# Vendor Cache
+vendor/cache
+
+# Acts as Indexed
+index/**/*
+
+# Mac
 .DS_Store
 
-## TEXTMATE
-*.tmproj
-tmtags
+# Windows
+Thumbs.db
 
-## EMACS
-*~
-\#*
-.\#*
+# NetBeans
+nbproject
 
-## VIM
+# Eclipse
+.project
+
+# Redcar
+.redcar
+
+# Rubinius
+*.rbc
+
+# Vim
 *.swp
+*.swo
 
-## PROJECT::GENERAL
-coverage
-rdoc
-pkg
+# RubyMine
+.idea
 
-## PROJECT::SPECIFIC'
+# Backup
+*~
+
+# Capybara Bug
+capybara-*html
+
+# sass
+.sass-cache
+.sass-cache/*
+
+#rvm
+.rvmrc
+.rvmrc.*
 -EOF-
   return 0
 }
