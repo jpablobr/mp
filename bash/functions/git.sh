@@ -33,7 +33,8 @@ alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 alias gi-dbox='cd ~/Dropbox && git add . && gi-gg updates and backup && gp && cd -'
 
 gp() {
-    git push "$1" "$2" || (echo "push failed" "Git" && false)
+    test $# != 2 && git push && return 0
+    git push "$1" "$2"
 }
 
 gi-prune() {
