@@ -32,7 +32,7 @@ alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 # Dropbox
 alias gi-dbox='cd ~/Dropbox && git add . && gi-gg updates and backup && gp && cd -'
 
-gi-p() {
+gp() {
     git push "$1" "$2" || (echo "push failed" "Git" && false)
 }
 
