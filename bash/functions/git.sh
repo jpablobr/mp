@@ -2,8 +2,6 @@
 # git.sh
 # Git related helper functions
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
-# Created: 18 Mar 2011
-# Version: 0.1.0
 
 ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
@@ -22,9 +20,7 @@ alias gi-dh='git diff HEAD'
 alias gi-dm='git diff master'
 alias gi-ds='git diff --cached'
 alias gi-dv='git diff -w "$@" | emq -R -'
-alias gi-i='git init && printf "log/\nThumbs.db\n" >> .gitignore && git add .gitignore'
 alias gi-itx='gitx --all'
-alias gi-p='git push || (notify "push failed" "Git" && false)'
 alias gi-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
 alias gi-pru='gp && rake && gu'
 alias gi-ri='git rebase -i origin/master^'
@@ -36,9 +32,14 @@ alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 # Dropbox
 alias gi-dbox='cd ~/Dropbox && git add . && gi-gg updates and backup && gp && cd -'
 
-function gi-prune {
+gi-p() {
+    git push "$1" "$2" || (echo "push failed" "Git" && false)
+}
+
+gi-prune() {
     git remote | xargs -n 1 git remote prune
 }
+
 # Commit pending changes and quote all args as message
 gi-gg() {
     git commit -v -a -m "$*"
@@ -148,4 +149,36 @@ _git_color() {
 	  local color
 	  color=`git config --get-color "$1" "$2" 2>/dev/null`
 	  [ -n "$color" ] && echo -ne "\001$color\002"
+}
+
+gi-i() {
+
+    git init &&
+    cat > .gitignore << -EOF-
+## MAC OS
+.DS_Store
+
+## TEXTMATE
+*.tmproj
+tmtags
+
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+
+## PROJECT::GENERAL
+coverage
+rdoc
+pkg
+
+## PROJECT::SPECIFIC'
+-EOF-
+    git add . &&
+    git commit -v -a -m "Initial commit" &&
+    git status
+    return 0
 }

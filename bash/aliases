@@ -12,7 +12,6 @@ alias k9="kill -9"
 alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 alias ct='cheat_fu'
 alias ctr='cd ~/.cheats_fu && ronn -r *.1.ronn && cd -'
-alias gp='git push || (echo "push failed" "Git" && false)'
 alias srm='sudo rm'
 alias rd='rm -rf'
 alias r*='rm -fr *'
@@ -80,7 +79,7 @@ alias ra-dr='rails destroy resource'
 alias ra-dc='rails destroy controller'
 alias ra-dm='rails destroy model'
 alias ra-tpl='rails -m ~/.rails.d/template.rb'
-# heroku
+# - heroku
 alias h='heroku'
 alias h-i='heroku info'
 alias h-p="git push heroku master"
