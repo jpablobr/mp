@@ -119,7 +119,7 @@ function DELETE() {
 
 if test -n "$(command -v ruby)" ; then
     function command_not_found_handle() {
-        /usr/bin/env ruby ~/bin/method_missing.rb $*
+        /usr/bin/env ruby ~/bin/ruby/method_missing.rb $*
         return $?;
     # echo ${PIPESTATUS[@]};
     }
