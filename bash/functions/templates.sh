@@ -7,7 +7,8 @@ t-rvmrc() {
   test $# != 1 && echo "Please provide a name for the gemset!" && return 1
 
   cat > .rvmrc << -EOF-
-rvm use 1.9.2-p180$1 --create
+rvm_gemset_create_on_use_flag=1
+rvm use 1.9.2-p180$1
 -EOF-
   return 0
 }
