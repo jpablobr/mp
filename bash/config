@@ -225,14 +225,14 @@ _expand() {
     return 0
 }
 
-_ssh_hosts() {
-  grep "Host " ~/.ssh/config 2> /dev/null | sed -e "s/Host //g"
-  # http://news.ycombinator.com/item?id=751220
-  cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
+test -f ~/.ssh/known_hosts && {
+    _ssh_hosts() {
+        grep "Host " ~/.ssh/config 2> /dev/null | sed -e "s/Host //g"
+        # http://news.ycombinator.com/item?id=751220
+        cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["
+    }
+    complete -W "$(_ssh_hosts)" ssh
 }
-
-complete -W "$(_ssh_hosts)" ssh
-
 # ----------------------------------------------------------------------
 # - LS AND DIRCOLORS:
 
@@ -341,4 +341,5 @@ fi
 
 # ----------------------------------------------------------------------
 # - Lightning:
+test -f /home/jpablobr/.lightning/functions.sh &&
 source /home/jpablobr/.lightning/functions.sh
