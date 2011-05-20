@@ -53,10 +53,10 @@ function br-g { br_c "http://www.googlecom/search?q=$1"; }
 # - Grep
 function g-. { grep -nH -e "$@";}
 function g-f { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
-function g-fp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-function g-aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function g-linux-yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
-function g-less { egrep --color=yes "$@" | less -R; }
+function gr-fp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
+function gr-aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+function gr-linux-yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
+function gr-less { egrep --color=yes "$@" | less -R; }
 
 ##############################################################################->
 # - Sed

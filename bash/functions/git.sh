@@ -7,46 +7,48 @@ ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
 ##############################################################################->
 # Git Aliases
-alias gi-ungit="find . -name '.git' -exec rm -rf {} \;"
-alias gi-a='git add'
-alias gi-a.='git add .'
-alias gi-ap='git add -p'
-alias gi-b='git branch'
-alias gi-ca='git commit -v -a'
-alias gi-co="git checkout"
-alias gi-count='git shortlog -sn'
-alias gi-d='git diff'
-alias gi-dh='git diff HEAD'
-alias gi-dm='git diff master'
-alias gi-ds='git diff --cached'
-alias gi-dv='git diff -w "$@" | emq -R -'
-alias gi-itx='gitx --all'
-alias gi-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
-alias gi-pru='gp && rake && gu'
-alias gi-ri='git rebase -i origin/master^'
-alias gi-rc='git rebase --continue'
-alias gi-up='git fetch && git rebase'
-alias gi-cache='git rm -r --cached .'
+alias g-ungit="find . -name '.git' -exec rm -rf {} \;"
+alias g-a='git add'
+alias g-a.='git add .'
+alias g-ap='git add -p'
+alias g-b='git branch'
+alias g-ph='git push heroku master'
+alias g-pg='git push github master'
+alias g-ca='git commit -v -a'
+alias g-co="git checkout"
+alias g-count='git shortlog -sn'
+alias g-d='git diff'
+alias g-dh='git diff HEAD'
+alias g-dm='git diff master'
+alias g-ds='git diff --cached'
+alias g-dv='git diff -w "$@" | emq -R -'
+alias g-itx='gitx --all'
+alias g-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
+alias g-pru='gp && rake && gu'
+alias g-ri='git rebase -i origin/master^'
+alias g-rc='git rebase --continue'
+alias g-up='git fetch && git rebase'
+alias g-cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias gi-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
+alias g-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 # Dropbox
-alias gi-dbox='cd ~/Dropbox && git add . && gi-gg updates and backup && gp && cd -'
+alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 
 gp() {
     test $# != 2 && git push && return 0
     git push "$1" "$2"
 }
 
-gi-prune() {
+g-prune() {
     git remote | xargs -n 1 git remote prune
 }
 
 # Commit pending changes and quote all args as message
-gi-gg() {
+g-gg() {
     git commit -v -a -m "$*"
 }
 
-gi-cn() {
+g-cn() {
     git clone "$1" "$2"
 }
 
@@ -55,21 +57,21 @@ gc() {
 }
 
 # Setup a tracking branch from [remote] [branch_name]
-gi-bt() {
+g-bt() {
     git branch --track $2 $1/$2 && git checkout $2
 }
 
 # Quickly clobber a file and checkout
-gi-rf() {
+g-rf() {
     rm $1
     git checkout $1
 }
 
-gi-parse_branch() {
+g-parse_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 
-gi-notpushed() {
+g-notpushed() {
     curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
     origin=$(git config --get "branch.$curr_branch.remote")
     origin=${origin:-origin}
@@ -77,7 +79,7 @@ gi-notpushed() {
 }
 
 # Completely removes a given file from a git repo
-gi-rm() {
+g-rm() {
     git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
     git push origin master --force
     rm -rf .git/refs/original/
@@ -86,7 +88,7 @@ gi-rm() {
     git gc --aggressive --prune=now
 }
 
-gi-thanks() {
+g-thanks() {
     git log "$1" |
     grep Author: |
     sed 's/Author: \(.*\) <.*/\1/' |
@@ -96,7 +98,7 @@ gi-thanks() {
     sed 's/ *\([0-9]\{1,\}\) \(.*\)/\2 (\1)/'
 }
 
-gi-gc() {
+g-gc() {
     set -- `du -ks`
     before=$1
     git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc
@@ -105,7 +107,7 @@ gi-gc() {
     echo "Cleaned up $((before-after)) kb."
 }
 
-gi-rb() {
+g-rb() {
     git push origin HEAD:refs/heads/$1
     git fetch origin &&
     git checkout -b $1 --track origin/$1
@@ -152,7 +154,7 @@ _git_color() {
 	  [ -n "$color" ] && echo -ne "\001$color\002"
 }
 
-gi-i() {
+g-i() {
 
     git init &&
     cat > .gitignore << -EOF-
