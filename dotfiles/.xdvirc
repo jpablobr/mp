@@ -8,5 +8,6 @@
 !!! if you want to get rid of all these customizations,
 !!! or start xdvi with the `-q' option to ignore this file.
 !!!
-xdvi.fileHistory:	3 /home/jpablobr/Dropbox/bond/subjects/ict-govenance/research_assignment_it_service_management/research_assignment_it_service_management_draft.dvi\n\
+xdvi.fileHistory:	0 /home/jpablobr/Dropbox/org-mode/templates/math.dvi\n\
+3 /home/jpablobr/Dropbox/bond/subjects/ict-govenance/research_assignment_it_service_management/research_assignment_it_service_management_draft.dvi\n\
 0 /home/jpablobr/.my-precious/emacs.d/src/auctex/doc/tex-ref.dvi

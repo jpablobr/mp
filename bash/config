@@ -71,6 +71,9 @@ PATH="$HOME/.cabal/bin:$PATH"
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
 
+test -d "/usr/local/texlive/2010/bin/x86_64-linux" &&
+PATH="/usr/local/texlive/2010/bin/x86_64-linux:$PATH"
+
 # if RVM.
 test -s  "$HOME/.rvm/scripts/rvm" &&
 source "$HOME/.rvm/scripts/rvm"
