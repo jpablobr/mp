@@ -4,7 +4,9 @@
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
 
 t-rvmrc() {
-  test $# != 1 && echo "Please provide a name for the gemset!" && return 1
+  test $# != 1 \
+      && echo "Please provide a name for the gemset!" \
+      && return 1
 
   cat > .rvmrc << -EOF-
 rvm_gemset_create_on_use_flag=1
@@ -14,9 +16,17 @@ rvm use 1.9.2-p180$1
 }
 
 t-database-yml() {
-  test $# != 1 && echo "Please provide a name for the database.yml file!" && return 1
 
-  cat > database.yml << -EOF-
+  test ! -f ./config.ru \
+      &&  echo "You have to be in a Rails root dir!" \
+      &&  echo "Current directory:" `pwd` \
+      &&  return 1
+
+  test $# != 1 \
+      && echo "Please provide a name for the database.yml file!" \
+      && return 1
+
+  cat > config/database.yml << -EOF-
 defaults: &defaults
   adapter: postgresql
   encoding: unicode
@@ -116,7 +126,7 @@ capybara-*html
 }
 
 t-gemfile() {
-  cat > .gitignore << -EOF-
+  cat > Gemfile << -EOF-
 source :rubygems
 
 gem 'rails', '3.0.7'
