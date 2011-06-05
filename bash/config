@@ -49,8 +49,20 @@ umask 0022
 # ----------------------------------------------------------------------
 # - PATH:
 
+JAVA_HOME=/usr/lib/jvm/java-6-sun/
+export JAVA_HOME
+export CLASSPATH=.:/usr/share/java/junit.jar
+
+export CPATH=$CPATH:/usr/include/gtk-2.0
+export CPATH=$CPATH:/usr/include/glib-2.0/
+export CPATH=$CPATH:/usr/lib/glib-2.0/include/
+export CPATH=$CPATH:/usr/include/pango-1.0/
+export CPATH=$CPATH:/usr/lib/gtk-2.0/include/
+export CPATH=$CPATH:/usr/include/atk-1.0/
+
 # bin
 PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
+PATH="$JAVA_HOME/bin:$PATH"
 
 # sbin
 PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
@@ -78,6 +90,10 @@ PATH="/usr/local/texlive/2010/bin/x86_64-linux:$PATH"
 test -s  "$HOME/.rvm/scripts/rvm" &&
 source "$HOME/.rvm/scripts/rvm"
 
+# tmuxinator
+test -s "$HOME/.tmuxinator/scripts/tmuxinator" &&
+source "$HOME/.tmuxinator/scripts/tmuxinator"
+
 # if bashmarks
 test -f "$HOME/bin/bashmarks.sh" &&
 source "$HOME/bin/bashmarks.sh"
@@ -88,7 +104,7 @@ source "$HOME/.my-precious/bash/aliases"
 
 # if SSH
 test -f "$HOME/.ssh/environment" &&
-SSH_ENV="$HOME/.ssh/environment"
+export SSH_ENV="$HOME/.ssh/environment"
 
 # ----------------------------------------------------------------------
 # - ENVIRONMENT CONFIGURATION:
@@ -154,8 +170,8 @@ HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
 test -n "$HAVE_EMACS" &&
-VISUAL='emacs -Q -nw' &&
-EDITOR='emacs -Q -nw'
+export VISUAL='emacs -Q -nw' &&
+export EDITOR='emacs -Q -nw'
 
 # PAGER
 if test -n "$(command -v less)" ; then
@@ -167,8 +183,8 @@ else
 fi
 
 # Ack
-ACK_PAGER="$PAGER"
-ACK_PAGER_COLOR="$PAGER"
+export ACK_PAGER="$PAGER"
+export ACK_PAGER_COLOR="$PAGER"
 
 export GEM_EDITOR=$EDITOR
 
