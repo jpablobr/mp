@@ -45,9 +45,9 @@ function dbox-bitch {
 
 ##############################################################################->
 # - Browsing
-function br-gh { br_c "https://github.com/$1"; }
-function br-t { br_c "https://twitter.com/$1"; }
-function br-g { br_c "http://www.googlecom/search?q=$1"; }
+function br-gh { br-c "https://github.com/$1"; }
+function br-t { br-c "https://twitter.com/$1"; }
+function br-g { br-c "http://www.google.com/search?q=$1"; }
 
 ##############################################################################->
 # - Grep

@@ -155,7 +155,6 @@ _git_color() {
 }
 
 g-i() {
-
     git init &&
     cat > .gitignore << -EOF-
 ## MAC OS
@@ -184,4 +183,12 @@ pkg
     git commit -v -a -m "Initial commit" &&
     git status
     return 0
+}
+
+g-general-baks() {
+ cd ~/Dropbox/private-dotfiles &&
+ gc automated commit && gp
+
+ cd ~/Dropbox/bond &&
+ gc automated commit && gp
 }
