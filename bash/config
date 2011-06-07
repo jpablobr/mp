@@ -320,7 +320,7 @@ else
 fi
 
 prompt_dumb() {
-    PS1="[\w] \$ "
+    PS1="[\W] \$ "
 }
 
 prompt_simple() {
