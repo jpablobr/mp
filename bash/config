@@ -320,7 +320,7 @@ else
 fi
 
 prompt_dumb() {
-    PS1='$ '
+    PS1="[\w] \$ "
 }
 
 prompt_simple() {
@@ -352,6 +352,8 @@ fi
 # Use the color prompt by default when interactive
 if [ "$TERM" = "dumb" ]; then
     prompt_dumb
+elif [ "$EMACS_SHELL" = "emacs" ]; then
+    test -n "$PS1" && prompt_dumb
 elif [ $HAVE_GIT ]; then
     test -n "$PS1" && prompt_color
 else
