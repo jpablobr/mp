@@ -70,7 +70,6 @@ function sed-gp { grep -rl $1 $2 | xargs sed -i s/"$4"/"$5"/g ; }
 
 ##############################################################################->
 # - Common
-function e { cd ~/.emacs.d/$1 && ls --format=long; }
 function m { cd ~/.my-precious/$1 && ls --format=long; }
 function d { cd ~/Dropbox/$1 && ls --format=long; }
 function t { cd ~/todo/$1 && ls --format=long; }
