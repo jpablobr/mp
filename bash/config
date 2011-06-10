@@ -46,6 +46,16 @@ ulimit -S -c 0
 # default umask
 umask 0022
 
+set meta-flag on
+set convert-meta off
+set output-meta on
+
+
+# if [ "$TERM" = "linux" ] ; then
+#     loadkeys -q .keymap
+# fi
+# loadkeys -q ~/.Keymap
+
 # ----------------------------------------------------------------------
 # - PATH:
 
@@ -362,5 +372,5 @@ fi
 
 # ----------------------------------------------------------------------
 # - Lightning:
-test -f /home/jpablobr/.lightning/functions.sh &&
-source /home/jpablobr/.lightning/functions.sh
+test -f $HOME/.lightning/functions.sh &&
+source $HOME/.lightning/functions.sh
