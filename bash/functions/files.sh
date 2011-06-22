@@ -191,3 +191,18 @@ function trash() {
   done
   IFS=$temp_ifs
 }
+
+btar () {
+    tar -cvjf "$1".tar.bz2 "$1"
+}
+
+##############################################################################->
+# - Encript
+e-compress () {
+    tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz
+}
+
+e-decompress () {
+    gpg --decrypt -output "$1" "$1".tar.gz &&
+    tar -xvvf "$1"
+}
