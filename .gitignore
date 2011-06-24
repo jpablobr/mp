@@ -5,3 +5,6 @@
 emacs.d
 emacs.d/*
 gitconfig
+link_dotfiles
+link_bin
+clean_home
