@@ -37,7 +37,7 @@ rails_app() {
     rails $2 -m http://github.com/ryanb/rails-templates/raw/master/$1.rb $*[3,-1]
 }
 
-function dbox-bitch {
+dbox-bitch() {
     dropbox stop &&
     sudo sysctl fs.inotify.max_user_watches=1000000 &&
     dropbox start;
@@ -45,75 +45,76 @@ function dbox-bitch {
 
 ##############################################################################->
 # - Browsing
-function br-gh { br-c "https://github.com/$1"; }
-function br-t { br-c "https://twitter.com/$1"; }
-function br-g { br-c "http://www.google.com/search?q=$1"; }
+br-gh() { br-c "https://github.com/$1"; }
+br-t() { br-c "https://twitter.com/$1"; }
+br-g() { br-c "http://www.google.com/search?q=$1"; }
 
 ##############################################################################->
 # - Grep
-function g-. { grep -nH -e "$@";}
-function g-f { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
-function gr-fp { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-function gr-aliases { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
-function gr-linux-yac { grep -nH -e "$@" ~/org/yacs/linux.org; }
-function gr-less { egrep --color=yes "$@" | less -R; }
+g-.() { grep -nH -e "$@";}
+g-f() { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
+gr-fp() { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
+gr-aliases() { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+gr-linux-yac() { grep -nH -e "$@" ~/org/yacs/linux.org; }
+gr-less() { egrep --color=yes "$@" | less -R; }
 
 ##############################################################################->
 # - Sed
-function sed-f { sed -i s/${1}/${2}/g "$3" ;}
-function sed-r { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
-function sed-rp { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
+sed-f() { sed -i s/${1}/${2}/g "$3" ;}
+sed-r() { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
+sed-rp() { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
 # Instead of editing all files only files containg a certain string.
-function sed-g { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g"; }
+sed-g() { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g"; }
 # grep -rl WHAT WHERE | xargs sed -i s/WHAT/WITH/g
-function sed-gp { grep -rl $1 $2 | xargs sed -i s/"$4"/"$5"/g ; }
+sed-gp() { grep -rl $1 $2 | xargs sed -i s/"$4"/"$5"/g ; }
 
 ##############################################################################->
 # - Common
-function m { cd ~/.my-precious/$1 && ls --format=long; }
-function d { cd ~/Dropbox/$1 && ls --format=long; }
-function t { cd ~/todo/$1 && ls --format=long; }
-function c { cd ~/code/$1 && ls --format=long; }
-function tmp { cd ~/tmp/$1 && ls --format=long; }
-function yas { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
+m() { cd ~/.my-precious/$1 && ls --format=long; }
+d() { cd ~/Dropbox/$1 && ls --format=long; }
+t() { cd ~/todo/$1 && ls --format=long; }
+c() { cd ~/code/$1 && ls --format=long; }
+tmp() { cd ~/tmp/$1 && ls --format=long; }
+yas() { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
 
 ##############################################################################->
 # - Severs
-function nginx-stop() {
+nginx-stop() {
     ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
 }
 
-function nginx-start() {
+nginx-start() {
     sudo /opt/nginx/sbin/nginx
 }
 
 ##############################################################################->
 # - Databases
-function loaddb {
+loaddb() {
     mysql -u root $1 < $1.sql
 }
 
-function dumpdb {
+dumpdb() {
     mysqldump -u root --add-drop-table --no-create-db $1 > $1.sql
 }
 
-function dumpschema {
+dumpschema() {
     mysqldump -u root --add-drop-table --no-create-db --no-data $1 > schema.s
 }
-function GET() {
+
+GET() {
   curl -i -X GET -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-function POST() {
+POST() {
   curl -i -X POST -H "X-Requested-With: XMLHttpRequest" $*
   #-d "key=val"
 }
 
-function PUT() {
+PUT() {
   curl -i -X PUT -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-function DELETE() {
+DELETE() {
   curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
@@ -125,7 +126,7 @@ if test -n "$(command -v ruby)" ; then
     }
 fi
 
-function json() {
+json() {
   tmpfile=`mktemp -t json`
   curl -s $* | python -mjson.tool > $tmpfile
   cat $tmpfile
@@ -133,7 +134,7 @@ function json() {
   rm $tmpfile
 }
 
-function xml() {
+xml() {
   tmpfile=`mktemp -t xml`
   curl -s $* | xmllint —format - > $tmpfile
   cat $tmpfile
@@ -141,6 +142,6 @@ function xml() {
   rm $tmpfile
 }
 
-function ansi2html {
+ansi2html() {
     cat "$1" | ansi2html.sh "$1" > "$1".html
 }
