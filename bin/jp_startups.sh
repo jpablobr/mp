@@ -1,2 +1,2 @@
 #!/bin/sh
-gnome-terminal --maximize --hide-menubar
+gnome-terminal --hide-menubar --full-screen
