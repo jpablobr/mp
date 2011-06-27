@@ -20,6 +20,7 @@ alias ..='cd ..'
 alias g='git'
 alias gst='git status'
 alias sjp='$SHELL ~/.tmuxinator/jpablobr.tmux'
+alias th=thunar
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
