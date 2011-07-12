@@ -21,6 +21,10 @@ alias g='git'
 alias gst='git status'
 alias sjp='$SHELL ~/.tmuxinator/jpablobr.tmux'
 alias th=thunar
+alias s-lock='xlock -mode blank'
+alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
+alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
+
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
@@ -28,7 +32,7 @@ alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias e='emacs -Q -nw'
-alias em-s='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-init.el'
+alias em-s='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias emm='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-jpablobr.el'
 alias emr='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-ruby.el'

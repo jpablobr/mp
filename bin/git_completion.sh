@@ -538,7 +538,6 @@ __git_list_porcelain_commands ()
 		diff-files)       : plumbing;;
 		diff-index)       : plumbing;;
 		diff-tree)        : plumbing;;
-		fast-import)      : import;;
 		fast-export)      : export;;
 		fsck-objects)     : plumbing;;
 		fetch-pack)       : plumbing;;
