@@ -1,2 +1,0 @@
-#!/bin/sh
-google-chrome -new-window http://www.google.co.uk/search?q="`dmenu -nb '#a5b474' -sb '#444444' -nf '#eeeeee' -sf '#a5b474' -fn '-*-*-*-*-*-*-20-*-*-*-*-*-*-*'`"
