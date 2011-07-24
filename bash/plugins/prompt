@@ -1,0 +1,62 @@
+#!/bin/bash
+# ----------------------------------------------------------------------
+# - PROMP:
+
+GREEN="\[\033[0;32m\]"
+RED="\[\033[0;31m\]"
+BROWN="\[\033[0;33m\]"
+GREY="\[\033[0;97m\]"
+BLUE="\[\033[0;34m\]"
+PS_CLEAR="\[\033[0m\]"
+SCREEN_ESC="\[\033k\033\134\]"
+
+if [ "$LOGNAME" = "root" ]; then
+    COLOR1="${RED}"
+    COLOR2="${BROWN}"
+    P="#"
+else
+    COLOR1="${BLUE}"
+    COLOR2="${BROWN}"
+    P="\$"
+fi
+
+prompt_dumb() {
+    PS1="[\W] \$ "
+}
+
+prompt_simple() {
+    unset PROMPT_COMMAND
+    PS1="[\u@\h:\w]\$ "
+    PS2="> "
+}
+
+prompt_compact() {
+    unset PROMPT_COMMAND
+    PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}$P${PS_CLEAR} "
+    PS2="${BROWN}continue ${BROWN}> "
+}
+
+HAVE_GIT=$(command -v git)
+if [ $HAVE_GIT ]; then
+    prompt_color() {
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}
+\`if [ \$? == 0 ]; then echo \[\e[97m\]λ\[\e[0m\]; else echo \[\e[31m\]λ\[\e[0m\]; fi\` \`_git_headname\` ${COLOR1}$P${COLOR1} ${GREY}>${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+else
+    prompt_color() {
+        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\W${GREY}]${COLOR2}$P${PS_CLEAR} "
+        PS2="${BROWN}continue ${BROWN}> "
+    }
+fi
+
+# Use the color prompt by default when interactive
+if [ "$TERM" = "dumb" ]; then
+    prompt_dumb
+elif [ "$EMACS_SHELL" = "emacs" ]; then
+    test -n "$PS1" && prompt_dumb
+elif [ $HAVE_GIT ]; then
+    test -n "$PS1" && prompt_color
+else
+    test -n "$PS1" && prompt_compact
+fi

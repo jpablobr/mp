@@ -1,0 +1,37 @@
+#!/bin/bash
+# ----------------------------------------------------------------------
+# - PAGER / EDITOR:
+
+# Get color support for 'less'
+# --max-forw-scroll=4 --max-back-scroll=4"
+export LESS="--RAW-CONTROL-CHARS --shift 4"
+export LESSOPEN="|lesspipe.sh %s"
+export LESS_TERMCAP_mb='[01;31m'
+export LESS_TERMCAP_md='[01;34m'
+export LESS_TERMCAP_me='[0m'
+export LESS_TERMCAP_se='[0m'
+export LESS_TERMCAP_so='[01;44;37m'
+export LESS_TERMCAP_ue='[0m'
+export LESS_TERMCAP_us='[01;37m'
+
+HAVE_EMACS=$(command -v emacs)
+
+# EDITOR
+test -n "$HAVE_EMACS" &&
+export VISUAL='emacs -Q -nw' &&
+export EDITOR='emacs -Q -nw'
+
+# PAGER
+if test -n "$(command -v less)" ; then
+    PAGER="less -FirSwX"
+    MANPAGER="less -FiRswX"
+else
+    PAGER=more
+    MANPAGER="$PAGER"
+fi
+
+# Ack
+export ACK_PAGER="$PAGER"
+export ACK_PAGER_COLOR="$PAGER"
+
+export GEM_EDITOR=$EDITOR

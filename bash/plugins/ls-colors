@@ -1,0 +1,25 @@
+#!/bin/bash
+# ----------------------------------------------------------------------
+# - LS AND DIRCOLORS:
+
+# if the dircolors utility is available, set that up to
+dircolors="$(type -P gdircolors dircolors | head -1)"
+test -n "$dircolors" && {
+    COLORS=/etc/DIR_COLORS
+    test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
+    test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
+    test ! -e "$COLORS"               && COLORS=
+    eval `dircolors --sh $COLORS`
+}
+
+export TERM=xterm-color
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
+unset dircolors
+export LS_OPTIONS='-s -F -T 0 --color=yes'
+
+# use gem-man(1) if available:
+man () {
+    gem man -s "$@" 2>/dev/null ||
+    command man "$@"
+}
