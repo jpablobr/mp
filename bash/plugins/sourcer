@@ -12,3 +12,7 @@ source "$HOME/.tmuxinator/scripts/tmuxinator"
 # if bashmarks
 test -f "$HOME/bin/bashmarks.sh" &&
 source "$HOME/bin/bashmarks.sh"
+
+# if BDSM
+test -s "/usr/local/bdsm/extensions/builtin/core/modules/shell/project/interactive" &&
+source "/usr/local/bdsm/extensions/builtin/core/modules/shell/project/interactive"
