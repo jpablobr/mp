@@ -5,10 +5,6 @@
 # Emacs mode
 set -o emacs
 
-# bring in system bashrc
-test -r /etc/bashrc &&
-. /etc/bashrc
-
 # notify of bg job completion immediately
 set -o notify
 

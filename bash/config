@@ -23,7 +23,7 @@ PLUGINS=(
     "pager-editor"
     "ls-colors"
     "sourcer"
-    "SSH"
+    "ssh"
     "env" )
 
 for plugin in "${PLUGINS[@]}"

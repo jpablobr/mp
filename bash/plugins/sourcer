@@ -1,6 +1,11 @@
 #!/bin/bash
 #-----------------------------------------------------------------------
 # - File to source
+
+# bring in system bashrc
+test -r /etc/bashrc &&
+. /etc/bashrc
+
 # if RVM.
 test -s  "$HOME/.rvm/scripts/rvm" &&
 source "$HOME/.rvm/scripts/rvm"
