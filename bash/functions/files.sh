@@ -14,13 +14,12 @@ alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 alias f-nautilus-e='nautilus ~/.emacs.d'
 alias f-nautilus-m='nautilus ~/.my-precious'
 alias f-nautilus-d='nautilus ~/Dropbox'
-alias f-bz2-compress='tar -cjf'
 
 f-bz2-compress() {
     if [[ "$1" = "h" ]]; then
 	      cat <<- -EOF-
         Compress given directory with bz2. `tar -cfj dir`
-        -EOF-
+-EOF-
     else
         tar -cfg "$1".tar.bz2 "$1"
     fi
