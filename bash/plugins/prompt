@@ -39,9 +39,14 @@ prompt_compact() {
 HAVE_GIT=$(command -v git)
 if [ $HAVE_GIT ]; then
     prompt_color() {
-        PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}
-\`if [ \$? == 0 ]; then echo \[\e[97m\]λ\[\e[0m\]; else echo \[\e[31m\]λ\[\e[0m\]; fi\` \`_git_headname\` ${COLOR1}$P${COLOR1} ${GREY}>${PS_CLEAR} "
-        PS2="${BROWN}continue ${BROWN}> "
+
+        test -s "$HOME/.rvm/contrib/ps1_functions" &&
+        source "$HOME/.rvm/contrib/ps1_functions"
+        ps1_set --prompt ∴
+
+#         PS1="${GREY}[${COLOR1}\u${GREY}@${COLOR2}\h${GREY}:${COLOR1}\w${GREY}]${COLOR2}
+# \`if [ \$? == 0 ]; then echo \[\e[97m\]λ\[\e[0m\]; else echo \[\e[31m\]λ\[\e[0m\]; fi\` \`_git_headname\` ${COLOR1}$P${COLOR1} ${GREY}>${PS_CLEAR} "
+#         PS2="${BROWN}continue ${BROWN}> "
     }
 else
     prompt_color() {
