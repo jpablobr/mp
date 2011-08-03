@@ -32,14 +32,6 @@ FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 HISTCONTROL=ignoreboth
 HISTFILESIZE=10000
 HISTSIZE=1000
-BIBINPUTS=.:/usr/share/texmf-texlive/bibtex
-TEXINPUTS=.:/usr/share/texmf-texlive/tex/
-
-# rip config
-RIPDIR=/home/jpablobr/.rip
-RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
-PATH="$PATH:$RIPDIR/active/bin"
-export RIPDIR RUBYLIB PATH
 
 # -------------------------------------------------------------------
 # - USER SHELL ENVIRONMENT:
@@ -67,3 +59,6 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 _expand() {
     return 0
 }
+
+# Prompt -- based on rvm
+ps1_set --prompt ∴

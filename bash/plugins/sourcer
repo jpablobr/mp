@@ -10,6 +10,9 @@ test -r /etc/bashrc &&
 test -s  "$HOME/.rvm/scripts/rvm" &&
 source "$HOME/.rvm/scripts/rvm"
 
+test -s "$HOME/.rvm/contrib/ps1_functions" &&
+source "$HOME/.rvm/contrib/ps1_functions"
+
 # tmuxinator
 test -s "$HOME/.tmuxinator/scripts/tmuxinator" &&
 source "$HOME/.tmuxinator/scripts/tmuxinator"
