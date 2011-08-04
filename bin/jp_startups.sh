@@ -1,3 +1,2 @@
 #!/bin/sh
-# gnome-terminal --hide-menubar --full-screen
-xfce4-terminal --hide-menubar --fullscreen &
+gnome-terminal --hide-menubar --full-screen -e '/bin/bash /home/jpablobr/.tmuxinator/jpablobr.tmux'

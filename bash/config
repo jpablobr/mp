@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # the basics
 : ${HOME=~}
 : ${LOGNAME=$(id -un)}
@@ -14,15 +12,15 @@
 #-----------------------------------------------------------------------
 # - Plugins
 PLUGINS=(
-    "env"
+    "path"
     "options"
+    "env"
     "sourcer"
+    "aliases"
     "pager-editor"
     "ls-colors"
     "completions"
     "functions"
-    "path"
-    "aliases"
     "ssh"
     "prompt" )
 
@@ -31,3 +29,7 @@ do
     plugin_path="$HOME/.my-precious/bash/plugins/${plugin}"
     test -f $plugin_path && source $plugin_path
 done
+
+# condense PATH entries
+PATH=$(puniq $PATH)
+MANPATH=$(puniq $MANPATH)

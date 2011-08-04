@@ -24,10 +24,6 @@ PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
-# if ~/bin/ruby.
-test -d "$HOME/bin/ruby" &&
-PATH="$HOME/bin/ruby:$PATH"
-
 # if Haskell
 test -d "$HOME/.cabal/bin" &&
 PATH="$HOME/.cabal/bin:$PATH"
@@ -35,10 +31,3 @@ PATH="$HOME/.cabal/bin:$PATH"
 # if node.js.
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
-
-test -d "/usr/local/texlive/2010/bin/x86_64-linux" &&
-PATH="/usr/local/texlive/2010/bin/x86_64-linux:$PATH"
-
-# condense PATH entries
-PATH=$(puniq $PATH)
-MANPATH=$(puniq $MANPATH)

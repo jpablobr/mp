@@ -39,15 +39,6 @@ HISTSIZE=1000
 # bring in rbdev functions
 . rbdev 2>/dev/null || true
 
-# source ~/.shenv now if it exists
-test -r ~/.shenv &&
-. ~/.shenv
-
-# if [ "$TERM" = "linux" ] ; then
-#     loadkeys -q .keymap
-# fi
-# loadkeys -q ~/.Keymap
-
 # -------------------------------------------------------------------
 # - MOTD / FORTUNE:
 test -n "$INTERACTIVE" -a -n "$LOGIN" && {
