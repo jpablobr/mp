@@ -1,0 +1,16 @@
+#!/bin/bash
+# ----------------------------------------------------------------------
+# - PROMP:
+
+prompt_dumb() {
+    PS1="[\W] \$ "
+}
+
+# Use the color prompt by default when interactive
+if [ "$TERM" = "dumb" ]; then
+    prompt_dumb
+elif [ "$EMACS_SHELL" = "emacs" ]; then
+    test -n "$PS1" && prompt_dumb
+else
+    test -n "$PS1" && ps1_set --prompt ∴
+fi
