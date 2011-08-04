@@ -6,35 +6,10 @@
 # Version: 0.1.0
 
 ##############################################################################->
-# - General
-
-# Regenerate TAGS file from file arguments
-tags_regenerate() {
-    rm -f TAGS
-    etags --append --output=TAGS $*
-}
-
-knpviewer() {
-    for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do
-        kill "$name"
-    done
-}
-
-last_modified(){
-    ls -t $* 2> /dev/null | head -n 1
-}
-
-dbox-bitch() {
-    dropbox stop &&
-    sudo sysctl fs.inotify.max_user_watches=1000000 &&
-    dropbox start;
-}
-
-##############################################################################->
 # - Browsing
-br-gh() { br-c "https://github.com/$1"; }
-br-t() { br-c "https://twitter.com/$1"; }
-br-g() { br-c "http://www.google.com/search?q=$1"; }
+b-gh() { br-c "https://github.com/$1"; }
+b-t() { br-c "https://twitter.com/$1"; }
+b-g() { br-c "http://www.google.com/search?q=$1"; }
 
 ##############################################################################->
 # - Grep
@@ -51,18 +26,14 @@ sed-f() { sed -i s/${1}/${2}/g "$3" ;}
 sed-r() { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
 sed-rp() { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
 # Instead of editing all files only files containg a certain string.
-sed-g() { grep -rl "$1" . | xargs sed -i "s/"$2"/"$3"/g"; }
+sed-g() { grep -rl "$1" . | xargs sed -i "s/"$1"/"$2"/g"; }
 # grep -rl WHAT WHERE | xargs sed -i s/WHAT/WITH/g
-sed-gp() { grep -rl $1 $2 | xargs sed -i s/"$4"/"$5"/g ; }
+sed-gp() { grep -rl $1 $2 | xargs sed -i s/"$1"/"$3"/g ; }
 
 ##############################################################################->
 # - Common
-m() { cd ~/.my-precious/$1 && ls --format=long; }
-d() { cd ~/Dropbox/$1 && ls --format=long; }
-t() { cd ~/todo/$1 && ls --format=long; }
-c() { cd ~/code/$1 && ls --format=long; }
-tmp() { cd ~/tmp/$1 && ls --format=long; }
-yas() { cd ~/.emacs.d/vendor/snippets/yasnippets-jpablobr/$1 && ls --format=long; }
+
+alias cpf='cp -fr'
 
 ##############################################################################->
 # - Severs
@@ -123,4 +94,28 @@ xml() {
 
 ansi2html() {
     cat "$1" | ansi2html.sh "$1" > "$1".html
+}
+##############################################################################->
+# - General
+
+# Regenerate TAGS file from file arguments
+tags_regenerate() {
+    rm -f TAGS
+    etags --append --output=TAGS $*
+}
+
+knpviewer() {
+    for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do
+        kill "$name"
+    done
+}
+
+last_modified(){
+    ls -t $* 2> /dev/null | head -n 1
+}
+
+dbox-bitch() {
+    dropbox stop &&
+    sudo sysctl fs.inotify.max_user_watches=1000000 &&
+    dropbox start;
 }
