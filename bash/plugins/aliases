@@ -93,9 +93,9 @@ alias g-p='ps aux | grep '
 # - List
 alias ls='ls --color=auto'
 alias lsg='ls -lhGt'
-alias l.='ls -d .[^.]*'
 alias lh="ls -lh"
 alias lt='ls -lt'
+alias ll='ls -lah --format=long'
 alias la='ls -lah --format=long'
 alias l-dir='ls --format=vertical'
 alias l-recent='ls -lAt | head'
