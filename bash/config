@@ -14,17 +14,17 @@
 #-----------------------------------------------------------------------
 # - Plugins
 PLUGINS=(
-    "prompt"
+    "env"
+    "options"
+    "sourcer"
+    "pager-editor"
+    "ls-colors"
     "completions"
     "functions"
     "path"
-    "options"
     "aliases"
-    "pager-editor"
-    "ls-colors"
-    "sourcer"
     "ssh"
-    "env" )
+    "prompt" )
 
 for plugin in "${PLUGINS[@]}"
 do

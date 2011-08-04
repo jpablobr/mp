@@ -105,14 +105,6 @@ DELETE() {
   curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
-if test -n "$(command -v ruby)" ; then
-    function command_not_found_handle() {
-        /usr/bin/env ruby ~/bin/ruby/method_missing.rb $*
-        return $?;
-    # echo ${PIPESTATUS[@]};
-    }
-fi
-
 json() {
   tmpfile=`mktemp -t json`
   curl -s $* | python -mjson.tool > $tmpfile

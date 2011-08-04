@@ -59,6 +59,3 @@ test -n "$INTERACTIVE" -a -n "$LOGIN" && {
 _expand() {
     return 0
 }
-
-# Prompt -- based on rvm
-ps1_set --prompt ∴
