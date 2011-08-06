@@ -14,6 +14,7 @@ alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 alias f-nautilus-e='nautilus ~/.emacs.d'
 alias f-nautilus-m='nautilus ~/.my-precious'
 alias f-nautilus-d='nautilus ~/Dropbox'
+f() { find * -name $1; }
 
 f-for-open() {
 # Open all files by given pattern.
@@ -29,51 +30,6 @@ f-rename-ext() {
     done
 }
 
-f-rmf() {
-    for file in $*
-    do
-        __rm_single_file $file
-    done
-}
-
-function __rm_single_file {
-    if ! [ -d ~/.Trash/ ]
-    then
-        command /bin/mkdir ~/.Trash
-    fi
-
-    if ! [ $# -eq 1 ]
-    then
-        echo "__rm_single_file: 1 argument required but $# passed."
-        exit
-    fi
-
-    if [ -e $1 ]
-    then
-        BASENAME=`basename $1`
-        NAME=$BASENAME
-        COUNT=0
-        while [ -e ~/.Trash/$NAME ]
-        do
-            COUNT=$(($COUNT+1))
-            NAME="$BASENAME.$COUNT"
-        done
-
-        command /bin/mv $1 ~/.Trash/$NAME
-    else
-        echo "No such file or directory: $file"
-    fi
-}
-
-touch() {
-  dir=`expr "$1" : '\(.*\/\)'`
-  if [ $dir ]
-    then
-    mkdir -p $dir
-  fi
-  /usr/bin/touch $1
-}
-
 f-prune-dirs() {
 # Remove empty directories under and including <path>s.
     find "$@" -type d -empty -depth | xargs rmdir
@@ -85,7 +41,6 @@ f-remove-extension() {
         base=`basename $f .$1`
         mv $f $base
     done
-    ls -la .
 }
 
 f-rename-ext() {
@@ -93,7 +48,6 @@ f-rename-ext() {
         base=`basename $f .$1`
         mv $f $base.$2
     done
-    ls -la .
 }
 
 f-switch-files-contents() {
@@ -101,8 +55,6 @@ f-switch-files-contents() {
   mv $2 $1 &&
   mv $1_orig $2
 }
-
-function f() { find * -name $1; }
 
 f-m() {
   file=.
@@ -122,6 +74,13 @@ f-m() {
 
 ##############################################################################->
 # - Compression
+f-compress-tardir() { if [ $# != 0 ]; then tar zxvf "$1"; fi; }
+f-compress-bz2() { if [ $# != 0 ]; then tar jcvf ./"$1".tar.bz2 "$1"; fi; }
+f-compress-zipr() { zip -r $1.zip $1; }
+f-find-and-rm() { find . -name "$1" -exec rm {} \;;}
+f-list-content-zipped() { if [ $# != 0 ]; then unzip -l $*; fi; }
+f-list-content-targz() { for file in $* ; do  tar ztf ${file}; done; }
+
 f-extract() {
   if [ -f $1 ] ; then
     case $1 in
@@ -143,46 +102,14 @@ f-extract() {
   fi
 }
 
-f-tardir() {
-    if [ $# != 0 ]; then tar zxvf "$1"; fi
-}
-
-f-compress-bz2() {
-    if [ $# != 0 ]; then tar jcvf ./"$1".tar.bz2 "$1"; fi
-}
-
-f-list-content-zipped() {
-    if [ $# != 0 ]; then unzip -l $*; fi
-}
-
-f-list-content-targz() {
-    for file in $* ; do
-        tar ztf ${file}
-    done
-}
-
-f-tgz() {
+f-compress-tgz() {
 # Create a .tgz archive a la zip.
     if [ $# != 0 ]; then
         name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
     fi
 }
 
-f-zipr() {
-    zip -r $1.zip $1
-}
-
-f-find-and-rm() {
-    find . -name "$1" -exec rm {} \;
-}
-
 ##############################################################################->
 # - Encript
-f-encript-compress () {
-    tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz
-}
-
-f-encript-decompress () {
-    gpg --decrypt -output "$1" "$1".tar.gz &&
-    tar -xvvf "$1"
-}
+f-encript-compress () { tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz; }
+f-encript-decompress () { gpg --decrypt -output "$1" "$1".tar.gz && tar -xvvf "$1";}
