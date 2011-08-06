@@ -24,7 +24,16 @@ alias th=thunar
 alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
 alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
 alias load-xresources='xrdb -merge ~/.Xresources'
-
+alias ?=man
+alias chars='wc -c'
+alias hup='kill -HUP \!*'
+alias j='jobs -l'
+alias lines='wc -l'
+alias rehash='hash -r'
+alias Rsync='rsync -e ssh -auzv'
+alias words='wc -w'
+alias z=suspend
+alias zombies='ps al | grep " Z "'
 #       |                              action
 #   key  +-----------------------------------------+------------------
 #        |           gtk_key_theme 'Emacs'         |     Mozilla
@@ -91,15 +100,17 @@ alias g-p='ps aux | grep '
 
 ##############################################################################->
 # - List
-alias ls='ls --color=auto'
+alias ls='ls -F --color=auto'
 alias lsg='ls -lhGt'
 alias lh="ls -lh"
 alias lt='ls -lt'
-alias ll='ls -lah --format=long'
 alias la='ls -lah --format=long'
 alias l-dir='ls --format=vertical'
 alias l-recent='ls -lAt | head'
 alias l-old='ls -lAt | tail'
+alias ll='/bin/ls -lasi'
+alias lll='/bin/ls -saild'
+alias lsd='ls -d .[0-9a-zA-Z]*'
 
 ##############################################################################->
 # - Ruby
