@@ -21,9 +21,9 @@ alias g='git'
 alias gst='git status'
 alias sjp='$SHELL ~/.tmuxinator/jpablobr.tmux'
 alias th=thunar
-alias s-lock='xlock -mode blank'
 alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
 alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
+alias load-xresources='xrdb -merge ~/.Xresources'
 
 #       |                              action
 #   key  +-----------------------------------------+------------------
