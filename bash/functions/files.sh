@@ -15,18 +15,8 @@ alias f-nautilus-e='nautilus ~/.emacs.d'
 alias f-nautilus-m='nautilus ~/.my-precious'
 alias f-nautilus-d='nautilus ~/Dropbox'
 
-f-bz2-compress() {
-    if [[ "$1" = "h" ]]; then
-	      cat <<- -EOF-
-        Compress given directory with bz2. `tar -jcvf dir`
--EOF-
-    else
-        tar -jcvf ./"$1".tar.bz2 "$1"
-    fi
-}
-
-# Open all files by given pattern.
 f-for-open() {
+# Open all files by given pattern.
     for file in "$1"; do
         open $file;
     done
@@ -99,7 +89,6 @@ f-remove-extension() {
 }
 
 f-rename-ext() {
-# Rename file extentions"
     for f in *.$1; do
         base=`basename $f .$1`
         mv $f $base.$2
@@ -107,12 +96,12 @@ f-rename-ext() {
     ls -la .
 }
 
-f-switch() {
-# Switches two files contents
+f-switch-files-contents() {
   mv $1 $1_orig &&
   mv $2 $1 &&
   mv $1_orig $2
 }
+
 function f() { find * -name $1; }
 
 f-m() {
@@ -154,66 +143,46 @@ f-extract() {
   fi
 }
 
-# Install a .tar.gz archive in current directory
-tardir() {
-    if [ $# != 0 ]; then tar zxvf $1; fi
+f-tardir() {
+    if [ $# != 0 ]; then tar zxvf "$1"; fi
 }
 
-# List the contents of a .zip archive
-cz() {
+f-compress-bz2() {
+    if [ $# != 0 ]; then tar jcvf ./"$1".tar.bz2 "$1"; fi
+}
+
+f-list-content-zipped() {
     if [ $# != 0 ]; then unzip -l $*; fi
 }
 
-# List the contents of a .tar.gz archive
-ctgz() {
+f-list-content-targz() {
     for file in $* ; do
         tar ztf ${file}
     done
 }
 
+f-tgz() {
 # Create a .tgz archive a la zip.
-tgz() {
     if [ $# != 0 ]; then
         name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
     fi
 }
 
-function zipr() {
+f-zipr() {
     zip -r $1.zip $1
 }
 
-function f-find-and-rm() {
+f-find-and-rm() {
     find . -name "$1" -exec rm {} \;
-}
-
-function trash() {
-  local trash_dir="${HOME}/.Trash"
-  local temp_ifs=$IFS
-  IFS=$'\n'
-  for item in "$@"; do
-    if [[ -e "$item" ]]; then
-      item_name="$(basename $item)"
-      if [[ -e "${trash_dir}/${item_name}" ]]; then
-        mv -f "$item" "${trash_dir}/${item_name} $(date "+%H-%M-%S")"
-      else
-        mv -f "$item" "${trash_dir}/"
-      fi
-    fi
-  done
-  IFS=$temp_ifs
-}
-
-btar () {
-    tar -cvjf "$1".tar.bz2 "$1"
 }
 
 ##############################################################################->
 # - Encript
-e-compress () {
+f-encript-compress () {
     tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz
 }
 
-e-decompress () {
+f-encript-decompress () {
     gpg --decrypt -output "$1" "$1".tar.gz &&
     tar -xvvf "$1"
 }
