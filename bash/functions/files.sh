@@ -74,12 +74,13 @@ f-m() {
 
 ##############################################################################->
 # - Compression
-f-compress-tardir() { if [ $# != 0 ]; then tar zxvf "$1"; fi; }
-f-compress-bz2() { if [ $# != 0 ]; then tar jcvf ./"$1".tar.bz2 "$1"; fi; }
 f-compress-zipr() { zip -r $1.zip $1; }
+f-compress-tardir() { if [ $# != 0 ]; then tar zxvf "$1"; fi }
+f-compress-bz2() { if [ $# != 0 ]; then tar jcvf ./"$1".tar.bz2 "$1"; fi }
+f-compress-tgz() { if [ $# != 0 ]; then name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}; fi }
 f-find-and-rm() { find . -name "$1" -exec rm {} \;;}
-f-list-content-zipped() { if [ $# != 0 ]; then unzip -l $*; fi; }
-f-list-content-targz() { for file in $* ; do  tar ztf ${file}; done; }
+f-list-content-zipped() { if [ $# != 0 ]; then unzip -l $*; fi }
+f-list-content-targz() { for file in $* ; do  tar ztf ${file}; done }
 
 f-extract() {
   if [ -f $1 ] ; then
@@ -102,14 +103,7 @@ f-extract() {
   fi
 }
 
-f-compress-tgz() {
-# Create a .tgz archive a la zip.
-    if [ $# != 0 ]; then
-        name=$1.tar; shift; tar -rvf ${name} $* ; gzip -9 ${name}
-    fi
-}
-
 ##############################################################################->
 # - Encript
 f-encript-compress () { tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz; }
-f-encript-decompress () { gpg --decrypt -output "$1" "$1".tar.gz && tar -xvvf "$1";}
+f-encript-decompress () { gpg --decrypt -output "$1" "$1".tar.gz && tar -xvvf "$1"; }
