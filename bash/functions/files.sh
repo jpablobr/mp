@@ -18,10 +18,10 @@ alias f-nautilus-d='nautilus ~/Dropbox'
 f-bz2-compress() {
     if [[ "$1" = "h" ]]; then
 	      cat <<- -EOF-
-        Compress given directory with bz2. `tar -cfj dir`
+        Compress given directory with bz2. `tar -jcvf dir`
 -EOF-
     else
-        tar -cfg "$1".tar.bz2 "$1"
+        tar -jcvf ./"$1".tar.bz2 "$1"
     fi
 }
 
