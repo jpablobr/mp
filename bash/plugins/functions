@@ -2,7 +2,7 @@
 # ----------------------------------------------------------------------
 # - Source functions Dir:
 
-: ${MY_PRECIOUS_FUNCTIONS_DIR:=$HOME/.my-precious/bash/functions}
+: ${MY_PRECIOUS_FUNCTIONS_DIR:=$HOME/.mp/bash/functions}
 
 test -n "$MY_PRECIOUS_FUNCTIONS_DIR" && {
   if [ -d $MY_PRECIOUS_FUNCTIONS_DIR -a -r $MY_PRECIOUS_FUNCTIONS_DIR -a \

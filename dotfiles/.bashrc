@@ -15,7 +15,7 @@ if [ "$PS1" ]; then
     PS1='\u@\h:\w\$ '
     if [ -f /etc/bash.bashrc ]; then
 	. /etc/bash.bashrc
-  . ~/.my-precious/bash/config
+  . ~/.mp/bash/config
     fi
   else
     if [ "`id -u`" -eq 0 ]; then

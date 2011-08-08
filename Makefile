@@ -1,6 +1,6 @@
 user_home            = ~
 bin                  = $(user_home)/bin
-mp_path              = $(user_home)/.my-precious
+mp_path              = $(user_home)/.mp
 mp_bin_path          = $(mp_path)/bin
 mp_dotfiles_path     = $(mp_path)/dotfiles
 

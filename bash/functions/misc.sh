@@ -16,7 +16,7 @@ b-g() { br-c "http://www.google.com/search?q=$1"; }
 g-.() { grep -nH -e "$@";}
 g-f() { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
 gr-fp() { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-gr-aliases() { grep -nH -e "$@" ~/.my-precious/bash/aliases; }
+gr-aliases() { grep -nH -e "$@" ~/.mp/bash/aliases; }
 gr-linux-yac() { grep -nH -e "$@" ~/org/yacs/linux.org; }
 gr-less() { egrep --color=yes "$@" | less -R; }
 

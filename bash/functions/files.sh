@@ -12,7 +12,7 @@ alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -
 alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 alias f-nautilus-e='nautilus ~/.emacs.d'
-alias f-nautilus-m='nautilus ~/.my-precious'
+alias f-nautilus-m='nautilus ~/.mp'
 alias f-nautilus-d='nautilus ~/Dropbox'
 f() { find * -name $1; }
 

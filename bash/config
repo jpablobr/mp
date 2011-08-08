@@ -30,7 +30,7 @@ PLUGINS=(
 
 for plugin in "${PLUGINS[@]}"
 do
-    plugin_path="$HOME/.my-precious/bash/plugins/${plugin}"
+    plugin_path="$HOME/.mp/bash/plugins/${plugin}"
     test -f $plugin_path && source $plugin_path
 done
 
