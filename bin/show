@@ -1,0 +1,123 @@
+#!/bin/bash
+# show.sh
+# Show stuff helper
+# Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
+
+
+PROGNAME=$(basename $0)
+VERSION='0.1.0'
+HAVE_CURL=$(command -v curl)
+HAVE_WGET=$(command -v wget)
+
+service-network() {
+#	-----------------------------------------------------------------------
+#	display the network related stuff for a given service
+#		ARG service
+#	-----------------------------------------------------------------------
+    tput setaf 2
+    echo "Please enter the name of the service. e.i nginx"
+    read answer
+    tput bold
+    netstat -atnp | grep answer
+    tput op
+}
+
+my-public-ip() {
+#	-----------------------------------------------------------------------
+#	Display current system public IP
+#		No arguments
+#	-----------------------------------------------------------------------
+    tput setaf 2 bold
+    if [[ HAVE_CURL ]]; then
+        wget -q -O - checkip.dyndns.org | \
+            sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+    elif [[ HAVE_WGET ]]; then
+        curl -s checkip.dyndns.org| \
+            sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+    fi
+    tput op
+}
+
+helptext() {
+#	-----------------------------------------------------------------------
+#	Function to display help message for program
+#		No arguments
+#	-----------------------------------------------------------------------
+	  local tab=$(echo -en "\t\t")
+    tput setaf 2 bold
+    cat <<- -EOF-
+What you wanna see?
+-EOF-
+    tput op
+}
+
+error_exit() {
+#	-----------------------------------------------------------------------
+#	Function for exit due to fatal program error
+#		Accepts 1 argument:
+#			string containing descriptive error message
+#	-----------------------------------------------------------------------
+    tput setaf 1 bold
+	  echo "${PROGNAME}: ${1:-"Unknown Error"}" >&2
+    tput op
+	  exit 1
+}
+
+signal_exit() {
+#	-----------------------------------------------------------------------
+#	Function to handle termination signals
+#		Accepts 1 argument:
+#			signal_spec
+#	-----------------------------------------------------------------------
+  tput setaf 1 bold
+	case $1 in
+		INT)	echo "$PROGNAME: Program aborted by user" >&2
+			exit
+			;;
+		TERM)	echo "$PROGNAME: Program terminated" >&2
+			exit
+			;;
+		*)	error_exit "$PROGNAME: Terminating on unknown signal"
+			;;
+	esac
+  tput op
+}
+
+version() {
+#	-----------------------------------------------------------------------
+#	Function to display Version
+#		No arguments
+#	-----------------------------------------------------------------------
+    tput setaf 7 bold; echo "$PROGNAME $VERSION"; tput op
+}
+
+#	----------------------------------------------------------------------
+#	Program starts here
+#	----------------------------------------------------------------------
+
+helptext
+
+declare -A options
+options=(
+    ["myip"]="My ip"
+    ["ssns"]="Specific service network stuff"
+    ["ssns"]="Open ports"
+    ["ohp"]="Open hidden ports"
+    ["ohps"]="Open hidden ports show")
+
+tput setaf 7
+select opt in "${options[@]}"; do
+case $opt in
+    ${options[myip]}) my-public-ip ;;
+    ${options[ssns]}) service-network ;;
+    ${options[op]}) nmap -sS -O 127.0.0.1; ;;
+    ${options[ohp]}) netstat -nap; ;;
+    ${options[ohps]}) lsof -i -n -P; ;;
+		*) 	echo "Nothing to show!";
+esac
+
+	break	# to get a shell prompt.
+done
+
+tput op
+exit 0

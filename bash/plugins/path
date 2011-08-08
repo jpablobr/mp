@@ -4,14 +4,6 @@
 
 JAVA_HOME=/usr/lib/jvm/java-6-sun/
 export JAVA_HOME
-export CLASSPATH=.:/usr/share/java/junit.jar
-
-export CPATH=$CPATH:/usr/include/gtk-2.0
-export CPATH=$CPATH:/usr/include/glib-2.0/
-export CPATH=$CPATH:/usr/lib/glib-2.0/include/
-export CPATH=$CPATH:/usr/include/pango-1.0/
-export CPATH=$CPATH:/usr/lib/gtk-2.0/include/
-export CPATH=$CPATH:/usr/include/atk-1.0/
 
 # bin
 PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
@@ -20,10 +12,6 @@ PATH="$JAVA_HOME/bin:$PATH"
 # sbin
 PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 
-# if ~/bin.
-test -d "$HOME/bin" &&
-PATH="$HOME/bin:$PATH"
-
 # if Haskell
 test -d "$HOME/.cabal/bin" &&
 PATH="$HOME/.cabal/bin:$PATH"
@@ -31,3 +19,12 @@ PATH="$HOME/.cabal/bin:$PATH"
 # if node.js.
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
+
+#-----------------------------------------------------------------------
+# - if $HOME/bin
+
+if test -d "$HOME/bin"; then
+    for b in `find ~/bin/ -type d | cut -c 1-`; do
+        PATH="$b:$PATH"
+    done
+fi

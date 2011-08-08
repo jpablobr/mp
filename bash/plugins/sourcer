@@ -14,5 +14,5 @@ test -s "$HOME/.tmuxinator/scripts/tmuxinator" &&
 source "$HOME/.tmuxinator/scripts/tmuxinator"
 
 # if bashmarks
-test -f "$HOME/bin/bashmarks.sh" &&
-source "$HOME/bin/bashmarks.sh"
+test -f "$HOME/bin/sh/bashmarks.sh" &&
+source "$HOME/bin/sh/bashmarks.sh"
