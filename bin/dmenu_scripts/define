@@ -1,2 +1,0 @@
-#!/bin/sh
-gnome-dictionary --look-up `dmenu -nb '#a5b474' -sb '#444444' -nf '#eeeeee' -sf '#a5b474' -fn '-*-*-*-*-*-*-20-*-*-*-*-*-*-*'`
