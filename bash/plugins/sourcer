@@ -16,3 +16,7 @@ source "$HOME/.tmuxinator/scripts/tmuxinator"
 # if bashmarks
 test -f "$HOME/bin/sh/bashmarks.sh" &&
 source "$HOME/bin/sh/bashmarks.sh"
+
+# if ~/.private
+test -f "$HOME/.private/bashrc" &&
+source "$HOME/.private/bashrc"
