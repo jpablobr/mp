@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 rsync -auzvr --delete --exclude-from \
     $HOME/.rsync-exclude /home/jpablobr/ \

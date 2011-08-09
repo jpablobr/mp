@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # grab the package names in a single line.
 PACKAGES=$(sudo apt-get upgrade -s | grep ^Inst | cut -f2 -d ' ' | tr '\n' ' ')

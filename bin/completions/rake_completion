@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # rake bash completion script
 
 complete_rake_command() {

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # vim: set sw=4 ts=4 et:
 help()
 {

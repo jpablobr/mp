@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
 # Usage: git-amend <commit>
 # Amend changes staged in the index to <commit>, or edit commit message if
 # no changes are currently staged. Modifications not staged are stashed and

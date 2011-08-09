@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # tester.sh
 # Testing template
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>

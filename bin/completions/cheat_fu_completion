@@ -1,4 +1,4 @@
-#-*- mode: shell-script;-*-
+#!/usr/bin/env bash
 
 # cheat_fu command line completion.
 # Copyright 2011 Jose Pablo Barrantes <xjpablobrx@gmail.com>

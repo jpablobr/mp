@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 # Completion for bash:
 #
 # (1) install this file,

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Usage: ctags-ruby [<options>]
 # Build tags file in current directory. Any <options> provided are passed to
 # ctags. Requires exuberant ctags.

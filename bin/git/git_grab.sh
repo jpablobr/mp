@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 [ $# -eq 0 ] && {
 	echo "usage: git-grab username [repo]"

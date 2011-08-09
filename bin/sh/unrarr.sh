@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # NAME
 #    unrarr.sh - UnRAR recursive

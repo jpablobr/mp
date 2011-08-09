@@ -1,4 +1,4 @@
-#-*- mode: shell-script;-*-
+#!/usr/bin/env bash
 _gemopencomplete() {
     local cmd=${COMP_WORDS[0]}
     local subcmd=${COMP_WORDS[1]}

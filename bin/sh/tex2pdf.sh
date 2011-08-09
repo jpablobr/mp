@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Output error message
 directory=$(dirname "$0")
 

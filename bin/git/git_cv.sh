@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Usage: git-cv <upstream> [<head> [<limit>]]
 # Humane git-cherry view. Show commits not merged upstream
 # like git-cherry with verbose output, short SHAs, and ANSI

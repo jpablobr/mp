@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # NAME
 #    txt2cloud.sh - Create XHTML tag cloud page from text file

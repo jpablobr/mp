@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 ## Usage: git track
 ##        git track <branch>
 ## Point the current local branch at <branch> for the purpose

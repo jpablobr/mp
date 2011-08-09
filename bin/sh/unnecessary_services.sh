@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # in order to remove unnecessary services, first determine how is it started and
 # which package provides it. You can do this easily by checking the program that
 # listens in the socket, the following example will tell you using this tools and
