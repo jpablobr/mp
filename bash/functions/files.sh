@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # files.sh
 # Files helpers
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>

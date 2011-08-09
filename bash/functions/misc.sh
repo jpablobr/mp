@@ -1,49 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # misc.sh
 # General helpers
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
-# Created: 18 Mar 2011
-# Version: 0.1.0
-
-##############################################################################->
-# - Browsing
-b-gh() { br-c "https://github.com/$1"; }
-b-t() { br-c "https://twitter.com/$1"; }
-b-g() { br-c "http://www.google.com/search?q=$1"; }
 
 ##############################################################################->
 # - Grep
 g-.() { grep -nH -e "$@";}
 g-f() { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
 gr-fp() { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
-gr-aliases() { grep -nH -e "$@" ~/.mp/bash/aliases; }
 gr-linux-yac() { grep -nH -e "$@" ~/org/yacs/linux.org; }
 gr-less() { egrep --color=yes "$@" | less -R; }
-
-##############################################################################->
-# - Sed
-sed-f() { sed -i s/${1}/${2}/g "$3" ;}
-sed-r() { find . -type f | xargs sed -i "s/"$1"/"$2"/g";}
-sed-rp() { find "$1" -type f | xargs sed -i "s/"$2"/"$3"/g" ;}
-# Instead of editing all files only files containg a certain string.
-sed-g() { grep -rl "$1" . | xargs sed -i "s/"$1"/"$2"/g"; }
-# grep -rl WHAT WHERE | xargs sed -i s/WHAT/WITH/g
-sed-gp() { grep -rl $1 $2 | xargs sed -i s/"$1"/"$3"/g ; }
-
-##############################################################################->
-# - Common
-
-alias cpf='cp -fr'
-
-##############################################################################->
-# - Severs
-nginx-stop() {
-    ps ax | grep nginx | cut -d " " -f 1 | xargs sudo kill -9
-}
-
-nginx-start() {
-    sudo /opt/nginx/sbin/nginx
-}
 
 ##############################################################################->
 # - Databases
@@ -128,6 +94,5 @@ moduse() {
 
 psg() { ps aux | head -1 | grep -v Broken ; ps aux | grep $* | grep -v grep; }
 pod() { pod2man "$*" | nroff -man | less; }
-zl() { zcat "$*" | less;}
 localtime () { perl -le 'for (@ARGV) { print scalar localtime($_) }' $*; }
 iplist() { ifconfig | perl -nle '/dr:(\S+)/ && print $1'; }

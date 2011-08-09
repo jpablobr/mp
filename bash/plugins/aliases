@@ -1,4 +1,4 @@
-# -*- mode: sh -*-
+ -*- mode: sh -*-
 # Common aliases
 alias o='open . &'
 alias more='less'
@@ -34,6 +34,7 @@ alias Rsync='rsync -e ssh -auzv'
 alias words='wc -w'
 alias z=suspend
 alias zombies='ps al | grep " Z "'
+alias cpf='cp -fr'
 #       |                              action
 #   key  +-----------------------------------------+------------------
 #        |           gtk_key_theme 'Emacs'         |     Mozilla
