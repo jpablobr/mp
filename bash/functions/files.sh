@@ -2,19 +2,13 @@
 # files.sh
 # Files helpers
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
-# Created: 18 Mar 2011
-# Version: 0.1.0
 
 # aliases
-alias f-space2us='find . -depth -exec ~/bin/rename_files_with_spaces.sh {} \;'
 alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
 alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
 alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
-alias f-nautilus-e='nautilus ~/.emacs.d'
-alias f-nautilus-m='nautilus ~/.mp'
-alias f-nautilus-d='nautilus ~/Dropbox'
-f() { find * -name $1; }
+alias f=find
 
 f-for-open() {
 # Open all files by given pattern.
