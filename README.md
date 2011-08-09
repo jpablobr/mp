@@ -1,3 +1,3 @@
 # This is $HOME #
 
-![My Precious](https://github.com/jpablobr/mp/raw/master/gollum.jpg)
+![My Precious](https://github.com/jpablobr/my-precious/raw/master/gollum.jpg)
