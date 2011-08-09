@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ----------------------------------------------------------------------
 # - Main config loader
 
@@ -28,12 +28,11 @@ PLUGINS=(
     "ssh"
     "prompt" )
 
-for plugin in "${PLUGINS[@]}"
-do
+for plugin in "${PLUGINS[@]}"; do
     plugin_path="$HOME/.mp/bash/plugins/${plugin}"
     test -f $plugin_path && source $plugin_path
 done
 
-# condense PATH entries
+# condense $PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)

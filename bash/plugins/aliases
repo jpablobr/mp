@@ -111,6 +111,7 @@ alias l-old='ls -lAt | tail'
 alias ll='/bin/ls -lasi'
 alias lll='/bin/ls -saild'
 alias lsd='ls -d .[0-9a-zA-Z]*'
+lg() { ls -la | grep "$1"; }
 
 ##############################################################################->
 # - Ruby
