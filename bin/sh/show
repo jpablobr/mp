@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # show.sh
 # Show stuff helper
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
@@ -8,6 +8,8 @@ PROGNAME=$(basename $0)
 VERSION='0.1.0'
 HAVE_CURL=$(command -v curl)
 HAVE_WGET=$(command -v wget)
+# For keeping state between get-answer()
+ANSWER=''
 
 service-network() {
 #	-----------------------------------------------------------------------
@@ -15,10 +17,21 @@ service-network() {
 #		ARG service
 #	-----------------------------------------------------------------------
     tput setaf 2
-    echo "Please enter the name of the service. e.i nginx"
-    read answer
+    ask-for "Name of the service? e.i nginx"
     tput bold
-    netstat -atnp | grep answer
+    netstat -atnp | grep "$ANSWER"
+    tput op
+}
+
+ask-for() {
+#	-----------------------------------------------------------------------
+#	display the network related stuff for a given service
+#		ARG service
+#	-----------------------------------------------------------------------
+    tput setaf 2
+    echo "$1"
+    read a
+    ANSWER=$a
     tput op
 }
 
@@ -103,7 +116,8 @@ options=(
     ["ssns"]="Specific service network stuff"
     ["ssns"]="Open ports"
     ["ohp"]="Open hidden ports"
-    ["ohps"]="Open hidden ports show")
+    ["ohps"]="Open hidden ports show"
+)
 
 tput setaf 7
 select opt in "${options[@]}"; do
