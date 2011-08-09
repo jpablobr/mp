@@ -2,20 +2,21 @@
 
 function helptext {
 #	-----------------------------------------------------------------------
-#	Function to display help message for program
+#	Display help message.
 #		No arguments
 #	-----------------------------------------------------------------------
 	local tab=$(echo -en "\t\t")
 
 	cat <<- -EOF-
-Rename file(s) underscores and spaces from files recursively.
+
+$(tput setaf 2 bold)Swaps file(s) "-" and "_" characters, and downcase them as well recursively.$(tput op)
 
 	Options:
 
 	-h,    $(tput setaf 2 bold) Display this help message and exit.$(tput op)
 	-rs,   $(tput setaf 2 bold) Space2underscore all files in current directory recursivly.$(tput op)
 	-ru,   $(tput setaf 2 bold) Udescore2space all files in current directory recursively.$(tput op)
-	-s2u,	 $(tput setaf 2 bold) Space2underscore the given file.$(tput op)
+	-s2u,  $(tput setaf 2 bold) Space2underscore the given file.$(tput op)
 	-u2s,  $(tput setaf 2 bold) Underscore2space the give file.$(tput op)
 
 -EOF-
@@ -23,37 +24,31 @@ Rename file(s) underscores and spaces from files recursively.
 
 space2underscore() {
 #	-----------------------------------------------------------------------
-#	Function ename the given file from spaces to underscores and
-#	downcase them.
+#	Rename the given file from spaces to underscores and downcase them.
 #		Name of the file.
 #	-----------------------------------------------------------------------
-    local of="$1"
-    local dir=`dirname "$1"`
     local file=`basename "$1"`
     local nf=`echo  $file|sed "s/[ |-]/_/g" | tr '[:upper:]' '[:lower:]'`
 
-    if [ "$of" != "$nf" ]; then
-        mv "$of" "$nf"
+    if [ "$1" != "$nf" ]; then
+        mv "$1" "$nf"
         tput setaf 2 bold
-        echo "$of new name: $nf"
+        echo "$1 new name: $nf"
         tput op
     fi
 }
 
 underscore2space() {
 #	-----------------------------------------------------------------------
-#	Function ename the given file from spaces to underscores and
-#	downcase them.
+#	Rname the given file from spaces to underscores and downcase them.
 #		Name of the file.
 #	-----------------------------------------------------------------------
-    local of="$1"
-    local dir=`dirname "$1"`
     local file=`basename "$1"`
     local nf=`echo  $file|sed "s/[ |_]/-/g" | tr '[:upper:]' '[:lower:]'`
-    if [ "$of" != "$nf" ]; then
-        mv "$of" "$nf"
+    if [ "$1" != "$nf" ]; then
+        mv "$1" "$nf"
         tput setaf 2 bold
-        echo "$of new name: $nf"
+        echo "$1 new name: $nf"
         tput op
     fi
 }
