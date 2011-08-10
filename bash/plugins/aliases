@@ -74,9 +74,9 @@ alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
-alias e='emacs -Q -nw'
-alias em-s='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
-alias emm='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
+alias es='emacs -Q -nw'
+alias se='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
+alias e='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-jpablobr.el'
 alias emr='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-ruby.el'
 alias e-m-aliases='e ~/.mp/bash/aliases'
