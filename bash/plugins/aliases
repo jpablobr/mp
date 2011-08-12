@@ -79,6 +79,7 @@ alias se='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias e='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-jpablobr.el'
 alias emr='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-ruby.el'
+alias emrg='emacs -Q -l ~/.emacs.d/jpablobr/nw-ruby.el'
 alias e-m-aliases='e ~/.mp/bash/aliases'
 alias e-m-config='e ~/.mp/bash/config'
 alias e-m-init='e ~/.emacs.d/init.el'
@@ -117,25 +118,25 @@ lg() { ls -la | grep "$1"; }
 
 ##############################################################################->
 # - Ruby
-alias r-bu='bundle update'
-alias r-bi='bundle install'
-alias r-rdm='rake db:migrate'
+alias bu='bundle update'
+alias bi='bundle install'
+alias dm='rake db:migrate'
 # - Rails
-alias ra-c='rails c'
-alias ra-sl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
-alias ra-g='rails generate'
-alias ra-gr='rails generate resource'
-alias ra-gm='rails generate model'
-alias ra-gc='rails generate controller'
-alias ra-d='rails destroy'
-alias ra-dr='rails destroy resource'
-alias ra-dc='rails destroy controller'
-alias ra-dm='rails destroy model'
-alias ra-tpl='rails -m ~/.rails.d/template.rb'
+alias rac='rails c'
+alias rasl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
+alias rag='rails generate'
+alias ragr='rails generate resource'
+alias ragm='rails generate model'
+alias ragc='rails generate controller'
+alias rad='rails destroy'
+alias radr='rails destroy resource'
+alias radc='rails destroy controller'
+alias radm='rails destroy model'
+alias ratpl='rails -m ~/.rails.d/template.rb'
 # - heroku
 alias h='heroku'
-alias h-i='heroku info'
-alias h-p="git push heroku master"
+alias hi='heroku info'
+alias hp="git push heroku master"
 alias h-l="heroku logs"
 alias h-da="heroku domains:add"
 alias h-dbp='heroku db:pull'
@@ -143,3 +144,5 @@ alias h-add='heroku addons:add'
 alias h-cl='heroku config --long'
 alias h-c='heroku console'
 alias h-t='heroku logs --tail'
+# gems
+alias gei='gem install'

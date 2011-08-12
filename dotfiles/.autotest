@@ -7,6 +7,7 @@ PENDING = true
 STICKY = false
 SUCCESS_SOUND = ''
 FAILURE_SOUND = ''
+PLATFORM = ''
 
 Autotest.add_hook(:initialize) {|at|
   at.add_exception %r{^\.git}  # ignore Version Control System
