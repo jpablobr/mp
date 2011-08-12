@@ -6,4 +6,5 @@ if [ "$BASH" ]; then
   fi
 fi
 
-mesg n
+YSRESOURCES=/etc/X11/Xresources
+USRRESOURCES=$HOME/.Xresources
