@@ -12,6 +12,6 @@ if [ "$TERM" = "dumb" ]; then
 elif [ "$EMACS_SHELL" = "emacs" ]; then
     test -n "$PS1" && prompt_dumb
 else
-    rvm use default
+    rvm use default > /dev/null 2>&-
     test -n "$PS1" && ps1_set --prompt ∴
 fi
