@@ -36,6 +36,7 @@ alias z=suspend
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -fr'
 alias tmux='tmux -2'
+send-to-apt-pkgs(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 
 #       |                              action
 #   key  +-----------------------------------------+------------------

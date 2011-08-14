@@ -3,7 +3,9 @@ cache/
 .Trash/
 Cache/
 .cache/
-.VirtualBox/
-vmware/
 .local/share/Trash
 .SpiderOak/
+.gconf/system
+.config/google-chrome/SingletonCookie
+.config/google-chrome/SingletonLock
+.config/google-chrome/SingletonSocket
