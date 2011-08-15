@@ -36,7 +36,9 @@ alias z=suspend
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -fr'
 alias tmux='tmux -2'
-send-to-apt-pkgs(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
+alias gentags='ctags --verbose -R'
+
+add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 
 #       |                              action
 #   key  +-----------------------------------------+------------------
@@ -76,6 +78,7 @@ alias hi='history | tail -20'
 alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
+alias ec='emacsclient -cnw'
 alias es='emacs -Q -nw'
 alias se='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 alias e='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
