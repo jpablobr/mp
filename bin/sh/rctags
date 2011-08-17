@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Build emacs "TAGS" file in current directory
+# based on the projects rvm gemset.
+# Requires exuberant ctags.
+set -e
+
+ctags --version >/dev/null 2>&1 || {
+    echo "ctags not found or too old." 1>&2
+    exit 1
+}
+
+rpath=`echo $GEM_PATH | cut -d: -f1`
+
+find $rpath -type f -name '*.rb' | ctags -eL -
+
+exit 0

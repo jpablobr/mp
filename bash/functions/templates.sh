@@ -9,8 +9,7 @@ t-rvmrc() {
       && return 1
 
   cat > .rvmrc << -EOF-
-rvm_gemset_create_on_use_flag=1
-rvm use ruby-1.9.2-p180@$1
+rvm use ruby-1.9.2-p290@$1
 -EOF-
   return 0
 }

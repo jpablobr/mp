@@ -2,6 +2,6 @@
 
 set -e
 
-xfce4-terminal --working-directory \
+exec xfce4-terminal --working-directory \
 --hide-menubar \
 --maximize
