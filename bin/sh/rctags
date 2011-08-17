@@ -3,6 +3,11 @@
 # Build emacs "TAGS" file in current directory
 # based on the projects rvm gemset.
 # Requires exuberant ctags.
+
+# RUBYALIAS='/.*alias(_method)?[[:space:]]+:([[:alnum:]_=!?]+),?[[:space:]]+:([[:alnum:]_=!]+)/\\2/f/'
+# ctags -R --tag-relative=yes --totals=yes \
+#     --extra=+f --fields=+iaS --regex-ruby="$RUBYALIAS" "$@"
+
 set -e
 
 ctags --version >/dev/null 2>&1 || {
