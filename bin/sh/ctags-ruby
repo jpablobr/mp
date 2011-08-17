@@ -10,5 +10,5 @@ ctags --version >/dev/null 2>&1 || {
 }
 
 RUBYALIAS='/.*alias(_method)?[[:space:]]+:([[:alnum:]_=!?]+),?[[:space:]]+:([[:alnum:]_=!]+)/\\2/f/'
-ctags -R --tag-relative=yes --totals=yes \
+ctags -R -e --tag-relative=yes --totals=yes \
     --extra=+f --fields=+iaS --regex-ruby="$RUBYALIAS" "$@"
