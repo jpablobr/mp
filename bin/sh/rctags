@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-
-# Build emacs "TAGS" file in current directory
+# Build an emacs "TAGS" file in current directory
 # based on the projects rvm gemset.
 # Requires exuberant ctags.
-
-# RUBYALIAS='/.*alias(_method)?[[:space:]]+:([[:alnum:]_=!?]+),?[[:space:]]+:([[:alnum:]_=!]+)/\\2/f/'
-# ctags -R --tag-relative=yes --totals=yes \
-#     --extra=+f --fields=+iaS --regex-ruby="$RUBYALIAS" "$@"
+#
+# Usage: ctags-ruby [<options>]
+# Any <options> provided are passed to `ctags`
 
 set -e
 
@@ -15,8 +13,16 @@ ctags --version >/dev/null 2>&1 || {
     exit 1
 }
 
-rpath=`echo $GEM_PATH | cut -d: -f1`
+RPATH=`echo $GEM_PATH | cut -d: -f1`
+RUBYALIAS='/.*alias(_method)?[[:space:]]+:([[:alnum:]_=!?]+),?[[:space:]]+:([[:alnum:]_=!]+)/\\2/f/'
 
-find $rpath -type f -name '*.rb' | ctags -eL -
+find $RPATH -type f -name '*.rb' | ctags -e \
+    --verbose=yes \
+    --tag-relative=yes \
+    --totals=yes \
+    --extra=+f \
+    --fields=+iaS \
+    --regex-ruby="$RUBYALIAS" "$@" \
+    -L -
 
 exit 0
