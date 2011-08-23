@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# focus command line completion.
+# Copyright 2011 Jose Pablo Barrantes <xjpablobrx@gmail.com>
+# Licensed under MIT
+
+: ${have=$(command -v focus)}
+
+test -n "$have" &&
+_focus_complete()
+{
+  COMPREPLY=()
+  HOME=~
+  if [ $COMP_CWORD = 1 ]; then
+    notes=`focus -l | sed s:$HOME/.private/notes/::g | sed s:\.org::g`
+    COMPREPLY=(`compgen -W "$notes" -- $2`)
+  fi
+  return 0
+
+}
+
+alias fcs='focus'
+alias fcse='focus -e'
+alias fcsa='focus -a 20'
+alias focus-edit='focus -e'
+
+test -n "$have" && complete -F _focus_complete -o default focus focus-edit fcs fcse

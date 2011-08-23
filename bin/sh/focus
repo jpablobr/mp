@@ -1,0 +1,330 @@
+#!/usr/bin/env bash
+#	-------------------------------------------------------------------
+#
+#	Quick focus command line tool.
+#
+#	Copyright 2011, José Pablo Barrantes R. <xjpablobr@gmail.com>
+# http://jpablobr.com
+#
+#	This program is free software; you can redistribute it and/or
+#	modify it under the terms of the GNU General Public License as
+#	published by the Free Software Foundation; either version 2 of the
+#	License, or (at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful, but
+#	WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#	General Public License for more details.
+#
+#	Description:
+#
+# $  focus -h
+#
+#	Usage: Please see readme or use the -h option.
+#
+#	Revision History:
+#
+#	-------------------------------------------------------------------
+#	Constants
+#	-------------------------------------------------------------------
+set -e
+
+PROGNAME=$(basename $0)
+VERSION='0.1.0'
+FCS_NOTES=${FCS_NOTES:-~/.private/notes/}
+FCS_REPO=${FCS_REPO:-git://github.com/jpablobr/focus-notes.git}
+FCS_ORIGIN=${FCS_ORIGIN:-git://github.com/jpablobr/focus.git}
+FCS_EXT='.org'
+OUTPUT_COLOR="$(tput setaf 2)"
+
+alarm_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to validate if focuss exists. If not dispay usage.
+#		Arguments: times:minutes
+#	-----------------------------------------------------------------------
+    local minutes="$1"; shift
+    local msg=`cat ~/.private/notes/focus.org`
+
+    while :; do
+        sleep "$minutes"m
+        notify-send "Getting done!" \
+            "$msg" \
+            -i /usr/share/pixmaps/gnome-gmush.png
+    done
+}
+
+#	----------------------------------------------------------------------
+#	Functions
+#	----------------------------------------------------------------------
+
+helptext() {
+#	-----------------------------------------------------------------------
+#	Function to display help message for program
+#		No arguments
+#	-----------------------------------------------------------------------
+
+	echo -en '
+      //  ) )
+   __//__  ___      ___               ___
+    //   //   ) ) //   ) ) //   / / ((   ) )
+   //   //   / / //       //   / /   \ \
+  //   ((___/ / ((___    ((___( ( //  ) )
+
+  Options:
+
+  -h, , --help	  Display this help message and exit.
+  -d              Display a list of notes matching [note] or all notes.
+  -r              Read the specific given note.
+  -a              Alert for the specified time something to focus on.
+  -l              Outputs the path(s) to [notes] or all notes
+  -u              Updates the focus note repo to grab the latest changes.
+  -u [self]       Updates focus.
+  -v              Outputs current version.
+
+  $ focus -r
+
+  Reads the exact <note> given. No globbing allowed here!
+  Its the default functionality, therefor, focus my-note
+  would do the same thing.
+
+  $ focus -e
+
+  Let you edit the exact <note> given.
+  Agan, No globbing allowed here!
+
+  $ focus -a <minutes>
+
+  Alerts every <minutes> what to focus.
+  This is being read from the $FCS_NOTES directory.
+
+  $ focus -l my-note
+
+  Output paths to notes matching my-note
+
+  $ focus -d
+
+  Display list of all notes
+
+  $ focus -u
+
+  Update focus note repository
+
+  $ focus -u self
+
+  Update the focus executable
+
+  Viewing note specifics
+  focus -r my-note | grep something-to-do
+'
+}
+
+error_exit() {
+#	-----------------------------------------------------------------------
+#	Function for exit due to fatal program error
+#		Accepts 1 argument:
+#			string containing descriptive error message
+#	-----------------------------------------------------------------------
+    tput setaf 1 bold
+	  echo "${PROGNAME}: ${1:-"Unknown Error"}" >&2
+    tput op
+	  exit 1
+}
+
+signal_exit() {
+#	-----------------------------------------------------------------------
+#	Function to handle termination signals
+#		Accepts 1 argument:
+#			signal_spec
+#	-----------------------------------------------------------------------
+  tput setaf 1 bold
+	case $1 in
+		INT)	echo "$PROGNAME: Program aborted by user" >&2
+			exit
+			;;
+		TERM)	echo "$PROGNAME: Program terminated" >&2
+			exit
+			;;
+		*)	error_exit "$PROGNAME: Terminating on unknown signal"
+			;;
+	esac
+  tput op
+}
+
+version() {
+#	-----------------------------------------------------------------------
+#	Function to display Version
+#		No arguments
+#	-----------------------------------------------------------------------
+    tput setaf 7 bold; echo "$PROGNAME $VERSION"; tput op
+}
+
+usage() {
+#	-----------------------------------------------------------------------
+#	Function to display usage message (does not exit).
+#		No arguments
+#	-----------------------------------------------------------------------
+	echo "  Usage: ${PROGNAME} [-h | --help]"
+  echo "  Guru Meditation..."
+  exit
+}
+
+locate_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to output paths to notes matching arguments.
+#		Argument: note
+#	-----------------------------------------------------------------------
+    if [ $1 ]; then
+        find $FCS_NOTES                                                 \
+            -type f                                                     \
+            -name "*$1*$FCS_EXT"                                        \
+            -printf "$OUTPUT_COLOR  %p \n"
+    else
+        find $FCS_NOTES                                                 \
+            -name "*$FCS_EXT"                                           \
+            -type f                                                     \
+            -printf "$OUTPUT_COLOR  %p \n"
+    fi
+}
+
+search_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to outputs list of all notes matching the given arguments.
+#		Argument: note
+#	-----------------------------------------------------------------------
+    locate_fcs $1 | sort
+}
+
+read_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to display the exact content of the given cheet note.
+#		Argument: note
+#	-----------------------------------------------------------------------
+    validate_focus_note_exists "$1"
+    find $FCS_NOTES                                                     \
+        -name "$1$FCS_EXT"                                              \
+        -type f |                                                       \
+        xargs cat
+
+    echo "Getting things done!"
+    exit 0
+}
+
+edit_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to display the exact content of the given cheet note.
+#		Argument: note
+#	-----------------------------------------------------------------------
+    validate_focus_note_exists "$1"
+
+    local note=`find $FCS_NOTES -name "$1$FCS_EXT"`
+
+    echo $note
+
+    $EDITOR $note
+
+    echo "Getting things done!"
+    exit 0
+}
+
+update_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to update focuss
+#		No arguments
+#	-----------------------------------------------------------------------
+    validate_focus_dir_exists
+    if [ "$1" == 'self' ]; then
+        cd /tmp                &&
+        git clone $FCS_ORIGIN  &&
+        cd $PROGNAME           &&
+        sudo make install      &&
+        echo -n 'Updated to '  &&
+        $PROGNAME -v
+    else
+        cd $FCS_NOTES
+        git pull origin master 2> /dev/null
+    fi
+}
+
+init_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to initilize focuss notes repo.
+#		No arguments
+#	-----------------------------------------------------------------------
+    if [ -d $FCS_NOTES ]; then
+        echo "  Focus repo already initialized!"
+        usage
+    else
+        git clone $FCS_REPO $FCS_NOTES &&
+        echo Awesome! Focus notes have been initialized at $FCS_NOTES
+        usage
+    fi
+}
+
+validate_focus_note_exists() {
+#	-----------------------------------------------------------------------
+#	Function to validate if focuss exists. If not dispay usage.
+#		No arguments
+#	-----------------------------------------------------------------------
+    validate_focus_dir_exists
+    focus_search=`find $FCS_NOTES  -type f -name "$1$FCS_EXT"`
+    if [[ ! $focus_search =~ ^/+ ]]; then
+        echo "  Focus note does not exist. "
+        usage
+    fi
+}
+
+validate_focus_dir_exists() {
+#	-----------------------------------------------------------------------
+#	Function to validate if focuss directory exists. If not dispay usage.
+#		No arguments
+#	-----------------------------------------------------------------------
+    if [ ! -d $FCS_NOTES ]; then
+        echo "  $PROGNAME version: $VERSION"
+        echo "  Your focus repo has not yet been initialized..."
+        usage
+    fi
+}
+
+#	----------------------------------------------------------------------
+#	Program starts here
+#	----------------------------------------------------------------------
+
+##### Initialization And Setup #####
+
+# Trap TERM, HUP, and INT signals and properly exit
+trap "signal_exit TERM" TERM HUP
+trap "signal_exit INT"  INT
+
+##### Command Line Processing #####
+if [ "$1" = "--help" ]; then
+	helptext
+fi
+
+if [[ ! "$1" =~ ^-+ ]]; then
+    read_fcs "$1"
+fi
+
+while getopts ":hs:lurea:iv" opt; do
+	case $opt in
+		h   )	helptext
+          ;;
+    d   ) search_fcs "$2"
+          ;;
+    l   ) locate_fcs "$2"
+          ;;
+    u   ) update_fcs "$2"
+          ;;
+    r   ) read_fcs "$2"
+          ;;
+    e   ) edit_fcs "$2"
+          ;;
+    a   ) alarm_fcs "$2"
+          ;;
+    i   ) init_fcs
+          ;;
+    v   ) version
+		exit 1;;
+	esac
+done
+
+exit 0;

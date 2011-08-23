@@ -18,8 +18,9 @@ HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
 test -n "$HAVE_EMACS" &&
-export VISUAL='emacs -Q -nw' &&
-export EDITOR='emacs -Q -nw'
+export VISUAL='emacsclient -nw' &&
+export EDITOR='emacsclient -nw'
+export ALTERNATE_EDITOR='emacs -Q -nw -l ~/.emacs.d/jpablobr/nw-min.el'
 
 # PAGER
 if test -n "$(command -v less)" ; then
