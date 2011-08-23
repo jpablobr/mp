@@ -37,22 +37,6 @@ FCS_ORIGIN=${FCS_ORIGIN:-git://github.com/jpablobr/focus.git}
 FCS_EXT='.org'
 OUTPUT_COLOR="$(tput setaf 2)"
 
-alarm_fcs() {
-#	-----------------------------------------------------------------------
-#	Function to validate if focuss exists. If not dispay usage.
-#		Arguments: times:minutes
-#	-----------------------------------------------------------------------
-    local minutes="$1"; shift
-    local msg=`cat ~/.private/notes/focus.org`
-
-    while :; do
-        sleep "$minutes"m
-        notify-send "Getting done!" \
-            "$msg" \
-            -i /usr/share/pixmaps/gnome-gmush.png
-    done
-}
-
 #	----------------------------------------------------------------------
 #	Functions
 #	----------------------------------------------------------------------
@@ -115,6 +99,22 @@ helptext() {
   tput op
 }
 
+alarm_fcs() {
+#	-----------------------------------------------------------------------
+#	Function to validate if focuss exists. If not dispay usage.
+#		Arguments: times:minutes
+#	-----------------------------------------------------------------------
+    local minutes="$1"; shift
+    local msg=`cat ~/.private/notes/focus.org`
+
+    while :; do
+        sleep "$minutes"m
+        notify-send "Getting done!" \
+            "$msg" \
+            -i /usr/share/pixmaps/gnome-gmush.png
+    done
+}
+
 error_exit() {
 #	-----------------------------------------------------------------------
 #	Function for exit due to fatal program error
@@ -162,9 +162,9 @@ usage() {
 #	-----------------------------------------------------------------------
     tput setaf 2
 	  echo "  Usage: ${PROGNAME} [-h | --help]"
-    echo "  Guru Meditation..."
-    exit
+    echo -e "  Guru Meditation... \u0950"
     tput op
+    exit 0
 }
 
 locate_fcs() {
@@ -273,14 +273,16 @@ validate_focus_note_exists() {
 #	Function to validate if focuss exists. If not dispay usage.
 #		No arguments
 #	-----------------------------------------------------------------------
-    tput setaf 1
+
     validate_focus_dir_exists
     focus_search=`find $FCS_NOTES  -type f -name "$1$FCS_EXT"`
     if [[ ! $focus_search =~ ^/+ ]]; then
-        echo "  Focus note does not exist. "
+    tput setaf 1
+        echo "  Focus note does not exist. o.O "
         usage
-    fi
     tput op
+    fi
+
 }
 
 validate_focus_dir_exists() {
