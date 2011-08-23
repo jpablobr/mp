@@ -21,7 +21,7 @@ _focus_complete()
 
 alias fcs='focus'
 alias fcse='focus -e'
-alias fcsa='focus -a 20'
-alias focus-edit='focus -e'
+alias fcsa='focus -a 5 &'
+alias fcsk="ps aux | grep \"[f]ocus\" | cut -f2 -d' ' | xargs kill -9"
 
-test -n "$have" && complete -F _focus_complete -o default focus focus-edit fcs fcse
+test -n "$have" && complete -F _focus_complete -o default focus fcs fcse
