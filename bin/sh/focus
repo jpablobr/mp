@@ -62,8 +62,8 @@ helptext() {
 #	Function to display help message for program
 #		No arguments
 #	-----------------------------------------------------------------------
-
-	echo -en '
+    tput setaf 2
+	  echo -en '
       //  ) )
    __//__  ___      ___               ___
     //   //   ) ) //   ) ) //   / / ((   ) )
@@ -72,7 +72,7 @@ helptext() {
 
   Options:
 
-  -h, , --help	  Display this help message and exit.
+  -h, --help	    Display this help message and exit.
   -d              Display a list of notes matching [note] or all notes.
   -r              Read the specific given note.
   -a              Alert for the specified time something to focus on.
@@ -80,42 +80,39 @@ helptext() {
   -u              Updates the focus note repo to grab the latest changes.
   -u [self]       Updates focus.
   -v              Outputs current version.
+'
 
-  $ focus -r
-
+	echo -en "
+  $(tput setaf 6)$ focus -r $(tput setaf 2)
   Reads the exact <note> given. No globbing allowed here!
   Its the default functionality, therefor, focus my-note
   would do the same thing.
 
-  $ focus -e
-
+  $(tput setaf 6)$ focus -e $(tput setaf 2)
   Let you edit the exact <note> given.
-  Agan, No globbing allowed here!
+  Again, No globbing allowed here!
 
-  $ focus -a <minutes>
-
+  $(tput setaf 6)$ focus -a <minutes> $(tput setaf 2)
   Alerts every <minutes> what to focus.
   This is being read from the $FCS_NOTES directory.
 
-  $ focus -l my-note
-
+  $(tput setaf 6)$ focus -l my-note $(tput setaf 2)
   Output paths to notes matching my-note
 
-  $ focus -d
-
+  $(tput setaf 6)$ focus -d $(tput setaf 2)
   Display list of all notes
 
-  $ focus -u
-
+  $(tput setaf 6)$ focus -u $(tput setaf 2)
   Update focus note repository
 
-  $ focus -u self
-
+  $(tput setaf 6)$ focus -u self $(tput setaf 2)
   Update the focus executable
 
-  Viewing note specifics
+  $(tput setaf 6)Tip: pipe! $(tput setaf 2)
   focus -r my-note | grep something-to-do
-'
+
+"
+  tput op
 }
 
 error_exit() {
@@ -163,9 +160,11 @@ usage() {
 #	Function to display usage message (does not exit).
 #		No arguments
 #	-----------------------------------------------------------------------
-	echo "  Usage: ${PROGNAME} [-h | --help]"
-  echo "  Guru Meditation..."
-  exit
+    tput setaf 2
+	  echo "  Usage: ${PROGNAME} [-h | --help]"
+    echo "  Guru Meditation..."
+    exit
+    tput op
 }
 
 locate_fcs() {
@@ -205,7 +204,9 @@ read_fcs() {
         -type f |                                                       \
         xargs cat
 
+    tput setaf 2
     echo "Getting things done!"
+    tput setaf 0
     exit 0
 }
 
@@ -221,8 +222,9 @@ edit_fcs() {
     echo $note
 
     $EDITOR $note
-
+    tput setaf 2
     echo "Getting things done!"
+    tput op
     exit 0
 }
 
@@ -231,6 +233,7 @@ update_fcs() {
 #	Function to update focuss
 #		No arguments
 #	-----------------------------------------------------------------------
+    tput setaf 2
     validate_focus_dir_exists
     if [ "$1" == 'self' ]; then
         cd /tmp                &&
@@ -243,6 +246,7 @@ update_fcs() {
         cd $FCS_NOTES
         git pull origin master 2> /dev/null
     fi
+    tput op
 }
 
 init_fcs() {
@@ -251,12 +255,16 @@ init_fcs() {
 #		No arguments
 #	-----------------------------------------------------------------------
     if [ -d $FCS_NOTES ]; then
+        tput setaf 1
         echo "  Focus repo already initialized!"
         usage
+        tput setaf op
     else
+        tput setaf
         git clone $FCS_REPO $FCS_NOTES &&
         echo Awesome! Focus notes have been initialized at $FCS_NOTES
         usage
+        tput op
     fi
 }
 
@@ -265,12 +273,14 @@ validate_focus_note_exists() {
 #	Function to validate if focuss exists. If not dispay usage.
 #		No arguments
 #	-----------------------------------------------------------------------
+    tput setaf 1
     validate_focus_dir_exists
     focus_search=`find $FCS_NOTES  -type f -name "$1$FCS_EXT"`
     if [[ ! $focus_search =~ ^/+ ]]; then
         echo "  Focus note does not exist. "
         usage
     fi
+    tput op
 }
 
 validate_focus_dir_exists() {
@@ -278,11 +288,13 @@ validate_focus_dir_exists() {
 #	Function to validate if focuss directory exists. If not dispay usage.
 #		No arguments
 #	-----------------------------------------------------------------------
+    tput setaf 1
     if [ ! -d $FCS_NOTES ]; then
         echo "  $PROGNAME version: $VERSION"
         echo "  Your focus repo has not yet been initialized..."
         usage
     fi
+    tput op
 }
 
 #	----------------------------------------------------------------------
