@@ -34,7 +34,7 @@ VERSION='0.1.0'
 FCS_NOTES=${FCS_NOTES:-~/.private/notes/}
 FCS_REPO=${FCS_REPO:-git://github.com/jpablobr/focus-notes.git}
 FCS_ORIGIN=${FCS_ORIGIN:-git://github.com/jpablobr/focus.git}
-FCS_EXT='.org'
+FCS_EXT='.md'
 OUTPUT_COLOR="$(tput setaf 2)"
 
 #	----------------------------------------------------------------------
@@ -206,7 +206,7 @@ read_fcs() {
 
     tput setaf 2
     echo "Getting things done!"
-    tput setaf 0
+    tput op
     exit 0
 }
 
