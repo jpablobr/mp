@@ -201,13 +201,12 @@ read_fcs() {
     validate_focus_note_exists "$1"
     find $FCS_NOTES                                                     \
         -name "$1$FCS_EXT"                                              \
-        -type f |                                                       \
-        xargs cat
-
-    tput setaf 2
-    echo "Getting things done!"
-    tput op
-    exit 0
+        -type f                                    |                    \
+        xargs sed s:"\n":"$(tput op)":g            |                    \
+        sed s:"\s-":"$(tput setaf 5)-$(tput op)":g |                    \
+        sed s:"^#":"$(tput setaf 4)#":g            |                    \
+        cat
+    printf "\n"; exit 0
 }
 
 edit_fcs() {
@@ -218,10 +217,9 @@ edit_fcs() {
     validate_focus_note_exists "$1"
 
     local note=`find $FCS_NOTES -name "$1$FCS_EXT"`
-
     echo $note
-
     $EDITOR $note
+
     tput setaf 2
     echo "Getting things done!"
     tput op
