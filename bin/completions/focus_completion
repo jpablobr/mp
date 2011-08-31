@@ -12,7 +12,7 @@ _focus_complete()
   COMPREPLY=()
   HOME=~
   if [ $COMP_CWORD = 1 ]; then
-    notes=`focus -l | sed s:$HOME/.private/notes/::g | sed s:\.org::g`
+    notes=`focus -l | sed s:$HOME/.private/notes/::g | sed s:\.md::g`
     COMPREPLY=(`compgen -W "$notes" -- $2`)
   fi
   return 0

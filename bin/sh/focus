@@ -34,7 +34,7 @@ VERSION='0.1.0'
 FCS_NOTES=${FCS_NOTES:-~/.private/notes/}
 FCS_REPO=${FCS_REPO:-git://github.com/jpablobr/focus-notes.git}
 FCS_ORIGIN=${FCS_ORIGIN:-git://github.com/jpablobr/focus.git}
-FCS_EXT='.org'
+FCS_EXT='.md'
 OUTPUT_COLOR="$(tput setaf 2)"
 
 #	----------------------------------------------------------------------
@@ -201,13 +201,13 @@ read_fcs() {
     validate_focus_note_exists "$1"
     find $FCS_NOTES                                                     \
         -name "$1$FCS_EXT"                                              \
-        -type f |                                                       \
-        xargs cat
+        -type f                                    |                    \
+        xargs sed s:"\n":"$(tput op)":g            |                    \
+        sed s:"\s-":"$(tput setaf 5)-$(tput op)":g |                    \
+        sed s:"^#":"$(tput setaf 4)#":g            |                    \
+        cat
+    printf "\n"; exit 0
 
-    tput setaf 2
-    echo "Getting things done!"
-    tput op
-    exit 0
 }
 
 edit_fcs() {
@@ -218,14 +218,10 @@ edit_fcs() {
     validate_focus_note_exists "$1"
 
     local note=`find $FCS_NOTES -name "$1$FCS_EXT"`
-
     echo $note
-
     $EDITOR $note
-    tput setaf 2
-    echo "Getting things done!"
-    tput op
-    exit 0
+
+    tput setaf 2; echo "Getting things done!"; tput op; exit 0
 }
 
 update_fcs() {
