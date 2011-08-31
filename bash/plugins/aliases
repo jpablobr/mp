@@ -36,7 +36,7 @@ alias z=suspend
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -fr'
 alias tmux='tmux -2'
-alias aliasr="alias | egrep '(ruby|rails)' | cat | grep ="
+alias aliasr="alias | egrep '(ruby|rails)' | cat | sed s:=:'$(tput setaf 5)=$(tput op)':g"
 
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 
@@ -138,6 +138,9 @@ alias radr='rails destroy resource'
 alias radc='rails destroy controller'
 alias radm='rails destroy model'
 alias ratpl='rails -m ~/.rails.d/template.rb'
+alias ran='rails new'
+alias rad='rails dbconsole'
+alias radbm='rake db:migrate'
 # - heroku
 alias h='heroku'
 alias hi='heroku info'

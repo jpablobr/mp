@@ -105,7 +105,7 @@ alarm_fcs() {
 #		Arguments: times:minutes
 #	-----------------------------------------------------------------------
     local minutes="$1"; shift
-    local msg=`cat ~/.private/notes/focus.org`
+    local msg=`cat ~/.private/notes/focus.$FCS_EXT`
 
     while :; do
         sleep "$minutes"m
@@ -175,13 +175,12 @@ locate_fcs() {
     if [ $1 ]; then
         find $FCS_NOTES                                                 \
             -type f                                                     \
-            -name "*$1*$FCS_EXT"                                        \
-            -printf "$OUTPUT_COLOR  %p \n"
+            -name "*$1*$FCS_EXT"
+
     else
         find $FCS_NOTES                                                 \
             -name "*$FCS_EXT"                                           \
-            -type f                                                     \
-            -printf "$OUTPUT_COLOR  %p \n"
+            -type f
     fi
 }
 
@@ -207,7 +206,6 @@ read_fcs() {
         sed s:"^#":"$(tput setaf 4)#":g            |                    \
         cat
     printf "\n"; exit 0
-
 }
 
 edit_fcs() {
@@ -220,8 +218,7 @@ edit_fcs() {
     local note=`find $FCS_NOTES -name "$1$FCS_EXT"`
     echo $note
     $EDITOR $note
-
-    tput setaf 2; echo "Getting things done!"; tput op; exit 0
+    exit 0
 }
 
 update_fcs() {
@@ -274,7 +271,7 @@ validate_focus_note_exists() {
     focus_search=`find $FCS_NOTES  -type f -name "$1$FCS_EXT"`
     if [[ ! $focus_search =~ ^/+ ]]; then
     tput setaf 1
-        echo "  Focus note does not exist. o.O "
+        echo "  !!! Focus note does not exist."
         usage
     tput op
     fi
