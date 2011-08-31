@@ -105,7 +105,7 @@ alarm_fcs() {
 #		Arguments: times:minutes
 #	-----------------------------------------------------------------------
     local minutes="$1"; shift
-    local msg=`cat ~/.private/notes/focus.$FCS_EXT`
+    local msg=`cat ~/.private/notes/focus$FCS_EXT`
 
     while :; do
         sleep "$minutes"m
