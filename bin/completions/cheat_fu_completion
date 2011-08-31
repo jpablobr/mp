@@ -4,7 +4,7 @@
 # Copyright 2011 Jose Pablo Barrantes <xjpablobrx@gmail.com>
 # Licensed under MIT
 
-: ${have=$(command -v cheat_fu)}
+have=$(command -v cheat_fu)
 
 test -n "$have" &&
 _cheat_fu_complete()

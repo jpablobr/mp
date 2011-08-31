@@ -206,7 +206,7 @@ read_fcs() {
 
     tput setaf 2
     echo "Getting things done!"
-    tput setaf 0
+    tput op
     exit 0
 }
 

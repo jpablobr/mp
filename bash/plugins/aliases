@@ -36,6 +36,8 @@ alias z=suspend
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -fr'
 alias tmux='tmux -2'
+alias aliasr="alias | egrep '(ruby|rails)' | cat | grep ="
+
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 
 #       |                              action
