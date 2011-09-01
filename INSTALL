@@ -5,7 +5,4 @@ $ git clone git://github.com/jpablobr/mp ~/.mp
 $ cd ~/.mp
 
 Install:
-$ make install
-
-Uninstall:
-$ make clean_home
+$ ./install.sh

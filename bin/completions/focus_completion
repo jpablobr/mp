@@ -7,16 +7,14 @@
 : ${have=$(command -v focus)}
 
 test -n "$have" &&
-_focus_complete()
-{
-  COMPREPLY=()
-  HOME=~
-  if [ $COMP_CWORD = 1 ]; then
-    notes=`focus -l | sed s:$HOME/.private/notes/::g | sed s:\.md::g`
-    COMPREPLY=(`compgen -W "$notes" -- $2`)
-  fi
-  return 0
-
+_focus_complete() {
+    COMPREPLY=()
+    HOME=~
+    if [ $COMP_CWORD = 1 ]; then
+        notes=`focus -l | sed s:$HOME/.private/notes/::g | sed s:\.md::g`
+        COMPREPLY=(`compgen -W "$notes" -- $2`)
+    fi
+    return 0
 }
 
 alias fcs='focus'
@@ -24,5 +22,15 @@ alias fcse='focus -e'
 alias fcsl='focus -l'
 alias fcsa='focus -a 5 &'
 alias fcsk="ps aux | grep \"[f]ocus\" | cut -f2 -d' ' | xargs kill -9"
+
+fcsr() {
+    ps aux           |
+    grep [f]ocus     |
+    cut -f3 -d' '    |
+    xargs kill -9
+
+    focus -a 5 &
+    exit 0
+}
 
 test -n "$have" && complete -F _focus_complete -o default focus fcs fcse
