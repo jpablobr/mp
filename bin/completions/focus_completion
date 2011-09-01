@@ -21,6 +21,7 @@ _focus_complete()
 
 alias fcs='focus'
 alias fcse='focus -e'
+alias fcsl='focus -l'
 alias fcsa='focus -a 5 &'
 alias fcsk="ps aux | grep \"[f]ocus\" | cut -f2 -d' ' | xargs kill -9"
 

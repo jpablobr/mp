@@ -271,7 +271,7 @@ validate_focus_note_exists() {
     focus_search=`find $FCS_NOTES  -type f -name "$1$FCS_EXT"`
     if [[ ! $focus_search =~ ^/+ ]]; then
     tput setaf 1
-        echo "  !!! Focus note does not exist."
+        echo "  Focus note does not exist."
         usage
     tput op
     fi
