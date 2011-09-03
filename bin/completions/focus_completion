@@ -21,16 +21,28 @@ alias fcs='focus'
 alias fcse='focus -e'
 alias fcsl='focus -l'
 alias fcsa='focus -a 5 &'
-alias fcsk="ps aux | grep \"[f]ocus\" | cut -f2 -d' ' | xargs kill -9"
+
+fcsk() {
+    ps -ef           |
+    grep [f]ocus     |
+    awk '{print $2}' |
+    cat              |
+    while read pid; do kill -9 $pid; done
+}
 
 fcsr() {
-    ps aux           |
-    grep [f]ocus     |
-    cut -f3 -d' '    |
-    xargs kill -9
+    if [[ "$1" > 1 ]]; then
+        local min="$1";shift
+    else
+        local min=5
+    fi
 
-    focus -a 5 &
-    exit 0
+    if [[ `ps -ef | grep [f]ocus` > 0 ]]; then
+        fcsk
+        focus -a "$min" &
+    else
+        focus -a "$min" &
+    fi
 }
 
 test -n "$have" && complete -F _focus_complete -o default focus fcs fcse

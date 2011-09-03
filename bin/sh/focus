@@ -104,15 +104,22 @@ alarm_fcs() {
 #	Function to validate if focuss exists. If not dispay usage.
 #		Arguments: times:minutes
 #	-----------------------------------------------------------------------
-    local minutes="$1"; shift
-    local msg=`cat ~/.private/notes/focus$FCS_EXT`
+    if [[ "$1" > 1 ]]; then
+        local minutes="$1"; shift
+        local msg=`cat ~/.private/notes/focus$FCS_EXT`
 
-    while :; do
-        sleep "$minutes"m
-        notify-send "Getting done!" \
-            "$msg" \
-            -i /usr/share/pixmaps/gnome-gmush.png
-    done
+        while :; do
+            sleep "$minutes"m
+            notify-send "Getting done!" \
+                "$msg" \
+                -i /usr/share/pixmaps/gnome-gmush.png
+        done
+    else
+        tput setaf 1 bold
+	      echo "Minutes have to be > than 1" >&2
+        tput op
+	      exit 1
+    fi
 }
 
 error_exit() {
@@ -333,5 +340,4 @@ while getopts ":hs:lurea:iv" opt; do
 		exit 1;;
 	esac
 done
-
 exit 0;
