@@ -9,3 +9,7 @@ Cache/
 .config/google-chrome/SingletonCookie
 .config/google-chrome/SingletonLock
 .config/google-chrome/SingletonSocket
+.config/session-state
+.config/dconf
+.config/ibus
+.config/lxsession
