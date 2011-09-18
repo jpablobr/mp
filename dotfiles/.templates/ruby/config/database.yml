@@ -1,0 +1,17 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  database:  APP_development
+  pool: 5
+  host: 127.0.0.1
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  database:  APP_test
+
+production:
+  <<: *defaults
+  database:  APP_production
