@@ -54,45 +54,55 @@ run-file-commands(){
     echo ''
 }
 
-run(){
-    print-section "Running the basics."
-    bundle update
-    print-section "Running the db:create:all."
+run-db-setup(){
+    print-section "db:create:all."
     bundle exec rake db:create:all --trace
-    print-section "Running db:migrate."
+    print-section "db:migrate."
     bundle exec rake db:migrate --trace
-    print-section "Running db:test:prepare."
+    print-section "db:test:prepare."
     bundle exec rake db:test:prepare --trace
-    print-section "Running routes-file()."
+    echo ''
+}
+
+run(){
+    print-section "Running the whole setup:"
+    run-install-bundler
+    print-section "Running routes-file setup:"
     routes-file
+    print-section "Running DB setup:"
+    run-db-setup
     bundle exec rails s
     echo ''
 }
 
-if [[ "$1" == "h" ]]; then
-tput setaf 2
+print-help(){
+    tput setaf 2
 	  cat <<- -EOF-
 Usage: $exe [<options>]
-$ $exe h
+$(tput setaf 6)$ $exe [] or [h]$(tput setaf 2)
 This help.
-$ $exe i
-will run all of the default commands such as 'gem install bundler'
-$ $exe f
-will run file related commands
-$ $exe or with [s]
-Will run commands without 'gem install bundler'
+$(tput setaf 6)$ $exe [i] $(tput setaf 2)
+All of the default commands such as 'gem install bundler'
+$(tput setaf 6)$ $exe [f]$(tput setaf 2)
+File related commands
+$(tput setaf 6)$ $exe [d]$(tput setaf 2)
+Database related commands
 -EOF-
 tput op
+}
+
+if [[ "$1" == "h" ]]; then
+    print-help
 elif [[ "$#" == 0 ]]; then
-    run-file-commands
-    run
+    print-help
 elif [[ "$1" == "i" ]]; then
-    run-file-commands
-    run-bundle-install
-elif [[ "$1" == "s" ]]; then
     run
+elif [[ "$1" == "d" ]]; then
+    run-db-setup
 elif [[ "$1" == "f" ]]; then
     run-file-commands
+elif [[ "$1" == "r" ]]; then
+    routes-file
 fi
 
 exit 0
