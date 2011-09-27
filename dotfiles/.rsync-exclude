@@ -13,6 +13,3 @@ Cache/
 .config/dconf
 .config/ibus
 .config/lxsession
-.dropbox/
-.dropbox-dist/
-Documents/Dropbox

@@ -41,37 +41,6 @@ alias ag='alias | grep '
 alias export-current-dir='export PATH="$PATH:`pwd`"'
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 alias ruby='ruby -w'
-
-#       |                              action
-#   key  +-----------------------------------------+------------------
-#        |           gtk_key_theme 'Emacs'         |     Mozilla
-# -------+-----------------------------------------+------------------
-# CTRL+A | Move cursor to begin of line            | Select all
-# CTRL+B | Move cursor backwards one character     | Bookmark manager
-# CTRL+C | -->                                     | Copy
-# CTRL+D | Delete; delete character under cursor   | --
-# CTRL+E | Move cursor to end of line              | Edit page
-# CTRL+F | Move cursor forward one character       | Find in this page
-# CTRL+G | -->                                     | Find again
-# CTRL+H | Backspace                               | History
-# CTRL+I | -->                                     | Page info
-# CTRL+J | --                                      | --
-# CTRL+K | Delete from cursor to end of line       | --
-# CTRL+L | -->                                     | Focus location bar
-# CTRL+M | -->                                     | New message
-# CTRL+N | Next line                               | New navigator window
-# CTRL+O | -->                                     | Open file
-# CTRL+P | Previous line                           | Print
-# CTRL+Q | -->                                     | Quit
-# CTRL+R | -->                                     | Reload
-# CTRL+S | -->                                     | Save page as
-# CTRL+T | -->                                     | New navigator tab
-# CTRL+U | Delete from cursor to begin of line     | View source
-# CTRL+V | -->                                     | Paste
-# CTRL+W | Delete current word until previous word | Close tab
-# CTRL+X | -->                                     | Cut
-# CTRL+Y | Redo                                    | --
-# CTRL+Z | Undo                                    | --
 alias gnome-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
 
 # Show history
@@ -81,14 +50,14 @@ alias r='fc -s' # Awesome!
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias ec='emacsclient -cnw'
-alias es='emacs -Q -nw'
-alias se='sudo emacs -Q -nw -l ~/.emacs.d/jpablobr/min-init.el'
-alias e='emacs -Q -nw -l ~/.emacs.d/jpablobr/min-init.el'
-alias em='emacs -Q -l ~/.emacs.d/jpablobr/jpablobr-init.el &'
-alias emnw='emacs -Q -nw -l ~/.emacs.d/jpablobr/jpablobr-init.el'
-alias emrnw='emacs -Q -nw  -l ~/.emacs.d/jpablobr/ruby-init.el .'
-alias emp='emacs -Q -nw -l ~/.emacs.d/jpablobr/php-init.el . &'
-alias emr='emacs -Q -l ~/.emacs.d/jpablobr/ruby-init.el . &'
+alias es='emacs -nw'
+alias se='sudo emacs -nw -l ~/.emacs.d/jpablobr/min-init.el'
+alias e='emacs -nw -l ~/.emacs.d/jpablobr/min-init.el'
+alias em='emacs -l ~/.emacs.d/jpablobr/jpablobr-init.el &'
+alias emnw='emacs -nw -l ~/.emacs.d/jpablobr/jpablobr-init.el'
+alias emrnw='emacs -nw  -l ~/.emacs.d/jpablobr/ruby-init.el .'
+alias emp='emacs -nw -l ~/.emacs.d/jpablobr/php-init.el . &'
+alias emr='emacs -l ~/.emacs.d/jpablobr/ruby-init.el . &'
 alias e-m-aliases='e ~/.mp/bash/aliases'
 alias e-m-config='e ~/.mp/bash/config'
 alias e-m-init='e ~/.emacs.d/init.el'

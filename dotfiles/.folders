@@ -5,3 +5,6 @@
 .sent      "Sent Mail"
 .trash     "Junk"
 %/
+%inbox
++Trash
++Drafts
