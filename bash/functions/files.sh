@@ -10,6 +10,10 @@ alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 alias f=find
 
+chmod-files(){
+    find . -type f -exec chmod -v "$1" {} \;
+}
+
 f-for-open() {
 # Open all files by given pattern.
     for file in "$1"; do

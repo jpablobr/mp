@@ -42,7 +42,6 @@ alias export-current-dir='export PATH="$PATH:`pwd`"'
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
 alias ruby='ruby -w'
 alias gnome-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
-
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
@@ -56,7 +55,7 @@ alias e='emacs -nw -l ~/.emacs.d/jpablobr/min-init.el'
 alias em='emacs -l ~/.emacs.d/jpablobr/jpablobr-init.el &'
 alias emnw='emacs -nw -l ~/.emacs.d/jpablobr/jpablobr-init.el'
 alias emrnw='emacs -nw  -l ~/.emacs.d/jpablobr/ruby-init.el .'
-alias emp='emacs -nw -l ~/.emacs.d/jpablobr/php-init.el . &'
+alias emp='emacs -l ~/.emacs.d/jpablobr/php-init.el . &'
 alias emr='emacs -l ~/.emacs.d/jpablobr/ruby-init.el . &'
 alias e-m-aliases='e ~/.mp/bash/aliases'
 alias e-m-config='e ~/.mp/bash/config'
