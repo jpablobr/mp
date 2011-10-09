@@ -1,4 +1,2 @@
 # ack config
 --type-add=ruby=.haml,.rake,.rsel
---type-add=coffeescript=.coffee
---type-add=ronn=.ronn,.ron
