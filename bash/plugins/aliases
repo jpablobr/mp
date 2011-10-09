@@ -1,18 +1,12 @@
 #!/usr/bin/env bash
 # Common aliases
-alias o='open . &'
+alias o='gnome-open . &'
 alias more='less'
 alias l='less'
 alias chx='chmod +x'
-alias reload='. ~/.bash_profile'
-alias open="gnome-open"
-alias cl='clear'
-alias _='sudo'
 alias k9="kill -9"
-alias mk_testd='cd ~/tmp && mkdir whatever && cd whatever'
 alias ct='cheat_fu'
 alias ctr='cd ~/.cheats_fu_sheets && ronn -r *.1.ronn && cd -'
-alias srm='sudo rm'
 alias rd='rm -rfv'
 alias r*='rm -frv *'
 alias mkd='mkdir -pv'
@@ -24,15 +18,8 @@ alias th=thunar
 alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
 alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
 alias load-xresources='xrdb -merge ~/.Xresources'
-alias ?=man
-alias chars='wc -c'
 alias hup='kill -HUP \!*'
 alias j='jobs -l'
-alias lines='wc -l'
-alias rehash='hash -r'
-alias Rsync='rsync -e ssh -auzv'
-alias words='wc -w'
-alias z=suspend
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -frpv'
 alias tmux='tmux -2'
@@ -40,7 +27,6 @@ alias aliasr="alias | egrep '(ruby|rails)' | cat | sed s:=:'$(tput setaf 5)=$(tp
 alias ag='alias | grep '
 alias export-current-dir='export PATH="$PATH:`pwd`"'
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
-alias ruby='ruby -w'
 alias gnome-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
 # Show history
 alias history='fc -l 1'
@@ -58,22 +44,14 @@ alias empg='emacs -l ~/.emacs.d/inits/php-init.el . &'
 alias emg='emacs -l ~/.emacs.d/inits/jpablobr-init.el &'
 alias emrg='emacs -l ~/.emacs.d/inits/ruby-init.el . &'
 alias se='sudo emacs -nw -l ~/.emacs.d/inits/min-init.el'
-# apt-get
-alias sagi='sudo apt-get install'
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
 alias fn='find . -name'
-# Browse
-alias br-f='firefox'
-alias br-c='google-chrome '
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'
-# Grep
-alias g-l='la | grep'
-alias g-p='ps aux | grep '
 
 ##############################################################################->
 # - List
@@ -94,36 +72,16 @@ lg() { ls -la | grep "$1"; }
 # - Ruby
 alias bu='bundle update'
 alias bi='bundle install'
-alias dm='bundle exec rake db:migrate'
 alias rg='bundle exec rake -T | grep'
 
 # - Rails
-alias rr-ac='rails c'
 alias rr-asl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
-alias rr-ag='rails generate'
-alias rr-agr='rails generate resource'
-alias rr-agm='rails generate model'
-alias rr-agc='rails generate controller'
-alias rr-ad='rails destroy'
-alias rr-adr='rails destroy resource'
-alias rr-adc='rails destroy controller'
-alias rr-adm='rails destroy model'
-alias rr-atpl='rails -m ~/.rails.d/template.rb'
-alias rr-an='rails new'
-alias rr-ad='rails dbconsole'
 alias rr-adbm='rake db:migrate && rake db:test:prepare'
 alias rr-routes='bundle exec rake routes > routes.txt'
+alias dm='bundle exec rake db:migrate'
 
 # - heroku
 alias h='heroku'
 alias hi='heroku info'
 alias hp="git push heroku master"
-alias h-l="heroku logs"
-alias h-da="heroku domains:add"
-alias h-dbp='heroku db:pull'
-alias h-add='heroku addons:add'
-alias h-cl='heroku config --long'
-alias h-c='heroku console'
 alias h-t='heroku logs --tail'
-# gems
-alias gei='gem install'
