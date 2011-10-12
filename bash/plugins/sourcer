@@ -20,28 +20,3 @@ source "$HOME/.rvm/contrib/ps1_functions"
 # tmuxinator
 test -s "$HOME/.tmuxinator/scripts/tmuxinator" &&
 source "$HOME/.tmuxinator/scripts/tmuxinator"
-
-# Check to make sure that RVM is actually loaded before adding
-# the customizations to it.
-if [ "$rvm_path" ]
-then
-    # Load the auto-completion script if RVM was loaded.
-    [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
-    switch () {
-      rvm $1
-      local v=$(rvm_version)
-      rvm wrapper $1 $EDITOR
-      echo "Switch to Ruby version: "$v
-    }
-
-    rvm_default () {
-      rvm --default $1
-      rvm wrapper $1 $EDITOR
-    }
-
-    function rvm_version () {
-      ruby --version
-    }
-
-fi

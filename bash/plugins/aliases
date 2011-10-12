@@ -36,6 +36,7 @@ alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias es='emacs -nw'
 alias ec='emacsclient -c'
+alias emacsclient='emacsclient -c'
 alias e='emacs -nw -l ~/.emacs.d/inits/min-init.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/inits/jpablobr-init.el'
 alias emr='emacs -nw  -l ~/.emacs.d/inits/ruby-init.el .'

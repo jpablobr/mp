@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+function __git_dirty {
+  git diff --quiet HEAD &>/dev/null
+  [ $? == 1 ] && echo "!"
+}
+
+echo "Date: $(date)"
+echo "Whoami: $(whoami) $(id -u)"
+echo "Path: $(pwd)"
+echo "rmv: $(rvm-prompt i v p g)"
+echo "git: $(__git_dirty)"
+
+exit 0

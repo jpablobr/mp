@@ -64,12 +64,6 @@ ansi2html() {
 ##############################################################################->
 # - General
 
-# Regenerate TAGS file from file arguments
-tags_regenerate() {
-    rm -f TAGS
-    etags --append --output=TAGS $*
-}
-
 knpviewer() {
     for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do
         kill "$name"
