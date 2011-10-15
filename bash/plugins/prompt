@@ -14,7 +14,7 @@ COLOR1="${BLUE}"
 COLOR2="${BLUE}"
 P="\$"
 
-if [ "$LOGNAME" = "root" ]; then
+if [ "$LOGNAME" != "jpablobr" ]; then
     COLOR1="${RED}"
     COLOR2="${BROWN}"
     P="#"
@@ -25,7 +25,12 @@ else
 fi
 
 prompt_color() {
-    PS1="${COLOR1}\W → ${GREY}"
+    if hostname | grep -q 'dell'; then
+       PS1="${COLOR1}\W → ${GREY}"
+    else
+       PS1="${COLOR1}\W \h → ${GREY}"
+    fi
+
     PS2="\[[33;1m\]continue \[[0m[1m\]> "
 }
 
