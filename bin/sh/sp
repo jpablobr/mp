@@ -5,5 +5,6 @@ echo "Date: $(date)"
 echo "Whoami: $(whoami) $(id -u)"
 echo "Path: $(pwd)"
 echo "rvm: $(rvm-prompt i v p g)"
+echo "Hostname: $(hostname)"
 
 exit 0

@@ -2,7 +2,7 @@
 # ----------------------------------------------------------------------
 # - PATH:
 
-JAVA_HOME=/usr/lib/jvm/java-6-sun/
+JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
 export JAVA_HOME
 
 # bin

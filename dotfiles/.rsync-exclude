@@ -13,3 +13,4 @@ Cache/
 .config/dconf
 .config/ibus
 .config/lxsession
+.rvm

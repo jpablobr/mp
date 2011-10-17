@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 # ----------------------------------------------------------------------
 # - PROMP:
 
@@ -26,7 +26,7 @@ fi
 
 prompt_color() {
     if hostname | grep -q 'dell'; then
-       PS1="${COLOR1}\W → ${GREY}"
+       PS1="${COLOR1}\W \h → ${GREY}"
     else
        PS1="${COLOR1}\W \h → ${GREY}"
     fi
