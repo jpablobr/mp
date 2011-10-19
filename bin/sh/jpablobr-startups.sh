@@ -2,6 +2,7 @@
 
 set -e
 
-exec gnome-terminal --working-directory \
---hide-menubar \
+exec gnome-terminal \
+--working-directory \
+--hide-menubar      \
 --maximize

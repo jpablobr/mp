@@ -35,11 +35,3 @@ prompt_color() {
 }
 
 test -n "$PS1" && prompt_color
-
-BGP_LAST_REMOTE_CHECK=$((`date +%s` - 300))
-BGP_GIT_ROOT_DIRECTORY=""
-BGP_TMP_FILE="/tmp/BGP_$BASHPID"
-export BGP_TMP_FILE
-
-BGP_ORIGINAL_PS1=$PS1
-PROMPT_COMMAND=set_git_prompt

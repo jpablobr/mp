@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Date: $(date)"
-echo "Whoami: $(whoami) $(id -u)"
-echo "Path: $(pwd)"
-echo "rvm: $(rvm-prompt i v p g)"
-echo "Hostname: $(hostname)"
+echo "$(tput setaf 7)--- $(tput op)"
+echo "$(tput setaf 7)Path: $(tput op; tput setaf 2)$(pwd)$(tput op)"
+echo "$(tput setaf 7)rvm: $(tput op; tput setaf 2)$(rvm-prompt i v p g)$(tput op)"
+echo "$(tput setaf 7)Whoami: $(tput op; tput setaf 2)$(whoami) $(id -u)$(tput op)"
+echo "$(tput setaf 7)Git Status: $(tput op)$(git_status.sh)"
+echo "$(tput setaf 7)Date: $(tput op; tput setaf 2)$(date)$(tput op)"
+echo "$(tput setaf 7)--- $(tput op)"
 
 exit 0
