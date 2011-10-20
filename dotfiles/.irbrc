@@ -1,11 +1,20 @@
-def require_rb_files_from(dir)
-  Dir.glob(File.join(dir, '*.rb')) do |file|
-    require file
+begin
+  require 'irbtools'
+rescue LoadError
+  $stderr.puts "Please install 'irbtools' or add it to your Gemfile"
+end
+
+class Object
+  # Return a list of methods defined locally for a particular object.  Useful
+  # for seeing what it does whilst losing all the guff that's implemented
+  # by its parents (eg Object).
+  def local_methods(obj = self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
   end
 end
 
-require_rb_files_from(File.join(ENV['HOME'], '.irbrc.d'))
-
-if defined?(Rails) || ENV['RAILS_ENV']
-  load File.join(ENV['HOME'], '.railsrc')
+# Log to STDOUT if in Rails
+if Object.const_defined?('ActiveRecord')
+  require 'logger'
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
 end

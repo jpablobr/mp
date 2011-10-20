@@ -1,2 +1,1 @@
-# ack config
---type-add=ruby=.haml,.rake,.rsel
+--type-add=ruby=haml,sass,builder,rake
