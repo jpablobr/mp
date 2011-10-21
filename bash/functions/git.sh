@@ -35,17 +35,19 @@ alias g-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 
 gp() {
-    test $# != 2 && git push && return 0
-    git push "$1" "$2"
+  git push origin $(gbr)
+}
+
+gup() {
+  git pull --rebase origin $(gbr)
+}
+
+gbr() {
+  test -d .git && git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3
 }
 
 g-prune() {
     git remote | xargs -n 1 git remote prune
-}
-
-# Commit pending changes and quote all args as message
-g-gg() {
-    git commit -v -a -m "$*"
 }
 
 g-cn() {
@@ -59,12 +61,6 @@ gc() {
 # Setup a tracking branch from [remote] [branch_name]
 g-bt() {
     git branch --track $2 $1/$2 && git checkout $2
-}
-
-# Quickly clobber a file and checkout
-g-rf() {
-    rm $1
-    git checkout $1
 }
 
 g-parse_branch() {
@@ -88,25 +84,6 @@ g-rm() {
     git gc --aggressive --prune=now
 }
 
-g-thanks() {
-    git log "$1" |
-    grep Author: |
-    sed 's/Author: \(.*\) <.*/\1/' |
-    sort |
-    uniq -c |
-    sort -rn |
-    sed 's/ *\([0-9]\{1,\}\) \(.*\)/\2 (\1)/'
-}
-
-g-gc() {
-    set -- `du -ks`
-    before=$1
-    git reflog expire --expire=1.minute refs/heads/master && git fsck --unreachable && git prune && git gc
-    set -- `du -ks`
-    after=$1
-    echo "Cleaned up $((before-after)) kb."
-}
-
 g-rb() {
     git push origin HEAD:refs/heads/$1
     git fetch origin &&
@@ -119,39 +96,6 @@ current_git_branch() {
 
 git_commits_ahead() {
     git status 2> /dev/null | grep ahead | sed -e 's/.*by \([0-9]\{1,\}\) commits\{0,1\}\./\1/'
-}
-
-    # detect the current branch; use 7-sha when not on branch
-_git_headname() {
-	  local br=`git symbolic-ref -q HEAD 2>/dev/null`
-	  [ -n "$br" ] &&
-		br=${br#refs/heads/} ||
-		br=`git rev-parse --short HEAD 2>/dev/null`
-	  _git_apply_color "$br" "color.sh.branch" " yellow reverse"
-}
-
-    # determine whether color should be enabled. this checks git's color.ui
-    # option and then color.sh.
-_git_color_enabled() {
-	  [ `git config --get-colorbool color.sh true` = "true" ]
-}
-
-    # apply a color to the first argument
-_git_apply_color() {
-	  local output="$1" color="$2" default="$3"
-	  if _git_color_enabled ; then
-		    color=`_git_color "$color" "$default"`
-		    echo -ne "${color}${output}${ANSI_RESET}"
-	  else
-		    echo -ne "$output"
-	  fi
-}
-
-    # retrieve an ANSI color escape sequence from git config
-_git_color() {
-	  local color
-	  color=`git config --get-color "$1" "$2" 2>/dev/null`
-	  [ -n "$color" ] && echo -ne "\001$color\002"
 }
 
 g-i() {
@@ -183,12 +127,4 @@ pkg
     git commit -v -a -m "Initial commit" &&
     git status
     return 0
-}
-
-g-general-baks() {
- cd ~/Dropbox/private-dotfiles &&
- gc automated commit && gp
-
- cd ~/Dropbox/bond &&
- gc automated commit && gp
 }
