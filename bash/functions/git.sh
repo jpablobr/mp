@@ -35,7 +35,8 @@ alias g-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 
 gp() {
-  git push origin $(gbr)
+    [ $# -eq 1 ] && git push "$1" $(gbr) && return 0
+    git push origin $(gbr)
 }
 
 gup() {
