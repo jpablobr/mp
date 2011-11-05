@@ -30,7 +30,7 @@ alias g-rc='git rebase --continue'
 alias g-up='git fetch && git rebase'
 alias g-cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias g-tl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
+alias g-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 # Dropbox
 alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 

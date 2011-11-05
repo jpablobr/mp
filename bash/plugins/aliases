@@ -53,6 +53,7 @@ alias fn='find . -name'
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'
+op(){ "$1" >/dev/null 2>&1 & }
 
 ##############################################################################->
 # - List
@@ -71,9 +72,8 @@ lg() { ls -la | grep "$1"; }
 
 ##############################################################################->
 # - Ruby
-alias bu='bundle update'
-alias bi='bundle install'
 alias rg='bundle exec rake -T | grep'
+alias bl='bundle --local || bundle'
 
 # - Rails
 alias rr-asl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'

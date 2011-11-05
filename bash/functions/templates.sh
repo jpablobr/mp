@@ -50,11 +50,9 @@ production:
 t-gitignore() {
   cat > .gitignore << -EOF-
 .bundle
-db/production.sqlite3
-db/development.sqlite3
+tmp
 log
 logs
-tmp
 .idea/**# Rails
 .bundle
 db/*.sqlite3
@@ -62,9 +60,6 @@ db/*.sqlite3-journal
 *.log
 
 # Documentation
-doc/api
-doc/app
-doc/*
 .yardoc
 .yardopts
 
@@ -89,7 +84,7 @@ index/**/*
 Thumbs.db
 
 # NetBeans
-nbproject
+.nbproject
 
 # Eclipse
 .project
@@ -115,56 +110,7 @@ capybara-*html
 
 # sass
 .sass-cache
-.sass-cache/*
 
-#rvm
-.rvmrc
-.rvmrc.*
--EOF-
-  return 0
-}
-
-t-gemfile() {
-  cat > Gemfile << -EOF-
-source :rubygems
-
-gem 'rails', '3.0.7'
-gem 'pg'
-gem 'compass'
-gem 'haml'
-gem "html5-boilerplate"
-
-group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'rack-debug', :require => "rack/debug"
-  ### test
-  gem 'spork'
-  gem 'database_cleaner'
-  gem 'rspec-rails', '~> 2.5.0'
-  gem 'autotest-rails', '4.1.0'
-  gem 'rr', '1.0.2'
-  gem 'factory_girl_rails', '1.0'
-  gem 'email_spec', '1.0.0'
-  gem 'webmock', '1.6.1', :require => false
-  gem 'ZenTest'
-  ### console
-  gem 'awesome_print'
-  gem 'wirble'
-  ### misc
-  gem 'rcov', '0.9.9'
-  gem 'heroku'
-  gem 'rails3-generators', '0.14.0'
-  gem 'railroady'
-  gem 'rdoc'
-  gem "niftier-generators", :git => 'git://github.com/jpablobr/niftier-generators.git'
-end
-
-# gem 'taps'
-# gem 'sequel'
-# gem 'aws-s3', :require => 'aws/s3'
-# gem 'sqlite3'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'friendly_id', :git => 'git://github.com/parndt/friendly_id.git'
 -EOF-
   return 0
 }

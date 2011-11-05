@@ -50,4 +50,4 @@ function git_status {
         echo -e "(${minutes_since_last_commit}|${branch}))"
     fi
   fi
-}; git_status && exit 0
+}; git_status
