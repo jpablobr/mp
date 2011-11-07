@@ -90,3 +90,8 @@ psg() { ps aux | head -1 | grep -v Broken ; ps aux | grep $* | grep -v grep; }
 pod() { pod2man "$*" | nroff -man | less; }
 localtime () { perl -le 'for (@ARGV) { print scalar localtime($_) }' $*; }
 iplist() { ifconfig | perl -nle '/dr:(\S+)/ && print $1'; }
+
+mkcd() {
+  mkdir -p "$*"
+  cd "$*"
+}

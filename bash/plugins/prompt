@@ -2,36 +2,72 @@
 # ----------------------------------------------------------------------
 # - PROMP:
 
-RED="\[\033[0;31m\]"
-BROWN="\[\033[0;33m\]"
-GREY="\[\033[0;97m\]"
-GREEN="\[\033[0;32m\]"
-BLUE="\[\033[0;34m\]"
-PS_CLEAR="\[\033[0m\]"
-SCREEN_ESC="\[\033k\033\134\]"
+black="\[\e[0;30m\]"
+red="\[\e[0;31m\]"
+green="\[\e[0;32m\]"
+yellow="\[\e[0;33m\]"
+blue="\[\e[0;34m\]"
+purple="\[\e[0;35m\]"
+cyan="\[\e[0;36m\]"
+white="\[\e[1;37m\]"
+orange="\[\e[33;40m\]"
 
-COLOR1="${BLUE}"
-COLOR2="${BLUE}"
-P="\$"
-
-if [ "$LOGNAME" != "jpablobr" ]; then
-    COLOR1="${RED}"
-    COLOR2="${BROWN}"
-    P="#"
-else
-    COLOR1="${GREEN}"
-    COLOR2="${BROWN}"
-    P="\$"
-fi
-
-prompt_color() {
-    if hostname | grep -q 'dell'; then
-       PS1="${COLOR1}\W \h → ${GREY}"
+git_status() {
+    local last_commit_in_unix_time
+    local now_in_unix_time
+    local tmp_flags
+    local flags
+    local seconds_since_last_commit
+    local minutes_since_last_commit
+    local days_since_last_commit
+    local minutes_so_far_today
+    local branch
+    last_commit_in_unix_time=$(git log "HEAD" --pretty=format:%ct 2> /dev/null | sort | tail -n1)
+    now_in_unix_time=$(date +%s)
+    branch=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
+    tmp_flags=$(git status --porcelain 2> /dev/null | cut -c1-2 | sed 's/ //g' | cut -c1 | sort | uniq)
+    flags="$(echo $tmp_flags | sed 's/ //g')"
+    if [ $last_commit_in_unix_time ]; then
+        seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
+        minutes_since_last_commit="$(($seconds_since_last_commit/60))"
+        if ((minutes_since_last_commit < 60)); then
+            minutes_since_last_commit="$(tput setaf 2)${minutes_since_last_commit}m$(tput op)"
+        elif ((minutes_since_last_commit < 120)); then
+            minutes_since_last_commit="$(tput setaf 3)${minutes_since_last_commit}m$(tput op)"
+        elif ((minutes_since_last_commit < 1440)); then
+            minutes_since_last_commit="$(tput setaf 1)${minutes_since_last_commit}m$(tput op)"
+        else
+            days_since_last_commit=$(($minutes_since_last_commit/1440))
+            minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
+            minutes_since_last_commit="$(tput setaf 1)${days_since_last_commit}d ${minutes_so_far_today}m$(tput op)"
+        fi
     else
-       PS1="${COLOR1}\W \h → ${GREY}"
+        minutes_since_last_commit=""
     fi
-
-    PS2="\[[33;1m\]continue \[[0m[1m\]> "
+    if [ $branch ] || [ $flags  ]; then
+        if [ $branch ]; then
+            branch="${branch}"
+        else
+            branch="waiting for first commit"
+        fi
+        if [ $flags ]; then
+        # ?AM: Git file flags.
+        # '?' for untracked files.
+        # 'A' for newly added uncommited files.
+        # 'M' for modified uncommited files.
+            echo -e " $(tput op)${flags}|${minutes_since_last_commit}|${branch}$(tput op) "
+        else
+            echo -e " $(tput op)${minutes_since_last_commit}|${branch}$(tput op) "
+        fi
+    else
+        echo -e " "
+    fi
 }
 
-test -n "$PS1" && prompt_color
+function prompt_command() {
+    if [ "$(whoami)" = root ]; then no_color=$red; else no_color=$white; fi
+    PS1="${no_color}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:$(git_status)${blue}\$? \W/${reset_color} "
+    RPROMPT='[\t]'
+}
+
+PROMPT_COMMAND=prompt_command;
