@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # git.sh
 # Git related helper functions
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
@@ -40,11 +40,11 @@ gp() {
 }
 
 gup() {
-  git pull --rebase origin $(gbr)
+    git pull --rebase origin $(gbr)
 }
 
 gbr() {
-  test -d .git && git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3
+    test -d .git && git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3
 }
 
 g-prune() {
@@ -131,22 +131,22 @@ pkg
 }
 
 function g-remote {
-  echo "Running: git remote add origin ${GIT_HOSTING}:$1.git"
-  git remote add origin $GIT_HOSTING:$1.git
+    echo "Running: git remote add origin ${GIT_HOSTING}:$1.git"
+    git remote add origin $GIT_HOSTING:$1.git
 }
 
 function g-first_push {
-  echo "Running: git push origin master:refs/heads/master"
-  git push origin master:refs/heads/master
+    echo "Running: git push origin master:refs/heads/master"
+    git push origin master:refs/heads/master
 }
 
 function g-remove_missing_files() {
-  git ls-files -d -z | xargs -0 git update-index --remove
+    git ls-files -d -z | xargs -0 git update-index --remove
 }
 
 # Adds files to git's exclude file (same as .gitignore)
 function local-ignore() {
-  echo "$1" >> .git/info/exclude
+    echo "$1" >> .git/info/exclude
 }
 
 # get a quick overview for your git repo
@@ -188,37 +188,37 @@ function g-stats {
 # awesome work from https://github.com/esc/git-stats
 # including some modifications
 
-if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
-    echo "Number of commits per author:"
-    git --no-pager shortlog -sn --all
-    AUTHORS=$( git shortlog -sn --all | cut -f2 | cut -f1 -d' ')
-    LOGOPTS=""
-    if [ "$1" == '-w' ]; then
-        LOGOPTS="$LOGOPTS -w"
-        shift
+    if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
+        echo "Number of commits per author:"
+        git --no-pager shortlog -sn --all
+        AUTHORS=$( git shortlog -sn --all | cut -f2 | cut -f1 -d' ')
+        LOGOPTS=""
+        if [ "$1" == '-w' ]; then
+            LOGOPTS="$LOGOPTS -w"
+            shift
+        fi
+        if [ "$1" == '-M' ]; then
+            LOGOPTS="$LOGOPTS -M"
+            shift
+        fi
+        if [ "$1" == '-C' ]; then
+            LOGOPTS="$LOGOPTS -C --find-copies-harder"
+            shift
+        fi
+        for a in $AUTHORS
+        do
+            echo '-------------------'
+            echo "Statistics for: $a"
+            echo -n "Number of files changed: "
+            git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f3 | sort -iu | wc -l
+            echo -n "Number of lines added: "
+            git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f1 | awk '{s+=$1} END {print s}'
+            echo -n "Number of lines deleted: "
+            git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f2 | awk '{s+=$1} END {print s}'
+            echo -n "Number of merges: "
+            git log $LOGOPTS --all --merges --author=$a | grep -c '^commit'
+        done
+    else
+        echo "you're currently not in a git repository"
     fi
-    if [ "$1" == '-M' ]; then
-        LOGOPTS="$LOGOPTS -M"
-        shift
-    fi
-    if [ "$1" == '-C' ]; then
-        LOGOPTS="$LOGOPTS -C --find-copies-harder"
-        shift
-    fi
-    for a in $AUTHORS
-    do
-        echo '-------------------'
-        echo "Statistics for: $a"
-        echo -n "Number of files changed: "
-        git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f3 | sort -iu | wc -l
-        echo -n "Number of lines added: "
-        git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f1 | awk '{s+=$1} END {print s}'
-        echo -n "Number of lines deleted: "
-        git log $LOGOPTS --all --numstat --format="%n" --author=$a | cut -f2 | awk '{s+=$1} END {print s}'
-        echo -n "Number of merges: "
-        git log $LOGOPTS --all --merges --author=$a | grep -c '^commit'
-    done
-else
-    echo "you're currently not in a git repository"
-fi
 }
