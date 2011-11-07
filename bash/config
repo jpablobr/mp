@@ -28,7 +28,8 @@ PLUGINS=(
     "ssh"
     "prompt" )
 
-for plugin in "${PLUGINS[@]}"; do
+for plugin in "${PLUGINS[@]}"
+do
     plugin_path="$HOME/.mp/bash/plugins/${plugin}"
     test -f $plugin_path && source $plugin_path
 done
