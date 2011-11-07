@@ -32,6 +32,7 @@ FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 HISTCONTROL=ignoreboth
 HISTFILESIZE=10000
 HISTSIZE=1000
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 # -------------------------------------------------------------------
 # - USER SHELL ENVIRONMENT:
