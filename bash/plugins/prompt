@@ -68,7 +68,7 @@ git_status() {
 function prompt_command() {
     if [ "$(whoami)" = root ]; then no_color=$red; else no_color=$white; fi
     local start_ps1="${no_color}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:"
-    PS1="${start_ps1}$(git_status)\`es=\$?; if [ ! \$es = 0 ]; then echo \[\e[0\;31m\]\$es' ' ; else echo ""; fi\`${blue}\W${reset_color} "
+    PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
 }
 
 PROMPT_COMMAND=prompt_command;
