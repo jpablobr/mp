@@ -9,8 +9,9 @@ yellow="\[\e[0;33m\]"
 blue="\[\e[0;34m\]"
 purple="\[\e[0;35m\]"
 cyan="\[\e[0;36m\]"
-white="\[\e[1;37m\]"
+white="\[\e[0;37m\]"
 orange="\[\e[33;40m\]"
+reset_color="\[\e[39m\]"
 
 git_status() {
     local last_commit_in_unix_time
@@ -31,15 +32,15 @@ git_status() {
         seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
         minutes_since_last_commit="$(($seconds_since_last_commit/60))"
         if ((minutes_since_last_commit < 60)); then
-            minutes_since_last_commit="$(tput setaf 2)${minutes_since_last_commit}m$(tput op)"
+            minutes_since_last_commit="${green}${minutes_since_last_commit}m${reset_color}"
         elif ((minutes_since_last_commit < 120)); then
-            minutes_since_last_commit="$(tput setaf 3)${minutes_since_last_commit}m$(tput op)"
+            minutes_since_last_commit="${yellow}${minutes_since_last_commit}m${reset_color}"
         elif ((minutes_since_last_commit < 1440)); then
-            minutes_since_last_commit="$(tput setaf 1)${minutes_since_last_commit}m$(tput op)"
+            minutes_since_last_commit="${red}${minutes_since_last_commit}m${reset_color}"
         else
             days_since_last_commit=$(($minutes_since_last_commit/1440))
             minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
-            minutes_since_last_commit="$(tput setaf 1)${days_since_last_commit}d ${minutes_so_far_today}m$(tput op)"
+            minutes_since_last_commit="${red}${days_since_last_commit}d ${minutes_so_far_today}m${reset_color}"
         fi
     else
         minutes_since_last_commit=""
@@ -55,9 +56,9 @@ git_status() {
         # '?' for untracked files.
         # 'A' for newly added uncommited files.
         # 'M' for modified uncommited files.
-            echo -e " $(tput op)${flags}|${minutes_since_last_commit}|${branch}$(tput op) "
+            echo -e " ${reset_color}${flags}|${minutes_since_last_commit}|${branch}${reset_color} "
         else
-            echo -e " $(tput op)${minutes_since_last_commit}|${branch}$(tput op) "
+            echo -e " ${reset_color}${minutes_since_last_commit}|${branch}${reset_color} "
         fi
     else
         echo -e " "
@@ -66,8 +67,8 @@ git_status() {
 
 function prompt_command() {
     if [ "$(whoami)" = root ]; then no_color=$red; else no_color=$white; fi
-    PS1="${no_color}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:$(git_status)${blue}\$? \W/${reset_color} "
-    RPROMPT='[\t]'
+    local start_ps1="${no_color}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:"
+    PS1="${start_ps1}$(git_status)\`es=\$?; if [ ! \$es = 0 ]; then echo \[\e[0\;31m\]\$es' ' ; else echo ""; fi\`${blue}\W${reset_color} "
 }
 
 PROMPT_COMMAND=prompt_command;
