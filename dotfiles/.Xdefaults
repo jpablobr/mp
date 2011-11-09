@@ -1,1 +1,255 @@
-XTerm*termName: xterm-256color
+! #include "/etc/X11/Xresources/x11-common"
+!-----------------------------------------------------------------------------
+! appearance
+!-----------------------------------------------------------------------------
+
+! enable colors in native X applications
+#ifdef COLOR
+*customization              : -color
+#endif
+
+! use the Human cursor theme from Ubuntu
+Xcursor.theme               : Human
+
+!-----------------------------------------------------------------------------
+! URxvt
+!-----------------------------------------------------------------------------
+
+! interaction
+URxvt.saveLines              : 8192
+URxvt.scrollTtyOutput        : False
+URxvt.scrollTtyKeypress      : True
+URxvt.scrollWithBuffer       : True
+
+! appearance
+URxvt.font                   : xft:Tamsyn-11:antialias=false
+URxvt.scrollBar_right        : True
+URxvt.scrollBar_floating     : True
+URxvt.scrollstyle            : plain
+
+! extensions
+! URxvt.perl-ext-common       : default,matcher
+! URxvt.urlLauncher           : /usr/bin/xdg-open
+! URxvt.matcher.button        : 2
+
+!-----------------------------------------------------------------------------
+! XTerm
+!-----------------------------------------------------------------------------
+
+! interaction
+XTerm*vt100.metaSendsEscape : True
+XTerm*vt100.saveLines       : 8192
+
+! appearance
+XTerm*vt100.faceName        : Tamsyn-10:antialias=true
+XTerm*vt100.colorMode       : True
+XTerm*vt100.colorBDMode     : True
+XTerm*vt100.colorULMode     : True
+XTerm*vt100.showBlinkAsBold : True
+XTerm*vt100.veryBoldColors  : 6
+
+!-----------------------------------------------------------------------------
+! xoria256 terminal color scheme
+! http://snk.tuxfamily.org/log/xoria256-terminal-color-scheme.html
+!-----------------------------------------------------------------------------
+
+!black.normal               : xoria256.LineNr.guibg
+!black.bright               : black.normal.rgb - 8
+URxvt.color0                 : #121212
+URxvt.color8                 : #0a0a0a
+
+!red.normal                 : red.bright.r - 8
+!red.bright                 : xoria256.Special.guifg
+URxvt.color1                 : #d78787
+URxvt.color9                 : #df8787
+
+!green.normal               : green.bright.g - 8
+!green.bright               : xoria256.PreProc.guifg
+URxvt.color2                 : #afd787
+URxvt.color10                : #afdf87
+
+!yellow.normal              : yellow.bright.rg - 8
+!yellow.bright              : xoria256.Special.guifg
+URxvt.color3                 : #f7f7af
+URxvt.color11                : #ffffaf
+
+!blue.normal                : blue.bright.b - 8
+!blue.bright                : xoria256.Statement.guifg
+URxvt.color4                 : #87afd7
+URxvt.color12                : #87afdf
+
+!magenta.normal             : magenta.bright.rb - 8
+!magenta.bright             : xoria256.Identifier.guifg
+URxvt.color5                 : #d7afd7
+URxvt.color13                : #dfafdf
+
+!cyan.normal                : cyan.bright.gb - 8
+!cyan.bright                : green.bright + blue.bright
+URxvt.color6                 : #afd7d7
+URxvt.color14                : #afdfdf
+
+!white.normal               : white.bright.rgb - 8
+!white.bright               : xoria256.Folded.guifg
+URxvt.color7                 : #e6e6e6
+URxvt.color15                : #eeeeee
+
+!foreground                 : xoria256.Normal.guifg
+!background                 : xoria256.Normal.guibg
+!cursor                     : xoria256.Cursor.guibg
+URxvt.foreground             : #d0d0d0
+URxvt.background             : #1c1c1c
+URxvt.cursorColor            : #ffaf00
+
+!bold                       : xoria256.Type.guifg
+!underline                  : xoria256.htmlValue.guifg
+URxvt.colorBD                : #afafdf
+URxvt.colorUL                : #dfdfaf
+
+!black.normal               : xoria256.LineNr.guibg
+!black.bright               : black.normal.rgb - 8
+XTerm*vt100.color0          : #121212
+XTerm*vt100.color8          : #0a0a0a
+
+!red.normal                 : red.bright.r - 8
+!red.bright                 : xoria256.Special.guifg
+XTerm*vt100.color1          : #d78787
+XTerm*vt100.color9          : #df8787
+
+!green.normal               : green.bright.g - 8
+!green.bright               : xoria256.PreProc.guifg
+XTerm*vt100.color2          : #afd787
+XTerm*vt100.color10         : #afdf87
+
+!yellow.normal              : yellow.bright.rg - 8
+!yellow.bright              : xoria256.Special.guifg
+XTerm*vt100.color3          : #f7f7af
+XTerm*vt100.color11         : #ffffaf
+
+!blue.normal                : blue.bright.b - 8
+!blue.bright                : xoria256.Statement.guifg
+XTerm*vt100.color4          : #87afd7
+XTerm*vt100.color12         : #87afdf
+
+!magenta.normal             : magenta.bright.rb - 8
+!magenta.bright             : xoria256.Identifier.guifg
+XTerm*vt100.color5          : #d7afd7
+XTerm*vt100.color13         : #dfafdf
+
+!cyan.normal                : cyan.bright.gb - 8
+!cyan.bright                : green.bright + blue.bright
+XTerm*vt100.color6          : #afd7d7
+XTerm*vt100.color14         : #afdfdf
+
+!white.normal               : white.bright.rgb - 8
+!white.bright               : xoria256.Folded.guifg
+XTerm*vt100.color7          : #e6e6e6
+XTerm*vt100.color15         : #eeeeee
+
+!foreground                 : xoria256.Normal.guifg
+!background                 : xoria256.Normal.guibg
+!cursor                     : xoria256.Cursor.guibg
+XTerm*vt100.foreground      : #d0d0d0
+XTerm*vt100.background      : #1c1c1c
+XTerm*vt100.cursorColor     : #ffaf00
+
+!bold                       : xoria256.Type.guifg
+!underline                  : xoria256.htmlValue.guifg
+XTerm*vt100.colorBD         : #afafdf
+XTerm*vt100.colorUL         : #dfdfaf
+
+!-----------------------------------------------------------------------------
+! screensaver
+!-----------------------------------------------------------------------------
+
+XLock.mode                  : marquee
+XLock.vtlock                : restore
+XLock.erasedelay            : 0
+
+!!!
+!!! Emacs
+!!!
+
+Emacs.fontBackend: xft
+Emacs.menuBar: off
+Emacs.verticalScrollBars: off
+Emacs.toolBar: off
+Emacs.BitmapIcon: on
+Emacs.Font: Monospace-12
+
+!! drop in Solarized colorscheme for Xresources/Xdefaults
+
+!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
+!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #dcdccc
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #f0dfaf
+#define S_orange        #dfaf8f
+#define S_red           #ac7373
+#define S_magenta       #dc8cc3
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #5f7f5f
+
+Emacs*background:            #3f3f3f
+Emacs*foreground:            #dcdccc
+Emacs*fading:                40
+Emacs*fadeColor:             S_base03
+Emacs*cursorColor:           #eee8d5
+Emacs*pointerColorBackground:S_base01
+Emacs*pointerColorForeground:S_base1
+
+!! black dark/light
+Emacs*color0:                S_base02
+Emacs*color8:                S_base03
+
+!! red dark/light
+Emacs*color1:                S_red
+Emacs*color9:                S_orange
+
+!! green dark/light
+Emacs*color2:                S_green
+Emacs*color10:               S_base01
+
+!! yellow dark/light
+Emacs*color3:                S_yellow
+Emacs*color11:               S_base00
+
+!! blue dark/light
+Emacs*color4:                S_blue
+Emacs*color12:               S_base0
+
+!! magenta dark/light
+Emacs*color5:                S_magenta
+Emacs*color13:               S_violet
+
+!! cyan dark/light
+Emacs*color6:                S_cyan
+Emacs*color14:               S_base1
+
+!! white dark/light
+Emacs*color7:                S_base2
+Emacs*color15:               S_base3
