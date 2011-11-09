@@ -96,3 +96,7 @@ mkcd() {
   cd "$*"
 }
 
+duh() { # disk usage for humans
+  test $# -eq 0 && set -- *
+  du -sch "$@" | sort -h
+}

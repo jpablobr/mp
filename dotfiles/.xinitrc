@@ -1,15 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# Load in the XRDB settings which define how a lot of things
-# look (urxvt, emacs, etc.)
-# xrdb -merge ~/.Xresources
-# xrdb -merge ~/.Xdefaults
-# Make caps lock an additional control key
-# setxkbmap -option ctrl:nocaps
-# Launch the programs
-# chromium-browser &
-# emacs &
+# notification
+/usr/local/libexec/notification-daemon &
 
-# Start XMonad
-# exec xmonad
-# exec openbox
+xmodmap ~/.xmodmap &
+xrdb -load ~/.Xresources &
+xrdb -load ~/.Xdefaults &
+source ~/.bashrc &
+
+/usr/bin/setxkbmap -option "ctrl:nocaps" &
+/usr/local/libexec/notification-daemon &
+urxvt &
+~/bin/sh/focus -a 5 &
+
+# applications

@@ -2,7 +2,6 @@
 
 set -e
 
-exec gnome-terminal \
---working-directory \
---hide-menubar      \
---maximize
+emacs -l ~/.emacs.d/inits/ruby-init.el . &
+
+exec xterm

@@ -116,7 +116,7 @@ alarm_fcs() {
         done
     else
         tput setaf 1 bold
-	      echo "Minutes have to be > than 1" >&2
+	      echo "Minutes has to be > than 1" >&2
         tput op
 	      exit 1
     fi

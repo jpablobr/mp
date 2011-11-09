@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ "$*" = "" ]; then
+    emacs -l ~/.emacs.d/inits/jpablobr-init.el &
+else
+    emacs "$*" -l ~/.emacs.d/inits/jpablobr-init.el &
+fi
+
+exit 0

@@ -30,7 +30,7 @@ alias gnome-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
-alias r='fc -s' # Awesome!
+alias r='fc -s'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias es='emacs -nw'
@@ -41,7 +41,6 @@ alias em='emacs -Q -nw -l ~/.emacs.d/inits/jpablobr-init.el'
 alias emr='emacs -nw  -l ~/.emacs.d/inits/ruby-init.el .'
 alias emp='emacs -Q -nw -l ~/.emacs.d/inits/php-init.el'
 alias empg='emacs -l ~/.emacs.d/inits/php-init.el . &'
-alias emg='emacs -l ~/.emacs.d/inits/jpablobr-init.el &'
 alias emrg='emacs -l ~/.emacs.d/inits/ruby-init.el . &'
 alias se='sudo emacs -nw -l ~/.emacs.d/inits/min-init.el'
 # Pids IPs
@@ -53,6 +52,7 @@ alias fn='find . -name'
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep $1'
 op(){ "$1" >/dev/null 2>&1 & }
+alias sloc='cloc --by-file-by-lang --exclude-dir .git'
 
 ##############################################################################->
 # - List

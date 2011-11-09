@@ -1,6 +1,5 @@
-XTerm*VT100.translations: #override \
-   ~Meta Shift<Key>Tab: string(\033[Z) \n\
-    Meta Shift<Key>Tab: string(\033\033[Z) \n
-
-XTerm*metaSendsEscape: true
-XTerm*eightBitInput: false
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+keycode 117 = Caps_Lock
+add Lock = Caps_Lock
