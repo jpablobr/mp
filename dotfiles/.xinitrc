@@ -3,7 +3,7 @@
 # notification
 /usr/local/libexec/notification-daemon &
 
-xmodmap ~/.xmodmap &
+xmodmap ~/.Xmodmap &
 xrdb -load ~/.Xresources &
 xrdb -load ~/.Xdefaults &
 source ~/.bashrc &
@@ -12,5 +12,7 @@ source ~/.bashrc &
 /usr/local/libexec/notification-daemon &
 urxvt &
 ~/bin/sh/focus -a 5 &
+
+pkill metacity; exec awesome &
 
 # applications
