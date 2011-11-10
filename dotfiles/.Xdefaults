@@ -24,7 +24,7 @@ Rxvt.scrollstyle            : plain
 URxvt.iconFile              : /usr/share/icons/Humanity/apps/48/terminal.svg
 URxvt.geometry              : 84×24
 URxvt.borderLess            : False
-
+! URxvt*backgroundPixmap      : /home/jpablobr/Dropbox/backgrounds/simple_linux.png
 ! extensions
 URxvt.perl-lib              : /home/jpablobr/.urxvt/perl
 URxvt.perl-ext-common       : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
@@ -218,7 +218,7 @@ Emacs.menuBar             : off
 Emacs.verticalScrollBars  : off
 Emacs.toolBar             : off
 Emacs.BitmapIcon          : on
-
+Emacs.backgroundPixmap    : /home/jpablobr/Dropbox/backgrounds/Dark_by_b1uesummers.jpg
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75

@@ -3,9 +3,9 @@
 set -e
 
 if [ "$*" = "" ]; then
-    emacs -l ~/.emacs.d/inits/min-init.el &
+    emacs -l /home/jpablobr/.emacs.d/inits/min-init.el &
 else
-    emacs "$*" -l ~/.emacs.d/inits/min-init.el  &
+    emacs "$*" -l /home/jpablobr/.emacs.d/inits/min-init.el  &
 fi
 
 exit 0
