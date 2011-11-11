@@ -24,7 +24,7 @@ Rxvt.scrollstyle            : plain
 URxvt.iconFile              : /usr/share/icons/Humanity/apps/48/terminal.svg
 URxvt.geometry              : 84×24
 URxvt.borderLess            : False
-! URxvt*backgroundPixmap      : /home/jpablobr/Dropbox/backgrounds/simple_linux.png
+! URxvt*backgroundPixmap      : /home/jpablobr/Dropbox/backgrounds/wallpaper_red_vectorlines_by_fberheim-d36i610.jpg
 ! extensions
 URxvt.perl-lib              : /home/jpablobr/.urxvt/perl
 URxvt.perl-ext-common       : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen

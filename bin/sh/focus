@@ -110,7 +110,7 @@ alarm_fcs() {
 
         while :; do
             sleep "$minutes"m
-            notify-send "Getting done!" \
+            notify-send "FCS!" \
                 "$msg" \
                 -i /usr/share/pixmaps/gnome-gmush.png
         done

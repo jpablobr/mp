@@ -1,44 +1,51 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# open your theme, otherwise it's ugly
+# echo 'SSH/GPG agent'
+# eval `gnome-keyring-daemon`
+
+echo 'opne gnome-settings-deamon'
 gnome-settings-daemon &
 
-# open screensaver
+echo 'open screensaver'
 gnome-screensaver &
-# Open Voume manager
-gnome-volume-manager
 
-# open power manager
+echo 'Open Voume manager'
+gnome-volume-control-applet &
+
+echo 'open power manager'
 gnome-power-manager &
 
-# open net work manager
+echo 'open net work manager'
 nm-applet &
 
-#open auto update
+echo 'open auto update'
 update-notifier &
 
-# notification
+echo 'notification setup'
 /usr/local/libexec/notification-daemon &
-~/bin/sh/focus -a 5 &
 
-# Styles
-xmodmap ~/.Xmodmap &
-xrdb -load ~/.Xresources &
-xrdb -load ~/.Xdefaults &
+echo 'Styles setup; xmodmap and Xresources'
+xmodmap /home/jpablobr/.Xmodmap &
+xrdb -load /home/jpablobr/.Xresources &
+xrdb -load /home/jpablobr/.Xdefaults &
 /usr/bin/setxkbmap -option "ctrl:nocaps" &
+gconftool-2 --type bool --set /apps/gnome_settings_daemon/plugins/background/active False
 
-# Meh, why not...
-cd ~/bin/sh/conky/
+echo 'source bashrc'
+source ~/.bashrc &
+
+echo 'Conky stuff'
+cd /home/jpablobr/bin/sh/conky/
 conky -c ./conkydate &
 conky -c ./conkyhr &
 conky -c ./conkymin &
 conky -c ./conkystats &
+cd
 
-# Environments
-source ~/.bashrc &
+echo 'Dropbox'
+dbox-bitch
 
-# Applications
-/usr/local/libexec/notification-daemon &
-urxvt &
+echo 'exec focus'
+/home/jpablobr/bin/sh/focus -a 5 &
 
-pkill metacity; exec ck-launch-session awesome &
+exec /usr/bin/awesome
