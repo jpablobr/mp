@@ -111,8 +111,8 @@ alarm_fcs() {
         while :; do
             sleep "$minutes"m
             notify-send "FCS!" \
-                "$msg" \
-                -i /usr/share/pixmaps/gnome-gmush.png
+                "$msg" # \
+                # -i /usr/share/pixmaps/gnome-gmush.png
         done
     else
         tput setaf 1 bold
