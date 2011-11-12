@@ -26,7 +26,8 @@ alias aliasr="alias | egrep '(ruby|rails)' | cat | sed s:=:'$(tput setaf 5)=$(tp
 alias ag='alias | grep '
 alias export-current-dir='export PATH="$PATH:`pwd`"'
 add-apt-pkg-to-setup(){ echo "$1" >> ~/.private/setup/apt-get/apt-pkgs.dump; }
-alias gnome-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
+alias gnome2-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
+alias gnome3-set-emacs-interface='gsettings set org.gnome.desktop.interface gtk-key-theme Emacs'
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
@@ -34,8 +35,8 @@ alias r='fc -s'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias es='emacs -nw'
-alias ec='emacsclient -c'
-alias e='emacsclient -n'
+alias ec='emacsclient -n'
+alias e='emacsclient -c'
 alias emm='emacs -nw -l ~/.emacs.d/inits/min-init.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/inits/jpablobr-init.el'
 alias emr='emacs -nw  -l ~/.emacs.d/inits/ruby-init.el .'
@@ -53,6 +54,7 @@ alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm
 alias hgrep='history | grep $1'
 op(){ "$1" >/dev/null 2>&1 & }
 alias sloc='cloc --by-file-by-lang --exclude-dir .git'
+alias curlr='curl -C - -L -O'
 
 ##############################################################################->
 # - List

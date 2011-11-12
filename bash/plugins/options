@@ -22,7 +22,7 @@ shopt -s huponexit >/dev/null 2>&1
 shopt -s interactive_comments >/dev/null 2>&1
 
 # fuck that you have new mail shit
-unset MAILCHECK
+# unset MAILCHECK
 
 # disable core dumps
 ulimit -S -c 0
