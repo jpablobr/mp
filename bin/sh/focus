@@ -112,7 +112,7 @@ alarm_fcs() {
             sleep "$minutes"m
             notify-send "FCS!" \
                 "$msg" # \
-                # -i /usr/share/pixmaps/gnome-gmush.png
+                -i ~/.icons/jpablobr/focus.png
         done
     else
         tput setaf 1 bold
