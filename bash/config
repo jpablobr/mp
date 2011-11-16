@@ -13,6 +13,9 @@
 # readline config
 : ${INPUTRC=~/.inputrc}
 
+
+export DESKTOP_SESSION=LXDE
+
 #-----------------------------------------------------------------------
 # - Plugins
 PLUGINS=(

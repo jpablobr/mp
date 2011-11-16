@@ -2,7 +2,7 @@
 # ----------------------------------------------------------------------
 # - PATH:
 
-JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+JAVA_HOME="/usr/lib/jvm/java-6-openjdk/"
 export JAVA_HOME
 
 # bin
@@ -19,7 +19,10 @@ PATH="$HOME/.cabal/bin:$PATH"
 # if node.js.
 test -d "$HOME/local/node/bin" &&
 PATH="$HOME/local/node/bin:$PATH"
-export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
+export "NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules"
+
+# SM
+PATH="${PATH}:/home/jpablobr/.sm/bin:/home/jpablobr/.sm/pkg/active/bin:/home/jpablobr/.sm/pkg/active/sbin"
 
 #-----------------------------------------------------------------------
 # - if $HOME/bin

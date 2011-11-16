@@ -6,7 +6,7 @@
 ##############################################################################->
 # - Grep
 g-.() { grep -nH -e "$@";}
-g-f() { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
+f() { find . -type f -print0 | xargs -0 -e grep -nH -e "$1"; }
 gr-fp() { find "$1" -type f -print0 | xargs -0 -e grep -nH -e "$2"; }
 gr-linux-yac() { grep -nH -e "$@" ~/org/yacs/linux.org; }
 gr-less() { egrep --color=yes "$@" | less -R; }

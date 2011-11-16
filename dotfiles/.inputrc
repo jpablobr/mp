@@ -2,6 +2,8 @@
 # for multiple completions.
 set show-all-if-ambiguous on
 
+set bell-style none
+
 # Case insensitive tab-completion
 set completion-ignore-case on
 

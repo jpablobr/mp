@@ -35,7 +35,7 @@ alias r='fc -s'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias es='emacs -nw'
-alias ec='emacsclient -n'
+alias ec='emacsclient -nw'
 alias e='emacsclient -c'
 alias emm='emacs -nw -l ~/.emacs.d/inits/min-init.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/inits/jpablobr-init.el'
@@ -43,7 +43,7 @@ alias emr='emacs -nw  -l ~/.emacs.d/inits/ruby-init.el .'
 alias emp='emacs -Q -nw -l ~/.emacs.d/inits/php-init.el'
 alias empg='emacs -l ~/.emacs.d/inits/php-init.el . &'
 alias emrg='emacs -l ~/.emacs.d/inits/ruby-init.el . &'
-alias se='sudo emacs -nw -l ~/.emacs.d/inits/min-init.el'
+alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # disk usage with human sizes and minimal depth
@@ -51,10 +51,13 @@ alias du1='du -h --max-depth=1'
 alias fn='find . -name'
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
-alias hgrep='history | grep $1'
+alias hgrep='history | grep -i'
 op(){ "$1" >/dev/null 2>&1 & }
 alias sloc='cloc --by-file-by-lang --exclude-dir .git'
 alias curlr='curl -C - -L -O'
+alias ubuntu-version='lsb_release -a'
+alias g-log-gdm0="sudo less gdm/:0.log | grep EE"
+alias sup_os='export | grep -i'
 ##############################################################################->
 # - List
 alias ls='ls -F --color=auto'

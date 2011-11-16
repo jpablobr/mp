@@ -8,7 +8,6 @@ alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
 alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
 alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
-alias f=find
 
 chmod-files(){
     find . -type f -exec chmod -v "$1" {} \;

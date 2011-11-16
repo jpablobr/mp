@@ -3,8 +3,6 @@
 ! appearance
 !-----------------------------------------------------------------------------
 
-*VT100.utf8:	1
-
 ! enable colors in native X applications
 #ifdef COLOR
 *customization              : -color
@@ -21,7 +19,7 @@ Xcursor.theme               : Human
 Rxvt.font                   : xft:Inconsolata-12:antialias=true
 URxvt.scrollBar             : off
 Rxvt.scrollstyle            : plain
-URxvt.iconFile              : /usr/share/icons/Humanity/apps/48/terminal.svg
+URxvt.iconFile              : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
 URxvt.geometry              : 84×24
 URxvt.borderLess            : False
 ! URxvt*backgroundPixmap      : /home/jpablobr/Dropbox/backgrounds/wallpaper_red_vectorlines_by_fberheim-d36i610.jpg
@@ -32,7 +30,7 @@ URxvt.urlLauncher           : /usr/bin/xdg-open
 URxvt.matcher.button        : 1
 URxvt.keysym.M-u            : perl:url-select:select_next
 URxvt.keysym.M-Escape       : perl:keyboard-select:activate
-URxvt.keysym.M-s            : perl:keyboard-select:search
+URxvt.keysym.M-q            : perl:keyboard-select:search
 URxvt.underlineURLs         : true
 URxvt.keysym.M-c            : perl:clipboard:copy
 URxvt.keysym.M-v            : perl:clipboard:paste
@@ -218,7 +216,6 @@ Emacs.menuBar             : off
 Emacs.verticalScrollBars  : off
 Emacs.toolBar             : off
 Emacs.BitmapIcon          : on
-Emacs.backgroundPixmap    : /home/jpablobr/Dropbox/backgrounds/Dark_by_b1uesummers.jpg
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75
