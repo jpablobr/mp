@@ -30,9 +30,9 @@ FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 
 # history stuff
 HISTCONTROL=ignoreboth
-HISTFILESIZE=10000
-HISTSIZE=1000
-export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+HISTFILESIZE=1000000
+HISTSIZE=10000000
+export HISTIGNORE="&:ls:[bf]g:exit"
 
 # -------------------------------------------------------------------
 # - USER SHELL ENVIRONMENT:

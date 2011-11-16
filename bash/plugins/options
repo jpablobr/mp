@@ -11,7 +11,6 @@ set -o notify
 # shell opts. see bash(1) for details
 shopt -s cdspell >/dev/null 2>&1
 shopt -s extglob >/dev/null 2>&1
-shopt -s histappend >/dev/null 2>&1
 shopt -s hostcomplete >/dev/null 2>&1
 shopt -s interactive_comments >/dev/null 2>&1
 shopt -u mailwarn >/dev/null 2>&1
@@ -20,9 +19,8 @@ shopt -s dotglob >/dev/null 2>&1
 shopt -s expand_aliases >/dev/null 2>&1
 shopt -s huponexit >/dev/null 2>&1
 shopt -s interactive_comments >/dev/null 2>&1
-
-# fuck that you have new mail shit
-# unset MAILCHECK
+shopt -s cmdhist
+shopt -s histappend
 
 # disable core dumps
 ulimit -S -c 0
