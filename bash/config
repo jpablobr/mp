@@ -12,6 +12,7 @@
 : ${HOSTNAME=$(/bin/hostname)}
 # readline config
 : ${INPUTRC=~/.inputrc}
+: ${SCDLR_PATH=~/Dropbox/music/soundcloud}
 
 #-----------------------------------------------------------------------
 # - Plugins
