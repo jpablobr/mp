@@ -9,6 +9,13 @@ alias f-broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -
 alias f-symlinks='find . -type l'
 alias f-remove_symlinks='for f in $(find . -type l); do rm $f; done'
 
+# moving in dirs
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 chmod-files(){
     find . -type f -exec chmod -v "$1" {} \;
 }

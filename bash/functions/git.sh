@@ -35,7 +35,7 @@ alias g-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese
 alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 
 gp() {
-    [ $# -eq 1 ] && git push "$1" $(gbr) && return 0
+    [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
     git push origin $(gbr)
 }
 
@@ -101,7 +101,7 @@ git_commits_ahead() {
 
 g-i() {
     git init &&
-    cat > .gitignore << -EOF-
+    [ ! -f .gitignore ] && cat > .gitignore << -EOF-
 ## MAC OS
 .DS_Store
 
@@ -127,7 +127,7 @@ pkg
     git add . &&
     git commit -v -a -m "Initial commit" &&
     git status
-    return 0
+    exit 0
 }
 
 function g-remote {
