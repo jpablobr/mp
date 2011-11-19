@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Common aliases
+alias sudo='sudo ' # What is this I don't even.
 alias o='gnome-open . &'
 alias h='history | grep -i'
 alias more='less'
@@ -102,5 +103,6 @@ aappd(){
     exit 0
 }
 
-alias dmesg-toshiba="dmesg | grep -n1 TOSHIBA"
-alias mount-toshiba='sudo mount /dev/sdb1 /media/toshiba-1t/'
+alias dmesg-toshiba="dmesg | grep -n3 TOSHIBA"
+alias mount-toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
+alias rmf='rm -frv'

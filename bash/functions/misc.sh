@@ -3,6 +3,13 @@
 # General helpers
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
 
+alias pygrep="grep --include='*.py' $*"
+alias rbgrep="grep --include='*.rb' $*"
+
+cdf() {
+    cd *$1*/
+}
+
 ##############################################################################->
 # - Grep
 g-.() { grep -nH -e "$@";}
@@ -154,6 +161,7 @@ ad() { # decompress archive (to directory $2 if wished for and possible)
               echo "rar, zip, 7z, xz and lzma"
    fi
 }
+
 al() { # list content of archive but don't unpack
     if [ -f "$1" ]; then
          case "$1" in
