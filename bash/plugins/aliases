@@ -91,6 +91,10 @@ alias hi='heroku info'
 alias hp="git push heroku master"
 alias h-t='heroku logs --tail'
 
+envg() {
+    env | grep -i "$1"
+}
+
 ##############################################################################->
 # Aliases directly appended from shell
 #
@@ -106,3 +110,4 @@ aappd(){
 alias dmesg-toshiba="dmesg | grep -n3 TOSHIBA"
 alias mount-toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
 alias rmf='rm -frv'
+

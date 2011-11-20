@@ -29,7 +29,6 @@ ck-launch-session awesome & wmpid=$!
     xmodmap /home/jpablobr/.Xmodmap  &
     xrdb -load /home/jpablobr/.Xresources  &
     xrdb -load /home/jpablobr/.Xdefaults &
-    # xscreensaver &
     /usr/bin/setxkbmap -option "ctrl:nocaps"  &
     gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
     gconftool-2 \
@@ -39,7 +38,7 @@ ck-launch-session awesome & wmpid=$!
         --type string \
         --set /desktop/gnome/session/required_components/windowmanager awesome &
     xset -b & # not beeps!
-    # sudo updatedb &
+    sudo updatedb &
     sudo sysctl fs.inotify.max_user_watches=1000000 &
 
     # touchpad
@@ -52,10 +51,9 @@ ck-launch-session awesome & wmpid=$!
     # Window manager log
     # urxvt -e tail -F /var/log/Xorg.0.log &
 
-    urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &
+    # urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &
 
     # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     sudo NetworkManager&>> $public_nw_log &
     # sudo nm-applet --sm-disable &>> $public_nw_log &
 wait $wmpid
-
