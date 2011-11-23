@@ -1,0 +1,13 @@
+! Emacs
+
+               Emacs.menuBar: off
+    Emacs.verticalScrollBars: off
+               Emacs.toolBar: off
+            Emacs.BitmapIcon: on
+            Emacs*background: #3f3f3f
+            Emacs*foreground: #dcdccc
+                Emacs*fading: 40
+             Emacs*fadeColor: S_base03
+           Emacs*cursorColor: #eee8d5
+Emacs*pointerColorBackground: S_base01
+Emacs*pointerColorForeground: S_base1

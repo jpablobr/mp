@@ -1,8 +1,4 @@
 #!/bin/sh
-#
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -11,23 +7,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-startups_log='/var/log/jpablobr/jp-startups.log'
-private_nw_log='/var/log/jpablobr/private_nw.log'
 public_nw_log='/var/log/jpablobr/public_nw.log'
-
-# Encription
-# eval `gpg-agent --daemon` &&
-# trap 'killall gpg-agent' EXIT
-
-# Dbus session
-# test -z "$DBUS_SESSION_BUS_ADDRESS" &&
-# eval `dbus-launch --sh-syntax --exit-with-session`
 
 # Wait for extra configurations such as calling gnome-session
 ck-launch-session awesome & wmpid=$!
     gnome-session &
     xmodmap /home/jpablobr/.Xmodmap  &
-    xrdb -load /home/jpablobr/.Xresources  &
     xrdb -load /home/jpablobr/.Xdefaults &
     /usr/bin/setxkbmap -option "ctrl:nocaps"  &
     gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
@@ -40,6 +25,8 @@ ck-launch-session awesome & wmpid=$!
     xset -b & # not beeps!
     sudo updatedb &
     sudo sysctl fs.inotify.max_user_watches=1000000 &
+    DISPLAY=:0.0 XAUTHORITY=~/.Xauthority \
+        emacs -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
 
     # touchpad
     # http://wiki.archlinux.org/index.php/Touchpad_Synaptics
@@ -48,12 +35,5 @@ ck-launch-session awesome & wmpid=$!
 
     /home/jpablobr/bin/sh/focus -a 5  &
 
-    # Window manager log
-    # urxvt -e tail -F /var/log/Xorg.0.log &
-
-    # urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &
-
-    # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     sudo NetworkManager&>> $public_nw_log &
-    # sudo nm-applet --sm-disable &>> $public_nw_log &
 wait $wmpid

@@ -5,6 +5,11 @@
 
 alias pygrep="grep --include='*.py' $*"
 alias rbgrep="grep --include='*.rb' $*"
+alias ducks="du -cksh * |sort -rn |head -10" # print top 10 largest files in pwd
+alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort -nrk1 | head -n 10 | sed -e 's/-bin//' | sed -e 's/-media-play//'"
+alias chmodfx="find . -type f -print0 | xargs -0 chmod +x"
+alias scan="sudo iwlist wlan0 scan | grep ESSID"
+alias scanfull="sudo iwlist wlan0 scan"
 
 cdf() {
     cd *$1*/
@@ -182,4 +187,8 @@ al() { # list content of archive but don't unpack
      echo "tbz2, tbz, tgz, lzo, rar"
      echo "zip, 7z, xz and lzma"
     fi
+}
+
+full_path() {
+    echo "$(cd $(dirname "$1"); pwd -P)/$(basename "$1")"
 }

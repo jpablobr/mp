@@ -4,8 +4,10 @@
 
 # Get color support for 'less'
 # --max-forw-scroll=4 --max-back-scroll=4"
+# export LESSOPEN="|lesspipe.sh %s"
 export LESS="--RAW-CONTROL-CHARS --shift 4"
-export LESSOPEN="|lesspipe.sh %s"
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 export LESS_TERMCAP_mb='[01;31m'
 export LESS_TERMCAP_md='[01;34m'
 export LESS_TERMCAP_me='[0m'

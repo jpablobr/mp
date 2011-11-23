@@ -1,3 +1,4 @@
+!! -*- mode: conf -*-
 #include "zenburn.xrdb"
 
 xpdf.initialZoom: page

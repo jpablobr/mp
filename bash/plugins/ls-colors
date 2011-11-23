@@ -87,7 +87,7 @@ export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export CLICOLOR=1
-unset dircolors
+# unset dircolors
 export LS_OPTIONS='-s -F -T 0 --color=yes'
 
 # use gem-man(1) if available:

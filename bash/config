@@ -13,7 +13,6 @@
 # readline config
 : ${INPUTRC=~/.inputrc}
 : ${SCDLR_PATH=~/Dropbox/music/soundcloud}
-
 export SCDLR_PATH
 
 export WINDOW_MANAGER=/usr/local/bin/awesome-wm
