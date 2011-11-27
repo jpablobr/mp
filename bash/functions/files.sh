@@ -109,5 +109,24 @@ f-extract() {
 
 ##############################################################################->
 # - Encript
-f-encript-compress () { tar -cj "$1" | gpg --encrypt -r "$2" > "$1".tar.gz; }
-f-encript-decompress () { gpg --decrypt -output "$1" "$1".tar.gz && tar -xvvf "$1"; }
+f-encrypt-compress () {
+    [ "$#" -lt 1 ] &&
+    echo "Must provide a file name to tar.gz and encrypt." &&
+    exit 1
+    tar -vcj "$1" |
+    gpg --encrypt \
+        --recipient $(whoami) > "$1".tar.gz
+    exit 0
+ }
+
+f-decrypt-decompress () {
+    [ "$#" -lt 1 ] &&
+    echo "Must provide a file name to un-tar.gz and de-crypt." &&
+    echo "Provide the filebase name without the tar.gz extension" &&
+    exit 1
+    gpg --verbose \
+        --output "$1" \
+        --decrypt "$1".tar.gz &&
+    tar -xvvf "$1"
+    exit 0
+}

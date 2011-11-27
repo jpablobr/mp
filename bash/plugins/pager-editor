@@ -8,13 +8,6 @@
 export LESS="--RAW-CONTROL-CHARS --shift 4"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
-export LESS_TERMCAP_mb='[01;31m'
-export LESS_TERMCAP_md='[01;34m'
-export LESS_TERMCAP_me='[0m'
-export LESS_TERMCAP_se='[0m'
-export LESS_TERMCAP_so='[01;44;37m'
-export LESS_TERMCAP_ue='[0m'
-export LESS_TERMCAP_us='[01;37m'
 
 HAVE_EMACS=$(command -v emacs)
 

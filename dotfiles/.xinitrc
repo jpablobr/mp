@@ -14,26 +14,24 @@ ck-launch-session awesome & wmpid=$!
     gnome-session &
     xmodmap /home/jpablobr/.Xmodmap  &
     xrdb -load /home/jpablobr/.Xdefaults &
+    xset -b & # not beeps!
     /usr/bin/setxkbmap -option "ctrl:nocaps"  &
-    gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
     gconftool-2 \
         --type bool \
         --set /apps/nautilus/preferences/show_desktop False &
     gconftool-2 \
         --type string \
         --set /desktop/gnome/session/required_components/windowmanager awesome &
-    xset -b & # not beeps!
-    sudo updatedb &
-    sudo sysctl fs.inotify.max_user_watches=1000000 &
-    DISPLAY=:0.0 XAUTHORITY=~/.Xauthority \
-        emacs -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
-
-    # touchpad
-    # http://wiki.archlinux.org/index.php/Touchpad_Synaptics
     syndaemon -t -k -i 2 -d &
     synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2
+    gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
 
+    sudo updatedb &
     /home/jpablobr/bin/sh/focus -a 5  &
+    sudo sysctl fs.inotify.max_user_watches=1000000 &
+    XAUTHORITY=~/.Xauthority emacs -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
+    urxvt -e $SHELL /home/jpablobr/.tmuxinator/jpablobr.tmux &
 
     sudo NetworkManager&>> $public_nw_log &
+
 wait $wmpid

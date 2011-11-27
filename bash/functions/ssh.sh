@@ -1,11 +1,8 @@
 #!/bin/sh
-# ssh.sh
-# SSH helpers
 # Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
-# Created: 18 Mar 2011
-# Version: 0.1.0
-# push SSH public key to another box
+
 push_ssh_cert() {
+# push SSH public key to another box
     local _host
     test -f ~/.ssh/id_dsa.pub || ssh-keygen -t dsa
     for _host in "$@";

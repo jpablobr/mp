@@ -1,0 +1,46 @@
+!-----------------------------------------------------------------------------
+! Zenburn "high contrast" color scheme
+! http://slinky.imukuppi.org/zenburnpage/
+!-----------------------------------------------------------------------------
+
+!BLK Normal
+URxvt.color0                  : #3f3f3f
+URxvt.color8                  : #3f3f3f
+
+!RED Tag
+URxvt.color1                  : #e89393
+URxvt.color9                  : #e89393
+
+!GRN SpecialKey
+URxvt.color2                  : #9ece9e
+URxvt.color10                 : #9ece9e
+
+!YEL Structure
+URxvt.color3                  : #efefaf
+URxvt.color11                 : #efefaf
+
+!BLU Number
+URxvt.color4                  : #8cd0d3
+URxvt.color12                 : #8cd0d3
+
+!MAG Precondit
+URxvt.color5                  : #dfaf8f
+URxvt.color13                 : #dfaf8f
+
+!CYN Float
+URxvt.color6                  : #c0bed1
+URxvt.color14                 : #c0bed1
+
+!WHT Search
+URxvt.color7                  : #ffffe0
+URxvt.color15                 : #ffffe0
+
+!TXT Normal, Normal, Cursor
+URxvt.background              : #1f1f1f
+URxvt.foreground              : #dcdccc
+URxvt.cursorColor             : #8faf9f
+
+!HLT Include, StatusLine, ErrorMsg
+URxvt.colorBD                 : #ffcfaf
+URxvt.colorUL                 : #ccdc90
+URxvt.colorIT                 : #80d4aa

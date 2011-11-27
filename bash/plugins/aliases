@@ -36,8 +36,8 @@ alias r='fc -s'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 # Emacs
 alias es='emacs -nw'
-alias ec='emacsclient -nw'
-alias e='emacsclient -c'
+alias e='emacsclient -nw'
+alias ec='emacsclient -c'
 alias emm='emacs -nw -l ~/.emacs.d/inits/min-init.el'
 alias em='emacs -Q -nw -l ~/.emacs.d/inits/jpablobr-init.el'
 alias emr='emacs -nw  -l ~/.emacs.d/inits/ruby-init.el .'
@@ -110,3 +110,4 @@ aappd(){
 alias dmesg-toshiba="dmesg | grep -n3 TOSHIBA"
 alias mount-toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
 alias rmf='rm -frv'
+alias gnome-remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'

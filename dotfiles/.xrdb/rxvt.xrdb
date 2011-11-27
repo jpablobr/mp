@@ -43,6 +43,9 @@ XTerm*vt100.colorULMode     : True
 XTerm*vt100.showBlinkAsBold : True
 XTerm*vt100.veryBoldColors  : 6
 XTerm*Maximized             : true
+URxvt*inheritPixmap: true
+URxvt*tintColor: white
+URxvt*shading: 40
 
 ! Keep 5K of scrollback and only reset the scroll position on keypresses.
             XTerm*saveLines: 5120
@@ -77,4 +80,3 @@ XTerm*Maximized             : true
              Shift <Btn1Up>:            select-end(CLIPBOARD, CUT_BUFFER1) \n\
 ~Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(PRIMARY, CUT_BUFFER0) \n\
  Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(CLIPBOARD, CUT_BUFFER1)
-

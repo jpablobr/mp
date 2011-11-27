@@ -2,10 +2,11 @@
 #include "/home/jpablobr/.xrdb/rxvt.xrdb"
 
 ! appearance
+! #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
 #include "/home/jpablobr/.xrdb/themes/urxvt_xoria256_colours.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/slinky_zenburn.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/emacs_colours.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/urxvt_sdkmvx_colours.xrdb"
-! #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/tango.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/zenburn.xrdb"
 
@@ -14,5 +15,4 @@
 *customization              : -color
 #endif
 
-! use the Human cursor theme from Ubuntu
 Xcursor.theme               : Human
