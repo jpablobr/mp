@@ -31,8 +31,6 @@ alias g-up='git fetch && git rebase'
 alias g-cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
 alias g-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
-# Dropbox
-alias g-dbox='cd ~/Dropbox && git add . && g-gg updates and backup && gp && cd -'
 
 gp() {
     [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
@@ -127,7 +125,6 @@ pkg
     git add . &&
     git commit -v -a -m "Initial commit" &&
     git status
-    exit 0
 }
 
 function g-remote {

@@ -110,8 +110,7 @@ alarm_fcs() {
 
         while :; do
             sleep "$minutes"m
-            notify-send "FCS!" \
-                "$msg" \
+            notify-send "$msg" \
                 -i ~/.icons/jpablobr/focus.png
         done
     else
