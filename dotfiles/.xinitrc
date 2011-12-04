@@ -9,17 +9,24 @@ fi
 
 public_nw_log='/var/log/jpablobr/public_nw.log'
 
-# Wait for extra configurations such as calling gnome-session
-/user/bin/ck-launch-session awesome & wmpid=$!
+eval `gpg-agent --daemon` &&
+trap 'killall gpg-agent' EXIT
 
-    # Gnome Settings
+# Dbus session
+test -z "$DBUS_SESSION_BUS_ADDRESS" &&
+eval `dbus-launch --sh-syntax --exit-with-session`
+
+# Wait for extra configurations such as calling gnome-session
+/usr/bin/ck-launch-session awesome & wmpid=$!
+
+    # Gnome GTK Settings
     /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
     /usr/bin/gconftool-2 \
         --type bool \
         --set /apps/nautilus/preferences/show_desktop False &
      /usr/bin/gconftool-2 \
         --type string \
-        --set /desktop/gnome/session/required_components/windowmanager awesome &
+        --set /desktop/gnome/session/required_components/windowmanager metacity &
     /usr/bin/gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
 
     # Gnome Apps
@@ -41,6 +48,8 @@ public_nw_log='/var/log/jpablobr/public_nw.log'
     /home/jpablobr/.private/bin/mount-toshiba.sh &
     /usr/bin/urxvt -e $SHELL /home/jpablobr/.tmuxinator/jpablobr.tmux &
     /home/jpablobr/bin/sh/focus -a 5  &
+    /usr/bin/google-chrome &
+    /usr/bin/rhythmbox &
     sudo /usr/bin/updatedb &
 
 wait $wmpid
