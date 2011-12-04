@@ -21,12 +21,20 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 
     # Gnome GTK Settings
     /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
+
     /usr/bin/gconftool-2 \
         --type bool \
         --set /apps/nautilus/preferences/show_desktop False &
      /usr/bin/gconftool-2 \
         --type string \
         --set /desktop/gnome/session/required_components/windowmanager metacity &
+    /usr/bin/gconftool-2 \
+        --type String \
+        --set /desktop/gnome/url-handlers/org-protocol/command '/usr/bin/emacsclient %s' &
+    /usr/bin/gconftool-2 \
+        --type Boolean true \
+        --set /desktop/gnome/url-handlers/org-protocol/enabled &
+
     /usr/bin/gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
 
     # Gnome Apps
