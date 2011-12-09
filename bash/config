@@ -12,10 +12,6 @@
 : ${HOSTNAME=$(/bin/hostname)}
 # readline config
 : ${INPUTRC=~/.inputrc}
-: ${SCDLR_PATH=~/Dropbox/music/soundcloud}
-export SCDLR_PATH
-
-export WINDOW_MANAGER=/usr/local/bin/awesome-wm
 
 #-----------------------------------------------------------------------
 # - Plugins
@@ -32,10 +28,9 @@ PLUGINS=(
     "ssh"
     "prompt" )
 
-for plugin in "${PLUGINS[@]}"
-do
+for plugin in "${PLUGINS[@]}"; do
     plugin_path="$HOME/.mp/bash/plugins/${plugin}"
-    test -f $plugin_path && source $plugin_path
+    [ -f $plugin_path ] && . $plugin_path
 done
 
 # condense $PATH entries

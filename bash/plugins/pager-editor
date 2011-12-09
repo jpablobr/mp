@@ -13,11 +13,11 @@ HAVE_EMACS=$(command -v emacs)
 
 # EDITOR
 test -n "$HAVE_EMACS" &&
-export VISUAL='emacsclient -c' &&
-export EDITOR='emacsclient -c --alternate-editor emacs'
+export VISUAL='emacsclient -nw' &&
+export EDITOR='emacsclient -nw --alternate-editor emacs'
 
 # PAGER
-if test -n "$(command -v less)" ; then
+if test -n "$(command -v less)"; then
     PAGER="less -FirSwX"
     MANPAGER="less -FiRswX"
 else

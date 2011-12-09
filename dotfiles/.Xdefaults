@@ -1,4 +1,3 @@
-#include "/home/jpablobr/.xrdb/emacs.xrdb"
 #include "/home/jpablobr/.xrdb/rxvt.xrdb"
 
 ! appearance
@@ -9,10 +8,12 @@
 ! #include "/home/jpablobr/.xrdb/themes/urxvt_sdkmvx_colours.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/tango.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/zenburn.xrdb"
-
+! #include "/home/jpablobr/.xrdb/themes/buttons.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/sysphere.xrdb"
 ! enable colors in native X applications
 #ifdef COLOR
 *customization              : -color
 #endif
 
 Xcursor.theme               : Human
+#include "/home/jpablobr/.xrdb/emacs.xrdb"

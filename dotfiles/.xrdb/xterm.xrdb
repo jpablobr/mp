@@ -1,77 +1,7 @@
-!! -*- mode: conf -*-
-#include "zenburn.xrdb"
-
-! Zenburn colours
-XTerm*background: COLOR_BG
-XTerm*foreground: COLOR_FG
-XTerm*color0: COLOR_TERM_BLACK
-XTerm*color1: COLOR_TERM_DARK_RED
-XTerm*color2: COLOR_TERM_DARK_GREEN
-XTerm*color3: COLOR_TERM_DARK_YELLOW
-XTerm*color4: COLOR_TERM_DARK_BLUE
-XTerm*color5: COLOR_TERM_DARK_MAGENTA
-XTerm*color6: COLOR_TERM_DARK_CYAN
-XTerm*color7: COLOR_TERM_LIGHT_GRAY
-XTerm*color8: COLOR_TERM_DARK_GRAY
-XTerm*color9: COLOR_TERM_LIGHT_RED
-XTerm*color10: COLOR_TERM_LIGHT_GREEN
-XTerm*color11: COLOR_TERM_LIGHT_YELLOW
-XTerm*color12: COLOR_TERM_LIGHT_BLUE
-XTerm*color13: COLOR_TERM_LIGHT_MAGENTA
-XTerm*color14: COLOR_TERM_LIGHT_CYAN
-XTerm*color15: COLOR_TERM_WHITE
-XTerm*colorUL: COLOR_TERM_LIGHT_GRAY
-!XTerm*iconName: terminal
-!Mwm*xterm*iconImage: /home/a/a1111aa/xterm.icon
 XTerm*loginShell: true
-XTerm*foreground: gray90
-XTerm*background: black
-XTerm*cursorColor: rgb:00/80/00
-XTerm*borderColor: white
-XTerm*scrollColor: black
-XTerm*visualBell: true
-XTerm*saveLines: 1000
-!! XTerm.VT100.allowSendEvents: True
 XTerm*allowSendEvents: True
 XTerm*sessionMgt: false
-!XTerm*eightBitInput:  false
-!XTerm*metaSendsEscape: true
-!XTerm*internalBorder:  10
-!XTerm*highlightSelection:  true
-!XTerm*VT100*colorBDMode:  on
-!XTerm*VT100*colorBD:  blue
-!XTerm.VT100.eightBitOutput:  true
-!XTerm.VT100.titeInhibit:  false
-XTerm*color0: black
-XTerm*color1: red3
-XTerm*color2: green3
-XTerm*color3: yellow3
-XTerm*color4: DodgerBlue1
-XTerm*color5: magenta3
-XTerm*color6: cyan3
-XTerm*color7: gray90
-XTerm*color8: gray50
-XTerm*color9: red
-XTerm*color10: green
-XTerm*color11: yellow
-XTerm*color12: blue
-XTerm*color13: magenta
-XTerm*color14: cyan
-XTerm*color15: white
-XTerm*colorUL: yellow
-XTerm*colorBD: white
-!XTerm*mainMenu*backgroundPixmap:     gradient:vertical?dimension=400&start=gray10&end=gray40
-!XTerm*mainMenu*foreground:          white
-!XTerm*vtMenu*backgroundPixmap:       gradient:vertical?dimension=550&start=gray10&end=gray40
-!XTerm*vtMenu*foreground:             white
-!XTerm*fontMenu*backgroundPixmap:     gradient:vertical?dimension=300&start=gray10&end=gray40
-!XTerm*fontMenu*foreground:           white
-!XTerm*tekMenu*backgroundPixmap:      gradient:vertical?dimension=300&start=gray10&end=gray40
-!XTerm*tekMenu*foreground:            white
-!XTerm Profiles (idea from dag wieers)
-XTerm*rightScrollBar: true
-xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
-!xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
-!xterm*iconPixmap: ...
+! xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
+! xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
 xterm*iconPixmap:       /usr/share/pixmaps/gnome-gemvt.xbm
 xterm*iconMask:         /usr/share/pixmaps/gnome-gemvt-mask.xbm

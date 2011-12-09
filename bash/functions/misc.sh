@@ -10,9 +10,49 @@ alias psm="echo '%CPU %MEM   PID COMMAND' && ps hgaxo %cpu,%mem,pid,comm | sort 
 alias chmodfx="find . -type f -print0 | xargs -0 chmod +x"
 alias scan="sudo iwlist wlan0 scan | grep ESSID"
 alias scanfull="sudo iwlist wlan0 scan"
+alias grep="grep --color=auto"
+alias lla="ls -la"
+alias la="ls -a"
+alias llatr="ls -latr"
+alias ps.cpu="ps ahuwx | sort -nr -k 3 | head -n10"
+alias ps.mem="ps ahuwx | sort -nr -k 4 | head -n10"
+# multiple-spaces > single-space
+alias sed.ws="sed -ne 's/  */ /gp'"
+# tabs > new-line
+alias sed.tn="sed -ne 's/\t/\n/gp'"
+alias termcast="telnet termcast.org"
+alias term.reset="echo c; stty echo"
+alias when="when --calendar_today_style='underlined,fgyellow,bgblack' --items_today_style='bold,fgred,bgblack'"
+
+alias xargs0="xargs -0"
+
+mkcd () {
+  mkdir -p $1 &&\
+  cd $1
+}
 
 cdf() {
     cd *$1*/
+}
+
+free () {
+  case $1 in
+    mem)
+      perl -ane 'BEGIN{$mem;} if (/^(MemFree:|Buffers:|Cached:).*?(\d+)/) {$mem += $2;} END{print $mem;}' /proc/meminfo
+      ;;
+    mem_total)
+      grep MemTotal /proc/meminfo | sed 's/[^0-9]//g'
+      ;;
+    swap)
+      grep SwapFree /proc/meminfo | sed 's/[^0-9]//g'
+      ;;
+    swap_total)
+      grep SwapTotal /proc/meminfo | sed 's/[^0-9]//g'
+      ;;
+    *)
+      free -m
+      ;;
+  esac
 }
 
 ##############################################################################->

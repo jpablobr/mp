@@ -1,0 +1,49 @@
+! http://dotfiles.org/~buttons/.Xdefaults
+urxvt*font:				xft:Terminus
+urxvt*boldFont:			xft:Terminus
+urxvt*italicFont:		xft:Terminus
+urxvt*bolditalicFont:	xft:Terminus
+urxvt*scrollBar:		false
+urxvt*internalBorder:	6
+
+urxvt*background:	#000000
+! #urxvt*depth: 32
+! #urxvt*background: rgba:0000/0000/0000/eeee
+! #urxvt*background:	#090909
+urxvt*foreground:	#DDDDDD
+urxvt*inheritPixmap:	true
+! #urxvt*fading:			60
+! #urxvt*tintColor:		#111111
+! urxvt*shading:			10
+
+! 0: black
+*color0:  #242424
+*color8:  #242424
+
+! 1: red
+*color1:  #9f6767
+*color9:  #9f6767
+
+! 2: green
+*color2:  #92ac68
+*color10: #92ac68
+
+! 3: yellow
+*color3:  #d0d293
+*color11: #d0d293
+
+! 4: blue
+*color4:  #9aacc3
+*color12: #9aacc3
+
+! 5: magenta
+*color5:  #bb77a4
+*color13: #bb77a4
+
+! 6: cyan
+*color6:  #77bbb5
+*color14: #77bbb5
+
+! 7: white
+*color7:  #777777
+*color15: #777777

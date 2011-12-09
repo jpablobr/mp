@@ -45,6 +45,7 @@ alias emp='emacs -Q -nw -l ~/.emacs.d/inits/php-init.el'
 alias empg='emacs -l ~/.emacs.d/inits/php-init.el . &'
 alias emrg='emacs -l ~/.emacs.d/inits/ruby-init.el . &'
 alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
+alias emrs='rm -fr /tmp/emacs1000 && em --daemon'
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 # disk usage with human sizes and minimal depth
@@ -79,6 +80,7 @@ lg() { ls -la | grep "$1"; }
 alias rg='bundle exec rake -T | grep'
 alias bl='bundle --local || bundle'
 alias rctags-g="find $(echo $GEM_PATH | cut -d: -f1) -type f -name '*.rb' | ctags -e --verbose=yes -L -"
+alias rctags-p="find . -type f -name '*.rb' | ctags -e --verbose=yes -L -"
 # - Rails
 alias rr-asl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
 alias rr-adbm='rake db:migrate && rake db:test:prepare'
@@ -107,7 +109,10 @@ aappd(){
     exit 0
 }
 
-alias dmesg-toshiba="dmesg | grep -n3 TOSHIBA"
-alias mount-toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
+alias dmesg_toshiba="dmesg | grep -n3 TOSHIBA"
+alias mount_toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
 alias rmf='rm -frv'
-alias gnome-remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
+alias gnome_remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
+alias gem_purge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
+alias screen_lock='xscreensaver-command -lock'
+alias wget_r='wget -rkp -l3 -np -nH --cut-dirs=1'
