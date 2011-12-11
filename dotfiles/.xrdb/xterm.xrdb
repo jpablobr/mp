@@ -1,7 +1,25 @@
-XTerm*loginShell: true
-XTerm*allowSendEvents: True
-XTerm*sessionMgt: false
-! xterm*font:     -Misc-Fixed-Medium-R-Normal--20-200-75-75-C-100-ISO10646-1
-! xterm*font:        -misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1
-xterm*iconPixmap:       /usr/share/pixmaps/gnome-gemvt.xbm
-xterm*iconMask:         /usr/share/pixmaps/gnome-gemvt-mask.xbm
+! interaction
+XTerm*vt100.metaSendsEscape : True
+XTerm*vt100.saveLines       : 8192
+  XTerm*VT100.allowWindowOps: true
+   XTerm*VT100.allowTitleOps: true
+    XTerm*VT100.allowFontOps: true
+
+            XTerm*loginShell: true
+       XTerm*allowSendEvents: True
+            XTerm*sessionMgt: false
+            xterm*iconPixmap: /usr/share/pixmaps/gnome-gemvt.xbm
+              xterm*iconMask: /usr/share/pixmaps/gnome-gemvt-mask.xbm
+! appearance
+! XTerm*vt100.faceName        : xft:Inconsolata-12:antialias=true
+XTerm*vt100.colorMode       : True
+XTerm*vt100.colorBDMode     : True
+XTerm*vt100.colorULMode     : True
+XTerm*vt100.showBlinkAsBold : True
+XTerm*vt100.veryBoldColors  : 6
+XTerm*Maximized             : true
+
+! Keep 5K of scrollback and only reset the scroll position on keypresses.
+             XTerm*saveLines: 5120
+             XTerm*scrollKey: true
+       XTerm*scrollTtyOutput: false

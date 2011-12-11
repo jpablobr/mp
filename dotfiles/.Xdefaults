@@ -1,19 +1,22 @@
-#include "/home/jpablobr/.xrdb/rxvt.xrdb"
+#include "/home/jpablobr/.xrdb/xterm.xrdb"
+#include "/home/jpablobr/.xrdb/urxvt.xrdb"
+#include "/home/jpablobr/.xrdb/emacs.xrdb"
+#include "/home/jpablobr/.xrdb/themes/emacs.xrdb"
+#include "/home/jpablobr/.xrdb/fonts.xrdb"
 
-! appearance
-! #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
-#include "/home/jpablobr/.xrdb/themes/urxvt_xoria256_colours.xrdb"
+! Appearance
+#include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/urxvt_xoria256_colours.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/slinky_zenburn.xrdb"
-! #include "/home/jpablobr/.xrdb/themes/emacs_colours.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/invisibone.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/dbb.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/urxvt_sdkmvx_colours.xrdb"
-! #include "/home/jpablobr/.xrdb/themes/tango.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/zenburn.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/buttons.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/sysphere.xrdb"
-! enable colors in native X applications
+
 #ifdef COLOR
-*customization              : -color
+       *customization: -color
 #endif
 
-Xcursor.theme               : Human
-#include "/home/jpablobr/.xrdb/emacs.xrdb"
+Xcursor.theme: Human

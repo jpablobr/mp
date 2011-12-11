@@ -1,0 +1,31 @@
+! colors --------------------------------------------------------------------
+URxvt*foreground:   #d4d4d4
+!  black
+URxvt*color0:		#000000
+URxvt*color8:		#202020
+!  red: sangria, lava
+URxvt*color1:		#92000a
+URxvt*color9:		#c80815
+!  green: india green, neon green
+URxvt*color2:		#138808
+URxvt*color10:		#39ff14
+!  yellow: dark goldenrod, gamboge
+URxvt*color3:		#b8860b
+URxvt*color11:		#ef9b0f
+!  blue: egyptian blue, palatinate blue
+URxvt*color4:		#1034a6
+URxvt*color12:		#273be2
+!  magenta: regalia, amethyst
+URxvt*color5:		#533d80
+URxvt*color13:		#9966cc
+!  cyan: cerulean, electric blue
+URxvt*color6:		#007ba7
+URxvt*color14:		#7df9ff
+!  white: titanium, white
+URxvt*color7:		#e5e4e2
+URxvt*color15:		#D4D2CF
+
+! intl orange
+URxvt*colorBD:		#ff4f00
+! azure
+URxvt*colorUL:		#007fff

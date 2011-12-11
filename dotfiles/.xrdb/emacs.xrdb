@@ -2,8 +2,4 @@
 Emacs.verticalScrollBars: off
            Emacs.toolBar: off
         Emacs.BitmapIcon: on
-            Emacs*fading: 40
-       !  Emacs*background: #3f3f3f
-       !  Emacs*foreground: #dcdccc
-       !   Emacs*fadeColor: S_base03
-       ! Emacs*cursorColor: #eee8d5
+            Emacs.fading: 40

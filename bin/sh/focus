@@ -104,21 +104,25 @@ alarm_fcs() {
 #	Function to validate if focuss exists. If not dispay usage.
 #		Arguments: times:minutes
 #	-----------------------------------------------------------------------
-    if [[ "$1" > 1 ]]; then
-        local minutes="$1"; shift
-        local msg=`cat ~/.private/notes/focus$FCS_EXT`
+    [ "$1" -lt 1 ] && error_message "Minutes has to be > than 1"
 
-        while :; do
-            sleep "$minutes"m
-            notify-send "$msg" \
-                -i ~/.icons/jpablobr/focus.png
-        done
-    else
-        tput setaf 1 bold
-	      echo "Minutes has to be > than 1" >&2
-        tput op
-	      exit 1
-    fi
+    local minutes="$1"; shift
+    while :; do
+        sleep "$minutes"m
+        notify-send "$(cat ~/.private/notes/focus$FCS_EXT)" \
+            -i ~/.icons/jpablobr/focus.png
+    done
+}
+
+error_message(){
+#	-----------------------------------------------------------------------
+#	Dispay error messages.
+#		Arguments: message desc.
+#	-----------------------------------------------------------------------
+    tput setaf 1 bold
+	  echo "$1" >&2
+    tput op
+	  exit 1
 }
 
 error_exit() {

@@ -1,24 +1,8 @@
 ! http://dotfiles.org/~buttons/.Xdefaults
-urxvt*font:				xft:Terminus
-urxvt*boldFont:			xft:Terminus
-urxvt*italicFont:		xft:Terminus
-urxvt*bolditalicFont:	xft:Terminus
-urxvt*scrollBar:		false
-urxvt*internalBorder:	6
-
-urxvt*background:	#000000
-! #urxvt*depth: 32
-! #urxvt*background: rgba:0000/0000/0000/eeee
-! #urxvt*background:	#090909
-urxvt*foreground:	#DDDDDD
-urxvt*inheritPixmap:	true
-! #urxvt*fading:			60
-! #urxvt*tintColor:		#111111
-! urxvt*shading:			10
 
 ! 0: black
-*color0:  #242424
-*color8:  #242424
+*color0:  #000000
+*color8:  #000000
 
 ! 1: red
 *color1:  #9f6767

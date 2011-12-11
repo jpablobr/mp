@@ -9,41 +9,6 @@ Xft.hintstyle: hintfull
 Xft.rgba:      rgb
 !}}}
 
-
-!{{{ EMACS
-!
-! Emacs.font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!}}}
-
-
-!{{{ URXVT
-!
-! General
-urxvt*termName:           rxvt-unicode-256color
-urxvt*loginShell:         true
-urxvt*scrollBar:         false
-urxvt*secondaryScroll:    true
-urxvt*saveLines:         65535
-urxvt*cursorBlink:       false
-!urxvt*cursorUnderline:   true
-urxvt*urgentOnBell:       true
-!urxvt*override-redirect:false
-!urxvt*borderLess:       false
-!urxvt*internalBorder:       0
-!urxvt*externalBorder:       0
-!
-! Extensions
-urxvt*perl-lib:        /usr/lib/urxvt/perl/
-urxvt*perl-ext-common: default,matcher,searchable-scrollback
-urxvt*urlLauncher:     /usr/local/bin/firefox
-urxvt*matcher.button:  1
-! Catch ugly URLs
-! urxvt*cutchars:        '"'()*<>[]{|}
-!
-! Appearance
-! urxvt*font:     -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-! urxvt*boldFont: -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
-!
 ! Cursor
 urxvt*cursorColor: #DCDCCC
 ! URLs
@@ -53,34 +18,35 @@ urxvt*.colorUL:    #ffffff
 !urxvt*shading:    50
 !urxvt*transparent:true
 !
+! URxvt*Font: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
 ! Zenburn color-scheme
-urxvt*background:  #3f3f3f
-urxvt*foreground:  #dcdccc
+! urxvt*background:  #000000
+! urxvt*foreground:  #dcdccc
 ! black + red
 !urxvt*color0:     #3f3f3f
-urxvt*color0:      #1E2320
-urxvt*color1:      #705050
+! urxvt*color0:      #1E2320
+! urxvt*color1:      #705050
 ! green + yellow
-urxvt*color2:      #60b48a
-urxvt*color3:      #dfaf8f
+! urxvt*color2:      #60b48a
+! urxvt*color3:      #dfaf8f
 ! blue + purple
-urxvt*color4:      #506070
-urxvt*color5:      #dc8cc3
+! urxvt*color4:      #506070
+! urxvt*color5:      #dc8cc3
 ! cyan + white
-urxvt*color6:      #8cd0d3
-urxvt*color7:      #dcdccc
+! urxvt*color6:      #8cd0d3
+! urxvt*color7:      #dcdccc
 ! bright-black + bright-red
-urxvt*color8:      #709080
-urxvt*color9:      #dca3a3
+! urxvt*color8:      #709080
+! urxvt*color9:      #dca3a3
 ! bright-green + bright-yellow
-urxvt*color10:     #c3bf9f
-urxvt*color11:     #f0dfaf
+! urxvt*color10:     #c3bf9f
+! urxvt*color11:     #f0dfaf
 ! bright-blue + bright-purple
-urxvt*color12:     #94bff3
-urxvt*color13:     #ec93d3
+! urxvt*color12:     #94bff3
+! urxvt*color13:     #ec93d3
 ! bright-cyan + bright-white
-urxvt*color14:     #93e0e3
-urxvt*color15:     #ffffff
+! urxvt*color14:     #93e0e3
+! urxvt*color15:     #ffffff
 !}}}
 
 
@@ -122,41 +88,11 @@ xterm*color15:     #ffffff
 !}}}
 
 
-!{{{ XLOCK
-XLock.mode:          blank
-!XLock.mode:         fzort
-!XLock.mode:         atunnels
-!XLock.icongeometry: 256x256
-XLock.username:      Username:
-XLock.password:      Password:
-XLock.foreground:    White
-XLock.background:    Gray20
-XLock.description:   false
-XLock.echokeys:      true
-XLock.echokey:       *
-XLock.info:
-!XLock.info:         Enter password to unlock \nSelect icon to lock
-XLock.validate:      Validating login...
-XLock.invalid:       Login failed
-! XLock*font:          -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!XLock.ncolors:      200
-!XLock.dpmsstandby:  600
-!XLock.dpmssuspend:  1200
-!XLock.dpmsoff:      1800
-!}}}
-
-
 !{{{ XMAN
 Xman*Background:          #3F3F3F
 Xman*Foreground:          #F0DFAF
 Xman*bothShown:           true
 Xman*topBox:              false
-! Xman*manualFontNormal:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-! Xman*manualFontBold:      -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-iso8859-2
-! Xman*manualFontItalic:    -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-! Xman*directoryFontNormal: -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-2
-!}}}
-
 
 !{{{ XPDF
 xpdf*foreground:     black

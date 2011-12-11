@@ -1,5 +1,5 @@
-urxvt*foreground: #f2f2f2
-urxvt*background: #101010
+*foreground: #f2f2f2
+*background: #101010
 
 ! Normal
 ! color0    black
@@ -11,14 +11,14 @@ urxvt*background: #101010
 ! color6    cyan
 ! color7    white
 
-urxvt*color0:    #6c6c6c
-urxvt*color1:    #e9897c
-urxvt*color2:    #b6e77d
-urxvt*color3:    #ecebbe
-urxvt*color4:    #a9cdeb
-urxvt*color5:    #ea96eb
-urxvt*color6:    #c9caec
-urxvt*color7:    #f2f2f2
+*color0:    #6c6c6c
+*color1:    #e9897c
+*color2:    #b6e77d
+*color3:    #ecebbe
+*color4:    #a9cdeb
+*color5:    #ea96eb
+*color6:    #c9caec
+*color7:    #f2f2f2
 
 ! Light
 ! color8    black
@@ -30,11 +30,11 @@ urxvt*color7:    #f2f2f2
 ! color14    cyan
 ! color15    white
 
-urxvt*color8:    #747474
-urxvt*color9:    #f99286
-urxvt*color10:    #c3f786
-urxvt*color11:    #fcfbcc
-urxvt*color12:    #b6defb
-urxvt*color13:    #fba1fb
-urxvt*color14:    #d7d9fc
-urxvt*color15:    #e2e2e2
+*color8:    #747474
+*color9:    #f99286
+*color10:    #c3f786
+*color11:    #fcfbcc
+*color12:    #b6defb
+*color13:    #fba1fb
+*color14:    #d7d9fc
+*color15:    #e2e2e2

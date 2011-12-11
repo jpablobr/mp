@@ -1,14 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 # ----------------------------------------------------------------------
 # - Source functions Dir:
 
-: ${MY_PRECIOUS_FUNCTIONS_DIR:=$HOME/.mp/bash/functions}
+MP_FUNCTIONS_DIR=$HOME/.mp/bash/functions
 
-test -n "$MY_PRECIOUS_FUNCTIONS_DIR" && {
-  if [ -d $MY_PRECIOUS_FUNCTIONS_DIR -a -r $MY_PRECIOUS_FUNCTIONS_DIR -a \
-       -x $MY_PRECIOUS_FUNCTIONS_DIR ]; then
-    for i in $MY_PRECIOUS_FUNCTIONS_DIR/*; do
-      [[ ${i##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ]] &&
+test -n "$MP_FUNCTIONS_DIR" && {
+  if [ -d $MP_FUNCTIONS_DIR ]; then
+    for i in $MP_FUNCTIONS_DIR/*; do
+      [ ${i##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|.rpm*) ] &&
       [ \( -f $i -o -h $i \) -a -r $i ] && . $i
     done
   fi

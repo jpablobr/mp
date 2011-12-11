@@ -18,7 +18,8 @@ alias sjp='urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &'
 alias th=thunar
 alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
 alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
-alias load-xresources='xrdb -merge ~/.Xresources'
+alias merge-xresources='xrdb -merge ~/.Xresources'
+alias load-xresources='xrdb -load ~/.Xresources'
 alias hup='kill -HUP \!*'
 alias j='jobs -l'
 alias zombies='ps al | grep " Z "'
@@ -67,6 +68,7 @@ alias lsg='ls -lhGt'
 alias lh="ls -lh"
 alias lt='ls -lt'
 alias la='ls -lah --format=long'
+alias llatr="ls -latr"
 alias l-dir='ls --format=vertical'
 alias l-recent='ls -lAt | head'
 alias l-old='ls -lAt | tail'
@@ -109,8 +111,6 @@ aappd(){
     exit 0
 }
 
-alias dmesg_toshiba="dmesg | grep -n3 TOSHIBA"
-alias mount_toshiba='sudo mount -v /dev/sdb1 /media/toshiba-1t/ -t ext4'
 alias rmf='rm -frv'
 alias gnome_remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
 alias gem_purge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
