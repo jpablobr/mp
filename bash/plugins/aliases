@@ -93,10 +93,6 @@ alias hi='heroku info'
 alias hp="git push heroku master"
 alias h-t='heroku logs --tail'
 
-envg() {
-    env | grep -i "$1"
-}
-
 ##############################################################################->
 # Aliases directly appended from shell
 #
@@ -108,7 +104,7 @@ aappd(){
     grep -i ${1}  ~/.mp/bash/plugins/aliases
     exit 0
 }
-
+alias envg='env | grep -i '
 alias rmf='rm -frv'
 alias gnome_remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
 alias gem_purge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
