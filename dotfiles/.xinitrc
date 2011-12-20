@@ -1,26 +1,11 @@
 #!/bin/sh
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
-fi
-
-public_nw_log='/var/log/jpablobr/public_nw.log'
-
-eval `gpg-agent --daemon` &&
-trap 'killall gpg-agent' EXIT
-
-# Dbus session
-test -z "$DBUS_SESSION_BUS_ADDRESS" &&
-eval `dbus-launch --sh-syntax --exit-with-session`
 
 # Wait for extra configurations such as calling gnome-session
-/usr/bin/ck-launch-session awesome & wmpid=$!
+/usr/bin/ck-launch-session gnome-session & wmpid=$!
 
     # Gnome GTK Settings
-    /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
+    # /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
 
     /usr/bin/gconftool-2 \
         --type bool \
@@ -32,8 +17,8 @@ eval `dbus-launch --sh-syntax --exit-with-session`
         --type String \
         --set /desktop/gnome/url-handlers/org-protocol/command '/usr/bin/emacsclient %s' &
     /usr/bin/gconftool-2 \
-        --type Boolean true \
-        --set /desktop/gnome/url-handlers/org-protocol/enabled &
+        --type Boolean \
+        --set /desktop/gnome/url-handlers/org-protocol/enabled true &
     /usr/bin/gconftool-2 \
         --type boolean \
         --set /apps/gnome_settings_daemon/screensaver/start_screensaver false
@@ -41,17 +26,17 @@ eval `dbus-launch --sh-syntax --exit-with-session`
     /usr/bin/gsettings set org.gnome.gnome-panel.layout toplevel-id-list [] &
 
     # Gnome Apps
-    sudo /usr/sbin/NetworkManager&>> $public_nw_log &
-    /usr/bin/nm-applet --sm-disable &
-    /usr/bin/gnome-sound-applet &
+    # sudo /usr/sbin/NetworkManager&>> $public_nw_log &
+    # /usr/bin/nm-applet --sm-disable &
+    # /usr/bin/gnome-sound-applet &
 
     # X Settings
     /usr/bin/xmodmap /home/jpablobr/.Xmodmap  &
     /usr/bin/xrdb -load /home/jpablobr/.Xdefaults &
     /usr/bin/xset -b & # not beeps!
     /usr/bin/setxkbmap -option "ctrl:nocaps"  &
-    /usr/bin/syndaemon -t -k -i 2 -d &
-    /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2
+#    /usr/bin/syndaemon -t -k -i 2 -d &
+#    /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2
     /usr/bin/xscreensaver &
 
     # Defaults Apps

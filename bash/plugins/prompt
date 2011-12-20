@@ -54,8 +54,12 @@ git_status() {
         if [ $flags ]; then
         # ?AM: Git file flags.
         # '?' for untracked files.
-        # 'A' for newly added uncommited files.
-        # 'M' for modified uncommited files.
+        # M modified	 File has been modified
+        # C copy-edit	 File has been copied and modified
+        # R rename-edit	 File has been renamed and modified
+        # A added	 File has been added
+        # D deleted	 File has been deleted
+        # U unmerged	 File has conflicts after a merge
             echo -e " ${reset_color}${flags}|${minutes_since_last_commit}|${branch}${reset_color} "
         else
             echo -e " ${reset_color}${minutes_since_last_commit}|${branch}${reset_color} "
@@ -65,10 +69,20 @@ git_status() {
     fi
 }
 
-function prompt_command() {
+prompt_command() {
     if [ "$(whoami)" = root ]; then no_color=$red; else no_color=$white; fi
     local start_ps1="${no_color}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:"
     PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
 }
 
-PROMPT_COMMAND=prompt_command;
+simple_prompt_command() {
+    if [ "$(whoami)" = root ]; then no_color=$red; else no_color=$white; fi
+    local start_ps1="${blue}$(whoami | cut -c1-2)@$(hostname | cut -c1)${reset_color}:"
+    PS1="${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
+}
+
+if [ "$TERM" = "dumb" ]; then
+    PROMPT_COMMAND=simple_prompt_command
+else
+		PROMPT_COMMAND=prompt_command
+fi

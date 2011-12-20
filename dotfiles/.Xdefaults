@@ -1,8 +1,7 @@
-#include "/home/jpablobr/.xrdb/xterm.xrdb"
 #include "/home/jpablobr/.xrdb/urxvt.xrdb"
 #include "/home/jpablobr/.xrdb/emacs.xrdb"
-#include "/home/jpablobr/.xrdb/themes/emacs.xrdb"
 #include "/home/jpablobr/.xrdb/fonts.xrdb"
+#include "/home/jpablobr/.xrdb/xterm.xrdb"
 
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"

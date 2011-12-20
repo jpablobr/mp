@@ -110,7 +110,7 @@ alarm_fcs() {
     while :; do
         sleep "$minutes"m
         notify-send "$(cat ~/.private/notes/focus$FCS_EXT)" \
-            -i ~/.icons/jpablobr/focus.png
+            -i ~/.icons/jpablobr/reflection/yellow/light-bulb.png
     done
 }
 
