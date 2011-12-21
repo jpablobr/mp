@@ -63,7 +63,7 @@ eval `dbus-launch --sh-syntax --exit-with-session`
     /home/jpablobr/.private/bin/start-chrome.sh &
     /usr/bin/urxvt &
     # /usr/bin/urxvt -e $SHELL /home/jpablobr/.tmuxinator/jpablobr.tmux &
-    XAUTHORITY=~/.Xauthority emacs -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
+    XAUTHORITY=~/.Xauthority /usr/local/bin/emacs-24.0.92 -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
     /home/jpablobr/bin/sh/focus -a 5  &
     sudo /usr/sbin/NetworkManager&>> $public_nw_log &
     /usr/bin/nm-applet --sm-disable &

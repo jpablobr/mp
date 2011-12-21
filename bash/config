@@ -34,3 +34,5 @@ done
 # condense $PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
+
+/usr/bin/fortune

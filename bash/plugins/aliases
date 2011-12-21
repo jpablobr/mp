@@ -40,10 +40,11 @@ alias es='emacs -nw'
 alias e='emacsclient -nw'
 alias ec='emacsclient -c'
 alias emm='emacs -nw -l ~/.emacs.d/min-init.el'
-alias em='emacs -nw -l ~/.emacs.d/init.el'
+alias em3='emacs -nw -l ~/.emacs.d/init.el'
+alias em4='emacs-24.0.92 -nw -l ~/.emacs.d/init.el'
 alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
 alias emkill="emacsclient -e '(client-save-kill-emacs)'"
-alias emrs='emkill && em --daemon'
+alias emrs='rmf /tmp/emacs1000 && em4 --daemon'
 
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
