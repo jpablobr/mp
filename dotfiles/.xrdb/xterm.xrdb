@@ -16,8 +16,6 @@ XTerm*vt100.colorULMode     : True
 XTerm*vt100.showBlinkAsBold : True
 XTerm*vt100.veryBoldColors  : 6
 XTerm*Maximized             : true
-XTerm*background            : #000000
-XTerm*foreground            : #DDDDDD
 
 ! Keep 5K of scrollback and only reset the scroll position on keypresses.
              XTerm*saveLines: 5120

@@ -17,5 +17,4 @@
 #ifdef COLOR
        *customization: -color
 #endif
-
 Xcursor.theme: Human

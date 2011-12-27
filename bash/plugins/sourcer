@@ -1,23 +1,5 @@
 #!/bin/bash
-#-----------------------------------------------------------------------
-# - File to source
 
-# if bashmarks
-test -f "$HOME/bin/sh/bashmarks.sh" &&
-source "$HOME/bin/sh/bashmarks.sh"
-
-# if ~/.private
-test -f "$HOME/.private/bashrc" &&
-source "$HOME/.private/bashrc"
-
-# if RVM.
-test -s  "$HOME/.rvm/scripts/rvm" &&
-source "$HOME/.rvm/scripts/rvm"
-
-test -s "$HOME/.rvm/contrib/ps1_functions" &&
-source "$HOME/.rvm/contrib/ps1_functions"
-
-# tmuxinator
-test -s "$HOME/.tmuxinator/scripts/tmuxinator" &&
-source "$HOME/.tmuxinator/scripts/tmuxinator"
-
+[ -f "$HOME/bin/sh/bashmarks.sh" ] && source "$HOME/bin/sh/bashmarks.sh"
+[ -f "$HOME/.private/bashrc" ] && source "$HOME/.private/bashrc"
+[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"

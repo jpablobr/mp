@@ -19,8 +19,8 @@
 ! urxvt*font:xft:ProFont:medium:pixelsize=13:autohint=false:antialias=false
 ! urxvt*boldFont:xft:ProFont:medium:pixelsize=13:autohint=false:antialias=false
 
-! urxvt*font:xft:Montecarlo:medium:pixelsize=12:autohint=false:antialias=false
-! urxvt*boldFont:xft:Montecarlo:medium:pixelsize=12:autohint=false:antialias=false
+! urxvt*font:xft:Montecarlo:medium:pixelsize=17:autohint=false:antialias=false
+! urxvt*boldFont:xft:Montecarlo:medium:pixelsize=17:autohint=false:antialias=false
 
 ! urxvt*font:xft:Inconsolata:medium:pixelsize=14:autohint=true:antialias=true
 ! urxvt*boldFont:xft:Inconsolata:medium:pixelsize=14:autohint=true:antialias=true
@@ -28,17 +28,20 @@
 ! urxvt*font:xft:Consolas:medium:pixelsize=12:autohint=true:antialias=true
 ! urxvt*boldFont:xft:Consolas:medium:pixelsize=12:autohint=true:antialias=true
 
-! urxvt*font:	xft:DejaVu Sans Mono:medium:pixelsize=12:autohint=true:antialias=false
+! urxvt*font: xft:DejaVu Sans Mono:medium:pixelsize=12:autohint=true:antialias=false
 ! urxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=11:autohint=true:antialias=false
 
 ! urxvt*font:xft:ProggyCleanTTSZ:medium:pixelsize=15:autohint=true:antialias=false
 ! urxvt*boldFont:xft:ProggyCleanTTSZ:bold:pixelsize=15:autohint=true:antialias=false
 
-urxvt*font:	xft:Terminus:medium:pixelsize=14:autohint=true:antialias=true
-urxvt*boldFont:	xft:Terminus:bold:pixelsize=14:autohint=true:antialias=true
+urxvt*font: xft:Terminus:medium:pixelsize=18:autohint=true:antialias=true
+urxvt*boldFont: xft:Terminus:bold:pixelsize=18
 
-! urxvt*font:	xft:Monaco:medium:pixelsize=10:autohint=true:antialias=false
-! urxvt*font:	xft:Monaco:medium:pixelsize=15
+! URxvt*font:    -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
+! URxvt*boldFont: -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*
+
+! urxvt*font: xft:Monaco:medium:pixelsize=10:autohint=true:antialias=false
+! urxvt*font: xft:Monaco:medium:pixelsize=15
 
 ! rxvt*font:xft:Envy Code R:medium:pixelsize=12:autohint=false:antialias=false
 ! urxvt*boldFont:xft:Envy Code R:bold:pixelsize=12:autohint=false:antialias=false

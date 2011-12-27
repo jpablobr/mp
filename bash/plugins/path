@@ -12,23 +12,11 @@ PATH="$JAVA_HOME/bin:$PATH"
 # sbin
 PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
 
-# if Haskell
-test -d "$HOME/.cabal/bin" &&
-PATH="$HOME/.cabal/bin:$PATH"
-
-# if node.js.
-test -d "$HOME/local/node/bin" &&
-PATH="$HOME/local/node/bin:$PATH"
-export "NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules"
-
-# SM
-PATH="${PATH}:/home/jpablobr/.sm/bin:/home/jpablobr/.sm/pkg/active/bin:/home/jpablobr/.sm/pkg/active/sbin"
-
 #-----------------------------------------------------------------------
 # - if $HOME/bin
 
 if test -d "$HOME/bin"; then
-    for b in `find ~/bin/ -type d | cut -c 1-`; do
+    for b in $(find ~/bin/ -maxdepth 1 -type d | cut -c 1- | uniq); do
         PATH="$b:$PATH"
     done
 fi

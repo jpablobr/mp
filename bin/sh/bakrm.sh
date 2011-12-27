@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-find . -type f -regex "\./.*\(\.bak\|\~\)$" -exec rm -v {} \+
+find . -type f -regex "\./.*\(\~\|\#\)$" -exec rm -fv {} \+

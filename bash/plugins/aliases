@@ -114,3 +114,6 @@ alias wget_r='wget -rkp -l3 -np -nH --cut-dirs=1'
 alias pg='ps aux | grep'
 alias fcm='compgen -abck | grep -i '
 alias mvpas='mv file $OLDPWD/'
+alias em_rm_elc="find . -type f -name '*.elc' -exec rm -fv {} \;"
+alias reboot="sudo shutdown -r now"
+alias shutdown="sudo shutdown -h now"
