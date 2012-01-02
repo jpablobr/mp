@@ -39,7 +39,7 @@ alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 alias es='emacs -nw'
 alias e='emacsclient -nw'
 alias ec='emacsclient -c'
-alias emm='emacs -nw -l ~/.emacs.d/min-init.el'
+alias emm='emacs-24.0.92 -nw -l ~/.emacs.d/min-init.el'
 alias em3='emacs -nw -l ~/.emacs.d/init.el'
 alias em4='emacs-24.0.92 -nw -l ~/.emacs.d/init.el'
 alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
@@ -60,21 +60,6 @@ alias curlr='curl -C - -L -O'
 alias ubuntu-version='lsb_release -a'
 alias g-log-gdm0="sudo less gdm/:0.log | grep EE"
 alias sup_os='export | grep -i'
-##############################################################################->
-# - List
-alias ls='ls -F --color=auto'
-alias lsg='ls -lhGt'
-alias lh="ls -lh"
-alias lt='ls -lt'
-alias la='ls -lah --format=long'
-alias llatr="ls -latr"
-alias l-dir='ls --format=vertical'
-alias l-recent='ls -lAt | head'
-alias l-old='ls -lAt | tail'
-alias ll='/bin/ls -lasi'
-alias lll='/bin/ls -saild'
-alias lsd='ls -d .[0-9a-zA-Z]*'
-lg() { ls -la | grep "$1"; }
 
 ##############################################################################->
 # - Ruby
@@ -114,6 +99,5 @@ alias wget_r='wget -rkp -l3 -np -nH --cut-dirs=1'
 alias pg='ps aux | grep'
 alias fcm='compgen -abck | grep -i '
 alias mvpas='mv file $OLDPWD/'
-alias em_rm_elc="find . -type f -name '*.elc' -exec rm -fv {} \;"
 alias reboot="sudo shutdown -r now"
 alias shutdown="sudo shutdown -h now"

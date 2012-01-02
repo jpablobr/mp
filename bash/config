@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # the basics
 : ${HOME=~}
 : ${LOGNAME=$(id -un)}
@@ -35,4 +34,4 @@ done
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
-/usr/bin/fortune
+fortune -s | cowsay # ;)

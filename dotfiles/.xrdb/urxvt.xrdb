@@ -1,36 +1,35 @@
-              urxvt*termName: rxvt-256color
-             urxvt.scrollBar: off
-            Rxvt.scrollstyle: plain
-              urxvt.iconFile: /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
-              urxvt.geometry: 84×24
-            urxvt.borderLess: False
-        urxvt*internalBorder: 0
-        urxvt*externalBorder: 0
-! urxvt*backgroundPixmap      : /home/jpablobr/Dropbox/background.jpg
-              urxvt.perl-lib: /home/jpablobr/.urxvt/perl
-       urxvt.perl-ext-common: default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
-            urxvt.keysym.M-u: perl:url-select:select_next
-       urxvt.keysym.M-Escape: perl:keyboard-select:activate
-            urxvt.keysym.M-q: perl:keyboard-select:search
-         urxvt.underlineURLs: true
-            urxvt.keysym.M-c: perl:clipboard:copy
-            urxvt.keysym.M-v: perl:clipboard:paste
-          urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-            urxvt*keysym.F11: perl:fullscreen:switch
-           urxvt.copyCommand: xclip -i -selection clipboard
-          urxvt.pasteCommand: xclip -o -selection clipboard
-     urxvt*override-redirect: false
-            urxvt*background: #000000
-            urxvt*foreground: #DDDDDD
-         urxvt*inheritPixmap: true
-             urxvt*tintColor: #111111
-                urxvt*fading: 10
-        urxvt.matcher.button: 2
-           urxvt*urlLauncher: /usr/bin/google-chrome
-           urxvt*transparent: true
-               urxvt*shading: 30
-              urxvt*boldMode: on
-             urxvt*colorMode: on
-           urxvt*colorBDMode: on
-           urxvt*colorULMode: on
-             urxvt*underLine: on
+              urxvt*termName : rxvt-256color
+             urxvt.scrollBar : off
+            Rxvt.scrollstyle : plain
+              urxvt.iconFile : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
+              urxvt.geometry : 84×24
+            urxvt.borderLess : False
+        urxvt*internalBorder : 0
+        urxvt*externalBorder : 0
+              urxvt.perl-lib : /home/jpablobr/.urxvt/perl
+       urxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
+            urxvt.keysym.M-u : perl:url-select:select_next
+       urxvt.keysym.M-Escape : perl:keyboard-select:activate
+            urxvt.keysym.M-q : perl:keyboard-select:search
+         urxvt.underlineURLs : true
+            urxvt.keysym.M-c : perl:clipboard:copy
+            urxvt.keysym.M-v : perl:clipboard:paste
+          urxvt.keysym.M-C-v : perl:clipboard:paste_escaped
+            urxvt*keysym.F11 : perl:fullscreen:switch
+           urxvt.copyCommand : xclip -i -selection clipboard
+          urxvt.pasteCommand : xclip -o -selection clipboard
+     urxvt*override-redirect : false
+            urxvt*background : #000000
+            urxvt*foreground : #DDDDDD
+         urxvt*inheritPixmap : true
+             urxvt*tintColor : #111111
+                urxvt*fading : 10
+        urxvt.matcher.button : 2
+           urxvt*urlLauncher : /usr/bin/google-chrome
+           urxvt*transparent : true
+               urxvt*shading : 30
+              urxvt*boldMode : on
+             urxvt*colorMode : on
+           urxvt*colorBDMode : on
+           urxvt*colorULMode : on
+             urxvt*underLine : on

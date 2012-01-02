@@ -34,8 +34,11 @@
 ! urxvt*font:xft:ProggyCleanTTSZ:medium:pixelsize=15:autohint=true:antialias=false
 ! urxvt*boldFont:xft:ProggyCleanTTSZ:bold:pixelsize=15:autohint=true:antialias=false
 
-urxvt*font: xft:Terminus:medium:pixelsize=18:autohint=true:antialias=true
+    urxvt*font: xft:Terminus:medium:pixelsize=18:autohint=true:antialias=true
 urxvt*boldFont: xft:Terminus:bold:pixelsize=18
+
+!     urxvt*font: xft:Ubuntu:normal:pixelsize=10:autohint=true:antialias=false
+! urxvt*boldFont: xft:Ubuntu:normal:pixelsize=10
 
 ! URxvt*font:    -*-montecarlo-medium-r-normal-*-11-*-*-*-*-*-*-*
 ! URxvt*boldFont: -*-montecarlo-bold-r-normal-*-11-*-*-*-*-*-*-*

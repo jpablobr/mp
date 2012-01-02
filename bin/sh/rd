@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-mv -v "$1" /tmp
-
-exit 0

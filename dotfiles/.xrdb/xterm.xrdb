@@ -1,13 +1,13 @@
 ! interaction
 XTerm*vt100.metaSendsEscape : True
 XTerm*vt100.saveLines       : 8192
-  XTerm*VT100.allowWindowOps: true
-   XTerm*VT100.allowTitleOps: true
-    XTerm*VT100.allowFontOps: true
+XTerm*VT100.allowWindowOps: true
+XTerm*VT100.allowTitleOps: true
+XTerm*VT100.allowFontOps: true
 
-            XTerm*loginShell: true
-       XTerm*allowSendEvents: True
-            XTerm*sessionMgt: false
+    XTerm*loginShell: true
+XTerm*allowSendEvents: True
+    XTerm*sessionMgt: false
 
 ! appearance
 XTerm*vt100.colorMode       : True
@@ -18,6 +18,6 @@ XTerm*vt100.veryBoldColors  : 6
 XTerm*Maximized             : true
 
 ! Keep 5K of scrollback and only reset the scroll position on keypresses.
-             XTerm*saveLines: 5120
-             XTerm*scrollKey: true
-       XTerm*scrollTtyOutput: false
+     XTerm*saveLines: 5120
+     XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false

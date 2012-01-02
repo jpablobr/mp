@@ -2,15 +2,15 @@
 # ----------------------------------------------------------------------
 # - PATH:
 
-JAVA_HOME="/usr/lib/jvm/java-6-openjdk/"
+JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
 export JAVA_HOME
 
 # bin
-PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
-PATH="$JAVA_HOME/bin:$PATH"
+PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+PATH=$JAVA_HOME/bin:$PATH
 
 # sbin
-PATH="/usr/local/sbin:/usr/sbin:/sbin:$PATH"
+PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 #-----------------------------------------------------------------------
 # - if $HOME/bin

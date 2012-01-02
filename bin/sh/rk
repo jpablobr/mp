@@ -1,3 +1,0 @@
-#!/bin/bash
-rake $@
-echo "Rake task $@ finished" | growlnotify

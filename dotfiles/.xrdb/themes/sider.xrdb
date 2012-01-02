@@ -1,0 +1,72 @@
+! Sider color-theme
+
+ *background: #1c1c1c
+ *foreground: #CCCCCC
+*cursorColor: #95A7CC
+
+!! black dark/light
+*color0: #1c1c1c
+*color8:  #333333
+
+!! red dark/light
+ *color1: #B28284
+ *color9:  #CC9597
+
+!! green dark/light
+ *color2: #82B284
+*color10: #95CC97
+
+!! yellow dark/light
+ *color3: #B2B282
+*color11: #CCCC95
+
+!! blue dark/light
+ *color4: #8292B2
+*color12: #95A7CC
+
+!! magenta dark/light
+ *color5: #A082B2
+*color13: #B795CC
+
+!! cyan dark/light
+ *color6: #82B2A6
+*color14: #95CCBE
+
+								 *color7: #B2B2B2
+								*color15: #CCCCCC
+
+ XTerm*vt100.foreground : #CCCCCC
+ XTerm*vt100.background : #1c1c1c
+XTerm*vt100.cursorColor : #95A7CC
+
+!! black dark/light
+XTerm*vt100.color0 : #121212
+XTerm*vt100.color8 : #333333
+
+!! red dark/light
+ XTerm*vt100.color1 : #B28284
+ XTerm*vt100.color9 : #CC9597
+
+!! green dark/light
+ XTerm*vt100.color2 : #82B284
+XTerm*vt100.color10 : #95CC97
+
+!! yellow dark/light
+ XTerm*vt100.color3 : #B2B282
+XTerm*vt100.color11 : #CCCC95
+
+!! blue dark/light
+ XTerm*vt100.color4 : #8292B2
+XTerm*vt100.color12 : #95A7CC
+
+!! magenta dark/light
+ XTerm*vt100.color5 : #A082B2
+XTerm*vt100.color13 : #B795CC
+
+!! cyan dark/light
+ XTerm*vt100.color6 : #82B2A6
+XTerm*vt100.color14 : #95CCBE
+
+!! white dark/light
+ XTerm*vt100.color7 : #B2B2B2
+XTerm*vt100.color15 : #CCCCCC

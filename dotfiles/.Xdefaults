@@ -5,6 +5,8 @@
 
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/ivoarch.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/sider.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/urxvt_xoria256_colours.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/slinky_zenburn.xrdb"
 ! #include "/home/jpablobr/.xrdb/themes/invisibone.xrdb"
