@@ -344,10 +344,12 @@ puniq () {
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
 
-# -------------------------------------------------------------------
-# - PROMPT_COMMAND
+# prompt
 source ~/.bash.d/prompt
 PROMPT_COMMAND=prompt_git_status_simple
+
+# Aliases
+source ~/.bash.d/aliases
 
 # -------------------------------------------------------------------
 # - MOTD / FORTUNE:
