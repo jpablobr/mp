@@ -1,7 +1,3 @@
-/* Jose Pablo Barrantes
- *
- */
-
 //require("new-tabs.js");
 //require("tab-bar.js");
 require("clicks-in-new-buffer.js");

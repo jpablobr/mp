@@ -1,5 +1,0 @@
-#!/bin/bash
-
-[ -f "$HOME/bin/sh/bashmarks.sh" ] && source "$HOME/bin/sh/bashmarks.sh"
-[ -f "$HOME/.private/bashrc" ] && source "$HOME/.private/bashrc"
-[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"

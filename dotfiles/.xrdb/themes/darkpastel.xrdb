@@ -1,0 +1,30 @@
+! ------------------------------------------------------------------------------
+!  dark pastel colour theme from konsole
+! ------------------------------------------------------------------------------
+
+ *foreground: #F6F3E8
+ *background: #242424
+!black
+ *color0:  #191919
+ *color8:  #252525
+!red
+ *color1:  #E5786D
+ *color9:  #EB887E
+!green
+ *color2:  #95E454
+ *color10: #95F06D
+!yellow
+ *color3:  #CAE682
+ *color11: #DAF682
+!blue
+ *color4:  #6AA6C2
+ *color12: #7AB6D2
+!magenta
+ *color5:  #807CAA
+ *color13: #827AB1
+!cyan
+ *color6:  #8AC6F2
+ *color14: #A1CDCD
+!white
+ *color7:  #FFFFFF
+ *color15: #DDDDDD

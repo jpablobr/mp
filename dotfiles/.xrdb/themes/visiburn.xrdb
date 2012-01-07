@@ -1,0 +1,41 @@
+!Typeface
+
+!URxvt*font:             -artwiz-smoothansi-medium-r-normal-*-13-130-75-75-m-60-iso8859-1
+!URxvt*boldFont:         -artwiz-smoothansi-medium-r-normal-*-13-130-75-75-m-60-iso8859-1
+
+
+!FG/BG/Bold/Underline/Cursor
+URxvt*background:           #252525
+!URxvt*background:           #666666
+URxvt*foreground:           #cccccc
+URxvt*cursorColor:          #999999
+URxvt*colorBD:              #ffffff
+URxvt*colorUL:              #cccc66
+
+
+!Colors 0 - 15
+
+!BLK
+URxvt*color0:               #666666
+URxvt*color8:               #999999
+!RED
+URxvt*color1:               #cc9999
+URxvt*color9:               #ffcccc
+!GRN
+URxvt*color2:               #99cc99
+URxvt*color10:              #ccffcc
+!YEL
+URxvt*color3:               #cccc99
+URxvt*color11:              #ffffcc
+!BLE
+URxvt*color4:               #9999cc
+URxvt*color12:              #ccccff
+!MAG
+URxvt*color5:               #cc99cc
+URxvt*color13:              #ffccff
+!CYN
+URxvt*color6:               #99cccc
+URxvt*color14:              #ccffff
+!WHT
+URxvt*color7:               #cccccc
+URxvt*color15:              #ffffff

@@ -1,0 +1,41 @@
+Rxvt.foreground      : #d0d0d0
+Rxvt.background      : #1c1c1c
+!Rxvt.background      : #3f3f3f
+!Rxvt.cursorColor     : #ffaf00
+Rxvt.cursorColor     : #d0d0d0
+
+!black
+Rxvt.color0          : #121212
+Rxvt.color8          : #121212
+
+!red
+Rxvt.color1          : #df8787
+Rxvt.color9          : #df8787
+
+!green
+Rxvt.color2          : #afdf87
+Rxvt.color10         : #afdf87
+
+!brown/yellow
+Rxvt.color3          : #dfdf87
+Rxvt.color11         : #dfdf87
+
+!blue
+Rxvt.color4          : #87afdf
+Rxvt.color12         : #87afdf
+
+!magenta
+Rxvt.color5          : #dfafdf
+Rxvt.color13         : #dfafdf
+
+!cyan
+Rxvt.color6          : #afafdf
+Rxvt.color14         : #afafdf
+
+!white
+Rxvt.color7          : #eeeeee
+Rxvt.color15         : #eeeeee
+
+!styles
+Rxvt.colorBD         : #dfafdf
+Rxvt.colorUL         : #dfdfaf

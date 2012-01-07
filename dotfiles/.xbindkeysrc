@@ -10,16 +10,13 @@
 
 # Examples of commands:
 
-"xterm"
+"term"
 control + b:2
 
-"/home/jpablobr/.private/bin/touchpad-toggle.sh"
-control + 0
+"/home/jpablobr/bin/touchpad-toggle.sh"
+mod4 + space
 
-"/home/jpablobr/.private/bin/nao"
-control + 9
-
-"/usr/bin/google-chrome"
+"/usr/bin/chromium"
 control + 8
 
 #"xterm -geom 50x20+20+20"

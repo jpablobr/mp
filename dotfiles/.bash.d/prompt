@@ -1,0 +1,86 @@
+#!/bin/bash
+
+black="\[\e[0;30m\]"
+red="\[\e[0;31m\]"
+green="\[\e[0;32m\]"
+yellow="\[\e[0;33m\]"
+blue="\[\e[0;34m\]"
+purple="\[\e[0;35m\]"
+cyan="\[\e[0;36m\]"
+white="\[\e[0;37m\]"
+orange="\[\e[33;40m\]"
+reset_color="\[\e[39m\]"
+
+git_status() {
+    local last_commit_in_unix_time
+    local now_in_unix_time
+    local tmp_flags
+    local flags
+    local seconds_since_last_commit
+    local minutes_since_last_commit
+    local days_since_last_commit
+    local minutes_so_far_today
+    local branch
+    last_commit_in_unix_time=$(git log "HEAD" --pretty=format:%ct 2> /dev/null | sort | tail -n1)
+    now_in_unix_time=$(date +%s)
+    branch=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
+    tmp_flags=$(git status --porcelain 2> /dev/null | cut -c1-2 | sed 's/ //g' | cut -c1 | sort | uniq)
+    flags="$(echo $tmp_flags | sed 's/ //g')"
+    if [ $last_commit_in_unix_time ]; then
+        seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
+        minutes_since_last_commit="$(($seconds_since_last_commit/60))"
+        if ((minutes_since_last_commit < 60)); then
+            minutes_since_last_commit="${green}${minutes_since_last_commit}m${reset_color}"
+        elif ((minutes_since_last_commit < 120)); then
+            minutes_since_last_commit="${yellow}${minutes_since_last_commit}m${reset_color}"
+        elif ((minutes_since_last_commit < 1440)); then
+            minutes_since_last_commit="${red}${minutes_since_last_commit}m${reset_color}"
+        else
+            days_since_last_commit=$(($minutes_since_last_commit/1440))
+            minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
+            minutes_since_last_commit="${red}${days_since_last_commit}d ${minutes_so_far_today}m${reset_color}"
+        fi
+    else
+        minutes_since_last_commit=""
+    fi
+    if [ $branch ] || [ $flags  ]; then
+        if [ $branch ]; then
+            branch="${branch}"
+        else
+            branch="waiting for first commit"
+        fi
+        if [ $flags ]; then
+        # ?AM: Git file flags.
+        # '?' for untracked files.
+        # M modified	 File has been modified
+        # C copy-edit	 File has been copied and modified
+        # R rename-edit	 File has been renamed and modified
+        # A added	 File has been added
+        # D deleted	 File has been deleted
+        # U unmerged	 File has conflicts after a merge
+            echo -e " ${reset_color}${flags}|${minutes_since_last_commit}|${branch}${reset_color} "
+        else
+            echo -e " ${reset_color}${minutes_since_last_commit}|${branch}${reset_color} "
+        fi
+    else
+        echo -e " "
+    fi
+}
+
+prompt_git_status_timer() {
+    if [ "$(/usr/bin/whoami)" = root ]; then no_color=$red; else no_color=$white; fi
+    local start_ps1="${no_color}$(/usr/bin/whoami | cut -c1-2)@$(/usr/bin/hostname | cut -c1)${reset_color}:"
+    PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
+}
+
+# Set git autocompletion and PS1 integration
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+  . /usr/share/git/completion/git-completion.bash
+fi
+GIT_PS1_SHOWDIRTYSTATE=true
+
+prompt_git_status_simple() {
+    if [ "$(/usr/bin/whoami)" = root ]; then no_color=$red; else no_color=$white; fi
+    local start_ps1="${blue}$(/usr/bin/whoami | /bin/cut -c1-2)@$(/usr/bin/hostname | /bin/cut -c1)${reset_color}:"
+    PS1="${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color}$(__git_ps1) "
+}

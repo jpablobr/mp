@@ -1,0 +1,41 @@
+
+urxvt*foreground: #d0d0d0
+urxvt*background: #111111
+
+! Normal
+! color0    black
+! color1    red
+! color2    green
+! color3    yellow
+! color4    blue
+! color5    purple
+! color6    cyan
+! color7    white
+
+urxvt*color0:    #1b1b1b
+urxvt*color1:    #daae8c
+urxvt*color2:    #43d770
+urxvt*color3:    #fefe56
+urxvt*color4:    #00587c
+urxvt*color5:    #b0afd4
+urxvt*color6:    #83b0d5
+urxvt*color7:    #ffffff
+
+! Light
+! color8    black
+! color9    red
+! color10    green
+! color11    yellow
+! color12    blue
+! color13    purple
+! color14    cyan
+! color15    white
+
+urxvt*color8:     #1b1b1b
+urxvt*color9:     #6c5645
+urxvt*color10:    #216b37
+urxvt*color11:    #7e7e5b
+urxvt*color12:    #415769
+urxvt*color13:    #575769
+urxvt*color14:    #00587c
+urxvt*color15:    #ffffff

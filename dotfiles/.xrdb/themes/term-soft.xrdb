@@ -1,0 +1,51 @@
+!-----------------------------
+!Autor:   Deckon
+!Link:    http://dotshare.it/dots/286/
+!-----------------------------
+
+!---------
+! Colores
+!---------
+URxvt*background: #111111
+URxvt*foreground: #babdb6
+
+!---------------------
+! Negro + GrisObscuro
+!---------------------
+URxvt*color0:  #2D2D2D
+URxvt*color8:  #555753
+!--------------------
+! RojoObscuro + Rojo
+!--------------------
+URxvt*color1:  #C84065
+URxvt*color9:  #F26C91
+!----------------------
+! VerdeObscuro + Verde
+!----------------------
+URxvt*color2:  #70E252
+URxvt*color10: #95FC7B
+!----------------------------
+! AmarilloObscuro + Amarillo
+!----------------------------
+URxvt*color3:  #C8C039
+URxvt*color11: #D1CB79
+!--------------------
+! AzulObscuro + Azul
+!--------------------
+URxvt*color4:  #74D9EE
+URxvt*color12: #A0EAF9
+!---------------------------
+! MoradoObscuro + Morado
+!---------------------------
+URxvt*color5:  #9F61BA
+URxvt*color13: #C89BDC
+!-------------------
+!CyanObscuro + Cyan
+!-------------------
+URxvt*color6:  #7A9ECD
+URxvt*color14: #AAC1DE
+!---------------
+! Gris + Blanco
+!---------------
+URxvt*color7:  #D5DFE3
+URxvt*color15: #E4F8FF

@@ -18,36 +18,7 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 
 /usr/bin/xrdb -load /home/jpablobr/.Xdefaults &&
 
-# Wait for extra configurations such as calling gnome-session
-/usr/bin/ck-launch-session awesome & wmpid=$!
-
 {
-    (   # Gnome GTK Settings.
-        # Most of this stuff relies on gnome-settings already
-        # being set, wait for it on a sub-shell and continue
-        # with the rest of exit 0.
-        /usr/lib/gnome-settings-daemon/gnome-settings-daemon &&
-
-        /usr/bin/gconftool-2 \
-            --type bool \
-            --set /apps/nautilus/preferences/show_desktop False &
-        /usr/bin/gconftool-2 \
-            --type string \
-            --set /desktop/gnome/session/required_components/windowmanager metacity &
-        /usr/bin/gconftool-2 \
-            --type String \
-            --set /desktop/gnome/url-handlers/org-protocol/command '/usr/bin/emacsclient %s' &
-        /usr/bin/gconftool-2 \
-            --type Boolean \
-            --set /desktop/gnome/url-handlers/org-protocol/enabled true &
-        /usr/bin/gconftool-2 \
-            --type boolean \
-            --set /apps/gnome_settings_daemon/screensaver/start_screensaver false
-
-        # Apps
-        /usr/bin/gnome-sound-applet &
-    ) &
-
     # X Settings
     /usr/bin/xmodmap /home/jpablobr/.Xmodmap  &
     /usr/bin/xset -b & # not beeps!
@@ -58,21 +29,22 @@ eval `dbus-launch --sh-syntax --exit-with-session`
     /usr/bin/xscreensaver -no-splash &
     /usr/bin/xbindkeys
 
-
     # Defaults Apps
     # Start terminal emulation daemon
     /usr/bin/urxvtd -q -o -f &
     /home/jpablobr/.private/bin/mount-toshiba.sh &
     /home/jpablobr/.private/bin/start-dropbox.sh &
     /home/jpablobr/.private/bin/start-chrome.sh &
-    /usr/bin/urxvt &
-    # /usr/bin/urxvt -e $SHELL /home/jpablobr/.tmuxinator/jpablobr.tmux &
-    XAUTHORITY=~/.Xauthority /usr/local/bin/emacs-24.0.92 -l ~/.emacs.d/inits/jpablobr-init.el --daemon &
-    /home/jpablobr/bin/sh/focus -a 5  &
     sudo /usr/sbin/NetworkManager&>> $public_nw_log &
     /usr/bin/nm-applet --sm-disable &
     sudo /usr/bin/updatedb &
 
 } &>>/tmp/init.log # tmp but append! w/e
 
-wait $wmpid
+# while true; do /usr/bin/ck-launch-session dwm
+while true; do dwm
+	xmessage 'insert coin to continue' \
+        -buttons 'Insert Coin:0,Game Over' \
+	- default 'Insert Coin' -timeout -30 \
+        -center || break
+done

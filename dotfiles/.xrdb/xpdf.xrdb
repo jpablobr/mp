@@ -1,7 +1,0 @@
-!! -*- mode: conf -*-
-#include "zenburn.xrdb"
-
-xpdf.initialZoom: page
-xpdf.reverseVideo: true
-xpdf.matteColor: COLOR_BG
-xpdf.paperColor: COLOR_BG
