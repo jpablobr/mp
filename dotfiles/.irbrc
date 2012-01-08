@@ -1,3 +1,4 @@
+# -*- mode: ruby -*-
 begin
   require 'irbtools'
 rescue LoadError
