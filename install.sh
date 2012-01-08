@@ -4,25 +4,24 @@ set -e
 
 exe=$(basename $0)
 mp=~/.mp
+tmp_fl=./install~
 
-_link-dotfiles() {
-    echo "Linking MP dotfiles to ~"
-		for f in dotfiles/.?*; do
-        test  $f != 'dotfiles/..'     &&
-        test ! -f ~/$(basename $f) &&
-        test ! -d ~/$(basename $f) &&
-        ln -s $mp/$f ~            &&
-        echo "Linking $mp/$f" ~/$(basename $f)
+_link_dotfiles() {
+    echo -e "\nLinking MP dotfiles to ~\n"
+    /bin/ls -1d ~/.mp/dotfiles/* | while read f; do
+        [ ! -f ~/$(basename $f) -a ! -d ~/$(basename $f) ] && {
+            ln -s $mp/$f ~ >> $tmp_fl
+        }
     done
+    cat $tmp_fl;exit
 }
 
-_clean-home() {
-    echo "Cleaning ~ dotfiles"
-		for f in dotfiles/.?*; do
-        test $f != 'dotfiles/..'   &&
-        rm -fr ~/$(basename $f) &&
-        echo "Removed " ~/$(basename $f)
+_clean_home() {
+    echo -e "\nCleaning ~ dotfiles\n"
+    /bin/ls -1d ~/.mp/dotfiles/* | while read f; do
+        rm -vfr ~/$(basename $f) >> ./install~
     done
+    cat $tmp_fl;exit
 }
 
 if [ "$1" = "c" ]; then
@@ -31,7 +30,7 @@ elif [ "$1" = "l" ]; then
     _link-dotfiles
     _link-bin
 else
-		cat <<USAGE
+    cat <<USAGE
     Usage: $exe [options]
 
     $exe c

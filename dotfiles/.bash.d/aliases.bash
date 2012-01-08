@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Common aliases
 alias sudo='sudo ' # What is this I don't even.
-alias o='gnome-open . &'
+alias o='xgd-open'
 alias h='history | grep -i'
 alias more='less'
 alias l='less'
@@ -15,17 +15,14 @@ alias ..='cd ..'
 alias g='git --no-pager'
 alias gst='g status'
 alias sjp='urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &'
-alias th=thunar
-alias disable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 0'
-alias enable-touchpad='xinput --set-prop "ImPS/2 ALPS GlidePoint" "Device Enabled" 1'
 alias merge-xresources='xrdb -merge ~/.Xresources'
 alias load-xresources='xrdb -load ~/.Xresources'
 alias hup='kill -HUP \!*'
 alias j='jobs -l'
 alias zombies='ps al | grep " Z "'
 alias cpf='cp -frpv'
+alias fn='find . -name'
 alias tmux='tmux -2'
-alias aliasr="alias | egrep '(ruby|rails)' | cat | sed s:=:'$(tput setaf 5)=$(tput op)':g"
 alias ag='alias | grep '
 alias export-current-dir='export PATH="$PATH:`pwd`"'
 alias gnome2-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
@@ -40,7 +37,6 @@ alias es='emacs -nw'
 alias e='emacsclient -nw'
 alias ec='emacsclient -c'
 alias emm='emacs-24.0.92 -nw -l ~/.emacs.d/min-init.el'
-alias em3='emacs -nw -l ~/.emacs.d/init.el'
 alias em4='emacs-24.0.92 -nw -l ~/.emacs.d/init.el'
 alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
 alias emkill="emacsclient -e '(client-save-kill-emacs)'"
@@ -48,9 +44,8 @@ alias emrs='rmf /tmp/emacs1000 && em4 --daemon'
 
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
-# disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
-alias fn='find . -name'
+
  # ANSI color chart
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm\e[%dm%d on %d\e[0m" $b $f $f $b;done;echo;done'
 alias hgrep='history | grep -i'
