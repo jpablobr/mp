@@ -1,7 +1,11 @@
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/jpablobr.xrdb"
-urxvt*font: xft:proggynormal:normal:pixelsize=13
-urxvt*boldFont: xft:proggynormal:normal:pixelsize=13
+
+*fading:                40
+*fadeColor:             #1c1c1c
+*cursorColor:           #93a1a1
+*pointerColorBackground:#586e75
+*pointerColorForeground:#93a1a1
 
 Xft.autohint: 1
 Xft.lcdfilter:  lcddefault
@@ -10,59 +14,74 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-
 #ifdef COLOR
-*customization: -color
+  *customization: -color
 #endif
 
 Xcursor.theme : Human
 
-! Man pages
-*VT100.colorBDMode:     true
-*VT100.colorBD:         red
-*VT100.colorULMode:     true
-*VT100.colorUL:         cyan
-URxvt.colorIT:      #87af5f
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
-
 ! Urxvt
+URxvt.font: xft:proggynormal:normal:pixelsize=13
+URxvt.boldFont: xft:proggynormal:normal:pixelsize=13
 URxvt.letterSpace: -5
-urxvt*termName : rxvt-256color
-urxvt.scrollBar : off
-Rxvt.scrollstyle : plain
-urxvt.iconFile : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
-urxvt.geometry : 84×24
-urxvt.borderLess : False
-urxvt*internalBorder : 0
-urxvt*externalBorder : 0
-urxvt.perl-lib : /home/jpablobr/.urxvt/perl
-urxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
-urxvt.keysym.M-u : perl:url-select:select_next
-urxvt.keysym.M-Escape : perl:keyboard-select:activate
-urxvt.keysym.M-q : perl:keyboard-select:search
-urxvt.underlineURLs : true
-urxvt.keysym.M-c : perl:clipboard:copy
-urxvt.keysym.M-v : perl:clipboard:paste
-urxvt.keysym.M-C-v : perl:clipboard:paste_escaped
-urxvt*keysym.F11 : perl:fullscreen:switch
-urxvt.copyCommand : xclip -i -selection clipboard
-urxvt.pasteCommand : xclip -o -selection clipboard
-urxvt*override-redirect : false
-urxvt*background : #000000
-urxvt*foreground : #DDDDDD
-urxvt*inheritPixmap : true
-urxvt*tintColor : #111111
-urxvt*fading : 10
-urxvt.matcher.button : 2
-urxvt*urlLauncher : /usr/bin/google-chrome
-urxvt*transparent : true
-urxvt*shading : 30
-urxvt*boldMode : on
-urxvt*colorMode : on
-urxvt*colorBDMode : on
-urxvt*colorULMode : on
-urxvt*underLine : on
+URxvt.termName : rxvt-256color
+URxvt.scrollBar : off
+URxvt.scrollstyle : plain
+URxvt.iconFile : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
+URxvt.geometry : 84×24
+URxvt.borderLess : False
+URxvt.internalBorder : 0
+URxvt.externalBorder : 0
+URxvt.perl-lib : /home/jpablobr/.urxvt/perl
+URxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
+URxvt.keysym*M-u : perl:url-select:select_next
+URxvt.keysym*M-Escape : perl:keyboard-select:activate
+URxvt.keysym*M-q : perl:keyboard-select:search
+URxvt.underlineURLs : true
+URxvt.keysym*M-c : perl:clipboard:copy
+URxvt.keysym*M-v : perl:clipboard:paste
+URxvt.keysym*M-C-v : perl:clipboard:paste_escaped
+URxvt.keysym*F11 : perl:fullscreen:switch
+URxvt.copyCommand : xclip -i -selection clipboard
+URxvt.pasteCommand : xclip -o -selection clipboard
+URxvt.override-redirect : false
+URxvt.matcher*button : 2
+URxvt.urlLauncher : /usr/bin/chromium
+URxvt.transparent : true
+URxvt.shading : 30
+URxvt.boldMode : on
+URxvt.colorMode : on
+URxvt.colorBDMode : on
+URxvt.colorULMode : on
+URxvt.underLine : on
+URxvt.inheritPixmap : true
+!! black dark/light
+URxvt.color0:  #073642
+URxvt.color8:  #1c1c1c
+!! red dark/light
+URxvt.color1:  #dc322f
+URxvt.color9:  #cb4b16
+!! green dark/light
+URxvt.color2:  #859900
+URxvt.color10: #586e75
+!! yellow dark/light
+URxvt.color3:  #b58900
+URxvt.color11: #657b83
+!! blue dark/light
+URxvt.color4:  #268bd2
+URxvt.color12: #839496
+!! magenta dark/light
+URxvt.color5:  #d33682
+URxvt.color13: #6c71c4
+!! cyan dark/light
+URxvt.color6:  #2aa198
+URxvt.color14: #93a1a1
+!! white dark/light
+URxvt.color7:  #eee8d5
+URxvt.color15: #fdf6e3
+URxvt.background : #000000
+URxvt.foreground : #DDDDDD
+URxvt.tintColor : #111111
 
 ! Emacs
 Emacs.menuBar: off
@@ -72,25 +91,31 @@ Emacs.BitmapIcon: on
 Emacs.fading: 40
 
 ! interaction
-XTerm*vt100.metaSendsEscape : True
-XTerm*vt100.saveLines       : 8192
-XTerm*VT100.allowWindowOps: true
-XTerm*VT100.allowTitleOps: true
-XTerm*VT100.allowFontOps: true
+*vt100.metaSendsEscape : True
+*vt100.saveLines       : 8192
+*VT100.allowWindowOps: true
+*VT100.allowTitleOps: true
+*VT100.allowFontOps: true
 
+! Xterm
 XTerm*loginShell: true
 XTerm*allowSendEvents: True
 XTerm*sessionMgt: false
-
-! appearance
 XTerm*vt100.colorMode       : True
 XTerm*vt100.colorBDMode     : True
 XTerm*vt100.colorULMode     : True
 XTerm*vt100.showBlinkAsBold : True
 XTerm*vt100.veryBoldColors  : 6
 XTerm*Maximized             : true
-
-! Keep 5K of scrollback and only reset the scroll position on keypresses.
 XTerm*saveLines: 5120
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
+
+! Man pages
+*VT100.colorBDMode:     true
+*VT100.colorBD:         red
+*VT100.colorULMode:     true
+*VT100.colorUL:         cyan
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7

@@ -1,36 +1,44 @@
 #!/bin/bash
-# git.sh
-# Git related helper functions
-# Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
+
+black="\[\e[0;30m\]"
+red="\[\e[0;31m\]"
+green="\[\e[0;32m\]"
+yellow="\[\e[0;33m\]"
+blue="\[\e[0;34m\]"
+purple="\[\e[0;35m\]"
+cyan="\[\e[0;36m\]"
+white="\[\e[0;37m\]"
+orange="\[\e[33;40m\]"
+reset_color="\[\e[39m\]"
 
 ANSI_RESET="\001$(git config --get-color "" "reset")\002"
 
 ##############################################################################->
 # Git Aliases
-alias g-ungit="find . -name '.git' -exec rm -rf {} \;"
-alias g-a='git add'
-alias g-a.='git add .'
-alias g-ap='git add -p'
-alias g-b='git branch'
-alias g-ph='git push heroku master'
-alias g-pg='git push github master'
-alias g-ca='git commit -v -a'
-alias g-co="git checkout"
-alias g-count='git shortlog -sn'
-alias g-d='git diff'
-alias g-dh='git diff HEAD'
-alias g-dm='git diff master'
-alias g-ds='git diff --cached'
-alias g-dv='git diff -w "$@" | emq -R -'
-alias g-itx='gitx --all'
-alias g-pr='git pull --rebase || (notify "pull failed" "Git" && false)'
-alias g-pru='gp && rake && gu'
-alias g-ri='git rebase -i origin/master^'
-alias g-rc='git rebase --continue'
-alias g-up='git fetch && git rebase'
-alias g-cache='git rm -r --cached .'
+alias g_ungit="find . -name '.git' -exec rm -rf {} \;"
+alias g_a='git add'
+alias g_a.='git add .'
+alias g_ap='git add -p'
+alias g_b='git branch'
+alias g_ph='git push heroku master'
+alias g_pg='git push github master'
+alias g_ca='git commit -v -a'
+alias g_co="git checkout"
+alias g_count='git shortlog -sn'
+alias g_d='git diff'
+alias g_dh='git diff HEAD'
+alias g_dm='git diff master'
+alias g_ds='git diff --cached'
+alias g_dv='git diff -w "$@" | emq -R -'
+alias g_itx='gitx --all'
+alias g_pr='git pull --rebase || (notify "pull failed" "Git" && false)'
+alias g_pru='gp && rake && gu'
+alias g_ri='git rebase -i origin/master^'
+alias g_rc='git rebase --continue'
+alias g_up='git fetch && git rebase'
+alias g_cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias g-log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
+alias g_log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
 
 gp() {
     [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
@@ -49,7 +57,7 @@ g-prune() {
     git remote | xargs -n 1 git remote prune
 }
 
-g-cn() {
+g_cn() {
     git clone "$1" "$2"
 }
 
@@ -58,15 +66,15 @@ gc() {
 }
 
 # Setup a tracking branch from [remote] [branch_name]
-g-bt() {
+g_bt() {
     git branch --track $2 $1/$2 && git checkout $2
 }
 
-g-parse_branch() {
+g_parse_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 
-g-notpushed() {
+g_notpushed() {
     curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
     origin=$(git config --get "branch.$curr_branch.remote")
     origin=${origin:-origin}
@@ -74,7 +82,7 @@ g-notpushed() {
 }
 
 # Completely removes a given file from a git repo
-g-rm() {
+g_rm() {
     git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
     git push origin master --force
     rm -rf .git/refs/original/
@@ -83,21 +91,13 @@ g-rm() {
     git gc --aggressive --prune=now
 }
 
-g-rb() {
+g_rb() {
     git push origin HEAD:refs/heads/$1
     git fetch origin &&
     git checkout -b $1 --track origin/$1
 }
 
-current_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-git_commits_ahead() {
-    git status 2> /dev/null | grep ahead | sed -e 's/.*by \([0-9]\{1,\}\) commits\{0,1\}\./\1/'
-}
-
-g-i() {
+g_i() {
     git init &&
     [ ! -f .gitignore ] && cat > .gitignore << -EOF-
 ## MAC OS
@@ -116,9 +116,9 @@ tmtags
 *.swp
 
 ## PROJECT::GENERAL
-coverage
-rdoc
-pkg
+coverage/
+rdoc/
+pkg/
 
 ## PROJECT::SPECIFIC'
 -EOF-
@@ -127,27 +127,27 @@ pkg
     git status
 }
 
-function g-remote {
+g-remote() {
     echo "Running: git remote add origin ${GIT_HOSTING}:$1.git"
     git remote add origin $GIT_HOSTING:$1.git
 }
 
-function g-first_push {
+g_first_push() {
     echo "Running: git push origin master:refs/heads/master"
     git push origin master:refs/heads/master
 }
 
-function g-remove_missing_files() {
+g_remove_missing_files() {
     git ls-files -d -z | xargs -0 git update-index --remove
 }
 
 # Adds files to git's exclude file (same as .gitignore)
-function local-ignore() {
+g_local_ignore() {
     echo "$1" >> .git/info/exclude
 }
 
 # get a quick overview for your git repo
-function g-info() {
+g_info() {
     if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
         # print informations
         echo "git repo overview"
@@ -181,10 +181,9 @@ function g-info() {
     fi
 }
 
-function g-stats {
+g_stats() {
 # awesome work from https://github.com/esc/git-stats
 # including some modifications
-
     if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
         echo "Number of commits per author:"
         git --no-pager shortlog -sn --all
@@ -218,4 +217,89 @@ function g-stats {
     else
         echo "you're currently not in a git repository"
     fi
+}
+
+# Prompt
+git_status() {
+    local last_commit_in_unix_time
+    local now_in_unix_time
+    local tmp_flags
+    local flags
+    local seconds_since_last_commit
+    local minutes_since_last_commit
+    local days_since_last_commit
+    local minutes_so_far_today
+    local branch
+    last_commit_in_unix_time=$(git log "HEAD" --pretty=format:%ct 2> /dev/null | sort | tail -n1)
+    now_in_unix_time=$(date +%s)
+    branch=$(git branch --no-color 2> /dev/null | grep '*' | sed 's/\*//g' | sed 's/ //g')
+    tmp_flags=$(git status --porcelain 2> /dev/null | cut -c1-2 | sed 's/ //g' | cut -c1 | sort | uniq)
+    flags="$(echo $tmp_flags | sed 's/ //g')"
+    if [ $last_commit_in_unix_time ]; then
+        seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
+        minutes_since_last_commit="$(($seconds_since_last_commit/60))"
+        if ((minutes_since_last_commit < 60)); then
+            minutes_since_last_commit="${green}${minutes_since_last_commit}m${reset_color}"
+        elif ((minutes_since_last_commit < 120)); then
+            minutes_since_last_commit="${yellow}${minutes_since_last_commit}m${reset_color}"
+        elif ((minutes_since_last_commit < 1440)); then
+            minutes_since_last_commit="${red}${minutes_since_last_commit}m${reset_color}"
+        else
+            days_since_last_commit=$(($minutes_since_last_commit/1440))
+            minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
+            minutes_since_last_commit="${red}${days_since_last_commit}d ${minutes_so_far_today}m${reset_color}"
+        fi
+    else
+        minutes_since_last_commit=""
+    fi
+    if [ $branch ] || [ $flags  ]; then
+        if [ $branch ]; then
+            branch="${branch}"
+        else
+            branch="waiting for first commit"
+        fi
+        if [ $flags ]; then
+        # ?AM: Git file flags.
+        # '?' for untracked files.
+        # M modified   File has been modified
+        # C copy-edit  File has been copied and modified
+        # R rename-edit  File has been renamed and modified
+        # A added  File has been added
+        # D deleted  File has been deleted
+        # U unmerged   File has conflicts after a merge
+            echo -e " ${reset_color}${flags}|${minutes_since_last_commit}|${branch}${reset_color} "
+        else
+            echo -e " ${reset_color}${minutes_since_last_commit}|${branch}${reset_color} "
+        fi
+    else
+        echo -e " "
+    fi
+}
+
+p_me() {
+    /usr/bin/whoami | /bin/cut -c1-2
+}
+
+p_hst() {
+    /usr/bin/hostname | /bin/cut -c1
+}
+
+p_user_color() {
+    if [ "$(/usr/bin/whoami)" = root ]; then
+        $red
+    else
+        $white
+    fi
+}
+
+prompt_git_status_timer() {
+		no_color=p_user_color
+    local start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
+    PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
+}
+
+prompt_git_status_simple() {
+		no_color=p_user_color
+    local start_ps1="${blue}$(p_me)@$(p_hst)${reset_color}:"
+    PS1="${yellow}$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W$(tput sgr0) "
 }

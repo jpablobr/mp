@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# files.sh
-# Files helpers
-# Author: José Pablo Barrantes R. <xjpablobrx@gmail.com>
 
 # aliases
 alias f-list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
@@ -99,7 +96,6 @@ f-extract() {
 				echo "'$1' is not a valid file"
 		fi
 }
-
 
 duh() { # disk usage for humans
 		test $# -eq 0 && set -- *

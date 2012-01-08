@@ -17,7 +17,6 @@ alias sed.tn="sed -ne 's/\t/\n/gp'"
 alias termcast="telnet termcast.org"
 alias term.reset="echo c; stty echo"
 alias when="when --calendar_today_style='underlined,fgyellow,bgblack' --items_today_style='bold,fgred,bgblack'"
-
 alias xargs0="xargs -0"
 
 mkcd () {
