@@ -215,7 +215,8 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
-PROMPT_COMMAND=prompt_git_status_simple
+# PROMPT_COMMAND=prompt_git_status_simple
+PROMPT_COMMAND=prompt_git_status_timer
 
 # - Source:
 [ -f ~/bin/sh/bashmarks.sh ] && . ~/bin/sh/bashmarks.sh

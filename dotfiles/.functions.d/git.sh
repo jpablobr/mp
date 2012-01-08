@@ -284,22 +284,29 @@ p_hst() {
     /usr/bin/hostname | /bin/cut -c1
 }
 
-p_user_color() {
+prompt_start() {
     if [ "$(/usr/bin/whoami)" = root ]; then
-        $red
+        no_color=$red
     else
-        $white
+        no_color=$white
     fi
+		start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
 }
 
 prompt_git_status_timer() {
-		no_color=p_user_color
-    local start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
+		prompt_start
     PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
 }
 
 prompt_git_status_simple() {
-		no_color=p_user_color
-    local start_ps1="${blue}$(p_me)@$(p_hst)${reset_color}:"
+		prompt_start
     PS1="${yellow}$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W$(tput sgr0) "
+}
+
+jppt() {
+		if [ $PROMPT_COMMAND = "prompt_git_status_simple" ]; then
+				export PROMPT_COMMAND=prompt_git_status_timer
+		else
+				export PROMPT_COMMAND=prompt_git_status_simple
+		fi
 }
