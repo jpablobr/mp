@@ -303,6 +303,7 @@ prompt_git_status_simple() {
     PS1="${yellow}$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W$(tput sgr0) "
 }
 
+# Prompt toggle
 jppt() {
 		if [ $PROMPT_COMMAND = "prompt_git_status_simple" ]; then
 				export PROMPT_COMMAND=prompt_git_status_timer
