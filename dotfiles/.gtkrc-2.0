@@ -3,16 +3,18 @@
 # include "/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc"
 # include "/usr/share/themes/Mist/gtk-2.0/gtkrc"
 # include "/home/jpablobr/Downloads/maxfierke-BleuFear-2842e52/gtk-2.0/gtkrc"
-include "/home/jpablobr/.themes/mint-x-theme/usr/share/themes/Mint-X-Metal/gtk-2.0/gtkrc"
+# include "/home/jpablobr/.themes/mint-x-theme/usr/share/themes/Mint-X-Metal/gtk-2.0/gtkrc"
+# include "/home/jpablobr/.themes/mint-x-theme/usr/share/themes/Mint-X/gtk-2.0/gtkrc"
+# include "/home/jpablobr/themes/boomerang_deux/gtk-2.0/gtkrc"
 gtk-font-name="Ubuntu 8"
-# gtk-icon-theme-name="gk4ico"
-# gtk-cursor-theme-size=0
-# gtk-toolbar-style=GTK_TOOLBAR_ICONS
-# gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-# gtk-button-images=1
-# gtk-menu-images=1
-# gtk-enable-event-sounds=0
-# gtk-enable-input-feedback-sounds=0
+gtk-icon-theme-name="gk4ico"
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
 # gtk-xft-antialias=1
 # gtk-xft-hinting=1
 # gtk-xft-hintstyle="hintfull"

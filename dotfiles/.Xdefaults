@@ -1,6 +1,9 @@
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/jpablobr.xrdb"
+! #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
 
+*background:            #1c1c1c
+*foreground:            #657b83
 *fading:                40
 *fadeColor:             #1c1c1c
 *cursorColor:           #93a1a1
@@ -15,10 +18,16 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 #ifdef COLOR
-  *customization: -color
+*customization: -color
 #endif
 
 Xcursor.theme : Human
+
+! Man pages
+*VT100.colorBDMode:     true
+*VT100.colorBD:         red
+*VT100.colorULMode:     true
+*VT100.colorUL:         cyan
 
 ! Urxvt
 URxvt.font: xft:proggynormal:normal:pixelsize=13
@@ -55,7 +64,7 @@ URxvt.colorBDMode : on
 URxvt.colorULMode : on
 URxvt.underLine : on
 URxvt.inheritPixmap : true
-!! black dark/light
+! black dark/light
 URxvt.color0:  #073642
 URxvt.color8:  #1c1c1c
 !! red dark/light
@@ -82,13 +91,16 @@ URxvt.color15: #fdf6e3
 URxvt.background : #000000
 URxvt.foreground : #DDDDDD
 URxvt.tintColor : #111111
+! HLT Include, StatusLine, ErrorMsg
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
 
 ! Emacs
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
 Emacs.BitmapIcon: on
-Emacs.fading: 40
 
 ! interaction
 *vt100.metaSendsEscape : True
@@ -111,11 +123,3 @@ XTerm*saveLines: 5120
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
 
-! Man pages
-*VT100.colorBDMode:     true
-*VT100.colorBD:         red
-*VT100.colorULMode:     true
-*VT100.colorUL:         cyan
-URxvt.colorIT:      #87af5f
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
