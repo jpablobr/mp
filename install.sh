@@ -19,7 +19,7 @@ _link_dotfiles() {
 
 _clean_home() {
     echo -e "\nCleaning ~ dotfiles\n"
-		[ -d $tmp_dir ] && mktmp $tmp_dir
+		[ -d $tmp_dir ] || mktmp $tmp_dir
     /bin/ls -1d $mp/dotfiles/* | while read f; do
         mv -v ~/$(basename $f) $tmp_dir >> $tmp_fl 2>&1
     done
