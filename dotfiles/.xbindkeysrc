@@ -14,7 +14,7 @@
 control + b:2
 
 "/home/jpablobr/bin/touchpad-toggle.sh"
-mod4 + space
+control + 0
 
 "/usr/bin/chromium"
 control + 8

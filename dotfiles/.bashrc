@@ -83,15 +83,6 @@ ulimit -S -c 0
 # default umask
 umask 0022
 
-# Ruby
-export GEM_EDITOR=$EDITOR
-
-# use gem-man(1) if available:
-man () {
-    gem man -s "$@" 2>/dev/null ||
-    command man "$@"
-}
-
 # override and disable tilde expansion
 _expand() {
     return 0
@@ -168,6 +159,15 @@ man() {
         LESS_TERMCAP_ue=$(printf "\e[0m") \
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
+}
+
+# Ruby
+export GEM_EDITOR=$EDITOR
+
+# use gem-man(1) if available:
+man () {
+    gem man -s "$@" 2>/dev/null ||
+    command man "$@"
 }
 
 # ----------------------------------------------------------------------
@@ -288,7 +288,7 @@ export GIT_PS1_SHOWSTASHSTATE=true
 
 PROMPT_COMMAND=prompt_git_status_timer
 
-# Source:
+# Misc stuff to source:
 [ -f ~/bin/sh/bashmarks.sh ] && . ~/bin/sh/bashmarks.sh
 [ -f ~/.private/bashrc ] && . ~/.private/bashrc
 

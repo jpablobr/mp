@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Common aliases
 alias sudo='sudo ' # What is this I don't even.
-alias o='xgd-open'
+alias o='xdg-open'
 alias h='history | grep -i'
 alias more='less'
 alias l='less'

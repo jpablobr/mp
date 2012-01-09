@@ -1,50 +1,53 @@
 #!/bin/sh
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
-    for f in /etc/X11/xinit/xinitrc.d/*; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
-
-public_nw_log='/var/log/jpablobr/public_nw.log'
-
-eval `gpg-agent --daemon` &&
-trap 'killall gpg-agent' EXIT
-
-# Dbus session
-test -z "$DBUS_SESSION_BUS_ADDRESS" &&
-eval `dbus-launch --sh-syntax --exit-with-session`
-
-/usr/bin/xrdb -load /home/jpablobr/.Xdefaults &&
-
 {
-    # X Settings
-    /usr/bin/xmodmap /home/jpablobr/.Xmodmap  &
+     # execute the rest of this file under the ConsoleKit environment
+		sed -n '/^sed/,$p' "$0" | sed 1d | /usr/bin/ck-launch-session sh -x; exit
+
+    eval `gpg-agent --daemon` &&
+    trap 'killall gpg-agent' EXIT
+
+    test -z "$DBUS_SESSION_BUS_ADDRESS" &&
+    eval `dbus-launch --sh-syntax --exit-with-session`
+
+    /usr/lib/notification-daemon-1.0/notification-daemon &
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+    # Disable Nautilus desktop
+    /usr/bin/gconftool-2 \
+        --type bool      \
+        --set /apps/nautilus/preferences/show_desktop False &
+
+    # Settings
     /usr/bin/xset -b & # not beeps!
-    /usr/bin/xset r rate 200 50
+    /usr/bin/xset r rate 200 50 &
+    /usr/bin/xrdb -load ~/.Xdefaults &
+    /usr/bin/xmodmap ~/.Xmodmap  &
     /usr/bin/setxkbmap -option "ctrl:nocaps"  &
     /usr/bin/syndaemon -t -k -i 2 -d &
-    /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2
+    /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2 &
     /usr/bin/xscreensaver -no-splash &
-    /usr/bin/xbindkeys
-
-    # Defaults Apps
-    # Start terminal emulation daemon
+    /usr/bin/xbindkeys &
     /usr/bin/urxvtd -q -o -f &
-    /home/jpablobr/.private/bin/mount-toshiba.sh &
-    /home/jpablobr/.private/bin/start-dropbox.sh &
-    /home/jpablobr/.private/bin/start-chrome.sh &
-    sudo /usr/sbin/NetworkManager&>> $public_nw_log &
-    /usr/bin/nm-applet --sm-disable &
     sudo /usr/bin/updatedb &
 
-} &>>/tmp/init.log # tmp but append! w/e
+    # Scripts
+    ~/.private/bin/mpd-jpablobr.sh &
+    ~/.private/bin/start-chromium.sh &
+    ~/.private/bin/start-dropbox.sh &
+    ~/.private/bin/network-setup.sh -m &
+    ~/bin/sh/focus -a 5  &
 
-# while true; do /usr/bin/ck-launch-session dwm
-while true; do dwm
-	xmessage 'insert coin to continue' \
+}>>/tmp/xinit.log 2>&1
+
+urxvt -e tail -f         \
+    /tmp/xinit.log       \
+    /var/log/Xorg.0.log  \
+    ~/.wmii/wmiirc.log &
+
+while true; do wmii
+    xmessage 'INSERT COIN TO CONTINUE'     \
         -buttons 'Insert Coin:0,Game Over' \
-	- default 'Insert Coin' -timeout -30 \
+        -default 'Insert Coin' -timeout 30 \
         -center || break
 done
