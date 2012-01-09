@@ -26,7 +26,7 @@ case "$0" in
 esac
 
 # ----------------------------------------------------------------------
-# - PATH:
+# - $PATH:
 
 #Java
 JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
@@ -38,6 +38,9 @@ PATH=$JAVA_HOME/bin:$PATH
 
 # sbin
 PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
+
+# rvm
+[ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
 
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
@@ -274,7 +277,7 @@ for f in $(/bin/ls ~/.functions.d/); do
     [ -f ~/.functions.d/$f ] && . ~/.functions.d/$f
 done
 
-# Prompt
+# - Prompt
 [ -f /usr/share/git/completion/git-completion.bash ] && {
 		. /usr/share/git/completion/git-completion.bash
 }
@@ -285,14 +288,13 @@ export GIT_PS1_SHOWSTASHSTATE=true
 
 PROMPT_COMMAND=prompt_git_status_timer
 
-# - Source:
+# Source:
 [ -f ~/bin/sh/bashmarks.sh ] && . ~/bin/sh/bashmarks.sh
 [ -f ~/.private/bashrc ] && . ~/.private/bashrc
 
 #-----------------------------------------------------------------------
-# - ~/bin && functions
+# ~/bin && functions
 jplb() {
-    [ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
     [ -d ~/bin ] && {
         for b in $(find ~/bin/ -maxdepth 1 -type d | cut -c 1- | uniq); do
             [[ ${d##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|exclude|*.git|.rpm*) ]] && {
@@ -302,12 +304,13 @@ jplb() {
     }
     PATH=$(puniq $PATH)
 }
-
-jplb
+# jplb
 
 # condense $PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
+
+/usr/bin/xrdb -load ~/.Xdefaults &&
 
 uname -npsr
 uptime

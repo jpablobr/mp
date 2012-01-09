@@ -1,6 +1,7 @@
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/jpablobr.xrdb"
-! #include "/home/jpablobr/.xrdb/themes/solarized.xrdb"
+
+Xcursor.theme : Human
 
 *background:            #1c1c1c
 *foreground:            #657b83
@@ -20,8 +21,6 @@ Xft.rgba: rgb
 #ifdef COLOR
 *customization: -color
 #endif
-
-Xcursor.theme : Human
 
 ! Man pages
 *VT100.colorBDMode:     true

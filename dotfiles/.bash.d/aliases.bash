@@ -24,23 +24,12 @@ alias cpf='cp -frpv'
 alias fn='find . -name'
 alias tmux='tmux -2'
 alias ag='alias | grep '
-alias export-current-dir='export PATH="$PATH:`pwd`"'
-alias gnome2-set-emacs-interface='gconftool-2 --set /desktop/gnome/interface/gtk_key_theme Emacs --type string'
-alias gnome3-set-emacs-interface='gsettings set org.gnome.desktop.interface gtk-key-theme Emacs'
+alias export_current_dir='export PATH="$PATH:`pwd`"'
 # Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
 alias r='fc -s'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
-# Emacs
-alias es='emacs -nw'
-alias e='emacsclient -nw'
-alias ec='emacsclient -c'
-alias emm='emacs-24.0.92 -nw -l ~/.emacs.d/min-init.el'
-alias em4='emacs-24.0.92 -nw -l ~/.emacs.d/init.el'
-alias se='sudo emacs -nw -l /home/jpablobr/.emacs.d/inits/min-init.el'
-alias emkill="emacsclient -e '(client-save-kill-emacs)'"
-alias emrs='rmf /tmp/emacs1000 && em4 --daemon'
 
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
