@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Common aliases
 alias sudo='sudo ' # What is this I don't even.
 alias o='xdg-open'
@@ -15,8 +15,8 @@ alias ..='cd ..'
 alias g='git --no-pager'
 alias gst='g status'
 alias sjp='urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &'
-alias merge-xresources='xrdb -merge ~/.Xresources'
-alias load-xresources='xrdb -load ~/.Xresources'
+alias merge_xresources='xrdb -merge ~/.Xresources'
+alias load_xresources='xrdb -load ~/.Xresources'
 alias hup='kill -HUP \!*'
 alias j='jobs -l'
 alias zombies='ps al | grep " Z "'
@@ -25,7 +25,6 @@ alias fn='find . -name'
 alias tmux='tmux -2'
 alias ag='alias | grep '
 alias export_current_dir='export PATH="$PATH:`pwd`"'
-# Show history
 alias history='fc -l 1'
 alias hi='history | tail -20'
 alias r='fc -s'
@@ -70,10 +69,11 @@ aappd(){
     local alias_cmd=($@)
     local name=$(echo ${alias_cmd[0]})
     unset alias_cmd[0]
-    echo "alias ${name}='${alias_cmd[*]}'" >> ~/.mp/bash/plugins/aliases
-    grep -i ${1}  ~/.mp/bash/plugins/aliases
+    echo "alias ${name}='${alias_cmd[*]}'" >> ~/.mp/dotfiles/.bash.d/aliases.bash
+    grep -i "$1"  ~/.mp/dotfiles/.bash.d/aliases.bash
     exit 0
 }
+
 alias envg='env | grep -i '
 alias rmf='rm -frv'
 alias gnome_remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'

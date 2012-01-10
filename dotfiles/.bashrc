@@ -28,19 +28,23 @@ esac
 # ----------------------------------------------------------------------
 # - $PATH:
 
-#Java
-JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
-export JAVA_HOME
-
 # bin
 PATH=/bin:/usr/bin:/usr/local/bin:$PATH
-PATH=$JAVA_HOME/bin:$PATH
 
 # sbin
 PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
+# Haskell
+[ -d ~/.cabal/bin ] && PATH=~/.cabal/bin:$PATH
+
 # rvm
 [ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
+
+#Java
+JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
+PATH=$JAVA_HOME/bin:$PATH
+
+export $JAVA_HOME
 
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
@@ -304,13 +308,11 @@ jplb() {
     }
     PATH=$(puniq $PATH)
 }
-# jplb
+jplb
 
 # condense $PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
-
-/usr/bin/xrdb -load ~/.Xdefaults &&
 
 uname -npsr
 uptime

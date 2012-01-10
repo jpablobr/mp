@@ -10,11 +10,14 @@
 
 # Examples of commands:
 
-"term"
+"/home/jpablobr/bin/term"
 control + b:2
 
 "/home/jpablobr/bin/touchpad-toggle.sh"
 control + 0
+
+"sudo -u jpablobr /home/jpablobr/bin/e -q"
+control + 9
 
 "/usr/bin/chromium"
 control + 8
