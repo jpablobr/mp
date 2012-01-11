@@ -50,6 +50,8 @@ alias rg='bundle exec rake -T | grep'
 alias bl='bundle --local || bundle'
 alias rctags-g="find $(echo $GEM_PATH | cut -d: -f1) -type f -name '*.rb' | ctags -e --verbose=yes -L -"
 alias rctags-p="find . -type f -name '*.rb' | ctags -e --verbose=yes -L -"
+alias gem_install_global='rvm use default@global && gem install'
+
 # - Rails
 alias rr-asl='rails s >& log/server-`date +%Y-%m-%d-%H:%M`.log'
 alias rr-adbm='rake db:migrate && rake db:test:prepare'
