@@ -58,13 +58,16 @@ alias rr-log='tail -fn0 ./log/*.log /var/log/apache*/*log'
 alias rrc='pry -r ./config/environment'
 
 # - heroku
-alias hi='heroku info'
-alias hp="git push heroku master"
-alias h-t='heroku logs --tail'
+alias ht='heroku logs --tail'
 
-##############################################################################->
-# Aliases directly appended from shell
-#
+# Git Aliases
+alias g_ungit="find . -name '.git' -exec rm -rf {} \;"
+alias g_ca='git commit -v -a'
+alias g_co="git checkout"
+alias g_count='git shortlog -sn'
+alias g_d='git diff'
+alias g_cache='git rm -r --cached .'
+
 aappd(){
     local alias_cmd=($@)
     local name=$(echo ${alias_cmd[0]})
@@ -76,7 +79,7 @@ aappd(){
 
 alias envg='env | grep -i '
 alias rmf='rm -frv'
-alias gnome_remove-panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
+alias gnome_remove_panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
 alias gem_purge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
 alias screen_lock='xscreensaver-command -lock'
 alias wget_r='wget -rkp -l3 -np -nH --cut-dirs=1'

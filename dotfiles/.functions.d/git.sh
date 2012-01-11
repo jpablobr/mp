@@ -11,34 +11,14 @@ white="\[\e[0;37m\]"
 orange="\[\e[33;40m\]"
 reset_color="\[\e[39m\]"
 
-ANSI_RESET="\001$(git config --get-color "" "reset")\002"
-
-##############################################################################->
-# Git Aliases
-alias g_ungit="find . -name '.git' -exec rm -rf {} \;"
-alias g_a='git add'
-alias g_a.='git add .'
-alias g_ap='git add -p'
-alias g_b='git branch'
-alias g_ph='git push heroku master'
-alias g_pg='git push github master'
-alias g_ca='git commit -v -a'
-alias g_co="git checkout"
-alias g_count='git shortlog -sn'
-alias g_d='git diff'
-alias g_dh='git diff HEAD'
-alias g_dm='git diff master'
-alias g_ds='git diff --cached'
-alias g_dv='git diff -w "$@" | emq -R -'
-alias g_itx='gitx --all'
-alias g_pr='git pull --rebase || (notify "pull failed" "Git" && false)'
-alias g_pru='gp && rake && gu'
-alias g_ri='git rebase -i origin/master^'
-alias g_rc='git rebase --continue'
-alias g_up='git fetch && git rebase'
-alias g_cache='git rm -r --cached .'
 # http://www.jukie.net/~bart/blog/pimping-out-git-log
-alias g_log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative"
+glog() {
+		git log \
+				--graph \
+				--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' \
+				--abbrev-commit \
+				--date=relative
+}
 
 gp() {
     [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
@@ -53,11 +33,11 @@ gbr() {
     test -d .git && git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3
 }
 
-g-prune() {
+gprune() {
     git remote | xargs -n 1 git remote prune
 }
 
-g_cn() {
+gcn() {
     git clone "$1" "$2"
 }
 
@@ -65,24 +45,8 @@ gc() {
     git add . && git commit -v -a -m "$*" && git status
 }
 
-# Setup a tracking branch from [remote] [branch_name]
-g_bt() {
-    git branch --track $2 $1/$2 && git checkout $2
-}
-
-g_parse_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
-}
-
-g_notpushed() {
-    curr_branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
-    origin=$(git config --get "branch.$curr_branch.remote")
-    origin=${origin:-origin}
-    git log $@ $curr_branch ^remotes/$origin/$curr_branch
-}
-
 # Completely removes a given file from a git repo
-g_rm() {
+grm() {
     git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
     git push origin master --force
     rm -rf .git/refs/original/
@@ -91,63 +55,22 @@ g_rm() {
     git gc --aggressive --prune=now
 }
 
-g_rb() {
+grb() {
     git push origin HEAD:refs/heads/$1
     git fetch origin &&
     git checkout -b $1 --track origin/$1
 }
 
-g_i() {
+gi() {
     git init &&
-    [ ! -f .gitignore ] && cat > .gitignore << -EOF-
-## MAC OS
-.DS_Store
-
-## TEXTMATE
-*.tmproj
-tmtags
-
-## EMACS
-*~
-\#*
-.\#*
-
-## VIM
-*.swp
-
-## PROJECT::GENERAL
-coverage/
-rdoc/
-pkg/
-
-## PROJECT::SPECIFIC'
--EOF-
-    git add . &&
-    git commit -v -a -m "Initial commit" &&
+    [ -f .gitignore ] || cp -v ~/.gitignore_global .
+    git add .
+    git commit -vu -a -m "Initial commit"
     git status
 }
 
-g-remote() {
-    echo "Running: git remote add origin ${GIT_HOSTING}:$1.git"
-    git remote add origin $GIT_HOSTING:$1.git
-}
-
-g_first_push() {
-    echo "Running: git push origin master:refs/heads/master"
-    git push origin master:refs/heads/master
-}
-
-g_remove_missing_files() {
-    git ls-files -d -z | xargs -0 git update-index --remove
-}
-
-# Adds files to git's exclude file (same as .gitignore)
-g_local_ignore() {
-    echo "$1" >> .git/info/exclude
-}
-
 # get a quick overview for your git repo
-g_info() {
+ginfo() {
     if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
         # print informations
         echo "git repo overview"
@@ -181,7 +104,7 @@ g_info() {
     fi
 }
 
-g_stats() {
+gstat() {
 # awesome work from https://github.com/esc/git-stats
 # including some modifications
     if [ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]; then
@@ -290,24 +213,24 @@ prompt_start() {
     else
         no_color=$white
     fi
-		start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
+    start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
 }
 
 prompt_git_status_timer() {
-		prompt_start
+    prompt_start
     PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
 }
 
 prompt_git_status_simple() {
-		prompt_start
+    prompt_start
     PS1="${yellow}$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W$(tput sgr0) "
 }
 
 # Prompt toggle
 jppt() {
-		if [ $PROMPT_COMMAND = "prompt_git_status_simple" ]; then
-				export PROMPT_COMMAND=prompt_git_status_timer
-		else
-				export PROMPT_COMMAND=prompt_git_status_simple
-		fi
+    if [ $PROMPT_COMMAND = "prompt_git_status_simple" ]; then
+        export PROMPT_COMMAND=prompt_git_status_timer
+    else
+        export PROMPT_COMMAND=prompt_git_status_simple
+    fi
 }

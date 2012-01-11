@@ -41,7 +41,7 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 [ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
 
 #Java
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
 PATH=$JAVA_HOME/bin:$PATH
 
 # ignore backups, CVS directories, python bytecode, vim swap files
@@ -79,10 +79,7 @@ shopt -s interactive_comments >/dev/null 2>&1
 shopt -s cmdhist
 shopt -s histappend
 
-# disable core dumps
 ulimit -S -c 0
-
-# default umask
 umask 0022
 
 # override and disable tilde expansion
@@ -216,7 +213,7 @@ done
 
 # - Prompt
 [ -f /usr/share/git/completion/git-completion.bash ] && {
-		. /usr/share/git/completion/git-completion.bash
+    . /usr/share/git/completion/git-completion.bash
 }
 
 export GIT_PS1_SHOWDIRTYSTATE=true
@@ -233,13 +230,17 @@ PROMPT_COMMAND=prompt_git_status_timer
 # ~/bin && functions
 jplb() {
     [ -d ~/bin ] && {
-        for b in $(find ~/bin/ -maxdepth 1 -type d | cut -c 1- | uniq); do
-            [[ ${d##*/} != @(*~|*.bak|*.swp|\#*\#|*.dpkg*|exclude|*.git|.rpm*) ]] && {
-                PATH="$b:$PATH"
-            }
+				local bin_dir=$(
+            find ~/bin/                                              \
+                -maxdepth 1                                          \
+                -type d \( ! -regex '\(.*/.git\)\|\(.*/exclude\)' \) |
+                cut -c 1-
+				)
+
+        for b in $bin_dir; do
+            PATH="$b:$PATH"
         done
     }
-    PATH=$(puniq $PATH)
 }
 jplb
 
