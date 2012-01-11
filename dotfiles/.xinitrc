@@ -35,7 +35,6 @@ sudo /usr/bin/updatedb &
 ~/.private/bin/start-chromium.sh &
 ~/.private/bin/start-dropbox.sh &
 ~/.private/bin/network-setup.sh -m &
-~/bin/sh/focus -a 5  &
 
 ~/bin/term -e $SHELL ~/bin/tmux_servers.sh -l
 
