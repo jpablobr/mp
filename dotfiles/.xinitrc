@@ -31,12 +31,12 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 sudo /usr/bin/updatedb &
 
 # Scripts
-~/.private/bin/mpd-jpablobr.sh &
+~/.private/bin/network-setup.sh -m &
+~/.private/bin/start-mpd.sh &
 ~/.private/bin/start-chromium.sh &
 ~/.private/bin/start-dropbox.sh &
-~/.private/bin/network-setup.sh -m &
 
-~/bin/term -e $SHELL ~/bin/tmux_servers.sh -l
+~/bin/term -name emacs
 
 while true; do wmii
     xmessage 'INSERT COIN TO CONTINUE'     \

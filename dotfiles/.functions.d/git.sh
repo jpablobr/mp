@@ -1,25 +1,5 @@
 #!/bin/bash
 
-black="\[\e[0;30m\]"
-red="\[\e[0;31m\]"
-green="\[\e[0;32m\]"
-yellow="\[\e[0;33m\]"
-blue="\[\e[0;34m\]"
-purple="\[\e[0;35m\]"
-cyan="\[\e[0;36m\]"
-white="\[\e[0;37m\]"
-orange="\[\e[33;40m\]"
-reset_color="\[\e[39m\]"
-
-# http://www.jukie.net/~bart/blog/pimping-out-git-log
-glog() {
-		git log \
-				--graph \
-				--pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' \
-				--abbrev-commit \
-				--date=relative
-}
-
 gp() {
     [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
     git push origin $(gbr)
@@ -162,22 +142,22 @@ git_status() {
         seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
         minutes_since_last_commit="$(($seconds_since_last_commit/60))"
         if ((minutes_since_last_commit < 60)); then
-            minutes_since_last_commit="${green}${minutes_since_last_commit}m${reset_color}"
+            minutes_since_last_commit="\e[0;32m${minutes_since_last_commit}m\e[0m"
         elif ((minutes_since_last_commit < 120)); then
-            minutes_since_last_commit="${yellow}${minutes_since_last_commit}m${reset_color}"
+            minutes_since_last_commit="\e[0;33m${minutes_since_last_commit}m\e[0m"
         elif ((minutes_since_last_commit < 1440)); then
-            minutes_since_last_commit="${red}${minutes_since_last_commit}m${reset_color}"
+            minutes_since_last_commit="\e[0;31m${minutes_since_last_commit}m\e[0m"
         else
             days_since_last_commit=$(($minutes_since_last_commit/1440))
             minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
-            minutes_since_last_commit="${red}${days_since_last_commit}d ${minutes_so_far_today}m${reset_color}"
+            minutes_since_last_commit="\e[0;31m${days_since_last_commit}d ${minutes_so_far_today}m\e[0m"
         fi
     else
         minutes_since_last_commit=""
     fi
     if [ $branch ] || [ $flags  ]; then
         if [ $branch ]; then
-            branch="${branch}"
+            branch="$branch"
         else
             branch="waiting for first commit"
         fi
@@ -190,9 +170,9 @@ git_status() {
         # A added  File has been added
         # D deleted  File has been deleted
         # U unmerged   File has conflicts after a merge
-            echo -e " ${reset_color}${flags}|${minutes_since_last_commit}|${branch}${reset_color} "
+            echo -e " \e[0m$flags|$minutes_since_last_commit|$branch\e[0m "
         else
-            echo -e " ${reset_color}${minutes_since_last_commit}|${branch}${reset_color} "
+            echo -e " \e[0m$minutes_since_last_commit|$branch\e[0m "
         fi
     else
         echo -e " "
@@ -207,23 +187,14 @@ p_hst() {
     /usr/bin/hostname | /bin/cut -c1
 }
 
-prompt_start() {
-    if [ "$(/usr/bin/whoami)" = root ]; then
-        no_color=$red
-    else
-        no_color=$white
-    fi
-    start_ps1="${no_color}$(p_me)@$(p_hst)${reset_color}:"
-}
+start_ps1="\e[0;37m$(p_me)@$(p_hst)\e[0m:"
 
 prompt_git_status_timer() {
-    prompt_start
-    PS1="${start_ps1}$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W${reset_color} "
+    PS1="$start_ps1$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \e[0\;31m\$es' ';else echo "";fi\`\e[0;34m\W\e[0m "
 }
 
 prompt_git_status_simple() {
-    prompt_start
-    PS1="${yellow}$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \[\e[0\;31m\]\$es' ';else echo "";fi\`${blue}\W$(tput sgr0) "
+    PS1="\e[0;33m$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \e[0\;31m\$es' ';else echo "";fi\`\e[0;34m\W\e[0m "
 }
 
 # Prompt toggle

@@ -220,7 +220,9 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
-PROMPT_COMMAND=prompt_git_status_timer
+[ "$(/usr/bin/whoami)" = jpablobr ] && {
+		PROMPT_COMMAND=prompt_git_status_timer
+}
 
 # Misc stuff to source:
 [ -f ~/bin/sh/bashmarks.sh ] && . ~/bin/sh/bashmarks.sh
@@ -236,7 +238,6 @@ jplb() {
                 -type d \( ! -regex '\(.*/.git\)\|\(.*/exclude\)' \) |
                 cut -c 1-
 				)
-
         for b in $bin_dir; do
             PATH="$b:$PATH"
         done
@@ -249,6 +250,3 @@ export TERM=xterm
 # condense $PATH entries
 PATH=$(puniq $PATH)
 MANPATH=$(puniq $MANPATH)
-
-uname -npsr
-uptime
