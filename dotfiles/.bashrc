@@ -6,7 +6,6 @@
 : ${UNAME=$(uname)}
 
 # complete hostnames from this file
-: ${HOSTFILE=$HOME/.ssh/known_hosts}
 : ${HOSTNAME=$(/bin/hostname)}
 : ${INPUTRC=~/.inputrc}
 
@@ -25,6 +24,22 @@ case "$0" in
     *)  unset LOGIN ;;
 esac
 
+installed() {
+    [ -z $(which "$1") ] && {
+        echo -e "\n\e[0;37;41m$1 not installed.\e[0m\n"
+        return 1
+    }
+    which "$1"
+}
+
+exists() {
+    [ ! -r "$1" ] && {
+        echo -e "\n\e[0;37;41m$1 does not exist.\e[0m\n"
+        return 1
+    }
+    return 0
+}
+
 # ----------------------------------------------------------------------
 # - $PATH:
 
@@ -35,14 +50,16 @@ PATH=/bin:/usr/bin:/usr/local/bin:$PATH
 PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 # Haskell
-[ -d ~/.cabal/bin ] && PATH=~/.cabal/bin:$PATH
+exists ~/.cabal/bin && PATH=~/.cabal/bin:$PATH
 
 # rvm
-[ -s ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
+exists ~/.rvm/scripts/rvm && . ~/.rvm/scripts/rvm
 
 #Java
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
-PATH=$JAVA_HOME/bin:$PATH
+exists /usr/lib/jvm/java-7-openjdk && {
+    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
+    PATH=$JAVA_HOME/bin:$PATH
+}
 
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
@@ -98,7 +115,7 @@ test -z "$BASH_COMPLETION" && {
             /opt/local/etc/bash_completion \
             /etc/bash_completion
         do
-            test -f $f && {
+            [ -f $f ] && {
                 . $f
                 break
             }
@@ -126,7 +143,7 @@ export LESS=' -R '
 
 # EDITOR
 HAVE_EMACS=$(command -v emacs)
-test -n "$HAVE_EMACS" &&
+[ -n "$HAVE_EMACS" ] &&
 export VISUAL='emacsclient -c' &&
 export EDITOR='emacsclient -c --alternate-editor emacs'
 
@@ -174,8 +191,8 @@ man () {
 
 # ----------------------------------------------------------------------
 # - SSH
-test -f ~/.ssh/environment &&
-export SSH_ENV=~/.ssh/environment
+: ${SSH_ENV=~/.ssh/environment}
+: ${HOSTFILE=$HOME/.ssh/known_hosts}
 
 [ -f ~/.ssh/known_hosts ] && {
     _ssh_hosts() {
@@ -189,11 +206,10 @@ export SSH_ENV=~/.ssh/environment
 # ----------------------------------------------------------------------
 # - Colors
 dircolors="$(/bin/dircolors)"
-test -n "$dircolors" && {
+[ -n "$dircolors" ] && {
     COLORS=/etc/DIR_COLORS
-    test -e /etc/DIR_COLORS.$TERM             && COLORS=/etc/DIR_COLORS.$TERM
-    test -e ~/.dircolors.d/dircolors.256dark  && COLORS=~/.dircolors.d/dircolors.256dark
-    test ! -e "$COLORS"                       && COLORS=
+    exists ~/.dircolors.d/dircolors.256dark  && COLORS=~/.dircolors.d/dircolors.256dark
+    test ! -e "$COLORS"                      && COLORS=
     eval `dircolors --sh $COLORS`
 }
 
@@ -204,15 +220,15 @@ export LS_OPTIONS='-s -F -T 0 --color=yes'
 # ----------------------------------------------------------------------
 # - Bash.d
 
-[ -f ~/.bash.d/aliases.bash ] && . ~/.bash.d/aliases.bash
-[ -f ~/.bash.d/path.bash ] && . ~/.bash.d/path.bash
+exists ~/.bash.d/aliases.bash && . ~/.bash.d/aliases.bash;
+exists ~/.bash.d/path.bash && . ~/.bash.d/path.bash;
 
 for f in $(/bin/ls ~/.functions.d/); do
-    [ -f ~/.functions.d/$f ] && . ~/.functions.d/$f
+    exists ~/.functions.d/$f && . ~/.functions.d/$f;
 done
 
 # - Prompt
-[ -f /usr/share/git/completion/git-completion.bash ] && {
+exists /usr/share/git/completion/git-completion.bash && {
     . /usr/share/git/completion/git-completion.bash
 }
 
@@ -221,23 +237,23 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
 [ "$(/usr/bin/whoami)" = jpablobr ] && {
-		PROMPT_COMMAND=prompt_git_status_timer
+    PROMPT_COMMAND=prompt_git_status_timer
 }
 
 # Misc stuff to source:
-[ -f ~/bin/sh/bashmarks.sh ] && . ~/bin/sh/bashmarks.sh
-[ -f ~/.private/bashrc ] && . ~/.private/bashrc
+exists ~/bin/sh/bashmarks.sh && . ~/bin/sh/bashmarks.sh
+exists ~/.private/bashrc && . ~/.private/bashrc
 
 #-----------------------------------------------------------------------
 # ~/bin && functions
 jplb() {
     [ -d ~/bin ] && {
-				local bin_dir=$(
+        local bin_dir=$(
             find ~/bin/                                              \
                 -maxdepth 1                                          \
                 -type d \( ! -regex '\(.*/.git\)\|\(.*/exclude\)' \) |
                 cut -c 1-
-				)
+        )
         for b in $bin_dir; do
             PATH="$b:$PATH"
         done
