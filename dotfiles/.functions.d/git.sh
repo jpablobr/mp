@@ -180,11 +180,11 @@ git_status() {
 }
 
 p_me() {
-    /usr/bin/whoami | /bin/cut -c1-2
+    whoami | cut -c1-2
 }
 
 p_hst() {
-    /usr/bin/hostname | /bin/cut -c1
+    hostname | cut -c1
 }
 
 start_ps1="\e[0;37m$(p_me)@$(p_hst)\e[0m:"

@@ -205,7 +205,7 @@ man () {
 
 # ----------------------------------------------------------------------
 # - Colors
-dircolors="$(/bin/dircolors)"
+dircolors="$(dircolors)"
 [ -n "$dircolors" ] && {
     COLORS=/etc/DIR_COLORS
     exists ~/.dircolors.d/dircolors.256dark  && COLORS=~/.dircolors.d/dircolors.256dark
@@ -236,7 +236,7 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
-[ "$(/usr/bin/whoami)" = jpablobr ] && {
+[ "$(whoami)" = "jpablobr" ] && {
     PROMPT_COMMAND=prompt_git_status_timer
 }
 
