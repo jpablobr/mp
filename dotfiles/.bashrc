@@ -26,7 +26,7 @@ esac
 
 installed() {
     [ -z $(which "$1") ] && {
-        echo -e "\n\e[0;37;41m$1 not installed.\e[0m\n"
+        echo -e "\e[0;37;41m$1 not installed.\e[0m"
         return 1
     }
     which "$1"
@@ -34,7 +34,7 @@ installed() {
 
 exists() {
     [ ! -r "$1" ] && {
-        echo -e "\n\e[0;37;41m$1 does not exist.\e[0m\n"
+        echo -e "\e[0;37;41m$1 does not exist.\e[0m"
         return 1
     }
     return 0

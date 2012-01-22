@@ -4,6 +4,7 @@
 alias bl='bundle --local || bundle'
 alias geminstallglobal='rvm use default@global && gem install'
 alias gempurge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
+alias rdl='ruby -Ilib'
 
 # - Rails
 alias rradbm='rake db:migrate && rake db:test:prepare'
@@ -18,9 +19,9 @@ rrsm() {
 }
 
 rctagsg() {
-		find $(echo $GEM_PATH | cut -d: -f1) -type f -name '*.rb' | ctags -e --verbose=yes -L -
+    find $(echo $GEM_PATH | cut -d: -f1) -type f -name '*.rb' | ctags -e --verbose=yes -L -
 }
 
 rctagsp() {
-		find . -type f -name '*.rb' | ctags -e --verbose=yes -L -
+    find . -type f -name '*.rb' | ctags -e --verbose=yes -L -
 }

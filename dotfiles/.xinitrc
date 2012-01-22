@@ -28,13 +28,14 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 /usr/bin/xscreensaver -no-splash &
 /usr/bin/xbindkeys &
 /usr/bin/urxvtd -q -o -f &
+# /usr/bin/sonata --hidden &
 sudo /usr/bin/updatedb &
 
 # Scripts
-~/.private/bin/network-setup.sh -m &
-~/.private/bin/start-mpd.sh &
-~/.private/bin/start-chromium.sh &
-~/.private/bin/start-dropbox.sh &
+~/.private/bin/network/network-setup.sh -m &
+~/.private/bin/start/start-mpd.sh &
+~/.private/bin/start/start-chromium.sh &
+~/.private/bin/start/start-dropbox.sh &
 
 ~/bin/term -name emacs
 

@@ -28,7 +28,7 @@ alias export_current_dir='export PATH="$PATH:`pwd`"'
 alias history='fc -l 1'
 alias hi='history | tail -20'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
-alias gst='g status -sb -uno --ignore-submodules=untracked'
+alias gst='g status -sbu'
 alias gs='g stash'
 alias du1='du -h --max-depth=1'
 # Pids IPs
