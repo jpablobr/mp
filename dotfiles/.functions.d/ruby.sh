@@ -5,6 +5,9 @@ alias bl='bundle --local || bundle'
 alias geminstallglobal='rvm use default@global && gem install'
 alias gempurge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
 alias rdl='ruby -Ilib'
+alias rpr='pry -Ilib -r'
+alias rubyencoding="sed '1i\# -*- encoding: utf-8 -*-' -i "
+alias rubyencodingr="git ls-files '*.rb' | xargs sed '1i\# -*- encoding: utf-8 -*-' -i"
 
 # - Rails
 alias rradbm='rake db:migrate && rake db:test:prepare'

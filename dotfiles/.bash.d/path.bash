@@ -1,3 +1,4 @@
+#/usr/bin/env bash
 # --------------------------------------------------------------------
 # PATH MANIPULATION FUNCTIONS:
 # Usage: pls [<var>]

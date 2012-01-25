@@ -2,6 +2,7 @@
 # Common aliases
 alias o='xdg-open'
 alias h='history | grep -i'
+alias i='pry'
 alias l='less'
 alias k="kill -9"
 alias j='jobs -l'
@@ -31,6 +32,7 @@ alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 alias gst='g status -sbu'
 alias gs='g stash'
 alias du1='du -h --max-depth=1'
+
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
 alias ansi-chart='for f in {30..37};do for b in {40..47};do printf "\e[%dm \e[%dm%d;%d \e[0m" $b $f $f $b;done;echo;done'
