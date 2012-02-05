@@ -1,10 +1,9 @@
 #!/bin/sh
 # Common aliases
-alias o='xdg-open'
+alias o='mimeopen'
 alias h='history | grep -i'
 alias i='pry'
 alias l='less'
-alias k="kill -9"
 alias j='jobs -l'
 alias g='git'
 alias r='fc -s'
@@ -32,6 +31,8 @@ alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 alias gst='g status -sbu'
 alias gs='g stash'
 alias du1='du -h --max-depth=1'
+alias fs='ttycoke cat_focus.sh'
+alias fe='emacsclient -c ~/.private/notes/focus.md'
 
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
@@ -41,6 +42,19 @@ op(){ "$1" >/dev/null 2>&1 & }
 alias sloc='cloc --by-file-by-lang --exclude-dir .git'
 alias curlr='curl -C - -L -O'
 alias sup_os='export | grep -i'
+
+# aliases
+alias list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
+alias broken_links='find . -type l | (while read FN ; do test -e "$FN" || ls -ld "$FN"; done)'
+alias symlinks='find . -type l'
+alias remove_symlinks='for f in $(find . -type l); do rm $f; done'
+
+# moving in dirs
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 aappd(){
     local alias_cmd=($@)

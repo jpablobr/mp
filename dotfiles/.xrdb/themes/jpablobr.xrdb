@@ -29,3 +29,37 @@
 !! white dark/light
  *color7:                #eee8d5
 *color15:               #ffffd7
+
+! ! black dark/light
+! URxvt.color0:  #000000
+! URxvt.color8:  #1c1c1c
+! !! red dark/light
+! URxvt.color1:  #dc322f
+! URxvt.color9:  #cb4b16
+! !! green dark/light
+! URxvt.color2:  #5f8700
+! URxvt.color10: #999999
+! ! #87afd7
+! !! yellow dark/light
+! URxvt.color3:  #b58900
+! URxvt.color11: #657b83
+! !! blue dark/light
+! URxvt.color4:  #268bd2
+! URxvt.color12: #0066CC
+! !! magenta dark/light
+! URxvt.color5:  #d33682
+! URxvt.color13: #6c71c4
+! !! cyan dark/light
+! URxvt.color6:  #2aa198
+! URxvt.color14: #00CCCC
+! !! white dark/light
+! URxvt.color7:  #eee8d5
+! URxvt.color15: #fdf6e3
+! URxvt.background : #000000
+! URxvt.foreground : #DDDDDD
+! URxvt.tintColor : #111111
+! ! HLT Include, StatusLine, ErrorMsg
+! URxvt.colorIT:      #87af5f
+! URxvt.colorBD:      #d7d7d7
+! URxvt.colorUL:      #87afd7
+

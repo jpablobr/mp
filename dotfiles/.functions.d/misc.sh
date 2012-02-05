@@ -20,32 +20,28 @@ alias when="when --calendar_today_style='underlined,fgyellow,bgblack' --items_to
 alias xargs0="xargs -0"
 
 mkcd () {
-  mkdir -p $1 &&\
+    mkdir -p $1 &&\
   cd $1
 }
 
-cdf() {
-    cd *$1*/
-}
-
 free () {
-  case $1 in
-    mem)
-      perl -ane 'BEGIN{$mem;} if (/^(MemFree:|Buffers:|Cached:).*?(\d+)/) {$mem += $2;} END{print $mem;}' /proc/meminfo
-      ;;
-    mem_total)
-      grep MemTotal /proc/meminfo | sed 's/[^0-9]//g'
-      ;;
-    swap)
-      grep SwapFree /proc/meminfo | sed 's/[^0-9]//g'
-      ;;
-    swap_total)
-      grep SwapTotal /proc/meminfo | sed 's/[^0-9]//g'
-      ;;
-    *)
-      free -m
-      ;;
-  esac
+    case $1 in
+        mem)
+            perl -ane 'BEGIN{$mem;} if (/^(MemFree:|Buffers:|Cached:).*?(\d+)/) {$mem += $2;} END{print $mem;}' /proc/meminfo
+            ;;
+        mem_total)
+            grep MemTotal /proc/meminfo | sed 's/[^0-9]//g'
+            ;;
+        swap)
+            grep SwapFree /proc/meminfo | sed 's/[^0-9]//g'
+            ;;
+        swap_total)
+            grep SwapTotal /proc/meminfo | sed 's/[^0-9]//g'
+            ;;
+        *)
+            free -m
+            ;;
+    esac
 }
 
 ##############################################################################->
@@ -71,36 +67,36 @@ dumpschema() {
 }
 
 GET() {
-  curl -i -X GET -H "X-Requested-With: XMLHttpRequest" $*
+    curl -i -X GET -H "X-Requested-With: XMLHttpRequest" $*
 }
 
 POST() {
-  curl -i -X POST -H "X-Requested-With: XMLHttpRequest" $*
+    curl -i -X POST -H "X-Requested-With: XMLHttpRequest" $*
   #-d "key=val"
 }
 
 PUT() {
-  curl -i -X PUT -H "X-Requested-With: XMLHttpRequest" $*
+    curl -i -X PUT -H "X-Requested-With: XMLHttpRequest" $*
 }
 
 DELETE() {
-  curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
+    curl -i -X DELETE -H "X-Requested-With: XMLHttpRequest" $*
 }
 
 json() {
-  tmpfile=`mktemp -t json`
-  curl -s $* | python -mjson.tool > $tmpfile
-  cat $tmpfile
-  cat $tmpfile | pbcopy
-  rm $tmpfile
+    tmpfile=`mktemp -t json`
+    curl -s $* | python -mjson.tool > $tmpfile
+    cat $tmpfile
+    cat $tmpfile | pbcopy
+    rm $tmpfile
 }
 
 xml() {
-  tmpfile=`mktemp -t xml`
-  curl -s $* | xmllint —format - > $tmpfile
-  cat $tmpfile
-  cat $tmpfile | pbcopy
-  rm $tmpfile
+    tmpfile=`mktemp -t xml`
+    curl -s $* | xmllint —format - > $tmpfile
+    cat $tmpfile
+    cat $tmpfile | pbcopy
+    rm $tmpfile
 }
 
 ansi2html() {
@@ -108,12 +104,6 @@ ansi2html() {
 }
 ##############################################################################->
 # - General
-
-knpviewer() {
-    for name in $(ps ux | awk '/npviewer.bin/ && !/awk/ {print $2}'); do
-        kill "$name"
-    done
-}
 
 last_modified(){
     ls -t $* 2> /dev/null | head -n 1
@@ -125,20 +115,14 @@ dbox-bitch() {
     dropboxd
 }
 
-moduse() {
-    pkg="$1"
-    shift
-    ack -L "use $pkg" `ack -l "$pkg" $*`
-}
-
 psg() { ps aux | head -1 | grep -v Broken ; ps aux | grep $* | grep -v grep; }
 pod() { pod2man "$*" | nroff -man | less; }
 localtime () { perl -le 'for (@ARGV) { print scalar localtime($_) }' $*; }
 iplist() { ifconfig | perl -nle '/dr:(\S+)/ && print $1'; }
 
 mkcd() {
-  mkdir -p "$*"
-  cd "$*"
+    mkdir -p "$*"
+    cd "$*"
 }
 
 debug_http () {
@@ -151,4 +135,59 @@ debug_http () {
 # http_headers: get just the HTTP headers from a web page (and its redirects)
 http_headers () {
     /usr/bin/curl -I -L $@
+}
+
+prune_dirs() {
+# Remove empty directories under and including <path>s.
+    find "$@" -type d -empty -depth | xargs rmdir
+}
+
+remove_extension() {
+# Remove file extension to all files in current directory.
+    for f in *; do
+        local base=$(basename $f .$1)
+        mv $f $base
+    done
+}
+
+rename_ext() {
+    for f in *.$1; do
+        local base=$(basename $f .$1)
+        mv $f $base.$2
+    done
+}
+
+switch_files_contents() {
+    mv $1 $1_orig &&
+    mv $2 $1 &&
+    mv $1_orig $2
+}
+
+# - Ruby
+alias bl='bundle --local || bundle'
+alias geminstallglobal='rvm use default@global && gem install'
+alias gempurge='gem list | cut -d” ” -f1 | xargs gem uninstall -aIx'
+alias rdl='ruby -Ilib'
+alias rpr='pry -Ilib -r'
+alias rubyencoding="sed '1i\# -*- encoding: utf-8 -*-' -i "
+alias rubyencodingr="git ls-files '*.rb' | xargs sed '1i\# -*- encoding: utf-8 -*-' -i"
+
+# - Rails
+alias rradbm='rake db:migrate && rake db:test:prepare'
+alias rrroutes='bundle exec rake routes > routes.txt'
+alias rrlog='tail -fn0 ./log/*.log'
+alias rrc='pry -r ./config/environment'
+alias rrs='./script/rails s'
+alias rrsl='rrs >& log/server-`date +%Y-%m-%d-%H:%M`.log'
+
+rrsm() {
+    ps aux | grep '[s]cript/rails s' | awk '{print $2}' | xargs pmap
+}
+
+rctagsg() {
+    find $(echo $GEM_PATH | cut -d: -f1) -type f -name '*.rb' | ctags -e --verbose=yes -L -
+}
+
+rctagsp() {
+    find . -type f -name '*.rb' | ctags -e --verbose=yes -L -
 }

@@ -34,7 +34,7 @@ sudo /usr/bin/updatedb &
 # Scripts
 ~/.private/bin/network/network-setup.sh -m &
 ~/.private/bin/start/start-mpd.sh &
-~/.private/bin/start/start-chromium.sh &
+~/.private/bin/start/start-google-chrome.sh &
 ~/.private/bin/start/start-dropbox.sh &
 
 ~/bin/term -name emacs

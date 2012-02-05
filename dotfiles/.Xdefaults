@@ -63,7 +63,8 @@ URxvt.colorBDMode : on
 URxvt.colorULMode : on
 URxvt.underLine : on
 URxvt.inheritPixmap : true
-! black dark/light
+
+>85;95;0c! black dark/light
 URxvt.color0:  #073642
 URxvt.color8:  #1c1c1c
 !! red dark/light
@@ -87,14 +88,14 @@ URxvt.color14: #93a1a1
 !! white dark/light
 URxvt.color7:  #eee8d5
 URxvt.color15: #fdf6e3
-URxvt.background : #000000
-URxvt.foreground : #DDDDDD
-URxvt.tintColor : #111111
+URxvt.background: #000000
+URxvt.foreground: #DDDDDD
+URxvt.tintColor: #111111
 ! HLT Include, StatusLine, ErrorMsg
-URxvt.colorIT:      #87af5f
-URxvt.colorBD:      #d7d7d7
-URxvt.colorUL:      #87afd7
-
+URxvt.colorIT: #87af5f
+URxvt.colorBD: #d7d7d7
+URxvt.colorUL: #87afd7
+    
 ! Emacs
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off

@@ -106,23 +106,6 @@ _expand() {
 
 # -------------------------------------------------------------------
 # - BASH COMPLETION:
-test -z "$BASH_COMPLETION" && {
-    bash=${BASH_VERSION%.*}; bmajor=${bash%.*}; bminor=${bash#*.}
-    test -n "$PS1" && test $bmajor -gt 1 && {
-        # search for a bash_completion file to source
-        for f in /usr/local/etc/bash_completion \
-            /usr/pkg/etc/bash_completion \
-            /opt/local/etc/bash_completion \
-            /etc/bash_completion
-        do
-            [ -f $f ] && {
-                . $f
-                break
-            }
-        done
-    }
-    unset bash bmajor bminor
-}
 
 # source completion directory definitions
 for i in ~/bin/completions/*; do
@@ -143,9 +126,10 @@ export LESS=' -R '
 
 # EDITOR
 HAVE_EMACS=$(command -v emacs)
-[ -n "$HAVE_EMACS" ] &&
-export VISUAL='emacsclient -c' &&
-export EDITOR='emacsclient -c --alternate-editor emacs'
+[ -n "$HAVE_EMACS" ] && {
+    export VISUAL='emacsclient -c'
+    export EDITOR='emacsclient -c --alternate-editor emacs'
+}
 
 # PAGER
 if test -n "$(command -v less)"; then
@@ -165,7 +149,7 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 # Browser
-export BROWSER='chromium'
+export BROWSER='google-chrome'
 
 # Man
 man() {
@@ -246,7 +230,7 @@ export GIT_PS1_SHOWSTASHSTATE=true
     PROMPT_COMMAND=prompt_git_status_timer
 }
 
-# Misc stuff to source:
+# Misc
 exists ~/bin/sh/bashmarks.sh && . ~/bin/sh/bashmarks.sh
 exists ~/.private/bashrc && . ~/.private/bashrc
 
@@ -267,7 +251,13 @@ jplb() {
 }
 jplb
 
-export TERM=xterm
+if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
+    if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
+        export TERM='rxvt-256color';
+    else
+        export TERM='vt100';
+    fi
+fi
 
 # condense $PATH entries
 PATH=$(puniq $PATH)

@@ -19,7 +19,7 @@ alias pacmir='sudo pacman -Syy'                # Force refresh of all package li
 
 #FUNCTIONS ------------------------------------------------------------------
 pacsearch() {
-  echo -e "$(pacman -Ss $@ | sed \
+    echo -e "$(pacman -Ss $@ | sed \
   -e 's#core/.*#\\033[1;31m&\\033[1;30m#g' \
   -e 's#extra/.*#\\033[1;34m&\\033[1;30m#g' \
   -e 's#community/.*#\\033[0;32m&\\033[1;30m#g' \
@@ -27,13 +27,13 @@ pacsearch() {
 }
 
 pacs() {
-	local CL='\\e['
-	local RS='\\e[0;0m'
+    local CL='\\e['
+    local RS='\\e[0;0m'
 
-	echo -e "$(pacman -Ss "$@" | sed "
-		/^core/		s,.*,${CL}1;31m&${RS},
-		/^extra/	s,.*,${CL}0;32m&${RS},
-		/^community/	s,.*,${CL}1;35m&${RS},
-		/^[^[:space:]]/	s,.*,${CL}0;36m&${RS},
-	")"
+    echo -e "$(pacman -Ss "$@" | sed "
+    /^core/  s,.*,${CL}1;31m&${RS},
+    /^extra/ s,.*,${CL}0;32m&${RS},
+    /^community/ s,.*,${CL}1;35m&${RS},
+    /^[^[:space:]]/ s,.*,${CL}0;36m&${RS},
+    ")"
 }
