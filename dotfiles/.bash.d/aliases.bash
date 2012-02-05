@@ -12,7 +12,6 @@ alias sudo='sudo ' # What is this I don't even.
 alias chx='chmod +x'
 alias ct='cheat_fu'
 alias ctr='cd ~/.cheats_fu_sheets && ronn -r *.1.ronn && cd -'
-alias r*='rm -frv *'
 alias mkd='mkdir -pv'
 alias sjp='urxvt -e $SHELL ~/.tmuxinator/jpablobr.tmux &'
 alias merge_xresources='xrdb -merge ~/.Xresources'
