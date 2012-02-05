@@ -22,7 +22,7 @@ alias zombies='ps al | grep " Z "'
 alias cpf='cp -frpv'
 alias fn='find . -name'
 alias tmux='tmux -2'
-alias ag='alias | grep '
+alias ag='alias | egrep'
 alias export_current_dir='export PATH="$PATH:`pwd`"'
 alias history='fc -l 1'
 alias hi='history | tail -20'
@@ -40,7 +40,7 @@ alias hgrep='history | grep -i'
 op(){ "$1" >/dev/null 2>&1 & }
 alias sloc='cloc --by-file-by-lang --exclude-dir .git'
 alias curlr='curl -C - -L -O'
-alias sup_os='export | grep -i'
+alias sup_os='export | egrep'
 
 # aliases
 alias list_biggest_in_tree='find . -ls | sort -n -k 7 | tail -5'
@@ -64,9 +64,9 @@ aappd(){
     exit 0
 }
 
-alias eg='env | grep -i '
-alias pg='ps aux | grep'
-alias fcm='compgen -abck | grep -i'
+alias eg='env | egrep -i '
+alias pg='ps aux | egrep'
+alias fcm='compgen -abck | egrep -i'
 alias rmf='rm -frv'
 alias gnome_remove_panels='gsettings set org.gnome.gnome-panel.layout toplevel-id-list []'
 alias screen_lock='xscreensaver-command -lock'
@@ -74,3 +74,5 @@ alias wget_r='wget -rkp -l3 -np -nH --cut-dirs=1'
 alias mvpas='mv file $OLDPWD/'
 alias reboot="sudo shutdown -r now"
 alias shutdown="sudo shutdown -h now"
+alias gemfileg='cat ./Gemfile.lock | grep'
+
