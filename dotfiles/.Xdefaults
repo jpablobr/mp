@@ -41,20 +41,13 @@ URxvt.borderLess : False
 URxvt.internalBorder : 0
 URxvt.externalBorder : 0
 URxvt.perl-lib : /home/jpablobr/.urxvt/perl
-URxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
-URxvt.keysym*M-u : perl:url-select:select_next
-URxvt.keysym*M-Escape : perl:keyboard-select:activate
-URxvt.keysym*M-q : perl:keyboard-select:search
-URxvt.underlineURLs : true
-URxvt.keysym*M-c : perl:clipboard:copy
-URxvt.keysym*M-v : perl:clipboard:paste
-URxvt.keysym*M-C-v : perl:clipboard:paste_escaped
-URxvt.keysym*F11 : perl:fullscreen:switch
+! URxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
+URxvt.perl-ext-common : default,searchable-scrollback,clipboard
 URxvt.copyCommand : xclip -i -selection clipboard
 URxvt.pasteCommand : xclip -o -selection clipboard
-URxvt.override-redirect : false
-URxvt.matcher*button : 2
-URxvt.urlLauncher : /usr/bin/chromium
+URxvt.keysym*C-c : perl:clipboard:copy
+URxvt.keysym*C-v : perl:clipboard:paste
+URxvt.keysym*M-C-v : perl:clipboard:paste_escaped
 URxvt.transparent : true
 URxvt.shading : 30
 URxvt.boldMode : on
@@ -64,7 +57,7 @@ URxvt.colorULMode : on
 URxvt.underLine : on
 URxvt.inheritPixmap : true
 
->85;95;0c! black dark/light
+! black dark/light
 URxvt.color0:  #073642
 URxvt.color8:  #1c1c1c
 !! red dark/light
@@ -103,8 +96,6 @@ Emacs.toolBar: off
 Emacs.BitmapIcon: on
 
 ! interaction
-*vt100.metaSendsEscape : True
-*vt100.saveLines       : 8192
 *VT100.allowWindowOps: true
 *VT100.allowTitleOps: true
 *VT100.allowFontOps: true
@@ -113,12 +104,7 @@ Emacs.BitmapIcon: on
 XTerm*loginShell: true
 XTerm*allowSendEvents: True
 XTerm*sessionMgt: false
-XTerm*vt100.colorMode       : True
-XTerm*vt100.colorBDMode     : True
-XTerm*vt100.colorULMode     : True
-XTerm*vt100.showBlinkAsBold : True
-XTerm*vt100.veryBoldColors  : 6
-XTerm*Maximized             : true
+XTerm*Maximized : true
 XTerm*saveLines: 5120
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false

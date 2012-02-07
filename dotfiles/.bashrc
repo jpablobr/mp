@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # the basics
 : ${HOME=~}
@@ -51,9 +51,6 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 # Haskell
 exists ~/.cabal/bin && PATH=~/.cabal/bin:$PATH
-
-# rvm
-exists ~/.rvm/scripts/rvm && . ~/.rvm/scripts/rvm
 
 #Java
 exists /usr/lib/jvm/java-7-openjdk && {
@@ -173,6 +170,10 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
+# rvm
+exists ~/.rvm/scripts/rvm && . ~/.rvm/scripts/rvm
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
 # use gem-man(1) if available:
 man () {
     gem man -s "$@" 2>/dev/null ||
@@ -251,13 +252,7 @@ jplb() {
 }
 jplb
 
-if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
-    if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
-        export TERM='rxvt-256color';
-    else
-        export TERM='vt100';
-    fi
-fi
+export TERM='rxvt-256color'
 
 # condense $PATH entries
 PATH=$(puniq $PATH)

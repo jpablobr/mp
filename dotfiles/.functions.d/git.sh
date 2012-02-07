@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 gp() {
     [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
