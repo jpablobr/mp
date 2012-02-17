@@ -1,9 +1,9 @@
 # -*- mode: ruby -*-
-begin
-  require 'irbtools'
-rescue LoadError
-  $stderr.puts "Please install 'irbtools' or add it to your Gemfile"
-end
+# begin
+#   require 'irbtools'
+# rescue LoadError
+#   $stderr.puts "Please install 'irbtools' or add it to your Gemfile"
+# end
 
 class Object
   # Return a list of methods defined locally for a particular object.  Useful

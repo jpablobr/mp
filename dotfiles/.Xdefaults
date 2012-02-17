@@ -41,7 +41,6 @@ URxvt.borderLess : False
 URxvt.internalBorder : 0
 URxvt.externalBorder : 0
 URxvt.perl-lib : /home/jpablobr/.urxvt/perl
-! URxvt.perl-ext-common : default,matcher,searchable-scrollback,keyboard-select,url-select,clipboard,fullscreen
 URxvt.perl-ext-common : default,searchable-scrollback,clipboard
 URxvt.copyCommand : xclip -i -selection clipboard
 URxvt.pasteCommand : xclip -o -selection clipboard
@@ -108,4 +107,3 @@ XTerm*Maximized : true
 XTerm*saveLines: 5120
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
-

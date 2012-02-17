@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash --login
 
 # the basics
 : ${HOME=~}
@@ -61,11 +61,13 @@ exists /usr/lib/jvm/java-7-openjdk && {
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 
-# history stuff
-HISTCONTROL=ignoreboth
-HISTFILESIZE=1000000
-HISTSIZE=10000000
+# history
+export HISTCONTROL=ignoreboth
+export HISTFILESIZE=10000
+export HISTSIZE=42
 export HISTIGNORE="&:ls:[bf]g:exit"
+shopt -s histappend
+shopt -s cmdhist
 
 # -------------------------------------------------------------------
 # - USER SHELL ENVIRONMENT:
@@ -90,8 +92,6 @@ shopt -s dotglob >/dev/null 2>&1
 shopt -s expand_aliases >/dev/null 2>&1
 shopt -s huponexit >/dev/null 2>&1
 shopt -s interactive_comments >/dev/null 2>&1
-shopt -s cmdhist
-shopt -s histappend
 
 ulimit -S -c 0
 umask 0022
@@ -124,8 +124,8 @@ export LESS=' -R '
 # EDITOR
 HAVE_EMACS=$(command -v emacs)
 [ -n "$HAVE_EMACS" ] && {
-    export VISUAL='emacsclient -c'
-    export EDITOR='emacsclient -c --alternate-editor emacs'
+    export VISUAL='emacsclient -n'
+    export EDITOR='emacsclient -n --alternate-editor emacs'
 }
 
 # PAGER
@@ -229,6 +229,7 @@ export GIT_PS1_SHOWSTASHSTATE=true
 
 [ "$(whoami)" = "jpablobr" ] && {
     PROMPT_COMMAND=prompt_git_status_timer
+    PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
 }
 
 # Misc
@@ -240,9 +241,11 @@ exists ~/.private/bashrc && . ~/.private/bashrc
 jplb() {
     [ -d ~/bin ] && {
         local bin_dir=$(
-            find ~/bin/                                              \
-                -maxdepth 1                                          \
-                -type d \( ! -regex '\(.*/.git\)\|\(.*/exclude\)' \) |
+            find ~/bin/                      \
+                -maxdepth 1                  \
+                -type d                      \
+                \( ! -regex '.*\.git.*' \)   \
+                \( ! -regex '.*exclude.*' \) |
                 cut -c 1-
         )
         for b in $bin_dir; do

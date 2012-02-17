@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # execute the rest of this file under the ConsoleKit environment
-sed -n '/^sed/,$p' "$0" | sed 1d | /usr/bin/ck-launch-session sh -x; exit
+sed -n '/^sed/,$p' "$0" | sed 1d | /usr/bin/ck-launch-session /bin/bash --login
 
 eval `gpg-agent --daemon` &&
 trap 'killall gpg-agent' EXIT

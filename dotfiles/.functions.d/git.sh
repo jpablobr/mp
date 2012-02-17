@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-gp() {
-    [ $# -eq 1 ] && git push "$1" $(gbr) && exit 0
-    git push origin $(gbr)
-}
-
 gup() {
     git pull --rebase origin $(gbr)
 }
