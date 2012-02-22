@@ -27,10 +27,12 @@ alias fcl='fc -l 1'
 alias hg='history | tail -20'
 alias whereami='echo "$( hostname --fqdn ) ($(hostname -i)):$( pwd )"'
 alias gst='git status -sbu'
+alias gp='~/bin/g p'
 alias gs='git stash'
 alias du1='du -h --max-depth=1'
 alias fs='ttycoke cat_focus.sh'
 alias fe='emacsclient -c ~/.private/notes/focus.md'
+alias spsql='sudo /etc/rc.d/postgresql start'
 
 # Pids IPs
 alias pidips='sudo lsof -iTCP -sTCP:LISTEN -P'
