@@ -58,6 +58,8 @@ exists /usr/lib/jvm/java-7-openjdk && {
     PATH=$JAVA_HOME/bin:$PATH
 }
 
+export CLASSPATH=~bin/jars/*
+
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
 

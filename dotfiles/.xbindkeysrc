@@ -10,16 +10,16 @@
 
 # Examples of commands:
 
-"/home/jpablobr/bin/term"
+"/home/jpablobr/bin/term &"
 control + b:2
 
-"/home/jpablobr/bin/touchpad-toggle.sh"
+"/home/jpablobr/bin/touchpad-toggle.sh &"
 control + 0
 
-"sudo -u jpablobr /home/jpablobr/bin/e -q"
+"sudo -u jpablobr /home/jpablobr/bin/e -q &"
 control + 9
 
-"/usr/bin/chromium"
+"/usr/bin/chromium &"
 control + 8
 
 #"xterm -geom 50x20+20+20"

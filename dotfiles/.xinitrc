@@ -22,13 +22,12 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 /usr/bin/xset r rate 200 50 &
 /usr/bin/xrdb -load ~/.Xdefaults &
 /usr/bin/xmodmap ~/.Xmodmap  &
-/usr/bin/setxkbmap -option "ctrl:nocaps"  &
+/usr/bin/setxkbmap -option "ctrl:menu_rctrl"  &
 /usr/bin/syndaemon -t -k -i 2 -d &
 /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2 &
 /usr/bin/xscreensaver -no-splash &
 /usr/bin/xbindkeys &
 /usr/bin/urxvtd -q -o -f &
-# /usr/bin/sonata --hidden &
 sudo /usr/bin/updatedb &
 
 # Scripts

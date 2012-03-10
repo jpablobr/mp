@@ -1,0 +1,10 @@
+;; -*- mode: emacs-lisp; -*-
+
+(add-to-list
+ 'toggle-mapping-styles
+ '(ttycoke
+   ("test/ttycoke/test_\\1.rb" . "lib/ttycoke/\\1.rb")
+   ("test/test_\\1.rb" . "lib/\\1.rb")
+   ("test_\\1.rb"      . "\\1.rb")))
+
+(buffer-toggle-style 'ttycoke)
