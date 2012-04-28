@@ -1,113 +1,114 @@
 ! Appearance
 #include "/home/jpablobr/.xrdb/themes/jpablobr.xrdb"
 
-Xcursor.theme : Human
+         Xcursor.theme : Human
 
-*background:            #1c1c1c
-*foreground:            #657b83
-*fading:                40
-*fadeColor:             #1c1c1c
-*cursorColor:           #93a1a1
-*pointerColorBackground:#586e75
-*pointerColorForeground:#93a1a1
+            *background: #1c1c1c
+            *foreground: #657b83
+                *fading: 40
+             *fadeColor: #1c1c1c
+           *cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
 
-Xft.autohint: 1
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+           Xft.autohint: 1
+          Xft.lcdfilter: lcddefault
+          Xft.hintstyle: hintfull
+            Xft.hinting: 1
+          Xft.antialias: 1
+               Xft.rgba: rgb
+
+xscreensaver.timeout: 60
 
 #ifdef COLOR
-*customization: -color
+         *customization: -color
 #endif
 
 ! Man pages
-*VT100.colorBDMode:     true
-*VT100.colorBD:         red
-*VT100.colorULMode:     true
-*VT100.colorUL:         cyan
+     *VT100.colorBDMode: true
+         *VT100.colorBD: red
+     *VT100.colorULMode: true
+         *VT100.colorUL: cyan
 
 ! Urxvt
-URxvt.font: xft:proggynormal:normal:pixelsize=14
-URxvt.boldFont: xft:proggynormal:normal:pixelsize=14
-URxvt.letterSpace: -5
-URxvt.termName : rxvt-256color
-URxvt.scrollBar : off
-URxvt.scrollstyle : plain
-URxvt.iconFile : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
-URxvt.geometry : 84×24
-URxvt.borderLess : False
-URxvt.internalBorder : 0
-URxvt.externalBorder : 0
-URxvt.perl-lib : /home/jpablobr/.urxvt/perl
-URxvt.perl-ext-common : default,searchable-scrollback,clipboard
-URxvt.copyCommand : xclip -i -selection clipboard
-URxvt.pasteCommand : xclip -o -selection clipboard
-URxvt.keysym*M-c : perl:clipboard:copy
-URxvt.keysym*M-v : perl:clipboard:paste
-URxvt.keysym*M-C-v : perl:clipboard:paste_escaped
-URxvt.transparent : true
-URxvt.shading : 30
-URxvt.boldMode : on
-URxvt.colorMode : on
-URxvt.colorBDMode : on
-URxvt.colorULMode : on
-URxvt.underLine : on
-URxvt.inheritPixmap : true
+             URxvt.font: xft:proggynormal:normal:pixelsize=14
+         URxvt.boldFont: xft:proggynormal:normal:pixelsize=14
+      URxvt.letterSpace: -5
+        URxvt.termName : rxvt-256color
+       URxvt.scrollBar : on
+     URxvt.scrollstyle : plain
+        URxvt.iconFile : /usr/share/icons/gnome/22x22/apps/utilities-terminal.png
+        URxvt.geometry : 84×24
+      URxvt.borderLess : False
+  URxvt.internalBorder : 0
+  URxvt.externalBorder : 0
+        URxvt.perl-lib : /home/jpablobr/.urxvt/perl
+ URxvt.perl-ext-common : default,searchable-scrollback,clipboard
+     URxvt.copyCommand : xclip -i -selection clipboard
+    URxvt.pasteCommand : xclip -o -selection clipboard
+      URxvt.keysym*M-c : perl:clipboard:copy
+      URxvt.keysym*M-v : perl:clipboard:paste
+    URxvt.keysym*M-C-v : perl:clipboard:paste_escaped
+     URxvt.transparent : true
+         URxvt.shading : 30
+        URxvt.boldMode : on
+       URxvt.colorMode : on
+     URxvt.colorBDMode : on
+     URxvt.colorULMode : on
+       URxvt.underLine : on
+   URxvt.inheritPixmap : true
 
 ! black dark/light
-URxvt.color0:  #073642
-URxvt.color8:  #1c1c1c
+           URxvt.color0:  #073642
+           URxvt.color8:  #1c1c1c
 !! red dark/light
-URxvt.color1:  #dc322f
-URxvt.color9:  #cb4b16
+           URxvt.color1:  #dc322f
+           URxvt.color9:  #cb4b16
 !! green dark/light
-URxvt.color2:  #859900
-URxvt.color10: #586e75
+           URxvt.color2:  #859900
+          URxvt.color10: #586e75
 !! yellow dark/light
-URxvt.color3:  #b58900
-URxvt.color11: #657b83
+           URxvt.color3:  #b58900
+          URxvt.color11: #657b83
 !! blue dark/light
-URxvt.color4:  #268bd2
-URxvt.color12: #839496
+           URxvt.color4:  #268bd2
+          URxvt.color12: #839496
 !! magenta dark/light
-URxvt.color5:  #d33682
-URxvt.color13: #6c71c4
+           URxvt.color5:  #d33682
+          URxvt.color13: #6c71c4
 !! cyan dark/light
-URxvt.color6:  #2aa198
-URxvt.color14: #93a1a1
+           URxvt.color6:  #2aa198
+          URxvt.color14: #93a1a1
 !! white dark/light
-URxvt.color7:  #eee8d5
-URxvt.color15: #fdf6e3
-URxvt.background: #000000
-URxvt.foreground: #DDDDDD
-URxvt.tintColor: #111111
+           URxvt.color7:  #eee8d5
+          URxvt.color15: #fdf6e3
+       URxvt.background: #000000
+       URxvt.foreground: #DDDDDD
+        URxvt.tintColor: #111111
 ! HLT Include, StatusLine, ErrorMsg
-URxvt.colorIT: #87af5f
-URxvt.colorBD: #d7d7d7
-URxvt.colorUL: #87afd7
-    
+          URxvt.colorIT: #87af5f
+          URxvt.colorBD: #d7d7d7
+          URxvt.colorUL: #87afd7
+
 ! Emacs
-Emacs.font: xft:proggynormal:normal:pixelsize=16
-Emacs.menuBar: off
+          Emacs.menuBar: off
 Emacs.verticalScrollBars: off
-Emacs.toolBar: off
-Emacs.BitmapIcon: on
+          Emacs.toolBar: off
+       Emacs.BitmapIcon: on
 
 ! interaction
-*VT100.allowWindowOps: true
-*VT100.allowTitleOps: true
-*VT100.allowFontOps: true
+  *VT100.allowWindowOps: true
+   *VT100.allowTitleOps: true
+    *VT100.allowFontOps: true
 
 ! Xterm
-XTerm*loginShell: true
-XTerm*allowSendEvents: True
-XTerm*sessionMgt: false
-XTerm*Maximized : true
-XTerm*saveLines: 5120
-XTerm*scrollKey: true
-XTerm*scrollTtyOutput: false
+       XTerm*loginShell: true
+  XTerm*allowSendEvents: True
+       XTerm*sessionMgt: false
+       XTerm*Maximized : true
+        XTerm*saveLines: 5120
+        XTerm*scrollKey: true
+  XTerm*scrollTtyOutput: false
 
 ! emulate XTerm for proper recognition of key combinations in Vim
 !URxvt.keysym.Up              : \033[A  !breaks arrow keys in Vim
@@ -174,4 +175,3 @@ URxvt.keysym.M-C-S-Left       : \033[1;8D
 !URxvt.keysym.M-C-S-Page_Down : captured by terminal for scrolling
 URxvt.keysym.M-C-S-Home       : \033[1;8H
 URxvt.keysym.M-C-S-End        : \033[1;8F
-

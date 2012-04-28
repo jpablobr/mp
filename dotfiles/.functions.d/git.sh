@@ -8,39 +8,9 @@ gbr() {
     test -d .git && git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3
 }
 
-gprune() {
-    git remote | xargs -n 1 git remote prune
-}
-
-gcn() {
-    git clone "$1" "$2"
-}
-
-gc() {
-    git add . && git commit -v -a -m "$*" && git status
-}
-
-# Completely removes a given file from a git repo
-grm() {
-    git filter-branch --index-filter 'git rm --cached --ignore-unmatch $1' HEAD
-    git push origin master --force
-    rm -rf .git/refs/original/
-    git reflog expire --expire=now --all
-    git gc --prune=now
-    git gc --aggressive --prune=now
-}
-
-grb() {
-    git push origin HEAD:refs/heads/$1
-    git fetch origin &&
-    git checkout -b $1 --track origin/$1
-}
-
-gi() {
-    git init &&
-    [ -f .gitignore ] || cp -v ~/.gitignore_global .
+gct() {
     git add .
-    git commit -vu -a -m "Initial commit"
+    git commit -v -a -m "$*"
     git status
 }
 
@@ -137,15 +107,15 @@ git_status() {
         seconds_since_last_commit=$(($now_in_unix_time - $last_commit_in_unix_time))
         minutes_since_last_commit="$(($seconds_since_last_commit/60))"
         if ((minutes_since_last_commit < 60)); then
-            minutes_since_last_commit="\e[0;32m${minutes_since_last_commit}m\e[0m"
+            minutes_since_last_commit="\e[0;32m\]${minutes_since_last_commit}m\e[0m\]"
         elif ((minutes_since_last_commit < 120)); then
-            minutes_since_last_commit="\e[0;33m${minutes_since_last_commit}m\e[0m"
+            minutes_since_last_commit="\e[0;33m\]${minutes_since_last_commit}m\e[0m\]"
         elif ((minutes_since_last_commit < 1440)); then
-            minutes_since_last_commit="\e[0;31m${minutes_since_last_commit}m\e[0m"
+            minutes_since_last_commit="\e[0;31m\]${minutes_since_last_commit}m\e[0m\]"
         else
             days_since_last_commit=$(($minutes_since_last_commit/1440))
             minutes_so_far_today=$(($minutes_since_last_commit - $days_since_last_commit*1440))
-            minutes_since_last_commit="\e[0;31m${days_since_last_commit}d ${minutes_so_far_today}m\e[0m"
+            minutes_since_last_commit="\e[0;31m\]${days_since_last_commit}d ${minutes_so_far_today}m\e[0m\]"
         fi
     else
         minutes_since_last_commit=""
@@ -165,38 +135,28 @@ git_status() {
         # A added  File has been added
         # D deleted  File has been deleted
         # U unmerged   File has conflicts after a merge
-            echo -e " \e[0m$flags|$minutes_since_last_commit|$branch\e[0m "
+            echo -e " \e[0m\]$flags|$minutes_since_last_commit|$branch\e[0m\] "
         else
-            echo -e " \e[0m$minutes_since_last_commit|$branch\e[0m "
+            echo -e " \e[0m\]$minutes_since_last_commit|$branch\e[0m\] "
         fi
     else
         echo -e " "
     fi
 }
 
-p_me() {
-    whoami | cut -c1-2
-}
-
-p_hst() {
-    hostname | cut -c1
-}
-
-start_ps1="\e[0;37m$(p_me)@$(p_hst)\e[0m:"
-
 prompt_git_status_timer() {
-    PS1="$start_ps1$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \e[0\;31m\$es' ';else echo "";fi\`\e[0;34m\W\e[0m "
+    PS1="\u@\h$(git_status)\`es=\$?;if [ ! \$es = 0 ];then echo \$es;else echo "";fi\`\e[0;34m\W\e[0m "
 }
 
 prompt_git_status_simple() {
-    PS1="\e[0;33m$(__git_ps1) ${start_ps1}\`es=\$?;if [ ! \$es = 0 ];then echo \e[0\;31m\$es' ';else echo "";fi\`\e[0;34m\W\e[0m "
+    PS1="\u@\h\W$(__git_ps1)\$ "
 }
 
 # Prompt toggle
 jppt() {
-    if [ $PROMPT_COMMAND = "prompt_git_status_simple" ]; then
-        export PROMPT_COMMAND=prompt_git_status_timer
-    else
+    if [ "$PROMPT_COMMAND" = "prompt_git_status_timer" ]; then
         export PROMPT_COMMAND=prompt_git_status_simple
+    else
+        export PROMPT_COMMAND=prompt_git_status_timer
     fi
 }

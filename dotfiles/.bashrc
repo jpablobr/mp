@@ -54,11 +54,18 @@ exists ~/.cabal/bin && PATH=~/.cabal/bin:$PATH
 
 #Java
 exists /usr/lib/jvm/java-7-openjdk && {
-    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
-    PATH=$JAVA_HOME/bin:$PATH
-}
+    export JAVA_HOME=$(grep -h JAVA_HOME /etc/profile.d/* |
+        sed '/^#/d' |
+        sed -e 's/.*JAVA_HOME=//')
+    # export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
 
+}
 export CLASSPATH=~bin/jars/*
+
+# SCM Breeze
+exists ~/.scm_breeze/scm_breeze.sh && {
+    source ~/.scm_breeze/scm_breeze.sh
+}
 
 # ignore backups, CVS directories, python bytecode, vim swap files
 FIGNORE="~:CVS:#:.pyc:.swp:.swa:apache-solr-*"
@@ -229,11 +236,6 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
-[ "$(whoami)" = "jpablobr" ] && {
-    PROMPT_COMMAND=prompt_git_status_timer
-    PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
-}
-
 # Misc
 exists ~/bin/sh/bashmarks.sh && . ~/bin/sh/bashmarks.sh
 exists ~/.private/bashrc && . ~/.private/bashrc
@@ -248,7 +250,7 @@ jplb() {
                 -type d                      \
                 \( ! -regex '.*\.git.*' \)   \
                 \( ! -regex '.*exclude.*' \) |
-                cut -c 1-
+                    cut -c 1-
         )
         for b in $bin_dir; do
             PATH="$b:$PATH"

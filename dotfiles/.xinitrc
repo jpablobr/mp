@@ -21,8 +21,13 @@ eval `dbus-launch --sh-syntax --exit-with-session`
 /usr/bin/xset -b & # not beeps!
 /usr/bin/xset r rate 200 50 &
 /usr/bin/xrdb -load ~/.Xdefaults &
-/usr/bin/xmodmap ~/.Xmodmap  &
-/usr/bin/setxkbmap -option "ctrl:menu_rctrl"  &
+# /usr/bin/xmodmap ~/.Xmodmap  &
+
+# The following is for my DAS keyboard
+# map right Ctrl -> right win
+# map caps to to Ctrl (no caps)
+# map Alt(mod1) right Win and Super to Menu
+/usr/bin/setxkbmap -option "altwin:ctrl_win,ctrl:nocaps,altwin:alt_super_win"  &
 /usr/bin/syndaemon -t -k -i 2 -d &
 /usr/bin/synclient HorizTwoFingerScroll=1 TapButton2=3 TapButton3=2 &
 /usr/bin/xscreensaver -no-splash &
